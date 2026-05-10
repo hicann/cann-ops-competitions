@@ -99,7 +99,7 @@ code/
 
 ## 四、提交流程
 
-以下流程均在终端环境上执行，过程中可能需要输入用户名和个人访问令牌进行验证，个人访问令牌可以访问 [访问令牌](https://gitcode.com/setting/token-classic) 页面进行创建。
+以下过程中可能需要输入用户名和个人访问令牌进行验证，个人访问令牌可以访问 [访问令牌](https://gitcode.com/setting/token-classic) 页面进行创建。
 
 1. Git全局配置，填写自己的GitCode用户名和GitCode配置邮箱
 
@@ -124,7 +124,7 @@ code/
 
    - GitCode个人令牌可以访问 [访问令牌](https://gitcode.com/setting/token-classic) 页面进行创建
 
-2. Fork原仓库到个人仓库，此步骤需要注意如果此前Fork过cann-competition仓库需要删除仓库。
+3. Fork原仓库到个人仓库，此步骤需要注意如果此前Fork过cann-competition仓库需要删除仓库。
 
    ```bash
    curl -L "https://api.gitcode.com/api/v5/repos/${UPSTREAM_OWNER}/${REPO}/forks?access_token=${GITCODE_TOKEN}" \
@@ -137,46 +137,56 @@ code/
    }"
    ```
 
-3. 克隆个人仓库到终端环境
+4. 克隆个人仓库到终端环境
 
    ```bash
    git clone "https://gitcode.com/${GITCODE_USER}/${REPO}.git"
    cd "${REPO}"
    ```
 
-4. 添加原仓库为`upstream`
+5. 添加原仓库为`upstream`
 
    ```bash
    git remote add upstream "https://gitcode.com/${UPSTREAM_OWNER}/${REPO}.git"
    ```
 
-5. 将第二节中下载并修改了目录结构的算子代码放到第一节中的指定提交目录下
+6. 将第二节中下载并修改了目录结构的算子代码放到第一节中的指定提交目录下
 
-6. 提交到本地master分支
+7. 提交到本地master分支, 如果小队多个成员请追加联合作者信息(以下为除自己外添加2个联合作者的示例)：
 
    ```bash
    git add .
-   git commit -m "update competition files"
+   git commit -m "update competition files" -m "Co-authored-by: zhangsan <zhangsan@example.com>" -m "Co-authored-by: lisi <lisi@example.com>"
    ```
 
-7. 推送到fork的个人仓库
+8. 推送到fork的个人仓库
 
    ```bash
    git push origin "${BASE_BRANCH}"
    ```
 
-8. 创建提交PR，需要修改命令中`title`参数里 **团队名称**
+9. 提交Pull Request
 
-   ```bash
-   curl -X POST "https://api.gitcode.com/api/v5/repos/${UPSTREAM_OWNER}/${REPO}/pulls?access_token=${GITCODE_TOKEN}" \
-     -H "Authorization: Bearer ${GITCODE_TOKEN}" \
-     -H "Content-Type: application/json" \
-     -d "{
-       \"title\": \"[团队提交]算子挑战赛江山赛区预赛提交：您的团队名称\",
-       \"body\": \"算子挑战赛江山赛区预赛提交\",
-       \"head\": \"${GITCODE_USER}:${BASE_BRANCH}\",
-       \"base\": \"${BASE_BRANCH}\"
-     }"
+	在AtomGit 上打开你的 Fork 仓库页面，点击 【新建 Pull Request】，填写PR标题和描述。
+    
+   **标题格式：** 
+   ```
+   [团队提交] 算子挑战赛江山赛区预赛 Erf 算子提交： ** 补充团队名称 **
+   ```
+   **PR描述模板：**
+   ```markdown
+   ## 团队信息
+   - 团队名称：[团队名称]
+   - 所属单位：[学校全称]
+   - 团队成员：
+  		- [姓名]，[在团队中的分工]
+  		- [姓名]，[在团队中的分工]
+   
+   ## 算子实现介绍
+   内容可考虑介绍以下内容：
+   1.算子整体实现思路
+   2.精度优化策略
+   3.性能优化策略
    ```
 
    
