@@ -54,7 +54,7 @@
 
 ### PR 申请合入
 
-验收通过后，在昇腾算子开源仓提交 PR 申请，申请将开发完成的算子合入（https://gitcode.com/cann/ops-math/tree/master/experimental/math/sign‘）。
+验收通过后，在昇腾算子开源仓提交 PR 申请，申请将开发完成的算子合入（https://gitcode.com/cann/ops-math/tree/master/experimental/math/sign）。
 
 ## TBE 参考实现路径
 
