@@ -152,12 +152,17 @@ code/
 
 6. 将第二节中下载并修改了目录结构的算子代码放到第一节中的指定提交目录下
 
-7. 提交到本地master分支, 如果小队多个成员请追加联合作者信息(以下为除自己外添加2个联合作者的示例)：
+7. 提交到本地master分支, 如果小队多个成员请追加联合作者信息(以下为除自己外添加2个联合作者的示例)，队伍所有队员必须[签署CLA](https://clasign.osinfra.cn/sign-cla/68cbd4a3dbabc050b436cdd4/employee)：
 
    ```bash
    git add .
    git commit -m "update competition files" -m "Co-authored-by: zhangsan <zhangsan@example.com>" -m "Co-authored-by: lisi <lisi@example.com>"
    ```
+   
+   说明：联合开发者通过-m参数指定，参数具体含义  `Co-authored-by: {gitcode用户名} <{gitcode邮箱}>`
+   
+   gitcode用户名：个人设置-用户资料-用户昵称
+   gitcode邮箱：个人设置-电子邮件
 
 8. 推送到fork的个人仓库
 
