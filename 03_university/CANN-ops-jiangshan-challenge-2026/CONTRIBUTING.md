@@ -162,6 +162,7 @@ code/
    说明：联合开发者通过-m参数指定，参数具体含义  `Co-authored-by: {gitcode用户名} <{gitcode邮箱}>`
    
    gitcode用户名：个人设置-用户资料-用户昵称
+   
    gitcode邮箱：个人设置-电子邮件
 
 8. 推送到fork的个人仓库
