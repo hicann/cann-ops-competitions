@@ -89,6 +89,29 @@
 | 04-20 | [Neg](./202604/Neg_task_doc.md) |
 | 04-21 | [ForeachRoundOffNumberV2](./202604/ForeachRoundOffNumberV2_task_doc.md) |
 
+### 5月份发放的任务
+| 任务编号 | 算子名称 |
+|----------|----------|
+| 1 | [aclsolverCheevj](./202605/aclsolverCheevj_task_doc.md) |
+| 2 | [aclblasTrsmBatched](./202605/aclblasTrsmBatched_task_doc.md) |
+| 3 | [SPMV](./202605/SPMV_task_doc.md) |
+| 4 | [Cast&EmbeddingDenseGrad](./202605/Cast&EmbeddingDenseGrad_task_doc.md) |
+| 5 | [dynamicMap](./202605/dynamicMap_task_doc.md) |
+| 6 | [MinDim&MaxDim](./202605/MinDim&MaxDim_task_doc.md) |
+| 7 | [SyncBatchNormGatherStats](./202605/SyncBatchNormGatherStats_task_doc.md) |
+| 8 | [im2col](./202605/im2col_task_doc.md) |
+| 9 | [bincount](./202605/bincount_task_doc.md) |
+| 10 | [RightShift](./202605/RightShift_task_doc.md) |
+| 11 | [FmodScalar&FmodTensor](./202605/FmodScalar&FmodTensor_task_doc.md) |
+| 12 | [UpsampleNearest3d](./202605/UpsampleNearest3d_task_doc.md) |
+| 13 | [logspace](./202605/logspace_task_doc.md) |
+| 14 | [UpsampleNearestExact1d&UpsampleNearestExact2](./202605/UpsampleNearestExact1d&UpsampleNearestExact2d_task_doc.md) |
+| 15 | [Arange](./202605/Arange_task_doc.md) |
+| 16 | [Gcd](./202605/Gcd_task_doc.md) |
+| 17 | [InplaceRsqrt](./202605/InplaceRsqrt_task_doc.md) |
+| 18 | [Relu](./202605/Relu_task_doc.md) |
+| 19 | [InplaceSigmoid](./202605/InplaceSigmoid_task_doc.md) |
+| 20 | [IndexFillTensor](./202605/IndexFillTensor_task_doc.md) |
 
 ## 参考链接
 社区任务发放页面：https://gitcode.com/org/cann/discussions/22
