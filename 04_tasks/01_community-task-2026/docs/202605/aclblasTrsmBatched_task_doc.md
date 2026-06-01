@@ -108,7 +108,8 @@ void aclblasCtrsmBatched(
 
 ### 精度要求
 
-算子计算精度需满足 [AscendOpTest](https://gitcode.com/HIT1920/AscendOpTest) 工具默认阈值
+参考该链接编写测试用例，使得Ascend C算子结果和python实现结果一致：
+https://gitcode.com/cann/ops-solver/tree/master/test/cgetri
 
 ### 文档规范要求
 
