@@ -76,7 +76,7 @@ https://gitcode.com/cann/cann-ops-competitions/tree/master/03_university/CANN-op
 - 完整克隆 fork（非浅克隆，避免 merge 冲突）
 - 添加 upstream 远程，fetch + merge 上游最新代码
   - 快进合并优先；分叉时可选创建合并提交；冲突未解决时报错退出
-- 创建 PR 分支 `submit/{school}_{team}/{op_name}`
+- 创建 PR 分支 `submit/{school}_{team}/{op_name}`，基于 `upstream/master` 创建（确保 PR 只包含本次提交，不受 fork master 上其他 commit 影响）
   - 分支已存在 → 确认后重置到上游最新（确保每次提交都是干净的单 commit）
 - 配置 git user.name / user.email（使用 CLA 签署邮箱）
 
@@ -352,7 +352,7 @@ https://clasign.osinfra.cn/sign-cla/68cbd4a3dbabc050b436cdd4/individual
 | 措施 | 说明 |
 |------|------|
 | `curl --config` 文件 | API Token 通过临时配置文件注入（chmod 600），不暴露于进程表 `/proc/*/cmdline` |
-| `git credential.helper=store` | git 认证通过临时 credential store 文件注入（chmod 600），凭证通过 `-c` 临时覆盖不修改 .git/config |
+| `oauth2:TOKEN@` URL 直传 | git clone/push 通过 URL 内嵌令牌认证（clone 后立即 set-url 移除 .git/config 中的令牌），解决 credential store 对部分用户 push 403 的问题 |
 | `jq` 构造 JSON | 避免变量直接拼入 JSON 字符串，防止注入 |
 | `printf` 替代 heredoc | README/PR Body 用 `printf '%s\n'` 生成，防止变量值中 `$()`/`` ` `` 被命令替换执行 |
 | `printf -v` 替代 `eval` | `read_secret` 用 `printf -v` 赋值，避免命令注入 |

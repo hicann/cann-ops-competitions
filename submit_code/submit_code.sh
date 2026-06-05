@@ -90,7 +90,6 @@ write_temp_json() {
 TMPDIR=""
 CURL_CONFIG=""
 GIT_UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-GIT_CRED_FILE=""
 cleanup() {
     if [[ -n "$TMPDIR" && -d "$TMPDIR" ]]; then
         rm -rf "$TMPDIR"
@@ -101,7 +100,6 @@ trap cleanup EXIT
 TMPDIR=$(mktemp -d)
 chmod 700 "$TMPDIR"
 CURL_CONFIG="${TMPDIR}/.curl_config"
-GIT_CRED_FILE="${TMPDIR}/.git_creds"
 
 for cmd in jq curl python3 git; do
     command -v "$cmd" >/dev/null 2>&1 || error "缺少必要依赖: $cmd，请先安装"
@@ -609,10 +607,7 @@ fi
 
 FORK_PUBLIC_URL="https://gitcode.com/${GC_LOGIN_NAME}/${REPO_NAME}.git"
 UPSTREAM_URL="https://gitcode.com/${REPO_OWNER}/${REPO_NAME}.git"
-
-# Write git credential file (avoids token in process table and .git/config)
-printf 'https://oauth2:%s@gitcode.com\n' "$GC_TOKEN" > "$GIT_CRED_FILE"
-chmod 600 "$GIT_CRED_FILE"
+FORK_AUTH_URL="https://oauth2:${GC_TOKEN}@gitcode.com/${GC_LOGIN_NAME}/${REPO_NAME}.git"
 
 # ============================================================
 # Step 4: 克隆仓库
@@ -621,10 +616,10 @@ step "克隆仓库"
 
 REPO_DIR="${TMPDIR}/repo"
 info "克隆 fork..."
-timeout "$GIT_TIMEOUT" git -c "credential.helper=store --file=${GIT_CRED_FILE}" \
-    -c "http.userAgent=${GIT_UA}" \
-    clone "$FORK_PUBLIC_URL" "$REPO_DIR" 2>&1 \
+timeout "$GIT_TIMEOUT" git -c "http.userAgent=${GIT_UA}" \
+    clone "$FORK_AUTH_URL" "$REPO_DIR" 2>&1 \
     || error "克隆失败或超时，请检查 GitCode 令牌权限和网络"
+git -C "$REPO_DIR" remote set-url origin "$FORK_PUBLIC_URL"
 
 git -C "$REPO_DIR" remote add upstream "$UPSTREAM_URL" 2>/dev/null || true
 info "同步上游最新代码..."
@@ -660,17 +655,17 @@ fi
 
 PR_BRANCH="submit/${TEAM_DIR_NAME}/${OP_BASE_NAME}"
 info "创建分支: ${PR_BRANCH}"
-if ! git -C "$REPO_DIR" checkout -b "$PR_BRANCH" 2>/dev/null; then
+BRANCH_BASE="upstream/${TARGET_BRANCH}"
+if ! git -C "$REPO_DIR" rev-parse "$BRANCH_BASE" >/dev/null 2>&1; then
+    BRANCH_BASE="origin/${TARGET_BRANCH}"
+fi
+if ! git -C "$REPO_DIR" checkout -b "$PR_BRANCH" "$BRANCH_BASE" 2>/dev/null; then
     if git -C "$REPO_DIR" checkout "$PR_BRANCH" 2>/dev/null; then
         warn "分支 ${PR_BRANCH} 已存在，重置为最新上游代码"
-        RESET_BASE="upstream/${TARGET_BRANCH}"
-        if ! git -C "$REPO_DIR" rev-parse "$RESET_BASE" >/dev/null 2>&1; then
-            RESET_BASE="origin/${TARGET_BRANCH}"
-        fi
-        warn "即将执行 git reset --hard ${RESET_BASE}，这会丢弃分支上的本地修改"
+        warn "即将执行 git reset --hard ${BRANCH_BASE}，这会丢弃分支上的本地修改"
         confirm "确认重置" || error "已取消，请手动处理分支后重新运行"
-        git -C "$REPO_DIR" reset --hard "$RESET_BASE" 2>/dev/null \
-            || error "无法重置分支到 ${RESET_BASE}"
+        git -C "$REPO_DIR" reset --hard "$BRANCH_BASE" 2>/dev/null \
+            || error "无法重置分支到 ${BRANCH_BASE}"
     else
         error "无法创建或切换到分支 ${PR_BRANCH}"
     fi
@@ -771,7 +766,7 @@ COMMIT_RC=$?
 set -e
 if [[ "$COMMIT_RC" -ne 0 ]]; then
     if git -C "$REPO_DIR" diff --cached --quiet 2>/dev/null; then
-        warn "没有变更需要提交"
+        error "没有变更需要提交，无法创建 PR"
     else
         error "git commit 失败: ${COMMIT_ERR}"
     fi
@@ -779,17 +774,13 @@ fi
 
 info "推送到 fork..."
 set +e
-PUSH_OUTPUT=$(timeout "$GIT_TIMEOUT" git -c "credential.helper=store --file=${GIT_CRED_FILE}" \
-    -c "http.userAgent=${GIT_UA}" \
-    -C "$REPO_DIR" push --force-with-lease origin "$PR_BRANCH" 2>&1)
+PUSH_OUTPUT=$(timeout "$GIT_TIMEOUT" git -c "http.userAgent=${GIT_UA}" \
+    -C "$REPO_DIR" push --force "$FORK_AUTH_URL" "$PR_BRANCH" 2>&1)
 PUSH_RC=$?
 set -e
 if [[ "$PUSH_RC" -ne 0 ]]; then
     error "推送失败 — exit code ${PUSH_RC}: ${PUSH_OUTPUT}"
 fi
-
-# Clear credential file after last git operation
-rm -f "$GIT_CRED_FILE"
 
 # ============================================================
 # Step 8: 创建 Pull Request
@@ -805,8 +796,8 @@ while true; do
     PR_PAGE_BODY=$(http_body "$EXISTING_PR_RESP")
     if [[ -z "$PR_PAGE_BODY" || "$PR_PAGE_BODY" == "[]" ]]; then break; fi
     EXISTING_PR_BODY=$(echo "$EXISTING_PR_BODY" "$PR_PAGE_BODY" | jq -s 'add')
-    PR_PAGE_LEN=$(echo "$PR_PAGE_BODY" | jq 'length')
-    if [[ "$PR_PAGE_LEN" -lt 100 ]]; then break; fi
+    PR_PAGE_LEN=$(echo "$PR_PAGE_BODY" | jq 'length' 2>/dev/null) || true
+    if [[ "${PR_PAGE_LEN:-0}" -lt 100 ]]; then break; fi
     PR_PAGE=$((PR_PAGE + 1))
 done
 if [[ -n "$EXISTING_PR_BODY" ]]; then
@@ -875,8 +866,11 @@ else
     PR_ERR_MSG=$(echo "$PR_API_RESP" | jq -r '.message // .error // .msg // empty' 2>/dev/null) || true
     if [[ "$PR_HTTP" == "400" || "$PR_HTTP" == "409" ]] && echo "$PR_ERR_MSG" | grep -qi "already exists"; then
         warn "同分支已有 PR，重新查询..."
-        EXISTING_PR_URL2=$(echo "$EXISTING_PR_BODY" | jq -r --arg branch "$PR_BRANCH" --arg user "$GC_LOGIN_NAME" '[.[] | select(.head.ref == $branch and (.head.user.login // .head.user.username) == $user)] | .[0].html_url // .[0].web_url // empty' 2>/dev/null)
-        EXISTING_PR_NUM2=$(echo "$EXISTING_PR_BODY" | jq -r --arg branch "$PR_BRANCH" --arg user "$GC_LOGIN_NAME" '[.[] | select(.head.ref == $branch and (.head.user.login // .head.user.username) == $user)] | .[0].number // .[0].iid // empty' 2>/dev/null)
+        FRESH_PR_RESP=$(api_call GET "${GC_API}/repos/${REPO_OWNER}/${REPO_NAME}/pulls?state=open&per_page=100&head=${GC_LOGIN_NAME}:${PR_BRANCH}") || true
+        FRESH_PR_HTTP=$(http_code "$FRESH_PR_RESP")
+        FRESH_PR_BODY=$(http_body "$FRESH_PR_RESP")
+        EXISTING_PR_URL2=$(echo "$FRESH_PR_BODY" | jq -r '.[0].html_url // .[0].web_url // empty' 2>/dev/null)
+        EXISTING_PR_NUM2=$(echo "$FRESH_PR_BODY" | jq -r '.[0].number // .[0].iid // empty' 2>/dev/null)
         if [[ -n "$EXISTING_PR_URL2" ]]; then
             PR_URL="$EXISTING_PR_URL2"; PR_NUMBER="$EXISTING_PR_NUM2"
             info "已有 PR #${PR_NUMBER}: ${PR_URL}"
