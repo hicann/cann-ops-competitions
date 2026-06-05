@@ -54,7 +54,7 @@
 ![competition_prize_money](./images/competition_prize_money.png)
 
 ## 💬 交流渠道
-**比赛交流贴**：https://gitcode.com/cann/cann-competitions/discussions/1
+**比赛交流贴**：https://gitcode.com/cann/cann-ops-competitions/discussions/1
 
 **QQ 交流群**：1094426651
 

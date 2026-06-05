@@ -45,11 +45,11 @@ team01_nju_op-pioneers/
 
 （2）点击 **我的提交记录** 中得分最高的提交记录打开提交页面
 
-![cannjudge_code_search](./images/cannjudge_code_search.png)
+![cannjudge_code_search](../images/cannjudge_code_search.png)
 
 （3）点击下载工程得到代码压缩包，解压便能得到完整算子代码
 
-![cannjudge_code_download](./images/cannjudge_code_download.png)
+![cannjudge_code_download](../images/cannjudge_code_download.png)
 
 （4）将代码修改成如下目录结构（添加一层算子名称文件夹即可）：
 
@@ -118,13 +118,13 @@ code/
    export GITCODE_USER="你的GitCode用户名"
    
    export UPSTREAM_OWNER="cann"
-   export REPO="cann-competitions"
+   export REPO="cann-ops-competitions"
    export BASE_BRANCH="master"
    ```
 
    - GitCode个人令牌可以访问 [访问令牌](https://gitcode.com/setting/token-classic) 页面进行创建
 
-3. Fork原仓库到个人仓库，此步骤需要注意如果此前Fork过cann-competition仓库需要删除仓库。
+3. Fork原仓库到个人仓库，此步骤需要注意如果此前Fork过cann-ops-competitions仓库需要删除仓库。
 
    ```bash
    curl -L "https://api.gitcode.com/api/v5/repos/${UPSTREAM_OWNER}/${REPO}/forks?access_token=${GITCODE_TOKEN}" \
@@ -132,8 +132,8 @@ code/
      -H 'Accept: application/json' \
      -d "{ 
      \"organization\": \"${GITCODE_USER}\", 
-     \"name\": \"cann-competitions\", 
-     \"path\": \"cann-competitions\" 
+     \"name\": \"cann-ops-competitions\", 
+     \"path\": \"cann-ops-competitions\" 
    }"
    ```
 

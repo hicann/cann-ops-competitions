@@ -1,14 +1,14 @@
-# 预选赛：算子题目设计与开发流程说明
+# 决赛：算子题目设计与开发流程说明
 
 ## 赛题概述
 
-本次预选赛要求参赛者在CANNJudge平台完成赛事题目提交，分数和排名以[赛事实时榜单](https://competition.gitcode.com/competition/2041798845710389249/live-ranking)页面 **参赛区域实时总榜** 为准，赛事平台为算子设置了多个测试用例，需全部测试用例通过方可得分，测试点性能高低决定分数高低。
+本次决赛要求参赛者在CANNJudge平台完成赛事题目提交，分数和排名以[赛事实时榜单](https://competition.gitcode.com/competition/2041798845710389249/live-ranking)页面 **参赛区域实时总榜** 为准，赛事平台为算子设置了多个测试用例，需全部测试用例通过方可得分，测试点性能高低决定分数高低。
 
 预选赛共设 1 道题目：
 
 | 题目 | 算子 | 说明 | 题目链接 |
 |:----:|:----:|:----:|------|
-| 题目 1 | Erf（高斯误差函数） |$\operatorname{erf}(x)=\frac{2}{\sqrt{\pi}}\int_{0}^{x} e^{-t^2}\,dt$ | https://cannjudge.cn/public/op_challenge_jiangshan_prelim/erf |
+| 题目 1 |BatchToSpace | SpaceToBatch 的逆操作 | https://cannjudge.cn/public/op_challenge_jiangshan_final/batch_to_space |
 
 
 ## 实验环境
@@ -16,11 +16,11 @@
 ### CANNJudge平台
 
 （1）在题目页面点击 **开始答题** 便可进入算子代码编辑页面
-![cannjudge_answer](../images/cannjudge_answer.png)
+![cannjudge_final_answer.png](https://raw.gitcode.com/user-images/assets/10032631/8156c283-f20b-46af-b6db-6400769cf0e1/cannjudge_final_answer.png 'cannjudge_final_answer.png')
 （2）开发完点击 **提交代码** 完成提交
-![cannjudge_push](../images/cannjudge_push.png)
+![cannjudge_final_coding.png](https://raw.gitcode.com/user-images/assets/10032631/82293a96-d6b5-4e99-857c-31c9d4c6b2f6/cannjudge_final_coding.png 'cannjudge_final_coding.png')
 （3）在算子页面点击 **提交排名** 可以查看所有排名和分数信息
-![cannjudge_rank](../images/cannjudge_rank.png)
+![cannjudge_final_rank.png](https://raw.gitcode.com/user-images/assets/10032631/c0a247e9-936b-47de-a9dd-50112582113d/cannjudge_final_rank.png 'cannjudge_final_rank.png')
 
 ### 云开发环境（可选调试环境）
 #### 资源申请
