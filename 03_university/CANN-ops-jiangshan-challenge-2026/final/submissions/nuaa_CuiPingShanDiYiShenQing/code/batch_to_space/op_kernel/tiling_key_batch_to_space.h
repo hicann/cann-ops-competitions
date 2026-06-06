@@ -1,0 +1,54 @@
+#ifndef BTS_REWORKED_TILING_KEY_H_
+#define BTS_REWORKED_TILING_KEY_H_
+
+# include "ascendc/host_api/tiling/template_argument.h"
+
+#define BTS_LANE_0 0
+#define BTS_LANE_1 1
+#define BTS_LANE_2 2
+#define BTS_LANE_3 3
+#define BTS_LANE_4 4
+#define BTS_LANE_5 5
+#define BTS_LANE_6 6
+#define BTS_LANE_7 7
+#define BTS_LANE_8 8
+#define BTS_LANE_9 9
+#define BTS_LANE_SAFE 10
+
+#define BTS_ONE_LANE(v) \
+    ASCENDC_TPL_ARGS_SEL( \
+        ASCENDC_TPL_DATATYPE_SEL(DT_X, C_DT_FLOAT16, C_DT_FLOAT), \
+        ASCENDC_TPL_UINT_SEL(SCH_MODE, ASCENDC_TPL_UI_LIST, v), \
+    )
+
+ASCENDC_TPL_ARGS_DECL(BatchToSpace,
+    ASCENDC_TPL_DATATYPE_DECL(DT_X, C_DT_FLOAT16, C_DT_FLOAT),
+    ASCENDC_TPL_UINT_DECL(SCH_MODE, ASCENDC_TPL_8_BW, ASCENDC_TPL_UI_LIST,
+        BTS_LANE_0,
+        BTS_LANE_1,
+        BTS_LANE_2,
+        BTS_LANE_3,
+        BTS_LANE_4,
+        BTS_LANE_5,
+        BTS_LANE_6,
+        BTS_LANE_7,
+        BTS_LANE_8,
+        BTS_LANE_9,
+        BTS_LANE_SAFE),
+);
+
+ASCENDC_TPL_SEL(
+    BTS_ONE_LANE(BTS_LANE_0),
+    BTS_ONE_LANE(BTS_LANE_1),
+    BTS_ONE_LANE(BTS_LANE_2),
+    BTS_ONE_LANE(BTS_LANE_3),
+    BTS_ONE_LANE(BTS_LANE_4),
+    BTS_ONE_LANE(BTS_LANE_5),
+    BTS_ONE_LANE(BTS_LANE_6),
+    BTS_ONE_LANE(BTS_LANE_7),
+    BTS_ONE_LANE(BTS_LANE_8),
+    BTS_ONE_LANE(BTS_LANE_9),
+    BTS_ONE_LANE(BTS_LANE_SAFE),
+);
+
+#endif
