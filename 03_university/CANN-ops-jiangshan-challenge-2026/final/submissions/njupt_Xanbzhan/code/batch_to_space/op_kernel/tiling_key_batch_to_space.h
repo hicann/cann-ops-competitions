@@ -1,0 +1,58 @@
+// TilingKey dispatch — compile-time route selection.
+// Each route covers a shape family; TILING_KEY_IS picks the matching kernel at compile time.
+#pragma once
+
+#include "ascendc/host_api/tiling/template_argument.h"
+
+// ── Route identifiers (arbitrary small integers, unique per dtype) ──
+#define ROUTE_FP32_NC_LARGE   11
+#define ROUTE_FP32_CROP_SMALL 12
+#define ROUTE_FP32_NC_MEDIUM  13
+#define ROUTE_FP32_NC_TINY    14
+#define ROUTE_FP16_CROP_ODD   15
+#define ROUTE_FP16_NC_HUGE_D  16
+#define ROUTE_FP16_NC_XL_D    17
+#define ROUTE_FP16_NC_WIDE    18
+#define ROUTE_FP16_CROP_BS4   19
+#define ROUTE_FP16_NC_NARROW  20
+#define ROUTE_FP16_INTERLEAVE 21
+#define ROUTE_FP16_INTERLEAVE_COMPACT 22
+
+// ── TilingKey template declaration ──
+ASCENDC_TPL_ARGS_DECL(BatchToSpace,
+    ASCENDC_TPL_DATATYPE_DECL(DT_X, C_DT_FLOAT16, C_DT_FLOAT),
+    ASCENDC_TPL_UINT_DECL(ROUTE_ID, ASCENDC_TPL_8_BW, ASCENDC_TPL_UI_LIST,
+        ROUTE_FP32_NC_LARGE,
+        ROUTE_FP32_CROP_SMALL,
+        ROUTE_FP32_NC_MEDIUM,
+        ROUTE_FP32_NC_TINY,
+        ROUTE_FP16_CROP_ODD,
+        ROUTE_FP16_NC_HUGE_D,
+        ROUTE_FP16_NC_XL_D,
+        ROUTE_FP16_NC_WIDE,
+        ROUTE_FP16_CROP_BS4,
+        ROUTE_FP16_NC_NARROW,
+        ROUTE_FP16_INTERLEAVE,
+        ROUTE_FP16_INTERLEAVE_COMPACT),
+);
+
+#define ROUTE_SEL(rid) \
+    ASCENDC_TPL_ARGS_SEL( \
+        ASCENDC_TPL_DATATYPE_SEL(DT_X, C_DT_FLOAT16, C_DT_FLOAT), \
+        ASCENDC_TPL_UINT_SEL(ROUTE_ID, ASCENDC_TPL_UI_LIST, rid), \
+    )
+
+ASCENDC_TPL_SEL(
+    ROUTE_SEL(ROUTE_FP32_NC_LARGE),
+    ROUTE_SEL(ROUTE_FP32_CROP_SMALL),
+    ROUTE_SEL(ROUTE_FP32_NC_MEDIUM),
+    ROUTE_SEL(ROUTE_FP32_NC_TINY),
+    ROUTE_SEL(ROUTE_FP16_CROP_ODD),
+    ROUTE_SEL(ROUTE_FP16_NC_HUGE_D),
+    ROUTE_SEL(ROUTE_FP16_NC_XL_D),
+    ROUTE_SEL(ROUTE_FP16_NC_WIDE),
+    ROUTE_SEL(ROUTE_FP16_CROP_BS4),
+    ROUTE_SEL(ROUTE_FP16_NC_NARROW),
+    ROUTE_SEL(ROUTE_FP16_INTERLEAVE),
+    ROUTE_SEL(ROUTE_FP16_INTERLEAVE_COMPACT),
+);
