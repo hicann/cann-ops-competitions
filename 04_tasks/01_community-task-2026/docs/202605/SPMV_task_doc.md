@@ -35,16 +35,60 @@ $$Y = \alpha \cdot op(A) \cdot X + \beta \cdot Y$$
 | float16 | float32 | float16 |
 | bfloat16 | float32 | bfloat16 |
 
-2. 算子调用流程与 NVIDIA GPU 实现对齐，分三阶段完成调用：
+2. 算子调用流程和 NVIDIA GPU cuSPARSE 实现对齐，分三阶段完成调用：
 - 阶段 1：获取workspacesize大小
-- 阶段 2：预处理
+- 阶段 2：预处理（实际调用时可选）
 - 阶段 3：算子执行
 ![](./pics/1779160031958_image.png)
+接口定义建议与cuSPARSE对齐： aclsparse SpMV 算子 C 接口原型、句柄与描述符类型定义、入参枚举、参数排布规范整体参考 CUDA cuSPARSE 原生头文件 cusparse.h 设计。
+```C
+/**
+ * @brief 获取稀疏矩阵向量乘法（SpMV）所需的缓冲区大小
+ */
+aclsparseStatus_t aclsparseSpMVGetBufferSize(aclsparseHandle_t           handle,
+                                             aclsparseOperation_t       opA,
+                                             const void                *alpha,
+                                             aclsparseConstSpMatDescr_t matA,
+                                             aclsparseConstDnVecDescr_t vecX,
+                                             const void                *beta,
+                                             aclsparseDnVecDescr_t      vecY,
+                                             aclDataType                computeType,
+                                             aclsparseSpMVAlg_t         alg,
+                                             size_t                    *bufferSize);
+
+/**
+ * @brief 对稀疏矩阵进行预处理，加速后续 SpMV 计算
+ */
+aclsparseStatus_t aclsparseSpMVPreprocess(aclsparseHandle_t           handle,
+                                          aclsparseOperation_t       opA,
+                                          const void                *alpha,
+                                          aclsparseConstSpMatDescr_t matA,
+                                          aclsparseConstDnVecDescr_t vecX,
+                                          const void                *beta,
+                                          aclsparseDnVecDescr_t      vecY,
+                                          aclDataType                computeType,
+                                          aclsparseSpMVAlg_t         alg,
+                                          void                      *externalBuffer);
+
+/**
+ * @brief 稀疏矩阵向量乘法（SpMV）计算入口
+ */
+aclsparseStatus_t aclsparseSpMV(aclsparseHandle_t           handle,
+                                aclsparseOperation_t       opA,
+                                const void                *alpha,
+                                aclsparseConstSpMatDescr_t matA,
+                                aclsparseConstDnVecDescr_t vecX,
+                                const void                *beta,
+                                aclsparseDnVecDescr_t      vecY,
+                                aclDataType                computeType,
+                                aclsparseSpMVAlg_t         alg,
+                                void                      *externalBuffer);
+```
 
 3. 必须实现算子泛化功能，满足各类合法输入矩阵/向量规模、稀疏度场景的计算需求，验收阶段将采用泛化数据进行验收。
 
 ### 参数说明
-以下仅罗列算子底层原始输入参数，实际开发实现过程中，可参考 cuSPARSE 设计思路，将稀疏矩阵相关入参封装为统一描述符结构进行传参使用。
+以下仅罗列算子底层原始输入参数，实际开发实现过程中，参考 cuSPARSE 接口设计，将稀疏矩阵相关入参封装为统一描述符结构进行传参使用。
 
 | 参数名 | 输入/输出/属性 | 描述 | 使用说明 | 数据类型 | 数据格式 | 维度Shape | 非连续Tensor |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -59,7 +103,7 @@ $$Y = \alpha \cdot op(A) \cdot X + \beta \cdot Y$$
 | compute_type | 属性 | 中间计算精度 | 指定计算过程数据精度 | int32, float32 | - | - | - |
 
 ### 测试标准
-测试用例覆盖**常规场景、边界场景、转置/非转置、全数据类型、alpha/beta组合、稀疏度覆盖50%~99.9%**等所有功能场景；自验证报告完整、可复现，所有测试用例执行通过。
+测试用例覆盖**常规场景、边界场景、转置/非转置、layout 行/列优先、全数据类型、alpha/beta组合、稀疏度覆盖50%~99.9%** 等所有功能场景；自验证报告完整、可复现，所有测试用例执行通过。
 
 ### 性能要求
 算子整体性能需达到 0.5 倍 GPU（A100）水平，参考用例性能指标如下：
@@ -72,11 +116,12 @@ $$Y = \alpha \cdot op(A) \cdot X + \beta \cdot Y$$
 | 4 | 160220×68750 | 99.9% | float32 | 193.2us |
 
 ### 精度要求
-算子计算精度需严格满足《生态算子开源精度标准》：https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md
+算子计算精度需严格满足《生态算子开源精度标准》：https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md，采用AscendOpTest(https://gitcode.com/HIT1920/AscendOpTest)测试。
+当以上单标杆不满足时采用[ATK](https://gitcode.com/AscendTest/ATK) 进行双标杆比对（cv_fused_double_benchmark，以更高精度的CPU是实现为真值，同时评估同精度CPU与算子NPU实现相对于该真值的误差），满足条件为NPU/同精度CPU 最大相对误差比例、平均相对误差比例、均方根误差比例不超过阈值2,1.2,1.2。
 
 ### 文档规范要求
 1. 算子设计文档需根据[参考模板](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、格式规范，且必须通过评审；
-2. 自验证报告需要覆盖所有功能场景，参考[xxx算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)（不需要模板中TBE样例结果），含测试用例执行日志/截图、整体测试通过截图、性能数据截图，可清晰指导算子使用与测试；
+2. 自验证报告需要覆盖所有功能场景，参考[xxx算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)（不需要模板中TBE样例结果），含测试用例AscendOpTest/ATK执行日志/截图、整体测试通过截图、性能数据截图，可清晰指导算子使用与测试；
 3. README 文档内容完整、规范。
 
 ## 验收规则与流程
@@ -84,7 +129,7 @@ $$Y = \alpha \cdot op(A) \cdot X + \beta \cdot Y$$
 ### 提交验收申请
 联系昇腾小助手，提交以下**三类交付件**进行验收：
 
-1. 昇腾开源算子仓 fork 的个人代码仓链接（需包含：算子工程代码、算子 README 文档、多组 aclnn 调用测试代码）；
+1. 昇腾开源算子仓 fork 的个人代码仓链接（需包含：算子工程代码、算子 README 文档、覆盖全规格多组 acl 调用测试代码、AscendOpTest/ATK测试工程和结果）；
 2. 算子自验证报告；
 3. 华为评审通过的算子设计文档（按模板填写），合入 [cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist) 详细说明见 [readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
 
