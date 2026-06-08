@@ -1,0 +1,30 @@
+// TilingKey模板定义的头文件
+#pragma once
+#include "ascendc/host_api/tiling/template_argument.h"
+
+#define ERF_SCH_MODE_SINGLE_BUFFER   0
+#define ERF_SCH_MODE_DOUBLE_BUFFER   1
+#define ERF_SCH_MODE_DIRECT_SMALL    2
+#define ERF_SCH_MODE_DIRECT_ONE_TILE 3
+#define ERF_SCH_MODE_DIRECT_TINY     4
+
+ASCENDC_TPL_ARGS_DECL(
+    Erf,
+    ASCENDC_TPL_UINT_DECL(
+        schMode, 3, ASCENDC_TPL_UI_LIST,
+        ERF_SCH_MODE_SINGLE_BUFFER,
+        ERF_SCH_MODE_DOUBLE_BUFFER,
+        ERF_SCH_MODE_DIRECT_SMALL,
+        ERF_SCH_MODE_DIRECT_ONE_TILE,
+        ERF_SCH_MODE_DIRECT_TINY));
+
+ASCENDC_TPL_SEL(
+    ASCENDC_TPL_ARGS_SEL(
+        ASCENDC_TPL_UINT_SEL(
+            schMode, ASCENDC_TPL_UI_LIST,
+            ERF_SCH_MODE_SINGLE_BUFFER,
+            ERF_SCH_MODE_DOUBLE_BUFFER,
+            ERF_SCH_MODE_DIRECT_SMALL,
+            ERF_SCH_MODE_DIRECT_ONE_TILE,
+            ERF_SCH_MODE_DIRECT_TINY));
+);
