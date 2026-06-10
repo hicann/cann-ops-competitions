@@ -1,0 +1,20 @@
+// TilingKey模板定义的头文件：比赛实现只启用 float32 路径。
+#pragma once
+
+#include "ascendc/host_api/tiling/template_argument.h"
+
+ASCENDC_TPL_ARGS_DECL(Erf,
+    ASCENDC_TPL_DATATYPE_DECL(DT_X, C_DT_FLOAT),
+    ASCENDC_TPL_BOOL_DECL(ERF_QUEUE2, 0, 1),
+    ASCENDC_TPL_BOOL_DECL(ERF_PIPELINE, 0, 1),
+    ASCENDC_TPL_BOOL_DECL(ERF_AXPY_H1, 0, 1),
+);
+
+ASCENDC_TPL_SEL(
+    ASCENDC_TPL_ARGS_SEL(
+        ASCENDC_TPL_DATATYPE_SEL(DT_X, C_DT_FLOAT),
+        ASCENDC_TPL_BOOL_SEL(ERF_QUEUE2, 0, 1),
+        ASCENDC_TPL_BOOL_SEL(ERF_PIPELINE, 0, 1),
+        ASCENDC_TPL_BOOL_SEL(ERF_AXPY_H1, 0, 1),
+    ),
+);
