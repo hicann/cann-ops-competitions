@@ -46,7 +46,7 @@ CANN 社区任务 2026 是由 CANN 开源社区发起的年度算子开发任务
 以您的团队名称`TeamName` 为名创建提交目录，目录结构参考[算子仓目录](https://gitcode.com/cann/ops-math/blob/master/docs/zh/install/dir_structure.md)的算子目录部分。
 
 ### 3. 输出设计文档
-参考[算子设计文档模板](https://gitcode.com/cann/cann-competitions/blob/master/resources/design_template.md)，完成算子设计文档。
+参考[算子设计文档模板](https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)，完成算子设计文档。
 提交设计文档到对应算子目录的 `docs/` 下，文件名为 `design.md`，评审并合入。
 
 ### 4. 开发算子
