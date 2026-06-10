@@ -1,0 +1,6 @@
+build_out/
+*.o
+*.so
+*.gcda
+*.gcno
+.cache/
