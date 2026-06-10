@@ -1,0 +1,205 @@
+#pragma once
+
+#include "ascendc/host_api/tiling/template_argument.h"
+
+#define ERF_ALGO_TINY_SCALAR      1
+#define ERF_ALGO_RANGE_C1         2
+#define ERF_ALGO_RANGE_SPLIT      3
+#define ERF_ALGO_LARGE_TILED      4
+#define ERF_ALGO_LOCAL_PADE       5
+#define ERF_ALGO_MEDIUM_BUCKET    6
+
+#define ERF_MODE_GENERIC                   0
+#define ERF_MODE_TINY_1_31                 1
+#define ERF_MODE_RANGE_32_FIXED            2
+#define ERF_MODE_RANGE_64_FIXED            3
+#define ERF_MODE_RANGE_32_64_VECTOR        4
+#define ERF_MODE_RANGE_128_FIXED           6
+#define ERF_MODE_RANGE_65_128              7
+#define ERF_MODE_RANGE_256_FIXED           8
+#define ERF_MODE_RANGE_129_256             9
+#define ERF_MODE_RANGE_512_FIXED           10
+#define ERF_MODE_RANGE_257_512_C1          11
+#define ERF_MODE_RANGE_513_1024            13
+#define ERF_MODE_LOCAL_PADE_16             20
+#define ERF_MODE_LOCAL_PADE_128_FIXED      21
+#define ERF_MODE_MEDIUM_BUCKET_256         201
+#define ERF_MODE_MEDIUM_BUCKET_512         202
+#define ERF_MODE_MEDIUM_BUCKET_768         203
+#define ERF_MODE_MEDIUM_BUCKET_1024        204
+#define ERF_MODE_MEDIUM_BUCKET_1280        205
+#define ERF_MODE_MEDIUM_BUCKET_1536        206
+#define ERF_MODE_MEDIUM_BUCKET_1792        207
+
+#define ERF_MODE_TINY_LEN_1                101
+#define ERF_MODE_TINY_LEN_2                102
+#define ERF_MODE_TINY_LEN_3                103
+#define ERF_MODE_TINY_LEN_4                104
+#define ERF_MODE_TINY_LEN_5                105
+#define ERF_MODE_TINY_LEN_6                106
+#define ERF_MODE_TINY_LEN_7                107
+#define ERF_MODE_TINY_LEN_8                108
+#define ERF_MODE_TINY_LEN_9                109
+#define ERF_MODE_TINY_LEN_10               110
+#define ERF_MODE_TINY_LEN_11               111
+#define ERF_MODE_TINY_LEN_12               112
+#define ERF_MODE_TINY_LEN_13               113
+#define ERF_MODE_TINY_LEN_14               114
+#define ERF_MODE_TINY_LEN_15               115
+#define ERF_MODE_TINY_LEN_16               116
+#define ERF_MODE_TINY_LEN_17               117
+#define ERF_MODE_TINY_LEN_18               118
+#define ERF_MODE_TINY_LEN_19               119
+#define ERF_MODE_TINY_LEN_20               120
+#define ERF_MODE_TINY_LEN_21               121
+#define ERF_MODE_TINY_LEN_22               122
+#define ERF_MODE_TINY_LEN_23               123
+#define ERF_MODE_TINY_LEN_24               124
+#define ERF_MODE_TINY_LEN_25               125
+#define ERF_MODE_TINY_LEN_26               126
+#define ERF_MODE_TINY_LEN_27               127
+#define ERF_MODE_TINY_LEN_28               128
+#define ERF_MODE_TINY_LEN_29               129
+#define ERF_MODE_TINY_LEN_30               130
+#define ERF_MODE_TINY_LEN_31               131
+
+ASCENDC_TPL_ARGS_DECL(Erf,
+    ASCENDC_TPL_DATATYPE_DECL(DT_X, C_DT_FLOAT),
+
+    ASCENDC_TPL_UINT_DECL(ALGO_KIND,
+        ASCENDC_TPL_8_BW,
+        ASCENDC_TPL_UI_LIST,
+        ERF_ALGO_TINY_SCALAR,
+        ERF_ALGO_RANGE_C1,
+        ERF_ALGO_RANGE_SPLIT,
+        ERF_ALGO_LARGE_TILED,
+        ERF_ALGO_LOCAL_PADE,
+        ERF_ALGO_MEDIUM_BUCKET),
+
+    ASCENDC_TPL_UINT_DECL(MODE_KIND,
+        ASCENDC_TPL_8_BW,
+        ASCENDC_TPL_UI_LIST,
+        ERF_MODE_GENERIC,
+        ERF_MODE_TINY_1_31,
+        ERF_MODE_RANGE_32_FIXED,
+        ERF_MODE_RANGE_64_FIXED,
+        ERF_MODE_RANGE_32_64_VECTOR,
+        ERF_MODE_RANGE_128_FIXED,
+        ERF_MODE_RANGE_65_128,
+        ERF_MODE_RANGE_256_FIXED,
+        ERF_MODE_RANGE_129_256,
+        ERF_MODE_RANGE_512_FIXED,
+        ERF_MODE_RANGE_257_512_C1,
+        ERF_MODE_RANGE_513_1024,
+        ERF_MODE_LOCAL_PADE_16,
+        ERF_MODE_LOCAL_PADE_128_FIXED,
+        ERF_MODE_MEDIUM_BUCKET_256,
+        ERF_MODE_MEDIUM_BUCKET_512,
+        ERF_MODE_MEDIUM_BUCKET_768,
+        ERF_MODE_MEDIUM_BUCKET_1024,
+        ERF_MODE_MEDIUM_BUCKET_1280,
+        ERF_MODE_MEDIUM_BUCKET_1536,
+        ERF_MODE_MEDIUM_BUCKET_1792,
+        ERF_MODE_TINY_LEN_1,
+        ERF_MODE_TINY_LEN_2,
+        ERF_MODE_TINY_LEN_3,
+        ERF_MODE_TINY_LEN_4,
+        ERF_MODE_TINY_LEN_5,
+        ERF_MODE_TINY_LEN_6,
+        ERF_MODE_TINY_LEN_7,
+        ERF_MODE_TINY_LEN_8,
+        ERF_MODE_TINY_LEN_9,
+        ERF_MODE_TINY_LEN_10,
+        ERF_MODE_TINY_LEN_11,
+        ERF_MODE_TINY_LEN_12,
+        ERF_MODE_TINY_LEN_13,
+        ERF_MODE_TINY_LEN_14,
+        ERF_MODE_TINY_LEN_15,
+        ERF_MODE_TINY_LEN_16,
+        ERF_MODE_TINY_LEN_17,
+        ERF_MODE_TINY_LEN_18,
+        ERF_MODE_TINY_LEN_19,
+        ERF_MODE_TINY_LEN_20,
+        ERF_MODE_TINY_LEN_21,
+        ERF_MODE_TINY_LEN_22,
+        ERF_MODE_TINY_LEN_23,
+        ERF_MODE_TINY_LEN_24,
+        ERF_MODE_TINY_LEN_25,
+        ERF_MODE_TINY_LEN_26,
+        ERF_MODE_TINY_LEN_27,
+        ERF_MODE_TINY_LEN_28,
+        ERF_MODE_TINY_LEN_29,
+        ERF_MODE_TINY_LEN_30,
+        ERF_MODE_TINY_LEN_31),
+);
+
+ASCENDC_TPL_SEL(
+    ASCENDC_TPL_ARGS_SEL(
+        ASCENDC_TPL_KERNEL_TYPE_SEL(ASCENDC_TPL_AIV_ONLY),
+        ASCENDC_TPL_DATATYPE_SEL(DT_X, C_DT_FLOAT),
+
+        ASCENDC_TPL_UINT_SEL(ALGO_KIND,
+            ASCENDC_TPL_UI_LIST,
+            ERF_ALGO_TINY_SCALAR,
+            ERF_ALGO_RANGE_C1,
+            ERF_ALGO_RANGE_SPLIT,
+            ERF_ALGO_LARGE_TILED,
+            ERF_ALGO_LOCAL_PADE,
+            ERF_ALGO_MEDIUM_BUCKET),
+
+        ASCENDC_TPL_UINT_SEL(MODE_KIND,
+            ASCENDC_TPL_UI_LIST,
+            ERF_MODE_GENERIC,
+        ERF_MODE_TINY_1_31,
+        ERF_MODE_RANGE_32_FIXED,
+        ERF_MODE_RANGE_64_FIXED,
+        ERF_MODE_RANGE_32_64_VECTOR,
+        ERF_MODE_RANGE_128_FIXED,
+        ERF_MODE_RANGE_65_128,
+        ERF_MODE_RANGE_256_FIXED,
+        ERF_MODE_RANGE_129_256,
+        ERF_MODE_RANGE_512_FIXED,
+        ERF_MODE_RANGE_257_512_C1,
+        ERF_MODE_RANGE_513_1024,
+        ERF_MODE_LOCAL_PADE_16,
+        ERF_MODE_LOCAL_PADE_128_FIXED,
+        ERF_MODE_MEDIUM_BUCKET_256,
+        ERF_MODE_MEDIUM_BUCKET_512,
+        ERF_MODE_MEDIUM_BUCKET_768,
+        ERF_MODE_MEDIUM_BUCKET_1024,
+        ERF_MODE_MEDIUM_BUCKET_1280,
+        ERF_MODE_MEDIUM_BUCKET_1536,
+        ERF_MODE_MEDIUM_BUCKET_1792,
+        ERF_MODE_TINY_LEN_1,
+        ERF_MODE_TINY_LEN_2,
+        ERF_MODE_TINY_LEN_3,
+        ERF_MODE_TINY_LEN_4,
+        ERF_MODE_TINY_LEN_5,
+        ERF_MODE_TINY_LEN_6,
+        ERF_MODE_TINY_LEN_7,
+        ERF_MODE_TINY_LEN_8,
+        ERF_MODE_TINY_LEN_9,
+        ERF_MODE_TINY_LEN_10,
+        ERF_MODE_TINY_LEN_11,
+        ERF_MODE_TINY_LEN_12,
+        ERF_MODE_TINY_LEN_13,
+        ERF_MODE_TINY_LEN_14,
+        ERF_MODE_TINY_LEN_15,
+        ERF_MODE_TINY_LEN_16,
+        ERF_MODE_TINY_LEN_17,
+        ERF_MODE_TINY_LEN_18,
+        ERF_MODE_TINY_LEN_19,
+        ERF_MODE_TINY_LEN_20,
+        ERF_MODE_TINY_LEN_21,
+        ERF_MODE_TINY_LEN_22,
+        ERF_MODE_TINY_LEN_23,
+        ERF_MODE_TINY_LEN_24,
+        ERF_MODE_TINY_LEN_25,
+        ERF_MODE_TINY_LEN_26,
+        ERF_MODE_TINY_LEN_27,
+        ERF_MODE_TINY_LEN_28,
+        ERF_MODE_TINY_LEN_29,
+        ERF_MODE_TINY_LEN_30,
+        ERF_MODE_TINY_LEN_31),
+    )
+);
