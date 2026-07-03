@@ -113,5 +113,22 @@
 | 19 | [InplaceSigmoid](./202605/InplaceSigmoid_task_doc.md) |
 | 20 | [IndexFillTensor](./202605/IndexFillTensor_task_doc.md) |
 
+### 7月份发放的任务
+| 任务编号 | 任务名称 |
+|----------|----------|
+| 1 | [7月社区任务-低比特量化算法开发](./202607/low_bit_quantilization_task.md) |
+| 2 | [7月社区任务-DualMatmul算子开发](./202607/DualMatmul_task_doc.md) |
+| 3 | [7月社区任务-MatmulGatherScatter算子开发](./202607/MatmulGatherScatter_task_doc.md) |
+| 4 | [7月社区任务-MatmulLayerNormMatmul算子开发](./202607/MatmulLayerNormMatmul_task_doc.md) |
+| 5 | [7月社区任务-MatmulPermute算子开发](./202607/MatmulPermute_task_doc.md) |
+| 6 | [7月社区任务-prims_bessel_i0 API开发](./202607/prims_bessel_i0_task_doc.md) |
+| 7 | [7月社区任务-prims_ndtri API开发](./202607/prims_ndtri_task_doc.md) |
+| 8 | [7月社区任务-BatchedMatmulSoftmax算子开发](./202607/BatchedMatmulSoftmax_task_doc.md) |
+| 9 | [7月社区任务-SpGEMM算子开发](./202607/SpGEMM_task_doc.md) |
+| 10 | [7月社区任务-SDDMM算子开发](./202607/SDDMM_task_doc.md) |
+| 11 | [7月社区任务-SpSM算子开发](./202607/SpSM_task_doc.md) |
+| 12 | [7月社区任务-GaussianBlur算子开发](./202607/GaussianBlur_task_doc.md) |
+
+
 ## 参考链接
 社区任务发放页面：https://gitcode.com/org/cann/discussions/22
