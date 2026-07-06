@@ -3,14 +3,15 @@
 ## 基础信息
 
 - **技术标签**：高阶API开发
-- **适配硬件**：Ascend 950PR/Ascend 950DT
+- **适配硬件**：Ascend 950PR
 - **开源仓地址**：https://gitcode.com/ascend/asc-devkit
 - **CANN 版本**：本次社区任务指定CANN版本
 - **开发语言**：Ascend C
 
 ## 任务概述
 
-基于 PyTorch IR 的 `prims.bessel_i0` 接口，在昇腾 NPU 上使用 Ascend C 编程语言实现对应的高阶API。该API用于计算第一类零阶修正贝塞尔函数I_0(x)，完成API设计、开发、测试全流程工作，测试通过后将代码提交至asc-devkit开源仓。
+基于 PyTorch IR 的 `prims.bessel_i0` 接口，在昇腾 NPU 上使用 Ascend C 编程语言实现对应的高阶API。该API用于计算第一类零阶修正贝塞尔函数I_0(x)，公式如下，完成API设计、开发、测试全流程工作，测试通过后将代码提交至asc-devkit开源仓。
+$$\mathrm{I}_0(x) = \sum_{k=0}^{\infty} \frac{1}{(k!)^2}\left(\frac{x}{2}\right)^{2k}$$
 
 ## 核心开发要求及验收标准
 
@@ -26,12 +27,12 @@
 
 ### 性能要求
 
-1. 至少实现Cube/Vector/MTE其中一个Bound（任一流水占比超80%）。
+1. 作为vector类高阶API，实现Vector Bound（aiv_vec流水占比超90%）。
 2. 特殊场景无法达标的（如小shape场景等），需提供性能仿真图和分析结论佐证。
 
 ### 精度要求
 
-构造API测试用例计算精度需满足[AscendOpTest](https://gitcode.com/HIT1920/AscendOpTest)工具默认阈值。
+按照float数据类型双万分之一要求，即万分之一的数据误差不超过万分之一（1万个数据中，误差超过万分之一的不超过1个）。
 
 ### 文档规范要求
 
@@ -49,7 +50,7 @@
     ├── include                             # API接口声明源代码
     └── tests                               # API的测试代码：包括单元测试和功能测试用例
     ```
-2. API自验证报告。
+2. 根据[高阶API验证](./self_test_case/prims_bessel_i0/)示例要求，完成API的自验证，并给出验证结果报告。
 3. 评审通过的API设计文档。
 
 ## PR 申请合入
