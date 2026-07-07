@@ -2,14 +2,13 @@
 
 > 汇聚 CANN 算子挑战赛获奖名单与社区任务荣誉记录。
 
-## 📂 目录
 
-- 🏅 竞赛获奖记录
+## 🏅 竞赛获奖记录
 
 | 序号 | 竞赛名称    | 荣誉列表地址                                   |
 | -: | ------- | ---------------------------------------- |
-|  1 | CANN 算子挑战赛江山赛 | [荣誉名单](./competitions/CANN-ops-challenge-2026-jiangshan-honor-list.md) |
+|  1 | 2026年CANN算子挑战赛_江山赛区 | [荣誉名单](./competitions/CANN-ops-challenge-2026-jiangshan-honor-list.md) |
 
 
 
-- 🎯 社区任务荣誉
+## 🎯 社区任务荣誉
