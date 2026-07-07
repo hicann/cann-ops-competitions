@@ -182,9 +182,9 @@ SpSM 为**全新算子**（ops-sparse 仓当前无 `src/spsm/`），`aclsparseSp
 
 ### 6. 精度要求
 
-《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》+ [AscendOpTest](https://gitcode.com/HIT1920/AscendOpTest) + [ATK](https://gitcode.com/AscendTest/ATK) 双标杆L2（2 / 1.2 / 1.2）。
+满足《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》和 [ATK](https://gitcode.com/AscendTest/ATK) 双标杆L2（2 / 1.2 / 1.2）要求。测试用例见[测试目录](./self_test_case/SpSM/)。
 
-**真值**：以 **cuSPARSE CPU 标杆** 或双精度参考为准。
+**说明**：ATK双标杆测试需要A100环境，请开发者自行准备。
 
 
 ### 7. 接口分层
@@ -208,7 +208,7 @@ aclsparseSpSM*（必选）
 
 1. 开源仓提供100小时免费时长，请不使用时及时关闭，用时耗尽前请务必保存相关资料，建议及时提交备份。
    ![环境截图](pics/yunkaifa.png)
-2. 使用 hidevlab notebook 算力。
+2. 使用 hidevlab WebIDE 算力。
    ![环境截图](pics/zaixiankaifa1.png)
 3. 如需额外环境资源，请联系昇腾小助手。
 

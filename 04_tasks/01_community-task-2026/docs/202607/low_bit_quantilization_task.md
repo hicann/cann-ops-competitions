@@ -72,7 +72,7 @@
 
    ![环境截图](pics/yunkaifa.png)
 
-2. 使用 hidevlab notebook 算力（[https://hidevlab.huawei.com/online-develop-intro?from=hiascend](https://hidevlab.huawei.com/online-develop-intro?from=hiascend)）
+2. 使用 hidevlab WebIDE 算力（[https://hidevlab.huawei.com/online-develop-intro?from=hiascend](https://hidevlab.huawei.com/online-develop-intro?from=hiascend)）
 
    ![环境截图](pics/zaixiankaifa1.png)  
 

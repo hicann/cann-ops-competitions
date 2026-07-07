@@ -3,7 +3,7 @@
 ## 基础信息
 
 - **技术标签**：算子开发
-- **适配硬件**：Ascend 950PR/Ascend 950DT
+- **适配硬件**：Ascend 950
 - **开源仓地址**：[https://gitcode.com/cann/catlass](https://gitcode.com/cann/catlass)
 - **CANN 版本**：算子开源仓指定版本
 - **开发语言**：Ascend C
@@ -28,6 +28,7 @@ D 的其他行（不在 indices 中的位置）保持为零。输出矩阵 D 需
 2. 索引向量由调用方保证不重复、在合法范围内，算子端不做校验。
 3. Gather A 和 Scatter D 使用同一索引向量。
 4. 输出 D 需先置零，仅索引行被写入。
+5. 可以使用多种matmul方案实现功能，从而达成更好性能。
 
 ### 参数说明
 
@@ -44,15 +45,16 @@ D 的其他行（不在 indices 中的位置）保持为零。输出矩阵 D 需
 
 ### 测试标准
 
-需参考 CPU 精度标杆自行设计自验证用例，覆盖不同 index_size 比例、多种问题规模。需额外验证非索引行保持为零。自验证报告完整、可复现，所有测试用例执行通过。
+1. 基于[CATLASS-optest测试工程](https://gitcode.com/cann/catlass/blob/master/tests/optest/README.md)补充测试交付件，基于[任务测试集](./self_test_case/MatmulGatherScatter/)测试精度通过。
+2. 输出optest测试交付件，可使用[catlass-example-to-pytest](https://gitcode.com/cann/catlass/blob/master/.agents/skills/catlass-example-to-pytest/SKILL.md) skill基于样例代码自动生成。
 
 ### 性能要求
 
-性能标杆为[CUTLASS的36_gather_scatter_fusion](https://github.com/NVIDIA/cutlass/tree/main/examples/36_gather_scatter_fusion)，算子整体性能需与 0.8 倍 GPU（H100）持平。
+性能标杆为 torch.zeros初始化、torch.mm及gather/scatter的小算子拼接方案，算子整体性能需达成1.2倍小算子拼接性能，标杆性能数据已在任务测试集中提供（使用Ascend 950PR硬件）。性能测试时若涉及不同实现方案和TileShape等参数调整，需要备注说明。性能采集使用`msprof op`工具，可以参考[CATLASS样例性能调试](https://gitcode.com/cann/catlass/blob/master/docs/zh/1_Practice/evaluation/performance_tools.md)。
 
 ### 精度要求
 
-算子计算精度需满足 [AscendOpTest](https://gitcode.com/HIT1920/AscendOpTest) 工具默认阈值。
+算子计算精度需满足 [生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)。
 
 ### 文档规范要求
 
@@ -63,7 +65,6 @@ D 的其他行（不在 indices 中的位置）保持为零。输出矩阵 D 需
 ## 验收交付件
 
 1, 自测用例、测试结果报告、测试步骤指导文档
-
 2, 算子代码的私仓邀请链接、代码仓路径、分支、算子目录
 
 ## PR 申请合入
@@ -75,6 +76,7 @@ D 的其他行（不在 indices 中的位置）保持为零。输出矩阵 D 需
 1. 文档类：[Ascend C算子开发文档](https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/850/opdevg/Ascendcopdevg/atlas_ascendc_map_10_0002.html)、[CATLASS创新样例开发流程指南](https://gitcode.com/cann/catlass/blob/master/docs/zh/1_Practice/10_innovative_example_development_guide.md)
 2. 课程类：[Ascend C在线课程](https://www.hiascend.com/developer/courses/detail/1691696509765107713)
 3. 参考样例：[https://gitcode.com/cann/catlass/blob/master/examples/44_quant_matmul_full_loadA_tla](https://gitcode.com/cann/catlass/blob/master/examples/44_quant_matmul_full_loadA_tla)
+4. 参考合入PR：[https://gitcode.com/cann/catlass/pull/678](https://gitcode.com/cann/catlass/pull/678)
 
 ## 环境获取
 
@@ -82,7 +84,7 @@ D 的其他行（不在 indices 中的位置）保持为零。输出矩阵 D 需
 
    ![环境截图](pics/yunkaifa.png)
 
-2. 使用 hidevlab notebook 算力（[https://hidevlab.huawei.com/online-develop-intro?from=hiascend](https://hidevlab.huawei.com/online-develop-intro?from=hiascend)）
+2. 使用 hidevlab WebIDE 算力（[https://hidevlab.huawei.com/online-develop-intro?from=hiascend](https://hidevlab.huawei.com/online-develop-intro?from=hiascend)）
 
    ![环境截图](pics/zaixiankaifa1.png)  
 

@@ -153,6 +153,10 @@ int cv_hal_gaussianBlur(
 
 **单标杆不满足时**：采用 [ATK](https://gitcode.com/AscendTest/ATK) 双标杆比对（`cv_fused_double_benchmark`），以更高精度的 CPU 实现为真值，同时评估同精度 CPU 与 NPU 算子实现相对于该真值的误差；满足条件为 NPU/同精度 CPU 的**最大相对误差比例 ≤ 2**、**平均相对误差比例 ≤ 1.2**、**均方根误差比例 ≤ 1.2**。
 
+**说明**：ATK双标杆测试需要A100环境，请开发者自行准备。
+
+精度自测用例参考[自测用例目录](./self_test_case/GaussianBlur/)。
+
 | 数据类型 / 场景 | 精度策略 |
 |-----------------|----------|
 | **CV_32F（L1）** | 对标 OpenCV CPU；大 sigma/大核可用 ATK 浮点阈值 |
@@ -249,7 +253,7 @@ aclnnStatus aclnnGaussianBlur(
 
    ![环境截图](pics/yunkaifa.png)
 
-2. 使用 hidevlab notebook 算力（[https://hidevlab.huawei.com/online-develop-intro?from=hiascend](https://hidevlab.huawei.com/online-develop-intro?from=hiascend)）
+2. 使用 hidevlab WebIDE 算力（[https://hidevlab.huawei.com/online-develop-intro?from=hiascend](https://hidevlab.huawei.com/online-develop-intro?from=hiascend)）
 
    ![环境截图](pics/zaixiankaifa1.png)  
 

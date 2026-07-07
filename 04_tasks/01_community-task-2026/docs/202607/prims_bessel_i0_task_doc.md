@@ -71,9 +71,8 @@ $$\mathrm{I}_0(x) = \sum_{k=0}^{\infty} \frac{1}{(k!)^2}\left(\frac{x}{2}\right)
 
 1. 开源仓提供100小时免费时长，请不使用时及时关闭，用时耗尽前请务必保存相关资料，建议及时提交备份。
    ![环境截图](pics/yunkaifa.png)
-2. 使用 hidevlab notebook 算力。
+2. 使用 hidevlab WebIDE 算力。
    ![环境截图](pics/zaixiankaifa1.png)
-   ![环境截图](pics/zaixiankaifa2.png)
 3. 如需额外环境资源，请联系昇腾小助手。
 
 ## 特别注意事项
