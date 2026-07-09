@@ -1,0 +1,148 @@
+api: pytorch
+api_type: execute_aclSparseSpgemm
+version: v1.0
+name: aclSparseSpgemm
+dtype_numbers: 334
+extra_numbers: 0
+generate: aclSparseSpgemm
+standard:
+  acc:
+    cv_fused_double_benchmark:
+      max_re_ratio: 2
+      avg_re_ratio: 1.2
+      root_mean_squared_ratio: 1.2
+inputs:
+  - name: sparsityA
+    type: attr
+    required: true
+    dtypes:
+      values: [ float ]
+    ranges:
+      valid:
+        values: [ [0.9, 0.99999] ]
+      invalid:
+        values: [ [0.9, 0.99999] ]
+  - name: sparsityB
+    type: attr
+    required: true
+    dtypes:
+      values: [ float ]
+    ranges:
+      valid:
+        values: [ [0.9, 0.99999] ]
+      invalid:
+        values: [ [0.9, 0.99999] ]
+  - name: alpha
+    type: attr
+    required: true
+    dtypes:
+      values: [ float ]
+    ranges:
+      valid:
+        values: [ [-5, 5] ]
+      invalid:
+        values: [ [-5, 5] ]
+  - name: beta
+    type: attr
+    required: true
+    dtypes:
+      values: [ float ]
+    ranges:
+      valid:
+        values: [ [-5, 5] ]
+      invalid:
+        values: [ [-5, 5] ]
+  - name: opA
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 0] ]
+      invalid:
+        values: [ [0, 0] ]
+  - name: opB
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 0] ]
+      invalid:
+        values: [ [0, 0] ]
+  - name: m
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [128, 10000] ]
+      invalid:
+        values: [ [128, 10000] ]
+  - name: k
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [128, 10000] ]
+      invalid:
+        values: [ [128, 10000] ]
+  - name: n
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [128, 10000] ]
+      invalid:
+        values: [ [128, 10000] ]
+  - name: computeType
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 2] ]
+      invalid:
+        values: [ [0, 2] ]
+  - name: alg
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 0] ]
+      invalid:
+        values: [ [0, 0] ]
+  - name: scenario
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 20] ]
+      invalid:
+        values: [ [0, 20] ]
+  - name: out
+    type: tensor
+    required: true
+    dtypes:
+      values: [ fp32, fp16, bf16 ]
+    ranges:
+      valid:
+        values: [ [-5, 5] ]
+      invalid:
+        values: [ [-5, 5] ]
+    shapes:
+      dim_numbers:
+        values: [ 2 ]
+      max_length: 4299994967295

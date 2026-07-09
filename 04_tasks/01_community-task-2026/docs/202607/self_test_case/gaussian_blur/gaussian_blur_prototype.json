@@ -1,0 +1,44 @@
+[
+    {
+        "op": "GaussianBlur",
+        "input_desc": [
+            {
+                "name": "self",
+                "param_type": "required",
+                "format": ["ND"],
+                "type": ["float"]
+            }
+        ],
+        "output_desc": [
+            {
+                "name": "out",
+                "param_type": "required",
+                "format": ["ND"],
+                "type": ["float"]
+            }
+        ],
+        "attr": [
+            {
+                "name": "ksize_x",
+                "param_type": "required",
+                "type": "int"
+            },
+            {
+                "name": "ksize_y",
+                "param_type": "required",
+                "type": "int"
+            },
+            {
+                "name": "sigmaX",
+                "param_type": "required",
+                "type": "float"
+            },
+            {
+                "name": "sigmaY",
+                "param_type": "optional",
+                "type": "float",
+                "default_value": 0.0
+            }
+        ]
+    }
+]

@@ -1,0 +1,198 @@
+api: pytorch
+api_type: execute_aclSparseSpsm
+version: v1.0
+name: aclSparseSpsm
+dtype_numbers: 1000
+extra_numbers: 0
+generate: aclSparseSpsm
+standard:
+  acc:
+    cv_fused_double_benchmark:
+      max_re_ratio: 2
+      avg_re_ratio: 1.2
+      root_mean_squared_ratio: 1.2
+inputs:
+  - name: denseB
+    type: tensor
+    required: true
+    dtypes:
+      values: [ fp32 ]
+    ranges:
+      valid:
+        values: [ [-5, 5] ]
+      invalid:
+        values: [ [-5, 5] ]
+    shapes:
+      dim_numbers:
+        values: [ 2 ]
+      max_length: 4299994967295
+    boundary:
+      has_empty: false
+      has_infnan: false
+      has_scalar: false
+      has_upper_border: true
+      has_lower_border: true
+  - name: denseC
+    type: tensor
+    required: true
+    dtypes:
+      values: [ fp32 ]
+    ranges:
+      valid:
+        values: [ [-5, 5] ]
+      invalid:
+        values: [ [-5, 5] ]
+    shapes:
+      dim_numbers:
+        values: [ 2 ]
+      max_length: 4299994967295
+    boundary:
+      has_empty: false
+      has_infnan: false
+      has_scalar: false
+      has_upper_border: true
+      has_lower_border: true
+  - name: avgDegree
+    type: attr
+    required: true
+    dtypes:
+      values: [ float ]
+    ranges:
+      valid:
+        values: [ [5, 50] ]
+      invalid:
+        values: [ [5, 50] ]
+  - name: alpha
+    type: attr
+    required: true
+    dtypes:
+      values: [ float ]
+    ranges:
+      valid:
+        values: [ [-5, 5] ]
+      invalid:
+        values: [ [-5, 5] ]
+  - name: opA
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 1] ]
+      invalid:
+        values: [ [0, 1] ]
+  - name: opB
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 1] ]
+      invalid:
+        values: [ [0, 1] ]
+  - name: fillMode
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 1] ]
+      invalid:
+        values: [ [0, 1] ]
+  - name: diagType
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 1] ]
+      invalid:
+        values: [ [0, 1] ]
+  - name: nrhs
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [1, 128] ]
+      invalid:
+        values: [ [1, 128] ]
+  - name: inPlace
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 1] ]
+      invalid:
+        values: [ [0, 1] ]
+  - name: nullValues
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 1] ]
+      invalid:
+        values: [ [0, 1] ]
+  - name: updateMatrix
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 1] ]
+      invalid:
+        values: [ [0, 1] ]
+  - name: computeType
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 0] ]
+      invalid:
+        values: [ [0, 0] ]
+  - name: alg
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 0] ]
+      invalid:
+        values: [ [0, 0] ]
+  - name: scenario
+    type: attr
+    required: true
+    dtypes:
+      values: [ int ]
+    ranges:
+      valid:
+        values: [ [0, 20] ]
+      invalid:
+        values: [ [0, 20] ]
+  - name: out
+    type: tensor
+    required: true
+    dtypes:
+      values: [ fp32 ]
+    ranges:
+      valid:
+        values: [ [-5, 5] ]
+      invalid:
+        values: [ [-5, 5] ]
+    shapes:
+      dim_numbers:
+        values: [ 2 ]
+      max_length: 4299994967295
