@@ -155,7 +155,7 @@ int cv_hal_gaussianBlur(
 
 **说明**：ATK双标杆测试需要A100环境，请开发者自行准备。
 
-精度自测用例参考[自测用例目录](./self_test_case/GaussianBlur/)。
+精度自测用例参考[自测用例目录](./self_test_case/gaussian_blur/)。
 
 | 数据类型 / 场景 | 精度策略 |
 |-----------------|----------|

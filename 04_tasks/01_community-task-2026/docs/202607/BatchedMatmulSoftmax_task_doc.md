@@ -47,7 +47,7 @@ $$ \mathbf{S}_b[m, n] = \frac{\exp\big(\mathbf{M}_b[m, n] - \max_{n'}(\mathbf{M}
 
 ### 测试标准
 
-1. 基于[CATLASS-optest测试工程](https://gitcode.com/cann/catlass/blob/master/tests/optest/README.md)补充测试交付件，基于[任务测试集](./self_test_case/BatchedMatmulSoftmax/)测试精度通过。
+1. 基于[CATLASS-optest测试工程](https://gitcode.com/cann/catlass/blob/master/tests/optest/README.md)补充测试交付件，基于[任务测试集](./self_test_case/batched_matmul_softmax/)测试精度通过。
 2. 输出optest测试交付件，可使用[catlass-example-to-pytest](https://gitcode.com/cann/catlass/blob/master/.agents/skills/catlass-example-to-pytest/SKILL.md) skill基于样例代码自动生成。
 
 ### 性能要求

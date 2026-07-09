@@ -175,7 +175,7 @@ SpGEMM 为**全新算子**（ops-sparse 仓当前无 `src/spgemm/`），`aclspar
 
 1. 满足《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》
 2. [ATK](https://gitcode.com/AscendTest/ATK) 双标杆（`cv_fused_double_benchmark`），NPU/同精度 CPU 最大相对误差比例 ≤ **2**，平均相对误差比例 ≤ **1.2**，均方根误差比例 ≤ **1.2**。
-测试用例见[测试目录](./self_test_case/SpGEMM/)。
+测试用例见[测试目录](./self_test_case/sp_gemm/)。
 
 **说明**：ATK双标杆测试需要A100环境，请开发者自行准备。
 

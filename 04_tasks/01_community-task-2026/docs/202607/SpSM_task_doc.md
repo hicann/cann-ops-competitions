@@ -182,7 +182,7 @@ SpSM 为**全新算子**（ops-sparse 仓当前无 `src/spsm/`），`aclsparseSp
 
 ### 6. 精度要求
 
-满足《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》和 [ATK](https://gitcode.com/AscendTest/ATK) 双标杆L2（2 / 1.2 / 1.2）要求。测试用例见[测试目录](./self_test_case/SpSM/)。
+满足《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》和 [ATK](https://gitcode.com/AscendTest/ATK) 双标杆L2（2 / 1.2 / 1.2）要求。测试用例见[测试目录](./self_test_case/sp_sm/)。
 
 **说明**：ATK双标杆测试需要A100环境，请开发者自行准备。
 
