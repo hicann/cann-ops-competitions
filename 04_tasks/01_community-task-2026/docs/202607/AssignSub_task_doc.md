@@ -38,23 +38,34 @@
 2. 自验证报告需要覆盖所有功能场景，参考[xxx算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)，含测试用例执行日志/截图、整体测试通过截图、性能数据截图，可清晰指导算子使用与测试；
 3. README 文档内容完整、规范。
 
-## 验收规则与流程
+## 验收交付件
 
-### 提交验收申请
+完成算子开发和功能自验（使用[CANNJudge](https://cannjudge.cn/home)平台）后，点击【提交验收】上传交付件。待后台测试通过后，提交PR并成功合入，验收通过。
 
-联系昇腾小助手，提交以下**三类交付件**进行验收：
+交付内容：压缩包内需包含自测报告等任务书要求内容。其中，用例结果需要包含：
 
-1. 昇腾开源算子仓 fork 的个人代码仓链接（需包含：算子工程代码、算子 README 文档、多组 aclnn 调用测试代码）；
-2. 算子自验证报告；
-3. 华为评审通过的算子设计文档（按模板填写），合入 [cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist) 详细说明见 [readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
+1，CANNJudge中用例通过数截图（若用例较多，仅需包含用例通过数即可），要求全部通过。
 
-### 验收结果反馈
+   ![cannjudge截图](pics/cann_judge1.png)
 
-验收以提交验收申请时的代码为准，72小时内反馈验收结果，如代码更新请重新提交验收申请，验收时间同步刷新。
+
+2，“提交排名”页面中每一个测试点的性能，要求性能小于Baseline时间，将所有用例的测试结果复制粘贴到excel表格中。
+
+   ![cannjudge截图](pics/cann_judge2.png)
+
+
+并在【说明】中按下图填写算子代码的私仓邀请链接、代码仓路径、分支、算子目录。
+
+   ![cannjudge截图](pics/cann_judge3.png)
+
+交付件要求：只能上传zip格式，且文件最大不超过100M。
+验收说明：提交验收后将无法修改当前进展，审核期间无法更新验收信息；审核人将根据提交验收时间按序验收。
 
 ### PR 申请合入
 
-验收通过后，在昇腾算子开源仓提交 PR 申请，申请将开发完成的算子合入（https://gitcode.com/cann/ops-math/tree/master/experimental/math）。
+第一个通过测试的开发者在收到通知后2个工作日内联系昇腾CANN小助手提交需求issue和代码PR，并根据检视意见修改代码，直到PR合入。
+
+需要将开发完成的算子合入（https://gitcode.com/cann/ops-math/tree/master/experimental/math）。
 
 ## TBE 参考实现路径
 
