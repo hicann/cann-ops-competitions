@@ -1,0 +1,36 @@
+{
+  "version": 3,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 16,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "release",
+      "displayName": "Release package build",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build_out",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "ENABLE_SOURCE_PACKAGE": "True",
+        "ENABLE_BINARY_PACKAGE": "True",
+        "ASCEND_COMPUTE_UNIT": "ascend910_93",
+        "ENABLE_TEST": "True",
+        "vendor_name": "wangcai_jarvis",
+        "ASCEND_CANN_PACKAGE_PATH": "$env{ASCEND_HOME_PATH}",
+        "ASCEND_PYTHON_EXECUTABLE": "python3",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/build_out",
+        "ENABLE_CROSS_COMPILE": "False",
+        "ASCEND_PACK_SHARED_LIBRARY": "False"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "jobs": 8
+    }
+  ]
+}
