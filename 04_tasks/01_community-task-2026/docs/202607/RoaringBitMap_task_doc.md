@@ -44,8 +44,8 @@ cucollections实现：
 | ------ | --- | ---------------- | ----------- |
 | first  | InputIt  | 输入          | 被查询键的起始迭代器 |
 | last   | InputIt  | 输入          | 被查询键的结束迭代器 |
-| output_begin    | OutputIt  | 输入        | 布尔序列的起始位置，用于表示每个键是否存在   |
-| stream | size_type  | 输入 | 执行的流        |
+| output_begin    | OutputIt  | 输出        | 布尔序列的起始位置，用于表示每个键是否存在   |
+| stream | cuda::stream_ref  | 输入 | 执行的流        |
 
 Contains接口的设计中，由于昇腾当前还未实现对应的基础数据结构，如device迭代器，因此当前使用起始地址+元素个数的方式来替代起始+结束迭代器的入参设计。
 
@@ -55,9 +55,36 @@ Contains接口的设计中，由于昇腾当前还未实现对应的基础数据
 
 ### 性能要求
 
-I32场景下算子所有用例的性能需大于等于0.8倍GPU（A100）。
-I64场景下算子所有用例的性能需大于等于0.6倍GPU（A100）。
+I32场景下算子所有用例的耗时需小于等于 Total Time/0.8。
+I64场景下算子所有用例的耗时需小于等于 Total Time/0.6。
 如不达标，须有合理解释。
+
+**构造**
+
+| T  | BitmapFile  | NumInputs  |InputSize  | BitmapSizeMB  |  Total Time（ms） |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| U32  | bitmapwithruns.bin  | 80000000  | 305.176MiB  | 0.04583  |  1.09 |
+| U32  | bitmapwithruns.bin  | 2^32  | 16GiB  | 0.04583  |  1.09 |
+| U64  | portable_bitmap64.bin  | 80000000  | 610.352MiB  | 0.015741  |  1.08 |
+| U64  | portable_bitmap64.bin  | 2^31  | 16GiB  | 0.04583  |  1.08 |
+
+**析构**
+
+| T  | BitmapFile  | NumInputs  |InputSize  | BitmapSizeMB  |  Total Time（ms） |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| U32  | bitmapwithruns.bin  | 80000000  | 305.176MiB  | 0.04583  |  0.03 |
+| U32  | bitmapwithruns.bin  | 2^32  | 16GiB  | 0.04583  |  0.03 |
+| U64  | portable_bitmap64.bin  | 80000000  | 610.352MiB  | 0.015741  |  0.03 |
+| U64  | portable_bitmap64.bin  | 2^31  | 16GiB  | 0.04583  |  0.03 |
+
+**Contains**
+
+| T  | BitmapFile  | NumInputs  |InputSize  | BitmapSizeMB  |  Total Time（ms） |
+| ------------ | ------------ | ------------ | ------------ | ------------ | ------------ |
+| U32  | bitmapwithruns.bin  | 80000000  | 305.176MiB  | 0.04583  |  6.75 |
+| U32  | bitmapwithruns.bin  | 2^32  | 16GiB  | 0.04583  |  448.82 |
+| U64  | portable_bitmap64.bin  | 80000000  | 610.352MiB  | 0.015741  |  12.87 |
+| U64  | portable_bitmap64.bin  | 2^31  | 16GiB  | 0.04583  |  426.98 |
 
 ### 精度要求
 
