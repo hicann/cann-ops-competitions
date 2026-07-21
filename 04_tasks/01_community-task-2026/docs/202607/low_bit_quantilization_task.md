@@ -33,7 +33,7 @@
 
 ### 文档规范要求
 
-1. 设计文档内容完整、方案描述清晰准确，且必须通过评审；
+1. 设计文档，需根据[参考模板](https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、方案描述清晰准确，且必须通过评审；评审通过后合入 [amct 仓库](https://gitcode.com/cann/amct/tree/feature/community-tasks) 详细说明见 [readme](https://gitcode.com/cann/amct/blob/feature%2Fcommunity-tasks/README.md)。
 2. 自验证报告需要覆盖所有功能场景，含测试用例执行日志/截图、整体测试通过截图、性能数据截图，可清晰指导算法的使用与测试；
 3. README 文档内容完整、规范。
 

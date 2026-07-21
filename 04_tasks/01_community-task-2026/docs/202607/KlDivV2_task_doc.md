@@ -34,7 +34,7 @@
 
 ### 文档规范要求
 
-1. 算子设计文档需根据[参考模板](https://public-download.obs.cn-east-2.myhuaweicloud.com/task/Addcdiv%E7%AE%97%E5%AD%90%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.docx)填写，内容完整、格式规范，且必须通过评审；
+1. 算子设计文档，需根据[参考模板](https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、格式规范，且必须通过评审；评审通过后合入[cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist)，详细说明见[readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
 2. 自验证报告需要覆盖所有功能场景，参考[xxx算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)，含测试用例执行日志/截图、整体测试通过截图、性能数据截图，可清晰指导算子使用与测试；
 3. README 文档内容完整、规范。
 

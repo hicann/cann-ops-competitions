@@ -113,7 +113,7 @@ SHMEM（ACLSHMEM）是面向昇腾集群的对称共享内存与单边 RMA 通�
    
 ## 验收交付件
 
-1. **设计 / 说明文档**：说明 Python 绑定分层（`_pyshmem` / `shmem.core`）、待实现接口映射表、Stream/指针/异常约定；内容完整、格式规范。
+1. **设计 / 说明文档**：说明 Python 绑定分层（`_pyshmem` / `shmem.core`）、待实现接口映射表、Stream/指针/异常约定；内容完整、格式规范。算子设计文档需根据[参考模板](https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、格式规范，且必须通过评审；评审通过后合入[cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist)，详细说明见[readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
 2. **可指导使用与测试的交付件**，包括：
     - 自测用例、测试代码脚本及脚本运行 README；
     - 测试结果报告：需包含全部自测用例结果、执行日志/截图、整体测试通过截图、性能对比数据截图。

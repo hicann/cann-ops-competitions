@@ -36,7 +36,7 @@ $$\mathrm{I}_0(x) = \sum_{k=0}^{\infty} \frac{1}{(k!)^2}\left(\frac{x}{2}\right)
 
 ### 文档规范要求
 
-1. API设计文档可根据[模板](./docs/BatchNorm接口设计文档.docx)填写，内容完整、格式规范，且必须通过评审。设计文档需在asc-devkit仓提交文档评审issue，2工作日内反馈评审结果，如方案有更新，评审时间同步刷新。
+1. API设计文档可根据[模板](./docs/BatchNorm接口设计文档.docx)填写，内容完整、格式规范，且必须通过评审；评审通过后合入[cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist)，详细说明见[readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。设计文档需在asc-devkit仓提交文档评审issue，2工作日内反馈评审结果，如方案有更新，评审时间同步刷新。
 2. 自验证报告除基础场景外还应覆盖边界值场景，具体可参考[算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)，需包含测试用例执行日志/截图、整体测试通过截图、性能数据截图，可指导复现测试结果。
 3. README 文档内容完整、规范，可参考代码仓API的接口说明文档。
 

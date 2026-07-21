@@ -65,13 +65,13 @@ I64场景下算子所有用例的性能需大于等于0.6倍GPU（A100）。
 
 ### 文档规范要求
 
-1. 算子设计文档需根据[参考模板](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、格式规范，且必须通过评审；
-2. 自验证报告需要覆盖所有功能场景，参考[xxx算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)（不需要模板中TBE样例结果）及[static_set容器自验证报告](https://docs.qq.com/sheet/DRGRNQmN3R1B4eFd1?tab=BB08J2)，含测试用例执行日志/截图、整体测试通过截图、性能数据截图，可清晰指导算子使用与测试；
+1. 算子设计文档，需根据[参考模板](https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、格式规范，且必须通过评审；评审通过后合入[cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist)，详细说明见[readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
+2. 自验证报告需要覆盖所有功能场景，参考[xxx算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)（不需要模板中TBE样例结果）及[static_set容器自验证报告](https://docs.qq.com/sheet/DRGRNQmN3R1B4eFd1?tab=BB08J2），含测试用例执行日志/截图、整体测试通过截图、性能数据截图，可清晰指导算子使用与测试；
 3. README 文档内容完整、规范。
 
 ## 验收交付件
 
-1. 算子设计文档，需根据参考模板填写，内容完整、格式规范，且必须通过评审；评审通过后合入[cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist)，详细说明见[readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
+1. 算子设计文档，需根据[参考模板](https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、格式规范，且必须通过评审；评审通过后合入[cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist)，详细说明见[readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
 2. 可以清晰指导算子使用与测试的交付件，包括：自测用例、测试代码脚本及脚本运行reademe；测试结果报告，需要包含所有自测用例结果，参考[xxx算子自验证报告](https://docs.qq.com/sheet/DUmVWWndaUE12WGFB?tab=BB08J2)（不涉及TBE内置算子的不需要模板中TBE样例结果）及[static_set容器自验证报告](https://docs.qq.com/sheet/DRGRNQmN3R1B4eFd1?tab=BB08J2)，含测试用例执行日志/截图、整体测试通过截图、性能数据截图。
 3. 算子代码的私仓邀请链接、代码仓路径、分支、算子目录。README 文档内容完整、规范。
 
