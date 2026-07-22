@@ -57,7 +57,9 @@
 
 1. 算子设计文档（含 Broadcast 膨胀优化方案与内存分析），需根据[参考模板](https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md)填写，内容完整、格式规范，且必须通过评审；评审通过后合入[cann-competitions 仓库](https://gitcode.com/cann/cann-competitions/tree/master/04_tasks/01_community-task-2026/tasklist)，详细说明见[readme](https://gitcode.com/cann/cann-competitions/blob/master/04_tasks/01_community-task-2026/README.md)。
 2. 可指导算子使用与测试的交付件：自测用例、测试代码脚本及脚本运行 README；测试结果报告，需包含所有自测用例结果，含内存对比数据、精度结果、整体测试通过截图。
-3. 算子代码的私仓邀请链接、代码仓路径、分支、算子目录。README 文档内容完整、规范。
+3. 个人代码仓链接、代码仓路径、分支、算子目录。README 文档内容完整、规范。需要在个人仓邀请账号`Ascend-CANN`作为开发者，如下所示：
+
+![邀请示意](./pics/invite.jpeg)
 
 ## PR 申请合入
 
