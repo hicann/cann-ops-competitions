@@ -16,6 +16,8 @@
 
 本任务通过消除/优化 Broadcast 带来的中间膨胀，使 `aclnnRemainderTensorTensor` 内存与 GPU 差距控制在 5% 以下。
 
+**说明**：不限制实现方案，修改 `op_api` 代码或者修改算子Kernel代码均可。
+
 ## 核心开发要求
 
 ### 功能实现要求

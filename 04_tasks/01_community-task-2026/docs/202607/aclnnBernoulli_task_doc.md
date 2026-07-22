@@ -4,7 +4,7 @@
 
 - **技术标签**：算子开发、内存优化
 - **适配硬件**：Atlas A2/A3 训练系列产品
-- **开源仓地址**：https://gitcode.com/cann/ops-math/tree/master/math
+- **开源仓地址**：https://gitcode.com/cann/ops-math/tree/master/random/stateless_bernoulli
 - **CANN 版本**：CANN 8.5.0及以上
 - **开发语言**：Ascend C
 
@@ -16,6 +16,7 @@
 
 **参考方案**：`fill + DropoutDoMask` 做 inplace 融合，bf16/fp32 膨胀 1 份 fp32，存在性能风险但可接受。
 
+**说明**：不限制实现方案，修改 `op_api` 代码或者修改算子Kernel代码均可。
 
 ## 核心开发要求
 
