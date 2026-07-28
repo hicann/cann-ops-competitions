@@ -1,0 +1,72 @@
+//  build
+source /home/yang/Ascend/cann-9.1.0/cann-9.1.0/set_env.sh
+export ASCEND_CANN_PACKAGE_PATH=/home/yang/Ascend/cann-9.1.0/cann-9.1.0
+export BCAST_HOME=/home/yang/HCCL/hccl_broadcast_v1
+export HVM_HOME=/home/yang/HCCL/hccl_vm_workspace/hcomm/test/hccl_vm/hccl_vm_install
+cd "$BCAST_HOME"
+rm -rf build
+set -o pipefail
+bash build.sh 2>&1 | tee build_pass_baseline.log
+echo "编译退出码=${PIPESTATUS[0]}"
+
+sudo cp -f \
+"$BCAST_HOME/build/lib64/libhccl.so" \
+"$ASCEND_HOME_PATH/x86_64-linux/lib64/libhccl.so"
+
+sudo cp -f \
+"$BCAST_HOME/build/lib64/libhccl_device.so" \
+"$HVM_HOME/lib/aarch64/libhccl_device.so"
+
+
+
+
+// debug
+source /home/yang/Ascend/cann-9.1.0/cann-9.1.0/set_env.sh
+export ASCEND_CANN_PACKAGE_PATH=/home/yang/Ascend/cann-9.1.0/cann-9.1.0
+export BCAST_HOME=/home/yang/HCCL/hccl_broadcast_v1
+export HVM_HOME=/home/yang/HCCL/hccl_vm_workspace/hcomm/test/hccl_vm/hccl_vm_install
+export HCCL_OP_EXPANSION_MODE=AI_CPU
+export RANK_TABLE_FILE="$HVM_HOME/data/ranktable.json"
+export LD_LIBRARY_PATH="$ASCEND_HOME_PATH/x86_64-linux/lib64:$ASCEND_HOME_PATH/lib64:$ASCEND_HOME_PATH/devlib:$LD_LIBRARY_PATH"
+cd "$HVM_HOME/bin"
+
+./hccl-vm start \
+ascend950_cluster_32_server_normal.yaml \
+--check-only
+
+hccl-vm mock-comm 128
+mpirun --allow-run-as-root --oversubscribe -np 16 \
+${ASCEND_HOME_PATH}/tools/hccl_test/bin/broadcast_test \
+-p 8 \
+-b 4 \
+-e 4 \
+-d fp32 \
+-r 0 \
+-w 0 \
+-n 1 \
+-c 0 \
+> /tmp/broadcast_pass_4b_root0.log 2>&1
+echo "broadcast退出码=$?"
+
+hccl-vm plugin run @checker
+
+
+// 4b
+mpirun --allow-run-as-root --oversubscribe -np 16 \
+${ASCEND_HOME_PATH}/tools/hccl_test/bin/broadcast_test \
+-p 8 -b 4 -e 4 -d fp32 -r 0 -w 0 -n 1 -c 0
+
+// 512kb
+mpirun --allow-run-as-root --oversubscribe -np 16 \
+${ASCEND_HOME_PATH}/tools/hccl_test/bin/broadcast_test \
+-p 8 -b 524288 -e 524288 -d fp32 -r 0 -w 0 -n 1 -c 0
+
+// 512M
+mpirun --allow-run-as-root --oversubscribe -np 16 \
+${ASCEND_HOME_PATH}/tools/hccl_test/bin/broadcast_test \
+-p 8 -b 536870912 -e 536870912 -d fp32 -r 0 -w 0 -n 1 -c 0
+
+// 400M+4b
+mpirun --allow-run-as-root --oversubscribe -np 16 \
+${ASCEND_HOME_PATH}/tools/hccl_test/bin/broadcast_test \
+-p 8 -b 419430404 -e 419430404 -d fp32 -r 0 -w 0 -n 1 -c 0
