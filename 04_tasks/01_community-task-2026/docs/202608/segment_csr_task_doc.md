@@ -159,29 +159,53 @@ def segment_csr(src: torch.Tensor, indptr: torch.Tensor,
 
 ### 性能要求
 
-#### 性能基线说明
+- 算子所有用例的性能需大于等于0.6倍标杆性能。
+- GPU（A100）的耗时如下：
 
-- 分档指标为 **达标基线**；**验收取最优实现**；
-- Segment CSR 为 torch_scatter **最快**分组归约，NPU 目标应 **高于 scatter/segment_coo**。
+#### 测试数据
 
-| 场景分档 | 特征 | reduce | dtype | **达标基线（≥）** |
-|----------|------|--------|-------|-------------------|
-| S1 GNN CSR 典型 | 图边列表 + indptr | sum | float32 | **0.60×** |
-| S2 长段 | 平均段长 > 32 | sum | float32 | **0.70×** |
-| S3 短段高并行 | 段数多、段长短 | sum | float32 | **0.55×** |
-| S4 mean | 段内 mean | mean | float32 | **0.55×** |
-| S5 min/max | arg_out | min/max | float32 | **0.55×** |
-| S6 float16 | GNN | sum | float16 | **0.65×** |
-| S7 L2 路径 | L2 | 全部 | float64/int64 | 不做性能考核 |
+按行指针分段归约，通过 indptr 标记每段起止。数据：随机矩阵（N行 × 128特征），均匀分段为 seg 段。
 
-**验收用例**：
+#### sum
 
-| 编号 | 场景 | src | indptr | 达标 |
-|------|------|-----|--------|------|
-| P-01 | 稀疏图聚合 | `[nnz, F]` | `[0,…,N]` | ≥ 0.60× |
-| P-02 | 广播 batch | `[B, nnz, F]` | `[B, N+1]` | ≥ 0.60× |
-| P-03 | vs segment_coo | 同数据 | 对齐 | **须 ≥ segment_coo NPU** |
-| P-04 | vs scatter | 同 CSR 转 COO | - | **须 ≥ scatter NPU** |
+| shape (N × 128, seg段) | float32 | float16 | 总元素 |
+|-------|---------|---------|--------|
+| N=256K seg=16K | 0.094ms | 0.052ms | 33M |
+| N=512K seg=32K | 0.181ms | 0.099ms | 66M |
+| N=1024K seg=32K | 0.341ms | 0.182ms | 131M |
+| N=2048K seg=64K | 0.675ms | 0.358ms | 262M |
+| N=4096K seg=64K | 1.330ms | 0.703ms | 524M |
+
+#### mean
+
+| shape (N × 128, seg段) | float32 | float16 | 总元素 |
+|-------|---------|---------|--------|
+| N=256K seg=16K | 0.094ms | 0.053ms | 33M |
+| N=512K seg=32K | 0.181ms | 0.100ms | 66M |
+| N=1024K seg=32K | 0.340ms | 0.183ms | 131M |
+| N=2048K seg=64K | 0.674ms | 0.360ms | 262M |
+| N=4096K seg=64K | 1.328ms | 0.706ms | 524M |
+
+#### min
+
+| shape (N × 128, seg段) | float32 | float16 | 总元素 |
+|-------|---------|---------|--------|
+| N=256K seg=16K | 0.127ms | 0.121ms | 33M |
+| N=512K seg=32K | 0.240ms | 0.231ms | 66M |
+| N=1024K seg=32K | 0.404ms | 0.385ms | 131M |
+| N=2048K seg=64K | 0.790ms | 0.753ms | 262M |
+| N=4096K seg=64K | 1.478ms | 1.334ms | 524M |
+
+#### max
+
+| shape (N × 128, seg段) | float32 | float16 | 总元素 |
+|-------|---------|---------|--------|
+| N=256K seg=16K | 0.127ms | 0.121ms | 33M |
+| N=512K seg=32K | 0.240ms | 0.231ms | 66M |
+| N=1024K seg=32K | 0.404ms | 0.385ms | 131M |
+| N=2048K seg=64K | 0.790ms | 0.752ms | 262M |
+| N=4096K seg=64K | 1.479ms | 1.334ms | 524M |
+
 
 ---
 
