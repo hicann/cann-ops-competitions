@@ -1,0 +1,108 @@
+[
+    {
+        "op": "Bernoulli",
+        "language": "cpp",
+        "input_desc": [
+            {
+                "name": "self",
+                "param_type": "required",
+                "type": [
+                    "float16",
+                    "float32",
+                    "double",
+                    "uint8",
+                    "int8",
+                    "int16",
+                    "int32",
+                    "int64",
+                    "bool",
+                    "bfloat16"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            },
+            {
+                "name": "prob",
+                "param_type": "required",
+                "type": [
+                    "float16",
+                    "float32",
+                    "double",
+                    "float32",
+                    "float32",
+                    "float32",
+                    "float32",
+                    "float32",
+                    "float32",
+                    "bfloat16"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            }
+        ],
+        "output_desc": [
+            {
+                "name": "out",
+                "param_type": "required",
+                "type": [
+                    "float16",
+                    "float32",
+                    "double",
+                    "uint8",
+                    "int8",
+                    "int16",
+                    "int32",
+                    "int64",
+                    "bool",
+                    "bfloat16"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            }
+        ],
+        "attr": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value_range": [0, 1000000]
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value_range": [0, 256]
+            }
+        ]
+    }
+]

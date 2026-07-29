@@ -1,0 +1,3352 @@
+[
+    {
+        "case_name": "Test_001",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1567,
+                    2747
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1567,
+                    2747
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_002",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    7,
+                    3,
+                    4,
+                    100,
+                    15
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    7,
+                    3,
+                    4,
+                    100,
+                    15
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_003",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    2,
+                    20
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    2,
+                    20
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_004",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    3
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    2,
+                    3,
+                    4,
+                    4,
+                    3
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_005",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    8,
+                    116,
+                    110
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    8,
+                    116,
+                    110
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_006",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    4,
+                    3,
+                    23,
+                    18,
+                    88
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    4,
+                    3,
+                    23,
+                    18,
+                    88
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_007",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    60,
+                    25
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    60,
+                    25
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_008",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    18,
+                    102,
+                    37
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    18,
+                    102,
+                    37
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_009",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    50,
+                    59
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    50,
+                    59
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_010",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    22,
+                    8,
+                    84,
+                    99
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    22,
+                    8,
+                    84,
+                    99
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_011",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    41,
+                    105
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    41,
+                    105
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_012",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    123,
+                    9637,
+                    345
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    123,
+                    9637,
+                    345
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_013",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    3
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    3
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_014",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    78,
+                    107
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    78,
+                    107
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_015",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    120,
+                    89
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    120,
+                    89
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_016",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    9
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    9
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_017",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    41
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    41
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_018",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    2012,
+                    9521
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    2012,
+                    9521
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_019",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    72
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    72
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_020",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    12,
+                    14,
+                    2,
+                    17,
+                    2,
+                    106,
+                    19
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    12,
+                    14,
+                    2,
+                    17,
+                    2,
+                    106,
+                    19
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_021",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    4,
+                    7,
+                    7,
+                    6,
+                    7,
+                    5,
+                    7
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    4,
+                    7,
+                    7,
+                    6,
+                    7,
+                    5,
+                    7
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_022",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    36
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    36
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_023",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    3,
+                    7,
+                    4,
+                    4,
+                    6,
+                    3,
+                    6
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    3,
+                    7,
+                    4,
+                    4,
+                    6,
+                    3,
+                    6
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_024",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    19,
+                    74
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    19,
+                    74
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_025",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    6,
+                    6,
+                    6,
+                    3,
+                    4,
+                    3,
+                    3
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    6,
+                    6,
+                    6,
+                    3,
+                    4,
+                    3,
+                    3
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_026",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    7091
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    7091
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_027",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    69
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    69
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_028",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    68,
+                    13
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    68,
+                    13
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_029",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    6,
+                    7,
+                    5,
+                    5,
+                    7,
+                    6,
+                    4
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    6,
+                    7,
+                    5,
+                    5,
+                    7,
+                    6,
+                    4
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_030",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    122
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    122
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_031",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    25,
+                    69,
+                    70
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    25,
+                    69,
+                    70
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_032",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    44,
+                    21
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    44,
+                    21
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_033",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    18,
+                    20,
+                    16,
+                    44,
+                    90
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    18,
+                    20,
+                    16,
+                    44,
+                    90
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_034",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    11
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    11
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_035",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    27,
+                    86,
+                    38
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    27,
+                    86,
+                    38
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_036",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    22,
+                    29,
+                    9,
+                    127,
+                    21
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    22,
+                    29,
+                    9,
+                    127,
+                    21
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_037",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    70
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    70
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_038",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    77,
+                    121
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    77,
+                    121
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_039",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    47,
+                    22
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    47,
+                    22
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_040",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    13,
+                    17,
+                    4,
+                    7,
+                    71,
+                    31
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    13,
+                    17,
+                    4,
+                    7,
+                    71,
+                    31
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_041",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    7466,
+                    6511
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    7466,
+                    6511
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_042",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    76
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    76
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_043",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    27,
+                    7,
+                    9,
+                    15,
+                    85,
+                    9
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "double",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    27,
+                    7,
+                    9,
+                    15,
+                    85,
+                    9
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_044",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    8583
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "uint8",
+                "param_type": "required",
+                "shape": [
+                    8583
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_045",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    22
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int8",
+                "param_type": "required",
+                "shape": [
+                    22
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_046",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    3,
+                    3,
+                    3
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int16",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    3,
+                    3,
+                    3
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_047",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    35,
+                    42
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    35,
+                    42
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_048",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    29,
+                    3,
+                    28,
+                    2,
+                    17,
+                    7,
+                    95
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    29,
+                    3,
+                    28,
+                    2,
+                    17,
+                    7,
+                    95
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_049",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    3,
+                    2,
+                    2
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bool",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    3,
+                    2,
+                    2
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_050",
+        "op_name": "Bernoulli",
+        "case_path": "",
+        "expect_func": "/root/optest/Bernoulli/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7643,
+                    6367
+                ],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "self",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [],
+                "value_range": [
+                    0.0,
+                    1.0
+                ],
+                "name": "prob",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7643,
+                    6367
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "seed",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "offset",
+                "param_type": "required",
+                "type": "int",
+                "value": 0
+            }
+        ]
+    }
+]

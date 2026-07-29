@@ -1,0 +1,74 @@
+[
+    {
+        "op": "Roll",
+        "language": "cpp",
+        "input_desc": [
+            {
+                "name": "x",
+                "param_type": "required",
+                "type": [
+                    "bfloat16",
+                    "float16",
+                    "float32",
+                    "int8",
+                    "uint8",
+                    "int32",
+                    "uint32",
+                    "bool",
+                    "complex64"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            }
+        ],
+        "output_desc": [
+            {
+                "name": "out",
+                "param_type": "required",
+                "type": [
+                    "bfloat16",
+                    "float16",
+                    "float32",
+                    "int8",
+                    "uint8",
+                    "int32",
+                    "uint32",
+                    "bool",
+                    "complex64"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            }
+        ],
+        "attr": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int"
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int"
+            }
+        ]
+    }
+]

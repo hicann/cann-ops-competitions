@@ -1,0 +1,42 @@
+[
+    {
+        "op": "Roll",
+        "language": "cpp",
+        "input_desc": [
+            {
+                "name": "x",
+                "param_type": "required",
+                "type": [
+                    "complex64"
+                ],
+                "format": [
+                    "ND"
+                ]
+            }
+        ],
+        "output_desc": [
+            {
+                "name": "out",
+                "param_type": "required",
+                "type": [
+                    "complex64"
+                ],
+                "format": [
+                    "ND"
+                ]
+            }
+        ],
+        "attr": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int"
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int"
+            }
+        ]
+    }
+]

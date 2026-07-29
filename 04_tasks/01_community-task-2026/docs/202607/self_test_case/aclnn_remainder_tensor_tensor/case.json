@@ -1,0 +1,2924 @@
+[
+    {
+        "case_name": "Test_001",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    127,
+                    113
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    1,
+                    113
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    127,
+                    113
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_002",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    22,
+                    83,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    22,
+                    83,
+                    49
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    22,
+                    83,
+                    49
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_003",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    66,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    66,
+                    71
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    66,
+                    71
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_004",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    25,
+                    89,
+                    113
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    25,
+                    89,
+                    113
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    25,
+                    89,
+                    113
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_005",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    17,
+                    23,
+                    1,
+                    19,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    17,
+                    23,
+                    28,
+                    19,
+                    109
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    17,
+                    23,
+                    28,
+                    19,
+                    109
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_006",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    76,
+                    32
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    76,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    76,
+                    32
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_007",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    19,
+                    1,
+                    121,
+                    128
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    19,
+                    6,
+                    121,
+                    128
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    19,
+                    6,
+                    121,
+                    128
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_008",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    35,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    35,
+                    97
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    35,
+                    97
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_009",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    5
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    5
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_010",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    5158
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    1707,
+                    5158
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    1707,
+                    5158
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_011",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    1,
+                    22
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    111,
+                    22
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    111,
+                    22
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_012",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    91,
+                    42
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    42
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    91,
+                    42
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_013",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    6,
+                    23,
+                    4,
+                    1,
+                    26
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    6,
+                    23,
+                    1,
+                    90,
+                    26
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    6,
+                    23,
+                    4,
+                    90,
+                    26
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_014",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    2,
+                    1,
+                    29,
+                    2,
+                    29,
+                    31,
+                    125
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    2,
+                    3,
+                    29,
+                    2,
+                    29,
+                    31,
+                    125
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    2,
+                    3,
+                    29,
+                    2,
+                    29,
+                    31,
+                    125
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_015",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    43,
+                    103
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    103
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    43,
+                    103
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_016",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    8,
+                    44,
+                    62
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    8,
+                    1,
+                    62
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    8,
+                    44,
+                    62
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_017",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    3750,
+                    228
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    3750,
+                    228
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_018",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    8,
+                    2,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    2,
+                    58
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    8,
+                    2,
+                    58
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_019",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    65,
+                    4
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    1,
+                    4
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    65,
+                    4
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_020",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    11,
+                    19,
+                    3,
+                    69,
+                    23
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    11,
+                    19,
+                    3,
+                    69,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    11,
+                    19,
+                    3,
+                    69,
+                    23
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_021",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    141,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    1,
+                    3899
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    141,
+                    3899
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_022",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    726
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    726
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    726
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_023",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    7,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    7,
+                    87
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    7,
+                    87
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_024",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    4,
+                    6,
+                    3,
+                    1,
+                    2,
+                    3
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    4,
+                    6,
+                    3,
+                    6,
+                    2,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    4,
+                    6,
+                    3,
+                    6,
+                    2,
+                    3
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_025",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    1,
+                    7,
+                    1,
+                    19,
+                    85,
+                    65
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    5,
+                    7,
+                    28,
+                    19,
+                    85,
+                    65
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    5,
+                    7,
+                    28,
+                    19,
+                    85,
+                    65
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_026",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    6280,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    7633
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    6280,
+                    7633
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_027",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    4698
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    4698
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    4698
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_028",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    121
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    121
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    121
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_029",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    13,
+                    1,
+                    73
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    1,
+                    77,
+                    73
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    13,
+                    77,
+                    73
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_030",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    1,
+                    26,
+                    26,
+                    7,
+                    93
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    7,
+                    26,
+                    26,
+                    7,
+                    93
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    7,
+                    26,
+                    26,
+                    7,
+                    93
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_031",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    29,
+                    2,
+                    3,
+                    19,
+                    1,
+                    30
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    29,
+                    2,
+                    3,
+                    1,
+                    43,
+                    30
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    29,
+                    2,
+                    3,
+                    19,
+                    43,
+                    30
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_032",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    3,
+                    69,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    3,
+                    69,
+                    108
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    3,
+                    69,
+                    108
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_033",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    2,
+                    2711,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    24,
+                    2,
+                    2711,
+                    1919
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    24,
+                    2,
+                    2711,
+                    1919
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_034",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    7,
+                    11,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    7,
+                    11,
+                    63
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    7,
+                    11,
+                    63
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_035",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    58,
+                    15
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    58,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    58,
+                    15
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_036",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7129
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7129
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7129
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_037",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    61
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    61
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_038",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    21,
+                    27,
+                    1,
+                    22
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    21,
+                    27,
+                    58,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    21,
+                    27,
+                    58,
+                    22
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_039",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    34
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    34
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    34
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_040",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    18
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    18
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    18
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_041",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    27,
+                    6,
+                    3,
+                    110,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    27,
+                    6,
+                    3,
+                    110,
+                    117
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    27,
+                    6,
+                    3,
+                    110,
+                    117
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_042",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    1,
+                    4,
+                    5,
+                    4,
+                    2
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    3,
+                    4,
+                    1,
+                    4,
+                    2
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    3,
+                    4,
+                    5,
+                    4,
+                    2
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_043",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    66,
+                    8754,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    66,
+                    1,
+                    592
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    66,
+                    8754,
+                    592
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_044",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    86,
+                    91
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    86,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    86,
+                    91
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_045",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    19,
+                    1,
+                    17
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    19,
+                    66,
+                    17
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    19,
+                    66,
+                    17
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_046",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    18,
+                    7,
+                    8,
+                    114,
+                    17
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    18,
+                    1,
+                    8,
+                    114,
+                    17
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    20,
+                    18,
+                    7,
+                    8,
+                    114,
+                    17
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_047",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    8341,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    1,
+                    435
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    8341,
+                    435
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_048",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    99
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    98,
+                    99
+                ],
+                "value_range": [
+                    -100.0,
+                    -0.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    98,
+                    99
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_049",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    7717,
+                    2002
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    7717,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int64",
+                "param_type": "required",
+                "shape": [
+                    7717,
+                    2002
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    },
+    {
+        "case_name": "Test_050",
+        "op_name": "FloorMod",
+        "case_path": "",
+        "expect_func": "/root/optest/FloorMod/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    1,
+                    76
+                ],
+                "value_range": [
+                    -100.0,
+                    100
+                ],
+                "name": "x1",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    76,
+                    1
+                ],
+                "value_range": [
+                    -100.0,
+                    -1.001
+                ],
+                "name": "x2",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "int32",
+                "param_type": "required",
+                "shape": [
+                    76,
+                    76
+                ],
+                "name": "y",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": []
+    }
+]

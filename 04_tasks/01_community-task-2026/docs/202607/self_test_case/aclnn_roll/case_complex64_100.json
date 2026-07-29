@@ -1,0 +1,5758 @@
+[
+    {
+        "case_name": "Test_001",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6842,
+                    6776
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6842,
+                    6776
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_002",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    108
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    108
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_003",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    101,
+                    116
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    101,
+                    116
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_004",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    8522
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    8522
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -8925
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_005",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    1140
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    1140
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_006",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    15,
+                    10,
+                    6,
+                    29,
+                    23,
+                    13,
+                    33
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    15,
+                    10,
+                    6,
+                    29,
+                    23,
+                    13,
+                    33
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_007",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    18
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    18
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    33,
+                    -4
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1,
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_008",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    5,
+                    6,
+                    27,
+                    30,
+                    37
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    5,
+                    6,
+                    27,
+                    30,
+                    37
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_009",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    61,
+                    21
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    61,
+                    21
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    42
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_010",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    11,
+                    69
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    11,
+                    69
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_011",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    24,
+                    22,
+                    99,
+                    24
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    24,
+                    22,
+                    99,
+                    24
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_012",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    3,
+                    3,
+                    3
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    3,
+                    3,
+                    3
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    2,
+                    2,
+                    -2
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1,
+                    3,
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_013",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    25,
+                    9,
+                    15,
+                    110,
+                    32
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    25,
+                    9,
+                    15,
+                    110,
+                    32
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -24
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -3
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_014",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    10,
+                    27,
+                    10,
+                    15,
+                    99
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    10,
+                    27,
+                    10,
+                    15,
+                    99
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_015",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    7,
+                    5,
+                    10,
+                    7,
+                    41,
+                    37
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    7,
+                    5,
+                    10,
+                    7,
+                    41,
+                    37
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_016",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7991
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7991
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    2735
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_017",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    61,
+                    50,
+                    596,
+                    63
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    61,
+                    50,
+                    596,
+                    63
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_018",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    2,
+                    6,
+                    2,
+                    3,
+                    5,
+                    5
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    2,
+                    6,
+                    2,
+                    3,
+                    5,
+                    5
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -3,
+                    4,
+                    7
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1,
+                    6,
+                    -2
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_019",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    9,
+                    7,
+                    33
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    9,
+                    7,
+                    33
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    5
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -3
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_020",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    39,
+                    21
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    39,
+                    21
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    53
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_021",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    14,
+                    9582,
+                    571
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    14,
+                    9582,
+                    571
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_022",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    12,
+                    10,
+                    27,
+                    36,
+                    98
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    12,
+                    10,
+                    27,
+                    36,
+                    98
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_023",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    2431,
+                    6842
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    2431,
+                    6842
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_024",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    45,
+                    37
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    45,
+                    37
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_025",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    4,
+                    5,
+                    5,
+                    2,
+                    3
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    4,
+                    5,
+                    5,
+                    2,
+                    3
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_026",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    4,
+                    4,
+                    2,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    4,
+                    4,
+                    2,
+                    4
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_027",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    9,
+                    17,
+                    111
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    9,
+                    17,
+                    111
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_028",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    42
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    42
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    25
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_029",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    18,
+                    107,
+                    111
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    18,
+                    107,
+                    111
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_030",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -4
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_031",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    75,
+                    45
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    75,
+                    45
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -29
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_032",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    63,
+                    109
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    63,
+                    109
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_033",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    39,
+                    116
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    39,
+                    116
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_034",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6442
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6442
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -10213
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_035",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    27,
+                    18,
+                    63
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    27,
+                    18,
+                    63
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_036",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    3,
+                    65,
+                    98
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    3,
+                    65,
+                    98
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_037",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    123,
+                    83
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    123,
+                    83
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_038",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7892
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7892
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -2306
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_039",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    87,
+                    106
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    87,
+                    106
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    125,
+                    -5,
+                    -4
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1,
+                    0,
+                    -3
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_040",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    17,
+                    29,
+                    3,
+                    69,
+                    117
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    17,
+                    29,
+                    3,
+                    69,
+                    117
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -8,
+                    -1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -4,
+                    3
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_041",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    65
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    65
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_042",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    5,
+                    3,
+                    3,
+                    7,
+                    4,
+                    6,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    5,
+                    3,
+                    3,
+                    7,
+                    4,
+                    6,
+                    4
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_043",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    42
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    42
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_044",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5988
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5988
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    7181
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_045",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    3,
+                    68,
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    3,
+                    68,
+                    27
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_046",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    7,
+                    29,
+                    17,
+                    77,
+                    82
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    7,
+                    29,
+                    17,
+                    77,
+                    82
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    8,
+                    -102,
+                    7
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -4,
+                    4,
+                    -5
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_047",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    19,
+                    27,
+                    61,
+                    30
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    19,
+                    27,
+                    61,
+                    30
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_048",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    106
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    106
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_049",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    112,
+                    110
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    112,
+                    110
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_050",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    26,
+                    9
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    26,
+                    9
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    11,
+                    2
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    2,
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_051",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    27,
+                    3,
+                    35,
+                    26
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    27,
+                    3,
+                    35,
+                    26
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_052",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    58,
+                    18,
+                    7,
+                    7039
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    58,
+                    18,
+                    7,
+                    7039
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_053",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    22,
+                    9,
+                    27,
+                    17,
+                    92,
+                    26
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    22,
+                    9,
+                    27,
+                    17,
+                    92,
+                    26
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    74,
+                    19,
+                    -17
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    4,
+                    -1,
+                    5
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_054",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    117,
+                    100
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    117,
+                    100
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_055",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    58,
+                    59
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    58,
+                    59
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    77
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_056",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2569
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2569
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_057",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    99,
+                    17
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    99,
+                    17
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_058",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    23
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    23
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    34
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_059",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    117,
+                    127
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    117,
+                    127
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_060",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    48,
+                    25,
+                    2882,
+                    53
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    48,
+                    25,
+                    2882,
+                    53
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_061",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    1795,
+                    6703
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    1795,
+                    6703
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_062",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    2,
+                    3,
+                    2
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    2,
+                    3,
+                    2
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_063",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    67,
+                    7
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    67,
+                    7
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    5
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_064",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    7,
+                    23,
+                    83,
+                    87
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    7,
+                    23,
+                    83,
+                    87
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    23,
+                    -7,
+                    41
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -3,
+                    -4,
+                    3
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_065",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    74,
+                    73
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    74,
+                    73
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    17,
+                    -45,
+                    -112
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -3,
+                    2,
+                    -2
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_066",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    12,
+                    23,
+                    88
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    12,
+                    23,
+                    88
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_067",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    101
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    101
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    200
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_068",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    4,
+                    17,
+                    2,
+                    8,
+                    121,
+                    124
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    4,
+                    17,
+                    2,
+                    8,
+                    121,
+                    124
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_069",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    9,
+                    4,
+                    7,
+                    61,
+                    19
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    27,
+                    9,
+                    4,
+                    7,
+                    61,
+                    19
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    35,
+                    -47,
+                    -20
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    4,
+                    -6,
+                    5
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_070",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5149,
+                    1030
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5149,
+                    1030
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_071",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    56
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    56
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    23
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_072",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    86,
+                    83,
+                    5081
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    86,
+                    83,
+                    5081
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_073",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    18,
+                    103,
+                    99
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    18,
+                    103,
+                    99
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_074",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    54,
+                    109
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    54,
+                    109
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -104,
+                    11
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1,
+                    -3
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_075",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    27
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_076",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    36
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    36
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_077",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    9066
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    9066
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_078",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    98
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    98
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1,
+                    -145
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0,
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_079",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    61
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    61
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_080",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    77
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    77
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -63
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_081",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    15,
+                    22,
+                    62
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    15,
+                    22,
+                    62
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_082",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    80
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    80
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    59
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_083",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    37,
+                    122
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    37,
+                    122
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    2,
+                    -234
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -3,
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_084",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    73
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    73
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -67
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_085",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    149,
+                    853
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    149,
+                    853
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_086",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    28,
+                    113
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    28,
+                    113
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_087",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    23,
+                    25,
+                    53,
+                    85
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    23,
+                    25,
+                    53,
+                    85
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_088",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    70
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    70
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_089",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    26
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    26
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_090",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5384
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    5384
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1366
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -1
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_091",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    3,
+                    9,
+                    3,
+                    3,
+                    19,
+                    85,
+                    57
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    3,
+                    9,
+                    3,
+                    3,
+                    19,
+                    85,
+                    57
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    2,
+                    -1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -6,
+                    -7
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_092",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    3,
+                    3,
+                    2
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    3,
+                    3,
+                    2
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_093",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    59
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    59
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -11
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_094",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    119
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    119
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -14
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -2
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_095",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    109
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    109
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -48
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_096",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    58
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    58
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_097",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    6,
+                    27,
+                    114
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    6,
+                    27,
+                    114
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_098",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    124,
+                    124
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    124,
+                    124
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    1
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": []
+            }
+        ]
+    },
+    {
+        "case_name": "Test_099",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    3,
+                    27,
+                    17,
+                    17,
+                    51,
+                    41
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    3,
+                    27,
+                    17,
+                    17,
+                    51,
+                    41
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -8,
+                    4,
+                    22
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    -5,
+                    3,
+                    4
+                ]
+            }
+        ]
+    },
+    {
+        "case_name": "Test_100",
+        "op_name": "Roll",
+        "case_path": "",
+        "expect_func": "/root/optest/Roll/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    63
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "x",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "complex64",
+                "param_type": "required",
+                "shape": [
+                    63
+                ],
+                "name": "out",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "shifts",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    83
+                ]
+            },
+            {
+                "name": "dims",
+                "param_type": "required",
+                "type": "list_int",
+                "value": [
+                    0
+                ]
+            }
+        ]
+    }
+]
