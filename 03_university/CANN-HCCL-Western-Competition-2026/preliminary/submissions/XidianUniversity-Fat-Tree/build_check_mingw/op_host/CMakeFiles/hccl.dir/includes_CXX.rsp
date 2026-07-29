@@ -1,0 +1,1 @@
+-IE:/HCCL/HCCLCOM/allreduce/op_host -IE:/HCCL/HCCLCOM/allreduce/op_host/../include -I"E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/include" -I"E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/include/hcomm" -I"E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/pkg_inc" -I"E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/pkg_inc/hccl"

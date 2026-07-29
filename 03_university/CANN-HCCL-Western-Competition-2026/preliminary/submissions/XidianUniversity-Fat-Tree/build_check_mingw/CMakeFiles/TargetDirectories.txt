@@ -1,0 +1,14 @@
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/hccl_device.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/edit_cache.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/rebuild_cache.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/list_install_components.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/install.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/install/local.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/install/strip.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/CMakeFiles/hccl.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/CMakeFiles/edit_cache.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/CMakeFiles/rebuild_cache.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/CMakeFiles/list_install_components.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/CMakeFiles/install.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/CMakeFiles/install/local.dir
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/CMakeFiles/install/strip.dir

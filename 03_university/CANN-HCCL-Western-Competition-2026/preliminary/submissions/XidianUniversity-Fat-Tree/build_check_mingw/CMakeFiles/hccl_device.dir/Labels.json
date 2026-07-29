@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/hccl_device"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/hccl_device.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/hccl_device-complete.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-build.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-configure.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-download.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-install.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-mkdir.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-patch.rule"
+		},
+		{
+			"file" : "E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"hccl_device"
+		],
+		"name" : "hccl_device"
+	}
+}

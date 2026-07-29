@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\hccl.dir/objects.a
+D:\VS_ELV\mingw64\bin\ar.exe qc CMakeFiles\hccl.dir/objects.a @CMakeFiles\hccl.dir\objects1.rsp
+D:\VS_ELV\mingw64\bin\c++.exe -O3 -DNDEBUG -shared -Wl,-z,relro -Wl,-z,now -Wl,-z,noexecstack -o libhccl.dll -Wl,--out-implib,libhccl.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\hccl.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\hccl.dir\linkLibs.rsp

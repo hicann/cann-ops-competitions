@@ -1,0 +1,2844 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:212 (message)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeMinGWFindMake.cmake:5 (find_program)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_MAKE_PROGRAM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mingw32-make.exe"
+    candidate_directories:
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+      - "/REGISTRY-NOTFOUND/bin/"
+      - "c:/MinGW/bin/"
+      - "/MinGW/bin/"
+      - "/REGISTRY-NOTFOUND/MinGW/bin/"
+    searched_directories:
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/mingw32-make.exe.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/mingw32-make.exe"
+      - "E:/VM/bin/mingw32-make.exe.com"
+      - "E:/VM/bin/mingw32-make.exe"
+      - "C:/Windows/System32/mingw32-make.exe.com"
+      - "C:/Windows/System32/mingw32-make.exe"
+      - "C:/Windows/mingw32-make.exe.com"
+      - "C:/Windows/mingw32-make.exe"
+      - "C:/Windows/System32/wbem/mingw32-make.exe.com"
+      - "C:/Windows/System32/wbem/mingw32-make.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mingw32-make.exe.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/mingw32-make.exe"
+      - "C:/Windows/System32/OpenSSH/mingw32-make.exe.com"
+      - "C:/Windows/System32/OpenSSH/mingw32-make.exe"
+      - "D:/zip/Bandizip/mingw32-make.exe.com"
+      - "D:/zip/Bandizip/mingw32-make.exe"
+      - "D:/texlive/2025/bin/windows/mingw32-make.exe.com"
+      - "D:/texlive/2025/bin/windows/mingw32-make.exe"
+      - "D:/VS_ELV/mingw64/bin/mingw32-make.exe.com"
+    found: "D:/VS_ELV/mingw64/bin/mingw32-make.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -Aa 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -D__CLASSIC_C__ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-gcc 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:1309 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:1309 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the C compiler is IAR using "" did not match "IAR .+ Compiler":
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_AR"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ar"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ar.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ar.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ar"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ar.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ar.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ar"
+      - "E:/VM/bin/ar.com"
+      - "E:/VM/bin/ar.exe"
+      - "E:/VM/bin/ar"
+      - "C:/Windows/System32/ar.com"
+      - "C:/Windows/System32/ar.exe"
+      - "C:/Windows/System32/ar"
+      - "C:/Windows/ar.com"
+      - "C:/Windows/ar.exe"
+      - "C:/Windows/ar"
+      - "C:/Windows/System32/wbem/ar.com"
+      - "C:/Windows/System32/wbem/ar.exe"
+      - "C:/Windows/System32/wbem/ar"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ar.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ar.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ar"
+      - "C:/Windows/System32/OpenSSH/ar.com"
+      - "C:/Windows/System32/OpenSSH/ar.exe"
+      - "C:/Windows/System32/OpenSSH/ar"
+      - "D:/zip/Bandizip/ar.com"
+      - "D:/zip/Bandizip/ar.exe"
+      - "D:/zip/Bandizip/ar"
+      - "D:/texlive/2025/bin/windows/ar.com"
+      - "D:/texlive/2025/bin/windows/ar.exe"
+      - "D:/texlive/2025/bin/windows/ar"
+      - "D:/VS_ELV/mingw64/bin/ar.com"
+    found: "D:/VS_ELV/mingw64/bin/ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ranlib"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ranlib.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ranlib.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ranlib"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ranlib.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ranlib.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ranlib"
+      - "E:/VM/bin/ranlib.com"
+      - "E:/VM/bin/ranlib.exe"
+      - "E:/VM/bin/ranlib"
+      - "C:/Windows/System32/ranlib.com"
+      - "C:/Windows/System32/ranlib.exe"
+      - "C:/Windows/System32/ranlib"
+      - "C:/Windows/ranlib.com"
+      - "C:/Windows/ranlib.exe"
+      - "C:/Windows/ranlib"
+      - "C:/Windows/System32/wbem/ranlib.com"
+      - "C:/Windows/System32/wbem/ranlib.exe"
+      - "C:/Windows/System32/wbem/ranlib"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ranlib.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ranlib.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ranlib"
+      - "C:/Windows/System32/OpenSSH/ranlib.com"
+      - "C:/Windows/System32/OpenSSH/ranlib.exe"
+      - "C:/Windows/System32/OpenSSH/ranlib"
+      - "D:/zip/Bandizip/ranlib.com"
+      - "D:/zip/Bandizip/ranlib.exe"
+      - "D:/zip/Bandizip/ranlib"
+      - "D:/texlive/2025/bin/windows/ranlib.com"
+      - "D:/texlive/2025/bin/windows/ranlib.exe"
+      - "D:/texlive/2025/bin/windows/ranlib"
+      - "D:/VS_ELV/mingw64/bin/ranlib.com"
+    found: "D:/VS_ELV/mingw64/bin/ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "strip"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/strip.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/strip.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/strip"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/strip.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/strip.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/strip"
+      - "E:/VM/bin/strip.com"
+      - "E:/VM/bin/strip.exe"
+      - "E:/VM/bin/strip"
+      - "C:/Windows/System32/strip.com"
+      - "C:/Windows/System32/strip.exe"
+      - "C:/Windows/System32/strip"
+      - "C:/Windows/strip.com"
+      - "C:/Windows/strip.exe"
+      - "C:/Windows/strip"
+      - "C:/Windows/System32/wbem/strip.com"
+      - "C:/Windows/System32/wbem/strip.exe"
+      - "C:/Windows/System32/wbem/strip"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/strip.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/strip.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/strip"
+      - "C:/Windows/System32/OpenSSH/strip.com"
+      - "C:/Windows/System32/OpenSSH/strip.exe"
+      - "C:/Windows/System32/OpenSSH/strip"
+      - "D:/zip/Bandizip/strip.com"
+      - "D:/zip/Bandizip/strip.exe"
+      - "D:/zip/Bandizip/strip"
+      - "D:/texlive/2025/bin/windows/strip.com"
+      - "D:/texlive/2025/bin/windows/strip.exe"
+      - "D:/texlive/2025/bin/windows/strip"
+      - "D:/VS_ELV/mingw64/bin/strip.com"
+    found: "D:/VS_ELV/mingw64/bin/strip.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "ld"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ld.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ld.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/ld"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ld.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ld.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/ld"
+      - "E:/VM/bin/ld.com"
+      - "E:/VM/bin/ld.exe"
+      - "E:/VM/bin/ld"
+      - "C:/Windows/System32/ld.com"
+      - "C:/Windows/System32/ld.exe"
+      - "C:/Windows/System32/ld"
+      - "C:/Windows/ld.com"
+      - "C:/Windows/ld.exe"
+      - "C:/Windows/ld"
+      - "C:/Windows/System32/wbem/ld.com"
+      - "C:/Windows/System32/wbem/ld.exe"
+      - "C:/Windows/System32/wbem/ld"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ld.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ld.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/ld"
+      - "C:/Windows/System32/OpenSSH/ld.com"
+      - "C:/Windows/System32/OpenSSH/ld.exe"
+      - "C:/Windows/System32/OpenSSH/ld"
+      - "D:/zip/Bandizip/ld.com"
+      - "D:/zip/Bandizip/ld.exe"
+      - "D:/zip/Bandizip/ld"
+      - "D:/texlive/2025/bin/windows/ld.com"
+      - "D:/texlive/2025/bin/windows/ld.exe"
+      - "D:/texlive/2025/bin/windows/ld"
+      - "D:/VS_ELV/mingw64/bin/ld.com"
+    found: "D:/VS_ELV/mingw64/bin/ld.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "nm"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/nm.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/nm.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/nm"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/nm.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/nm.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/nm"
+      - "E:/VM/bin/nm.com"
+      - "E:/VM/bin/nm.exe"
+      - "E:/VM/bin/nm"
+      - "C:/Windows/System32/nm.com"
+      - "C:/Windows/System32/nm.exe"
+      - "C:/Windows/System32/nm"
+      - "C:/Windows/nm.com"
+      - "C:/Windows/nm.exe"
+      - "C:/Windows/nm"
+      - "C:/Windows/System32/wbem/nm.com"
+      - "C:/Windows/System32/wbem/nm.exe"
+      - "C:/Windows/System32/wbem/nm"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/nm.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/nm.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/nm"
+      - "C:/Windows/System32/OpenSSH/nm.com"
+      - "C:/Windows/System32/OpenSSH/nm.exe"
+      - "C:/Windows/System32/OpenSSH/nm"
+      - "D:/zip/Bandizip/nm.com"
+      - "D:/zip/Bandizip/nm.exe"
+      - "D:/zip/Bandizip/nm"
+      - "D:/texlive/2025/bin/windows/nm.com"
+      - "D:/texlive/2025/bin/windows/nm.exe"
+      - "D:/texlive/2025/bin/windows/nm"
+      - "D:/VS_ELV/mingw64/bin/nm.com"
+    found: "D:/VS_ELV/mingw64/bin/nm.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJDUMP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objdump"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/objdump.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/objdump.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/objdump"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/objdump.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/objdump.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/objdump"
+      - "E:/VM/bin/objdump.com"
+      - "E:/VM/bin/objdump.exe"
+      - "E:/VM/bin/objdump"
+      - "C:/Windows/System32/objdump.com"
+      - "C:/Windows/System32/objdump.exe"
+      - "C:/Windows/System32/objdump"
+      - "C:/Windows/objdump.com"
+      - "C:/Windows/objdump.exe"
+      - "C:/Windows/objdump"
+      - "C:/Windows/System32/wbem/objdump.com"
+      - "C:/Windows/System32/wbem/objdump.exe"
+      - "C:/Windows/System32/wbem/objdump"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/objdump.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/objdump.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/objdump"
+      - "C:/Windows/System32/OpenSSH/objdump.com"
+      - "C:/Windows/System32/OpenSSH/objdump.exe"
+      - "C:/Windows/System32/OpenSSH/objdump"
+      - "D:/zip/Bandizip/objdump.com"
+      - "D:/zip/Bandizip/objdump.exe"
+      - "D:/zip/Bandizip/objdump"
+      - "D:/texlive/2025/bin/windows/objdump.com"
+      - "D:/texlive/2025/bin/windows/objdump.exe"
+      - "D:/texlive/2025/bin/windows/objdump"
+      - "D:/VS_ELV/mingw64/bin/objdump.com"
+    found: "D:/VS_ELV/mingw64/bin/objdump.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_OBJCOPY"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "objcopy"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/objcopy.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/objcopy.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/objcopy"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/objcopy.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/objcopy.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/objcopy"
+      - "E:/VM/bin/objcopy.com"
+      - "E:/VM/bin/objcopy.exe"
+      - "E:/VM/bin/objcopy"
+      - "C:/Windows/System32/objcopy.com"
+      - "C:/Windows/System32/objcopy.exe"
+      - "C:/Windows/System32/objcopy"
+      - "C:/Windows/objcopy.com"
+      - "C:/Windows/objcopy.exe"
+      - "C:/Windows/objcopy"
+      - "C:/Windows/System32/wbem/objcopy.com"
+      - "C:/Windows/System32/wbem/objcopy.exe"
+      - "C:/Windows/System32/wbem/objcopy"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/objcopy.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/objcopy.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/objcopy"
+      - "C:/Windows/System32/OpenSSH/objcopy.com"
+      - "C:/Windows/System32/OpenSSH/objcopy.exe"
+      - "C:/Windows/System32/OpenSSH/objcopy"
+      - "D:/zip/Bandizip/objcopy.com"
+      - "D:/zip/Bandizip/objcopy.exe"
+      - "D:/zip/Bandizip/objcopy"
+      - "D:/texlive/2025/bin/windows/objcopy.com"
+      - "D:/texlive/2025/bin/windows/objcopy.exe"
+      - "D:/texlive/2025/bin/windows/objcopy"
+      - "D:/VS_ELV/mingw64/bin/objcopy.com"
+    found: "D:/VS_ELV/mingw64/bin/objcopy.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "readelf"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/readelf.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/readelf.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/readelf"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/readelf.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/readelf.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/readelf"
+      - "E:/VM/bin/readelf.com"
+      - "E:/VM/bin/readelf.exe"
+      - "E:/VM/bin/readelf"
+      - "C:/Windows/System32/readelf.com"
+      - "C:/Windows/System32/readelf.exe"
+      - "C:/Windows/System32/readelf"
+      - "C:/Windows/readelf.com"
+      - "C:/Windows/readelf.exe"
+      - "C:/Windows/readelf"
+      - "C:/Windows/System32/wbem/readelf.com"
+      - "C:/Windows/System32/wbem/readelf.exe"
+      - "C:/Windows/System32/wbem/readelf"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/readelf.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/readelf.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/readelf"
+      - "C:/Windows/System32/OpenSSH/readelf.com"
+      - "C:/Windows/System32/OpenSSH/readelf.exe"
+      - "C:/Windows/System32/OpenSSH/readelf"
+      - "D:/zip/Bandizip/readelf.com"
+      - "D:/zip/Bandizip/readelf.exe"
+      - "D:/zip/Bandizip/readelf"
+      - "D:/texlive/2025/bin/windows/readelf.com"
+      - "D:/texlive/2025/bin/windows/readelf.exe"
+      - "D:/texlive/2025/bin/windows/readelf"
+      - "D:/VS_ELV/mingw64/bin/readelf.com"
+    found: "D:/VS_ELV/mingw64/bin/readelf.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "dlltool"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/dlltool.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/dlltool.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/dlltool"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/dlltool.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/dlltool.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/dlltool"
+      - "E:/VM/bin/dlltool.com"
+      - "E:/VM/bin/dlltool.exe"
+      - "E:/VM/bin/dlltool"
+      - "C:/Windows/System32/dlltool.com"
+      - "C:/Windows/System32/dlltool.exe"
+      - "C:/Windows/System32/dlltool"
+      - "C:/Windows/dlltool.com"
+      - "C:/Windows/dlltool.exe"
+      - "C:/Windows/dlltool"
+      - "C:/Windows/System32/wbem/dlltool.com"
+      - "C:/Windows/System32/wbem/dlltool.exe"
+      - "C:/Windows/System32/wbem/dlltool"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/dlltool.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/dlltool.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/dlltool"
+      - "C:/Windows/System32/OpenSSH/dlltool.com"
+      - "C:/Windows/System32/OpenSSH/dlltool.exe"
+      - "C:/Windows/System32/OpenSSH/dlltool"
+      - "D:/zip/Bandizip/dlltool.com"
+      - "D:/zip/Bandizip/dlltool.exe"
+      - "D:/zip/Bandizip/dlltool"
+      - "D:/texlive/2025/bin/windows/dlltool.com"
+      - "D:/texlive/2025/bin/windows/dlltool.exe"
+      - "D:/texlive/2025/bin/windows/dlltool"
+      - "D:/VS_ELV/mingw64/bin/dlltool.com"
+    found: "D:/VS_ELV/mingw64/bin/dlltool.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "addr2line"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/addr2line.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/addr2line.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/addr2line"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/addr2line.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/addr2line.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/addr2line"
+      - "E:/VM/bin/addr2line.com"
+      - "E:/VM/bin/addr2line.exe"
+      - "E:/VM/bin/addr2line"
+      - "C:/Windows/System32/addr2line.com"
+      - "C:/Windows/System32/addr2line.exe"
+      - "C:/Windows/System32/addr2line"
+      - "C:/Windows/addr2line.com"
+      - "C:/Windows/addr2line.exe"
+      - "C:/Windows/addr2line"
+      - "C:/Windows/System32/wbem/addr2line.com"
+      - "C:/Windows/System32/wbem/addr2line.exe"
+      - "C:/Windows/System32/wbem/addr2line"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/addr2line.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/addr2line.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/addr2line"
+      - "C:/Windows/System32/OpenSSH/addr2line.com"
+      - "C:/Windows/System32/OpenSSH/addr2line.exe"
+      - "C:/Windows/System32/OpenSSH/addr2line"
+      - "D:/zip/Bandizip/addr2line.com"
+      - "D:/zip/Bandizip/addr2line.exe"
+      - "D:/zip/Bandizip/addr2line"
+      - "D:/texlive/2025/bin/windows/addr2line.com"
+      - "D:/texlive/2025/bin/windows/addr2line.exe"
+      - "D:/texlive/2025/bin/windows/addr2line"
+      - "D:/VS_ELV/mingw64/bin/addr2line.com"
+    found: "D:/VS_ELV/mingw64/bin/addr2line.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "tapi"
+    candidate_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/"
+      - "E:/VM/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "D:/zip/Bandizip/"
+      - "D:/texlive/2025/bin/windows/"
+      - "D:/VS_ELV/mingw64/bin/"
+      - "D:/sqlite/"
+      - "C:/Program Files/CMake/bin/"
+      - "D:/PY311/Scripts/"
+      - "D:/PY311/"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/"
+      - "D:/Microsoft VS Code/bin/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/"
+    searched_directories:
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/tapi.com"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/tapi.exe"
+      - "E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/tapi"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/tapi.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/tapi.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/.codex/tmp/arg0/codex-arg03sRWId/tapi"
+      - "E:/VM/bin/tapi.com"
+      - "E:/VM/bin/tapi.exe"
+      - "E:/VM/bin/tapi"
+      - "C:/Windows/System32/tapi.com"
+      - "C:/Windows/System32/tapi.exe"
+      - "C:/Windows/System32/tapi"
+      - "C:/Windows/tapi.com"
+      - "C:/Windows/tapi.exe"
+      - "C:/Windows/tapi"
+      - "C:/Windows/System32/wbem/tapi.com"
+      - "C:/Windows/System32/wbem/tapi.exe"
+      - "C:/Windows/System32/wbem/tapi"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi"
+      - "C:/Windows/System32/OpenSSH/tapi.com"
+      - "C:/Windows/System32/OpenSSH/tapi.exe"
+      - "C:/Windows/System32/OpenSSH/tapi"
+      - "D:/zip/Bandizip/tapi.com"
+      - "D:/zip/Bandizip/tapi.exe"
+      - "D:/zip/Bandizip/tapi"
+      - "D:/texlive/2025/bin/windows/tapi.com"
+      - "D:/texlive/2025/bin/windows/tapi.exe"
+      - "D:/texlive/2025/bin/windows/tapi"
+      - "D:/VS_ELV/mingw64/bin/tapi.com"
+      - "D:/VS_ELV/mingw64/bin/tapi.exe"
+      - "D:/VS_ELV/mingw64/bin/tapi"
+      - "D:/sqlite/tapi.com"
+      - "D:/sqlite/tapi.exe"
+      - "D:/sqlite/tapi"
+      - "C:/Program Files/CMake/bin/tapi.com"
+      - "C:/Program Files/CMake/bin/tapi.exe"
+      - "C:/Program Files/CMake/bin/tapi"
+      - "D:/PY311/Scripts/tapi.com"
+      - "D:/PY311/Scripts/tapi.exe"
+      - "D:/PY311/Scripts/tapi"
+      - "D:/PY311/tapi.com"
+      - "D:/PY311/tapi.exe"
+      - "D:/PY311/tapi"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/tapi.com"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/tapi.exe"
+      - "C:/Users/\u8129\u536f\u6f5e\u951a\u8126\u63b3/AppData/Local/Programs/Microsoft VS Code/bin/tapi"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/tapi.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/tapi.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Microsoft/WindowsApps/tapi"
+      - "D:/Microsoft VS Code/bin/tapi.com"
+      - "D:/Microsoft VS Code/bin/tapi.exe"
+      - "D:/Microsoft VS Code/bin/tapi"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/tapi.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/tapi.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Roaming/Programs/Zero Install/tapi"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/tapi.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/tapi.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/Programs/Ollama/tapi"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/tapi.com"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/tapi.exe"
+      - "C:/Users/\u6768\u5b8f\u4f1f/AppData/Local/OpenAI/Codex/bin/ada252862d154cdd/tapi"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/tapi.com"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/tapi.exe"
+      - "C:/Program Files/WindowsApps/OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0/app/resources/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: --c++ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: --ec++ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: --target=arm-arm-none-eabi;-mcpu=cortex-m3 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCXXCompilerId.cpp.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCXXCompilerId.cpp.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\.codex\\tmp\\arg0\\codex-arg03sRWId"
+        - "E:\\VM\\bin\\"
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "D:\\zip\\Bandizip\\"
+        - "D:\\texlive\\2025\\bin\\windows"
+        - "D:\\VS_ELV\\mingw64\\bin"
+        - "D:\\sqlite"
+        - "C:\\Program Files\\CMake\\bin"
+        - "D:\\PY311\\Scripts\\"
+        - "D:\\PY311\\"
+        - "C:\\Users\\\u8129\u536f\u6f5e\u951a\u8126\u63b3\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Microsoft\\WindowsApps"
+        - "D:\\Microsoft VS Code\\bin"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Roaming\\Programs\\Zero Install"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\Programs\\Ollama"
+        - "C:\\Users\\\u6768\u5b8f\u4f1f\\AppData\\Local\\OpenAI\\Codex\\bin\\ada252862d154cdd"
+        - "C:\\Program Files\\WindowsApps\\OpenAI.Codex_26.623.13972.0_x64__2p2nqsd0c76g0\\app\\resources"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/hccl_allreduce_aicpu"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" failed.
+      Compiler: E:/HCCL/HCCLCOM/hcomm-master/hcomm-master/toolkit/toolchain/hcc/bin/aarch64-target-linux-gnu-g++ 
+      Build flags: 
+      Id flags: -c;-I__does_not_exist__ 
+      
+      The output was:
+      no such file or directory
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:1309 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:1309 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:86 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCXXCompiler.cmake:125 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:12 (project)"
+    message: |
+      Checking whether the CXX compiler is IAR using "" did not match "IAR .+ Compiler":
+...

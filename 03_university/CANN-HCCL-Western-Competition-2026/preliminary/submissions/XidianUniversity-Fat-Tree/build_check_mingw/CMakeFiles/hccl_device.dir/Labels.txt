@@ -1,0 +1,13 @@
+# Target labels
+ hccl_device
+# Source files and their labels
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/hccl_device
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/hccl_device.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/CMakeFiles/hccl_device-complete.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-build.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-configure.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-download.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-install.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-mkdir.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-patch.rule
+E:/HCCL/HCCLCOM/allreduce/build_check_mingw/hccl_device-prefix/src/hccl_device-stamp/hccl_device-update.rule

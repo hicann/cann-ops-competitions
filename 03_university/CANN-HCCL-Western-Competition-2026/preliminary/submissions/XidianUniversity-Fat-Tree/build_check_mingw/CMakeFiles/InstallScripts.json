@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"E:/HCCL/HCCLCOM/allreduce/build_check_mingw/cmake_install.cmake",
+		"E:/HCCL/HCCLCOM/allreduce/build_check_mingw/op_host/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
