@@ -54,7 +54,6 @@ python3 run_test.py -i FloorMod/op.json -c FloorMod/case.json \
   --op-path "/usr/local/Ascend/ascend-toolkit/latest/lib64/" \
   --build \
   --msprof \
-  --op \
   -d prof_floormod_tbe \
   -n Test_001
 ```
@@ -72,7 +71,6 @@ python3 run_test.py -i FloorMod/op.json -c FloorMod/case.json \
   --op-type "custom" \
   --op-path "/usr/local/Ascend/ascend-toolkit/latest/opp/vendors/custom_math/op_api" \
   --msprof \
-  --op \
   -d prof_floormod_acl \
   --build \
   -n Test_001
@@ -83,7 +81,8 @@ python3 run_test.py -i FloorMod/op.json -c FloorMod/case.json \
 
 ```bash
 # 对比 TBE 和 ACL 的性能数据
-python3 get_prof.py -c ../prof_floormod_acl -b ../prof_floormod_tbe/ -f ../FloorMod/case.json -d out
+python3 get_time_app.py ../prof_floormod_tbe ./result_tbe.csv
+python3 get_time_app.py ../prof_floormod_acl ./result_acl.csv
 ```
 
 ## 测试用例说明
