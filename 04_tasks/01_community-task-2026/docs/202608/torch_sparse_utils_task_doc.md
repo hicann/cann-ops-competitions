@@ -145,8 +145,6 @@ torch::Tensor random_walk(torch::Tensor rowptr, torch::Tensor col,
 
 对标 **pytorch_sparse CUDA（A100）**，NPU 性能须达到 GPU 参考实现的 **0.5 倍**及以上（即 ≥0.5×）。
 
-**性能验收说明**：本任务若有多支队伍提交实现，同规格用例下横向对比各队 NPU 实测性能，**取性能最优的提交进行验收**。
-
 **固定参考用例**（必测）：
 
 | 编号 | 算子 | 输入规模 | 达标要求 |
@@ -204,8 +202,8 @@ experimental/torch_sparse_utils/
 
 ## 环境获取
 
-1. 使用 hidevlab webIDE 算力：https://hidevlab.huawei.com/online-develop-intro?from=hiascend ；
-   - 如果是新用户，在申请权限的时候需要备注使用的算力类型（A2、A3或者950）；
+1. 使用 hidevlab webIDE 算力：https://hidevlab.huawei.com/online-develop-intro?from=hiascend ，点击 "体验 WebIDE"；
+   - 如果是新用户，在申请权限的时候需要备注使用的算力类型（A2、A3或者950）。申请内容示例：本人gitcode账号是 yolo，现在参与社区任务"7月社区任务-aclnnRoll算子开发"，需要申请A2和950算力进行任务开发。
    - 如果是老用户且需要使用950算力，需要向昇腾CANN小助手反馈账号名（个人中心->基本信息，如下图所示），后台会添加账号至950使用白名单。
 
    ![环境截图](./pics/zaixiankaifa1.png)  
@@ -215,7 +213,7 @@ experimental/torch_sparse_utils/
 
    ![环境截图](./pics/yunkaifa.png)
 
-3. 如需额外环境资源，请联系昇腾CANN小助手。
+3. 申请算力资源后一般在1-2个工作日完成审批，如果没有审批完成，请及时在任务对应的讨论帖留言或者联系昇腾CANN小助手。
 
 
 ## 特别注意事项
