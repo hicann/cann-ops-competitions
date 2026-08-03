@@ -1,3 +1,6 @@
 .idea/
 .DS_Store
 **/.DS_Store
+
+# Windows download metadata copied by WSL/archive tools
+*:Zone.Identifier
