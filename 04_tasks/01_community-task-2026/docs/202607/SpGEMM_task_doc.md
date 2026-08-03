@@ -9,6 +9,8 @@
 - **开发语言**：Ascend C + C++（aclsparse 接口）
 - **对标参考**：[cuSPARSE cusparseSpGEMM §6.6.14](https://docs.nvidia.com/cuda/cusparse/index.html#cusparsespgemm)（Generic API）
 
+**注意：本任务要求使用ATK工具（https://gitcode.com/AscendTest/ATK ）进行双标杆测试，需要A100环境，请开发者自行准备。**
+
 ## 任务概述
 
 参考 cuSPARSE **SpGEMM**（稀疏矩阵 × 稀疏矩阵），在昇腾 NPU 上实现 **Ascend C Kernel + aclsparse C++ 接口**，完成设计、开发、测试全流程，验收后合入 **ops-sparse**。
@@ -175,9 +177,9 @@ SpGEMM 为**全新算子**（ops-sparse 仓当前无 `src/spgemm/`），`aclspar
 
 1. 满足《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》
 2. [ATK](https://gitcode.com/AscendTest/ATK) 双标杆（`cv_fused_double_benchmark`），NPU/同精度 CPU 最大相对误差比例 ≤ **2**，平均相对误差比例 ≤ **1.2**，均方根误差比例 ≤ **1.2**。
-测试用例见[测试目录](./self_test_case/sp_gemm/)。
+测试用例见[测试目录](./self_test_case/sp_gemm/)中的`atk_test\aclSparseSpgemm\result\aclSparseSpgemm\all_aclSparseSpgemm.json` (至少完成200个case测试)。
 
-**说明**：ATK双标杆测试需要A100环境，请开发者自行准备。
+**说明**：如果具备NPU和GPU ping通的环境，可以直接使用ATK在线方式（默认方式）进行精度对比；如果NPU环境和GPU不能ping通，可以使用ATK离线方式进行精度对比，参考链接：https://gitcode.com/AscendTest/ATK/blob/main/ATK%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/02%20%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%A4%9A%E6%9C%BA%E8%BF%9E%E8%B7%91%E5%9C%BA%E6%99%AF%E8%AF%B4%E6%98%8E.md 。
 
 ### 7. 接口分层
 
