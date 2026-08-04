@@ -106,11 +106,9 @@ def nearest(
 
 ### 8. 精度要求
 
-算子计算精度需严格满足《生态算子开源精度标准（https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md ）》，采用 AscendOpTest（https://gitcode.com/HIT1920/AscendOpTest ） 测试。
+满足《生态算子开源精度标准（https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md ）》；仿照已有用例自行编写Python用例进行自测试，使用单标杆精度进行验收。
 
 **真值生成方式**：以 CPU 版 torch_cluster（或 scipy `vq` 参考路径）为标杆；NPU 结果通过 **PyTorch 层 `nearest()`** 调用获取并与标杆比对。
-
-**单标杆不满足时**：采用 ATK（https://gitcode.com/AscendTest/ATK ） 双标杆比对（`cv_fused_double_benchmark`），以更高精度的 CPU 实现为真值，同时评估同精度 CPU 与 NPU 算子实现相对于该真值的误差；满足条件为 NPU/同精度 CPU 的**最大相对误差比例 ≤ 2**、**平均相对误差比例 ≤ 1.2**、**均方根误差比例 ≤ 1.2**。
 
 | 数据类型 / 场景 | 精度策略 |
 |-----------------|----------|
