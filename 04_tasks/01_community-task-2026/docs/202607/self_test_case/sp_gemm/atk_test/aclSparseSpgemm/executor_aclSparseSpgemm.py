@@ -138,38 +138,6 @@ class AclSparseSpgemm(BaseApi):
             return empty
         return self._reference(high_precision=True)
 
-    def _gpu_call(self):
-        require_cuda()
-        empty = self._zero_nnz_result()
-        if empty is not None:
-            return empty
-        out_row = out_col = None
-        if self.beta_val != 0.0:
-            if sp is None:
-                raise RuntimeError("scipy required for SpGEMM GPU when beta != 0")
-            m, k, n = self.m, self.k, self.n
-            out_csr = (
-                self.alpha_val * sp.csr_matrix(
-                    (self.a_vals, self.a_col_ind, self.a_row_off), shape=(m, k)) @
-                sp.csr_matrix((self.b_vals, self.b_col_ind, self.b_row_off), shape=(k, n)) +
-                self.beta_val * sp.csr_matrix(
-                    (self.c_vals, self.c_col_ind, self.c_row_off), shape=(m, n))
-            ).tocsr()
-            out_row = out_csr.indptr.astype(np.int32)
-            out_col = out_csr.indices.astype(np.int32)
-        return cusparse_spgemm(
-            self.m, self.k, self.n,
-            self.alpha_val, self.beta_val,
-            self.a_row_off, self.a_col_ind, self.a_vals,
-            self.b_row_off, self.b_col_ind, self.b_vals,
-            self.c_row_off, self.c_col_ind, self.c_vals,
-            dtype_name=self.value_dtype_name,
-            alg=self.alg_val,
-            out_dtype=self.out_dtype,
-            out_row_off=out_row,
-            out_col_ind=out_col,
-        )
-
     def _npu_call(self):
         import torch_npu  # noqa: F401
         from atk.tasks.backends.lib_interface.acl_wrapper import (
@@ -301,8 +269,6 @@ class AclSparseSpgemm(BaseApi):
     def __call__(self, input_data: InputDataset, with_output: bool = False):
         if self.device == "cpu":
             return self._cpu_call()
-        if self.device == "gpu":
-            return self._gpu_call()
         if self.device == "npu":
             return self._npu_call()
         raise RuntimeError(f"unsupported backend: {self.device}")

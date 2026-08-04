@@ -133,23 +133,6 @@ class AclSparseSpsm(BaseApi):
     def _cpu_call(self):
         return self._reference(high_precision=True)
 
-    def _gpu_call(self):
-        require_cuda()
-        m, nrhs = self.m, self.nrhs
-        B_in = self._apply_op_b(self.denseB[:m, :nrhs])
-        C_out = B_in if self.in_place else self.denseC[:m, :nrhs]
-        return cusparse_spsm(
-            m, nrhs, self.alpha_val,
-            self.a_row_off, self.a_col_ind, self.a_vals,
-            B_in, C_out,
-            self.opA_val, self.opB_val, self.fill_mode, self.diag_type,
-            in_place=bool(self.in_place),
-            null_values=bool(self.null_values),
-            update_matrix=bool(self.update_matrix),
-            alg=self.alg_val,
-            out_dtype=self.out_dtype,
-        )
-
     def _npu_call(self):
         import torch_npu  # noqa: F401
         from atk.tasks.backends.lib_interface.acl_wrapper import (
@@ -288,8 +271,6 @@ class AclSparseSpsm(BaseApi):
     def __call__(self, input_data: InputDataset, with_output: bool = False):
         if self.device == "cpu":
             return self._cpu_call()
-        if self.device == "gpu":
-            return self._gpu_call()
         if self.device == "npu":
             return self._npu_call()
         raise RuntimeError(f"unsupported backend: {self.device}")

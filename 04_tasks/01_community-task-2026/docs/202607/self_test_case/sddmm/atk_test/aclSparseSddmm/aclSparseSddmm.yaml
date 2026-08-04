@@ -2,15 +2,11 @@ api: pytorch
 api_type: execute_aclSparseSddmm
 version: v1.0
 name: aclSparseSddmm
-dtype_numbers: 500
+dtype_numbers: 100
 extra_numbers: 0
 generate: aclSparseSddmm
 standard:
-  acc:
-    cv_fused_double_benchmark:
-      max_re_ratio: 2
-      avg_re_ratio: 1.2
-      root_mean_squared_ratio: 1.2
+  acc: "mixed_tolerance_bm"
 inputs:
   - name: denseA
     type: tensor

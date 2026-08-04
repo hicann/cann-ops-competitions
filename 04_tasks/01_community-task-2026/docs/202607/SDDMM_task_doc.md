@@ -9,8 +9,6 @@
 - **开发语言**：Ascend C + C++（aclsparse 接口）
 - **对标参考**：[cuSPARSE cusparseSDDMM §6.6.13](https://docs.nvidia.com/cuda/cusparse/index.html#cusparsesddmm)
 
-**注意：本任务要求使用ATK工具（https://gitcode.com/AscendTest/ATK ）进行双标杆测试，需要A100环境，请开发者自行准备。**
-
 
 ## 任务概述
 
@@ -173,9 +171,7 @@ SDDMM 为**全新算子**（ops-sparse 仓当前无 `src/sddmm/`），`aclsparse
 
 ### 6. 精度要求
 
-满足《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》和 [ATK](https://gitcode.com/AscendTest/ATK) 双标杆L2（2 / 1.2 / 1.2）要求。测试用例见[测试目录](./self_test_case/sddmm/)的`atk_test\aclSparseSddmm\result\aclSparseSddmm\json\all_aclSparseSddmm.json` (至少完成200个case测试)。
-
-**说明**：如果具备NPU和GPU ping通的环境，可以直接使用ATK在线方式（默认方式）进行精度对比；如果NPU环境和GPU不能ping通，可以使用ATK离线方式进行精度对比，参考链接：https://gitcode.com/AscendTest/ATK/blob/main/ATK%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/02%20%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99/%E5%A4%9A%E6%9C%BA%E8%BF%9E%E8%B7%91%E5%9C%BA%E6%99%AF%E8%AF%B4%E6%98%8E.md 。
+满足《[生态算子开源精度标准](https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md)》；使用 [ATK](https://gitcode.com/Ascend/ATK) 进行**单标杆**精度验收，以 CPU 高精度结果为 golden，对 NPU（aclsparse）输出进行误差评估。测试用例及测试工程见[测试目录](./self_test_case/sddmm/)的 `atk_test/aclSparseSddmm/result/aclSparseSddmm/json/all_aclSparseSddmm.json`（至少完成 200 个 case 测试）。
 
 ### 7. 接口分层
 

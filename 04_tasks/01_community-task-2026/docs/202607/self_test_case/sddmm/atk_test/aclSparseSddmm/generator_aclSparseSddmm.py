@@ -172,10 +172,5 @@ class AclSparseSddmmGenerator(CaseGenerator):
         case_config.inputs[15].shape = []
         case_config.inputs[15].dtype = dc['out']
 
-        case_config.standard = StandardConfig(
-            acc={'cv_fused_double_benchmark': {
-                'max_re_ratio': 2, 'avg_re_ratio': 1.2, 'root_mean_squared_ratio': 1.2}}
-        )
-
         self.counter += 1
         return case_config

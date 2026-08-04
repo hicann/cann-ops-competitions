@@ -138,25 +138,6 @@ class AclSparseSddmm(BaseApi):
     def _cpu_call(self):
         return self._reference(high_precision=True)
 
-    def _gpu_call(self):
-        require_cuda()
-        if self.nnz_c == 0:
-            return torch.zeros(self.m, self.n, dtype=self.out_dtype)
-        m, n, k = self.m, self.n, self.k
-        ld_a = self.ldA_val if self.ldA_val > 0 else (k if self.opA_val == 0 else m)
-        ld_b = self.ldB_val if self.ldB_val > 0 else (n if self.opB_val == 0 else k)
-        return cusparse_sddmm(
-            m, n, k, self.alpha_val, self.beta_val,
-            self.denseA, self.denseB,
-            self.opA_val, self.opB_val, ld_a, ld_b,
-            self.orderA_val, self.orderB_val,
-            self.c_row_off, self.c_col_ind, self.c_vals_host,
-            ab_dtype_name=self.ab_dtype_name,
-            c_dtype_name=self.c_dtype_name,
-            alg=self.alg_val,
-            out_dtype=self.out_dtype,
-        )
-
     def _npu_call(self):
         import torch_npu  # noqa: F401
         from atk.tasks.backends.lib_interface.acl_wrapper import (
@@ -273,8 +254,6 @@ class AclSparseSddmm(BaseApi):
     def __call__(self, input_data: InputDataset, with_output: bool = False):
         if self.device == "cpu":
             return self._cpu_call()
-        if self.device == "gpu":
-            return self._gpu_call()
         if self.device == "npu":
             return self._npu_call()
         raise RuntimeError(f"unsupported backend: {self.device}")
