@@ -341,6 +341,8 @@ Ascend C 实现 Scatter 核心计算逻辑，由 PyTorch 层（必选）直接�
 
 ### 功能验收用例（须全部通过）
 
+参照 [测试用例](./self_test_case/ops-gnn)
+
 测试用例须覆盖 torch_scatter 官方测试语义，至少包括：
 
 | 编号 | 场景 | 参考来源 | 覆盖 reduce |

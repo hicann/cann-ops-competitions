@@ -1,0 +1,6969 @@
+[
+    {
+        "case_name": "Test_001",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    15,
+                    79,
+                    36
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    15,
+                    79,
+                    36
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    15,
+                    79,
+                    36
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_002",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    332
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    332
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_003",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    9213
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    9213
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    9213
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_004",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    37,
+                    58
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    37,
+                    58
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    37,
+                    58
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_005",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    14,
+                    14,
+                    5
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    14,
+                    14,
+                    5
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_006",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    31,
+                    36
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    31,
+                    36
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_007",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7193
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    7193
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_008",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    5,
+                    3,
+                    5,
+                    2,
+                    5
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    5,
+                    3,
+                    5,
+                    2,
+                    5
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    5,
+                    3,
+                    5,
+                    2,
+                    5
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_009",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    11,
+                    28,
+                    27,
+                    73,
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    11,
+                    28,
+                    27,
+                    73,
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_010",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    33,
+                    6
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    33,
+                    6
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_011",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    115,
+                    35
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    115,
+                    35
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_012",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    73
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    73
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_013",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    18,
+                    27,
+                    14,
+                    18,
+                    107
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    18,
+                    27,
+                    14,
+                    18,
+                    107
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_014",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_015",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    15,
+                    22,
+                    75,
+                    49
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    15,
+                    22,
+                    75,
+                    49
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_016",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    123,
+                    53
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    123,
+                    53
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_017",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    65,
+                    38
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    65,
+                    38
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_018",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    4,
+                    85
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    4,
+                    85
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    4,
+                    85
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_019",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    122
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    122
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_020",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    31
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    31
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_021",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    28,
+                    5,
+                    91,
+                    87
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    28,
+                    5,
+                    91,
+                    87
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_022",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    47
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    47
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_023",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    122
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    122
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    122
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_024",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    15
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    15
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    15
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_025",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_026",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    24,
+                    116
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    24,
+                    116
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    24,
+                    116
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_027",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    73,
+                    114
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    73,
+                    114
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_028",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    15,
+                    14
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    15,
+                    14
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_029",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    26,
+                    9,
+                    7,
+                    98,
+                    91
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    26,
+                    9,
+                    7,
+                    98,
+                    91
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_030",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    34
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    34
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_031",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    15,
+                    9,
+                    23,
+                    3,
+                    2,
+                    2,
+                    25
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    15,
+                    9,
+                    23,
+                    3,
+                    2,
+                    2,
+                    25
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    29,
+                    15,
+                    9,
+                    23,
+                    3,
+                    2,
+                    2,
+                    25
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_032",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    16,
+                    5,
+                    124
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    18,
+                    16,
+                    5,
+                    124
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_033",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    28,
+                    13
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    28,
+                    13
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_034",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    87
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    87
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_035",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    91,
+                    86
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    91,
+                    86
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_036",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    71,
+                    48
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    71,
+                    48
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    71,
+                    48
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_037",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    26,
+                    25,
+                    17,
+                    21,
+                    74
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    26,
+                    25,
+                    17,
+                    21,
+                    74
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    26,
+                    25,
+                    17,
+                    21,
+                    74
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_038",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    52,
+                    314,
+                    6680
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    52,
+                    314,
+                    6680
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    52,
+                    314,
+                    6680
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_039",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    2,
+                    3,
+                    2
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    2,
+                    3,
+                    2
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    2,
+                    3,
+                    2
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_040",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    21,
+                    52,
+                    23
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    21,
+                    52,
+                    23
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    21,
+                    52,
+                    23
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_041",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    23,
+                    124,
+                    45
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    23,
+                    124,
+                    45
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_042",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    117
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    117
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_043",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    7,
+                    50,
+                    125
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    7,
+                    50,
+                    125
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_044",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    90,
+                    102
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    90,
+                    102
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_045",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    67
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    67
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    67
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_046",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    26,
+                    38
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    26,
+                    38
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    9,
+                    26,
+                    38
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_047",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    61,
+                    127
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    61,
+                    127
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_048",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    23,
+                    29,
+                    55
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    23,
+                    29,
+                    55
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_049",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    21,
+                    26,
+                    95,
+                    123
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    21,
+                    26,
+                    95,
+                    123
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_050",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    11,
+                    9,
+                    18,
+                    49,
+                    14
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    11,
+                    9,
+                    18,
+                    49,
+                    14
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_051",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    109
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    109
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_052",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    22,
+                    9,
+                    21,
+                    75,
+                    113
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    22,
+                    9,
+                    21,
+                    75,
+                    113
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_053",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    5,
+                    6,
+                    6,
+                    4,
+                    7,
+                    6,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    2,
+                    5,
+                    6,
+                    6,
+                    4,
+                    7,
+                    6,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_054",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    89,
+                    13
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    89,
+                    13
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    89,
+                    13
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_055",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    56,
+                    12
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    56,
+                    12
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    56,
+                    12
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_056",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    22,
+                    9,
+                    24,
+                    24,
+                    4,
+                    2,
+                    13
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    22,
+                    9,
+                    24,
+                    24,
+                    4,
+                    2,
+                    13
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    28,
+                    22,
+                    9,
+                    24,
+                    24,
+                    4,
+                    2,
+                    13
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_057",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    17,
+                    127,
+                    76
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    17,
+                    127,
+                    76
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_058",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    11,
+                    2,
+                    2,
+                    12,
+                    91,
+                    68
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    26,
+                    11,
+                    2,
+                    2,
+                    12,
+                    91,
+                    68
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_059",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    6,
+                    2,
+                    48,
+                    114
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    6,
+                    2,
+                    48,
+                    114
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    3,
+                    6,
+                    2,
+                    48,
+                    114
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_060",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    41,
+                    29
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    41,
+                    29
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_061",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    12,
+                    11,
+                    10,
+                    3,
+                    13,
+                    8,
+                    25,
+                    45
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    12,
+                    11,
+                    10,
+                    3,
+                    13,
+                    8,
+                    25,
+                    45
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_062",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    6,
+                    4,
+                    6,
+                    7,
+                    5,
+                    6,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    6,
+                    4,
+                    6,
+                    7,
+                    5,
+                    6,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_063",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    6,
+                    11,
+                    11
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    6,
+                    11,
+                    11
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    6,
+                    11,
+                    11
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_064",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    27,
+                    847,
+                    651
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    27,
+                    847,
+                    651
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_065",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6845
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6845
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_066",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    18,
+                    25,
+                    115,
+                    101
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    18,
+                    25,
+                    115,
+                    101
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    14,
+                    18,
+                    25,
+                    115,
+                    101
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_067",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    124,
+                    1159,
+                    1207
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    124,
+                    1159,
+                    1207
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    124,
+                    1159,
+                    1207
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_068",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    3107,
+                    870
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    3107,
+                    870
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_069",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    26,
+                    7,
+                    73,
+                    35
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    26,
+                    7,
+                    73,
+                    35
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_070",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    13,
+                    13,
+                    13,
+                    15,
+                    2,
+                    3,
+                    111
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    13,
+                    13,
+                    13,
+                    13,
+                    15,
+                    2,
+                    3,
+                    111
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_071",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    915,
+                    1119
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    6,
+                    915,
+                    1119
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_072",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    8,
+                    11,
+                    115,
+                    57
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    8,
+                    11,
+                    115,
+                    57
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_073",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    14,
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    14,
+                    27
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    23,
+                    14,
+                    27
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_074",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    12,
+                    20,
+                    3,
+                    18
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    12,
+                    20,
+                    3,
+                    18
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    12,
+                    20,
+                    3,
+                    18
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_075",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    102,
+                    33
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    102,
+                    33
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    102,
+                    33
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_076",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    3,
+                    17,
+                    29,
+                    106,
+                    19
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    25,
+                    3,
+                    17,
+                    29,
+                    106,
+                    19
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_077",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    67,
+                    21
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    67,
+                    21
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_078",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    91,
+                    93
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    91,
+                    93
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    91,
+                    93
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_079",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    2,
+                    4,
+                    4,
+                    2,
+                    2
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    2,
+                    4,
+                    4,
+                    2,
+                    2
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_080",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    57
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    57
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    57
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_081",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    120,
+                    87
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    120,
+                    87
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    4,
+                    120,
+                    87
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_082",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    47,
+                    54
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    47,
+                    54
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_083",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    61
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    61
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    61
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_084",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    18,
+                    112,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    10,
+                    18,
+                    112,
+                    4
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_085",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    39,
+                    743,
+                    8395
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    39,
+                    743,
+                    8395
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    39,
+                    743,
+                    8395
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_086",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    16
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    16,
+                    16
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_087",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    6484
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    6484
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_088",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    9,
+                    2133,
+                    746
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    11,
+                    9,
+                    2133,
+                    746
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_089",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    3,
+                    2,
+                    5,
+                    5,
+                    5
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    5,
+                    3,
+                    2,
+                    5,
+                    5,
+                    5
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_090",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    53,
+                    4017,
+                    2211
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    53,
+                    4017,
+                    2211
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    53,
+                    4017,
+                    2211
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_091",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    122,
+                    18
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    122,
+                    18
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_092",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    70
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    70
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_093",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    12,
+                    55,
+                    3
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    12,
+                    55,
+                    3
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    12,
+                    55,
+                    3
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 0.5
+            }
+        ]
+    },
+    {
+        "case_name": "Test_094",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    25,
+                    2,
+                    2,
+                    40,
+                    94
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    25,
+                    2,
+                    2,
+                    40,
+                    94
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    25,
+                    2,
+                    2,
+                    40,
+                    94
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_095",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    17,
+                    29,
+                    61
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    7,
+                    17,
+                    29,
+                    61
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 2
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_096",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    26,
+                    29,
+                    2,
+                    89,
+                    41
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    21,
+                    26,
+                    29,
+                    2,
+                    89,
+                    41
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_097",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    87,
+                    82
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    87,
+                    82
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_098",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    43
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    43
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float16",
+                "param_type": "required",
+                "shape": [
+                    43
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 0
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_099",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    7244,
+                    4639
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    7244,
+                    4639
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "float32",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 5.0
+            }
+        ]
+    },
+    {
+        "case_name": "Test_100",
+        "op_name": "HuberLoss",
+        "case_path": "",
+        "expect_func": "/root/optest/HuberLoss/golden.py:calc_expect_func",
+        "input_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    29,
+                    97,
+                    47
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "input",
+                "data_path": ""
+            },
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    17,
+                    29,
+                    97,
+                    47
+                ],
+                "value_range": [
+                    -10,
+                    10
+                ],
+                "name": "target",
+                "data_path": ""
+            }
+        ],
+        "output_desc": [
+            {
+                "format": "ND",
+                "data_type": "bfloat16",
+                "param_type": "required",
+                "shape": [
+                    1
+                ],
+                "name": "output",
+                "data_path": "",
+                "golden_path": "",
+                "err_threshold": []
+            }
+        ],
+        "attr_desc": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 2.0
+            }
+        ]
+    }
+]

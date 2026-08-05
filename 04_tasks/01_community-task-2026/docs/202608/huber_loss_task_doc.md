@@ -44,6 +44,8 @@
 
 ### 精度要求
 
+参照 [测试用例](./self_test_case/huber_loss)
+
 算子计算精度需满足AscendOpTest工具默认阈值（https://gitcode.com/HIT1920/AscendOpTest/blob/master/compare/compare/accuracy_config.py ），且与 CPU `aten::huber_loss` 结果对齐。
 
 ## 验收交付件

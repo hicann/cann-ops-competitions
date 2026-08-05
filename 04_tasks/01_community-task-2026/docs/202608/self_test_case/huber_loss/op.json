@@ -1,0 +1,66 @@
+[
+    {
+        "op": "HuberLoss",
+        "language": "cpp",
+        "input_desc": [
+            {
+                "name": "input",
+                "param_type": "required",
+                "type": [
+                    "bfloat16",
+                    "float16",
+                    "float32"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            },
+            {
+                "name": "target",
+                "param_type": "required",
+                "type": [
+                    "bfloat16",
+                    "float16",
+                    "float32"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            }
+        ],
+        "output_desc": [
+            {
+                "name": "output",
+                "param_type": "required",
+                "type": [
+                    "bfloat16",
+                    "float16",
+                    "float32"
+                ],
+                "format": [
+                    "ND",
+                    "ND",
+                    "ND"
+                ]
+            }
+        ],
+        "attr": [
+            {
+                "name": "reduction",
+                "param_type": "optional",
+                "type": "int",
+                "value": 1
+            },
+            {
+                "name": "delta",
+                "param_type": "optional",
+                "type": "float",
+                "value": 1.0
+            }
+        ]
+    }
+]

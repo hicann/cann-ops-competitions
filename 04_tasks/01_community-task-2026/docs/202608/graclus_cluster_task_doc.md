@@ -78,6 +78,8 @@ def graclus_cluster(
 
 ### 5. 功能验收用例
 
+参照 [测试用例](./self_test_case/ops-gnn)
+
 | 编号 | 场景 | 参考 |
 |------|------|------|
 | TC-01 | 小图无 weight | `test/test_graclus.py` |

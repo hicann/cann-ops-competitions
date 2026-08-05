@@ -76,6 +76,8 @@ def random_walk(
 
 ### 5. 功能验收用例
 
+参照 [测试用例](./self_test_case/ops-gnn)
+
 | 编号 | 场景 | 参考 |
 |------|------|------|
 | TC-01 | 均匀游走 p=q=1 | `test/test_rw.py` |

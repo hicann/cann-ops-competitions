@@ -111,6 +111,8 @@ def gather_csr(src: torch.Tensor, indptr: torch.Tensor,
 
 ### 功能验收用例
 
+参照 [测试用例](./self_test_case/ops-gnn)
+
 | 编号 | 场景 | 参考 |
 |------|------|------|
 | TC-01～TC-06 | 标准数值 | `test/test_gather.py` |
