@@ -1,21 +1,64 @@
-# 2026 HCCL 华北赛区决赛代码归档
+# AllGather 集合通信算子
 
-- 学校：南开大学
-- 队伍名称：春和景明( ˝ᗢ̈˝ ) 的队伍
-- 参赛账号：春和景明( ˝ᗢ̈˝ )（@2302_80894008）
-- 冻结版本：V42 Legal Pure-Layer
-- 原始提交包：`SUBMIT_CHAMPION_V42_LEGAL_PURE_LAYER_417342c.zip`
-- 提交包 SHA-256：`982fb185bd0065afcdcc7e81deca39069033ec4c692fb6177d17f5dee4d6ec7c`
+## 1. 项目介绍
 
-V42 是本地比赛材料中最后一个同时生成正式 ZIP 与独立 SHA-256 清单的决赛冻结包。本目录保持原始包中的 `include/`、`op_host/` 和 `op_kernel_ccu/` 结构；六个源码文件均与原始 ZIP 逐字节一致，仅新增本说明文件。
+```
+├── CMakeLists.txt                  # 顶层 CMake 配置
+├── build.sh                        # 构建脚本
+├── .clang-format                   # 代码风格配置
+├── include/                        # 头文件目录
+│   ├── hccl.h                      # 集合通信算子头文件
+│   ├── common.h                    # 通用数据结构定义
+│   ├── custom.h                    # ★ 选手编写：自定义数据结构定义
+│   ├── log.h                       # 日志宏定义
+│   └── binary_stream.h             # 序列化类定义
+├── op_host/                        # Host侧代码目录
+│   ├── allgather.cc                # ★ 选手编写：Host侧资源申请逻辑
+│   └── exec_op.cc                  # ★ 选手编写：通信算法编排逻辑
+└── op_kernel_ccu/                  # CCU侧代码目录
+    └── ccu_kernel.cc               # ★ 选手编写：通信算法编排逻辑
+```
 
-归档前已复核 ZIP 完整性、六文件哈希、纯 CCU 分层与单 IO Die 约束。该说明只记录归档来源和本地结构校验，不新增或修改比赛算法，也不主张未由官方平台确认的成绩。
+> [!NOTE] 注意：
+> 算子工程中已提前预制好固有逻辑，选手仅允许修改 `custom.h`、`allgather.cc`、`exec_op.h`、`exec_op.cc`、`ccu_kernel.h`、`ccu_kernel.cc` 共 6 个文件内容。
 
-| 文件 | SHA-256 |
-| --- | --- |
-| `include/custom.h` | `47571e83769b602f08bc97eeeb0e3045cac96be127ae86f26b976920574cef8f` |
-| `op_host/allgather.cc` | `4c4f146e4e74700a4ebc9d164ee4e518ccf5c6caa1b9bb990568ea1a256d06b7` |
-| `op_host/exec_op.h` | `ef7d73a0cb4535e64d116f6c8fee0b25e771ca5d559e7116ec5819353b339147` |
-| `op_host/exec_op.cc` | `823ef8019b936e43eb3855aff3f06841b3c5f1fecf88f78b977d8a681dccbf23` |
-| `op_kernel_ccu/ccu_kernel.h` | `9c5ace83430b632fc7f8ee20d6564a13eb73f1a30ebd0568e97931ffe665f406` |
-| `op_kernel_ccu/ccu_kernel.cc` | `dbe0e52dce4e4654d979871cd003afbebf544e724a2e10ac946f4bc199f42504` |
+## 2. 编译运行
+
+### 2.1 安装 CANN-Toolkit 包
+
+请单击[下载链接](https://ascend.devcloud.huaweicloud.com/artifactory/cann-run-mirror/software/legacy/20260701000328953/)，根据产品型号和环境架构下载对应软件包。安装命令如下，更多指导参考《[CANN软件安装指南](https://www.hiascend.com/document/redirect/CannCommunityInstWizard)》。
+
+```bash
+# 确保安装包具有可执行权限
+chmod +x Ascend-cann-toolkit_9.1.0_linux-${arch}.run
+# 安装命令
+./Ascend-cann-toolkit_9.1.0_linux-${arch}.run --full --install-path=${install_path}
+```
+
+### 2.2 环境变量配置
+
+按需选择合适的命令使环境变量生效。
+
+```bash
+# 默认路径安装，以root用户为例（非root用户，将/usr/local替换为${HOME}）
+source /usr/local/Ascend/cann/set_env.sh
+# 指定路径安装
+# source ${install_path}/cann/set_env.sh
+```
+
+### 2.3 编译算子工程
+
+```bash
+bash build.sh
+
+# 编译 Debug 版本，便于断点调试
+bash build.sh --debug
+```
+
+## 3. 代码格式
+
+选手代码需符合 [.clang-format](.clang-format) 文件中的代码风格规范，可通过下列命令一键修改：
+
+```bash
+bash build.sh --format
+```
