@@ -1,0 +1,105 @@
+# -----------------------------------------------------------------------------------------------------------
+# Copyright (c) 2026 Huawei Technologies Co., Ltd.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# -----------------------------------------------------------------------------------------------------------
+
+set -e
+
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BUILD_DIR="${PROJECT_DIR}/build"
+BUILD_TYPE="Release"
+ENABLE_FORMAT="OFF"
+
+CPU_NUM="$(nproc)"
+ASCEND_CANN_PACKAGE_PATH="/usr/local/Ascend/cann"
+
+usage() {
+    cat <<EOF
+Usage: $0 [OPTIONS]
+
+Options:
+    --debug     编译 Debug 版本
+    --format    格式化代码
+    -h, --help  显示帮助信息
+EOF
+    exit 0
+}
+
+parse_args() {
+    local opts
+    opts=$(getopt -o h -l debug,format,help -- "$@") || usage
+    eval set -- "${opts}"
+
+    for arg; do
+        case "${arg}" in
+            --debug) BUILD_TYPE="Debug" ;;
+            --format) ENABLE_FORMAT="ON" ;;
+            -h|--help) usage ;;
+        esac
+    done
+}
+
+parse_cann_path() {
+    if [[ -z "${ASCEND_HOME_PATH}" ]]; then
+        printf "ERROR: ASCEND_HOME_PATH is not set.\n" >&2
+        printf "Please ensure CANN-Toolkit is properly installed and source environment variables by running:\n" >&2
+        printf "  source /path/to/Ascend/cann/set_env.sh\n" >&2
+        exit 1
+    fi
+
+    ASCEND_CANN_PACKAGE_PATH="${ASCEND_HOME_PATH}"
+    return 0
+}
+
+build() {
+    # 创建构建目录
+    cd "${PROJECT_DIR}"
+    mkdir -p "${BUILD_DIR}"
+
+    # 配置
+    cmake -S . -B "${BUILD_DIR}" \
+        -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+        -DCMAKE_BUILD_TYPE="${BUILD_TYPE}" \
+        -DCMAKE_INSTALL_PREFIX="${BUILD_DIR}" \
+        -DASCEND_CANN_PACKAGE_PATH="${ASCEND_CANN_PACKAGE_PATH}"
+
+    # 编译
+    cmake --build "${BUILD_DIR}" -j${CPU_NUM}
+
+    # 安装
+    cmake --install "${BUILD_DIR}"
+}
+
+format() {
+    cd "${PROJECT_DIR}"
+    find ./include -type f -regex '.*\.\(h\|hpp\|cpp\|cc\)$' -exec clang-format -i {} \;
+    find ./op_host -type f -regex '.*\.\(h\|hpp\|cpp\|cc\)$' -exec clang-format -i {} \;
+    find ./op_kernel_aicpu -type f -regex '.*\.\(h\|hpp\|cpp\|cc\)$' -exec clang-format -i {} \;
+}
+
+main() {
+    # 解析参数
+    parse_args "$@"
+    # 解析 CANN-Toolkit 路径
+    parse_cann_path
+
+    if [[ "${ENABLE_FORMAT}" == "ON" ]]; then
+        # 格式化代码
+        format
+    else
+        # 编译
+        build
+    fi
+}
+
+main "$@"
