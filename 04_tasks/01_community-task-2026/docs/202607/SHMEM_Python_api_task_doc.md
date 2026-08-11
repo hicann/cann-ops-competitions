@@ -102,7 +102,7 @@ SHMEM（ACLSHMEM）是面向昇腾集群的对称共享内存与单边 RMA 通�
    
 ### 性能要求
 
-1. Python Host RMA（以 `putmem_on_stream` 为代表）相对同路径 C++ 实现 overhead **≤ 5%**（同 shape、同 stream，2/4/8 卡场景）。
+1. Python Host RMA（以 `putmem_on_stream` 为代表）相对同路径 C++ 实现 性能差距（算子执行耗时） **≤ 5%**（同 shape、同 stream，4 卡场景）。
 2. `barrier` / `barrier_on_stream` 功能正确，无明显异常超时或死锁。
    
 ### 精度 / 正确性要求

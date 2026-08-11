@@ -151,10 +151,6 @@ int cv_hal_gaussianBlur(
 
 **真值生成方式**：以 **OpenCV GPU**（同版本、`cv::GaussianBlur`）为标杆；NPU 路径通过 OpenCV 适配层调用获取结果并比对。
 
-**单标杆不满足时**：采用 [ATK](https://gitcode.com/AscendTest/ATK) 双标杆比对（`cv_fused_double_benchmark`），以更高精度的 CPU 实现为真值，同时评估同精度 CPU 与 NPU 算子实现相对于该真值的误差；满足条件为 NPU/同精度 CPU 的**最大相对误差比例 ≤ 2**、**平均相对误差比例 ≤ 1.2**、**均方根误差比例 ≤ 1.2**。
-
-**说明**：ATK双标杆测试需要A100环境，请开发者自行准备。
-
 精度自测用例参考[自测用例目录](./self_test_case/gaussian_blur/)。
 
 | 数据类型 / 场景 | 精度策略 |
@@ -195,12 +191,6 @@ aclnnStatus aclnnGaussianBlur(
     void *workspace,
     uint64_t workspaceSize,
     aclOpExecutor *executor,
-    const aclTensor *src,
-    const aclIntArray *ksize,
-    double sigmaX,
-    double sigmaY,
-    int64_t borderType,
-    aclTensor *dst,
     aclrtStream stream);
 ```
 
