@@ -104,10 +104,9 @@ git add 01_official/cann-ops-ladder-2026/June/Hardwish/submissions/zhangsan
 #### 提交变更
 
 ```bash
-git commit -m "feat: 提交 hardwish 算子"
+git commit -m "【天梯赛6月】 提交 hardwish 算子"
 ```
 
-提交信息建议使用 `feat: {简要描述}` 格式。
 
 #### 推送到远程
 
@@ -128,7 +127,7 @@ git add 01_official/cann-ops-ladder-2026/June/Hardwish/submissions/zhangsan
 #### 追加到上一次提交
 
 ```bash
-git commit --amend -m "feat: 提交 hardwish 算子"
+git commit --amend -m "【天梯赛6月】 提交 hardwish 算子"
 ```
 
 > 如果提交信息无需修改，可省略 `-m` 参数，直接使用 `git commit --amend` 保留原提交信息。
