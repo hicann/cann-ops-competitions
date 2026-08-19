@@ -128,6 +128,45 @@
 | 10 | [7月社区任务-SDDMM算子开发](./202607/SDDMM_task_doc.md) |
 | 11 | [7月社区任务-SpSM算子开发](./202607/SpSM_task_doc.md) |
 | 12 | [7月社区任务-GaussianBlur算子开发](./202607/GaussianBlur_task_doc.md) |
+| 13 | [7月社区任务-BloomFilter容器开发](./202607/BloomFilter_task_doc.md) |
+| 14 | [7月社区任务-aclnnBernoulli算子开发](./202607/aclnnBernoulli_task_doc.md) |
+| 15 | [7月社区任务-aclnnRemainderTensorTensor算子开发](./202607/aclnnRemainderTensorTensor_task_doc.md) |
+| 16 | [7月社区任务-aclnnRoll算子开发](./202607/aclnnRoll_task_doc.md) |
+| 17 | [7月社区任务-RoaringBitMap容器开发](./202607/RoaringBitMap_task_doc.md) |
+| 18 | [7月社区任务-SHMEM Python 接口开发](./202607/SHMEM_Python_api_task_doc.md) |
+| 19 | [CANN训练营2026暑期季 – 西安交通大学专场-TruncateMod算子开发](./202607/TruncateMod_task_doc.md) |
+| 20 | [CANN训练营2026暑期季 – 西安交通大学专场-TruncateDiv算子开发](./202607/TruncateDiv_task_doc.md) |
+| 21 | [CANN训练营2026暑期季 – 西安交通大学专场-SyncBNBackwardReduce算子开发](./202607/SyncBatchNormBackwardReduce_task_doc.md) |
+| 22 | [CANN训练营2026暑期季 – 西安交通大学专场-SoftshrinkGrad算子开发](./202607/SoftshrinkGrad_task_doc.md) |
+| 23 | [CANN训练营2026暑期季 – 西安交通大学专场-SeluGrad算子开发](./202607/SeluGrad_task_doc.md) |
+| 24 | [CANN训练营2026暑期季 – 西安交通大学专场-NllLoss算子开发](./202607/NllLoss_task_doc.md) |
+| 25 | [CANN训练营2026暑期季 – 西安交通大学专场-MseLoss算子开发](./202607/MseLoss_task_doc.md) |
+| 26 | [CANN训练营2026暑期季 – 西北工业大学专场-AssignSub算子开发](./202607/AssignSub_task_doc.md) |
+| 27 | [CANN训练营2026暑期季 – 西北工业大学专场-SquaredDifference算子开发](./202607/SquaredDifference_task_doc.md) |
+| 28 | [CANN训练营2026暑期季 – 西北工业大学专场-HardSwishGrad算子开发](./202607/HardSwishGrad_task_doc.md) |
+| 29 | [CANN训练营2026暑期季 – 西北工业大学专场-NllLossGrad算子开发](./202607/NllLossGrad_task_doc.md) |
+| 30 | [CANN训练营2026暑期季 – 西北工业大学专场-AcoshGrad算子开发](./202607/AcoshGrad_task_doc.md) |
+| 31 | [CANN训练营2026暑期季 – 西北工业大学专场-AsinGrad算子开发](./202607/AsinGrad_task_doc.md) |
+| 32 | [CANN训练营2026暑期季 – 西北工业大学专场-KlDivV2算子开发](./202607/KlDivV2_task_doc.md) |
+
+### 8月份发放的任务
+| 任务编号 | 任务名称 |
+|----------|----------|
+| 1 | [8月社区任务 - ELU 算子开发](./202608/asc_elu_task_doc.md) |
+| 2 | [8月社区任务 - gather_coo 算子开发](./202608/gather_coo_task_doc.md) |
+| 3 | [8月社区任务 - gather_csr 算子开发](./202608/gather_csr_task_doc.md) |
+| 4 | [8月社区任务 - graclus_cluster 算子开发](./202608/graclus_cluster_task_doc.md) |
+| 5 | [8月社区任务 - huber_loss 算子开发](./202608/huber_loss_task_doc.md) |
+| 6 | [8月社区任务 - MatMul 算子开发](./202608/asc_matmul_task_doc.md) |
+| 7 | [8月社区任务 - radius 算子开发](./202608/radius_task_doc.md) |
+| 8 | [8月社区任务 - random_walk 算子开发](./202608/random_walk_task_doc.md) |
+| 9 | [8月社区任务 - scatter 算子开发](./202608/scatter_task_doc.md) |
+| 10 | 8月社区任务-矩阵乘系列算子开发 |
+| 11 | 8月社区任务-sageAttention2算子开发 |
+| 12 | 8月社区任务-aclsparseSpMM 算子开发(A2/A3) |
+| 13 | 8月社区任务-aclsparseSpMM 算子开发(950) |
+| 14 | 8月社区任务-aclsparseSpGemm 算子开发(A2/A3) |
+| 15 | 8月社区任务-aclsparseSpGemm 算子开发(950) |
 
 
 ## 参考链接
