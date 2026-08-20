@@ -1,0 +1,86 @@
+name: codecheck_action
+
+on:
+  workflow_call:
+    inputs:
+      precommit_image_version:
+        required: true
+        type: string
+      codecheck_image_version:
+        required: true
+        type: string
+
+
+jobs:
+  JOB_precommit:
+    name: CodeCheck_precommit
+    steps:
+      -
+        name: Checkout
+        identifier: process_checkout
+        uses: checkout
+        with:
+          ref: ${{ atomgit.event.pull_request.merge_commit_sha }}
+          token: ${{secrets.GIT_TOKEN}}
+      -
+        name: download
+        uses: obs-download
+        with:
+          endpoint: "https://obs.cn-north-4.myhuaweicloud.com"
+          bucket: "ascend-ci"
+          key: "${{ env.obs_path }}/pr_filelist_precommit.txt"
+          path: ${{ steps.process_checkout.outputs.path }}
+      -
+        name: precommit
+        identifier: precommit
+        uses: cann/.gitcode/actions/precommit@master
+        with:
+          merge_id: ${{ env.MERGE_ID }}
+          repo_name: ${{ env.repo_name }}
+          workspace: ${{ steps.process_checkout.outputs.path }}
+          block: ${{ vars.PRECOMMIT_BLOCK }}
+      -
+        name: upload
+        if: ${{ always() }}
+        uses: obs-upload
+        with:
+          endpoint: "https://obs.cn-north-4.myhuaweicloud.com"
+          bucket: "ascend-ci"
+          access-key: ${{secrets.AK}}
+          secret-key: ${{secrets.SK}}
+          artifact-path: "${{ steps.process_checkout.outputs.path }}/pre-commit*.txt"
+          object-prefix: ${{ env.obs_path }}/
+    if: "${{ default() }}"
+    runs-on: ['self-hosted', 'arch=x64', 'spec=small']
+    container:
+      image: swr.cn-north-4.myhuaweicloud.com/ci_cann/${{ inputs.precommit_image_version }}
+  JOB_check_pr:
+    name: CodeCheck_check-pr
+    steps:
+      -
+        name: Checkout
+        identifier: process_checkout
+        uses: checkout
+        with:
+          ref: ${{ atomgit.event.pull_request.merge_commit_sha }}
+          token: ${{secrets.GIT_TOKEN}}
+      -
+        name: download
+        uses: obs-download
+        with:
+          endpoint: "https://obs.cn-north-4.myhuaweicloud.com"
+          bucket: "ascend-ci"
+          key: |
+            ${{ env.obs_path }}/pr_filelist.txt
+            ${{ env.obs_path }}/pr_filelist_mod.txt
+          path: ${{ steps.process_checkout.outputs.path }}
+      -
+        name: check-pr
+        identifier: check-pr
+        uses: cann/.gitcode/actions/check-pr@master
+        with:
+          repo_name: ${{ env.repo_name }}
+          workspace: ${{ steps.process_checkout.outputs.path }}
+    runs-on: ['self-hosted', 'arch=x64', 'spec=small']
+    container:
+      image: swr.cn-north-4.myhuaweicloud.com/ci_cann/${{ inputs.codecheck_image_version }}
