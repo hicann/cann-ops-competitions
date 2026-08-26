@@ -167,6 +167,41 @@
 | 13 | 8月社区任务-aclsparseSpMM 算子开发(950) |
 | 14 | 8月社区任务-aclsparseSpGemm 算子开发(A2/A3) |
 | 15 | 8月社区任务-aclsparseSpGemm 算子开发(950) |
+| 16 | 8月社区任务-SPMV算子开发 |
+| 17 | 8月社区任务-SlidingTileAttention算子开发（A2） |
+| 18 | 8月社区任务-aclblasCgetriBatched算子开发（950） |
+| 19 | 8月社区任务-aclblasCgetrfBatched算子开发（950） |
+| 20 | 8月社区任务-aclblasCgemmStridedBatched算子开发（950） |
+| 21 | 8月社区任务-aclblasSgemmStridedBatched算子开发（A2/A3） |
+| 22 | 8月社区任务-aclblasCtrsm算子开发（950） |
+| 23 | 8月社区任务-aclblasCsyr2k算子开发（950） |
+| 24 | 8月社区任务-aclblasCsymm算子开发（950） |
+| 25 | 8月社区任务-aclblasCsyrk算子开发（950） |
+| 26 | 8月社区任务-aclblasCgemmBatched算子开发（950） |
+| 27 | 8月社区任务-aclblasCher2k算子开发（A2/A3） |
+| 28 | 8月社区任务-aclblasChemm算子开发（A2/A3） |
+| 29 | 8月社区任务-aclblasCherk算子开发（A2/A3） |
+| 30 | 8月社区任务-aclblasCgemm算子开发（950） |
+| 31 | 8月社区任务-Equal算子开发（A2/A3） |
+| 32 | 8月社区任务-aclblasCtrmv算子开发（950） |
+| 33 | 8月社区任务-UpsampleNearest3d算子开发 |
+| 34 | 8月社区任务-aclblasCgeam算子开发（950） |
+| 35 | 8月社区任务-aclblasCgemv算子开发（950） |
+| 36 | 8月社区任务-aclblasCgerc算子开发（950） |
+| 37 | 8月社区任务-aclblasCgeru算子开发（950） |
+| 38 | 8月社区任务-aclblasScnrm2算子开发（950） |
+| 39 | 8月社区任务-aclblasCtrsv算子开发（A2/A3） |
+| 40 | 8月社区任务-aclblasCtbmv算子开发（A2/A3） |
+| 41 | 8月社区任务-aclblasCtpmv算子开发（A2/A3） |
+| 42 | 8月社区任务-aclblasCsymv算子开发（950） |
+| 43 | 8月社区任务-aclblasCsyr2算子开发（A2/A3） |
+| 44 | 8月社区任务-aclblasCcopy算子开发（950） |
+| 45 | 8月社区任务-aclblasSrotmg算子开发（A2/A3） |
+| 46 | 8月社区任务-aclblasIcamax算子开发（950） |
+| 47 | 8月社区任务-aclblasIcamin算子开发（950） |
+| 48 | 8月社区任务-aclblasScasum算子开发（950） |
+| 49 | 8月社区任务-aclblasCdotu算子开发（950） |
+| 50 | 8月社区任务-aclblasCdotc算子开发（950） |
 
 
 ## 参考链接
