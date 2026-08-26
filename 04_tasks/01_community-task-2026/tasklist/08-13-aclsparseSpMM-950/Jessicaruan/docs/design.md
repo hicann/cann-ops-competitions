@@ -279,3 +279,103 @@ GetBufferSize → Preprocess → SpMM；workspace 不足；维度/dtype 不匹�
 5. cuSPARSE SpMM：https://docs.nvidia.com/cuda/cusparse/index.html#cusparseSpMM
 6. 精度标准：https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md
 7. 社区任务流程：https://gitcode.com/org/cann/discussions/39
+
+# 修订 v1.1：阶段实测结果（2026-08-21）
+
+> 本节补充 v1.0 之后的真机进展。环境：Ascend 950PR（hidevlab），CANN 9.1.0，
+> Release 构建 `--soc=ascend950`。代码：个人仓 `ops-sparse` 分支 `feat/spmm-950-c64`。
+> 以下均为阶段数据，不构成最终验收结论。
+
+## 1. 状态总览
+
+| 交付项 | 状态 |
+|---|---|
+| 设计文档 | v1.0 已合入（MR #1073）；本 v1.1 阶段修订 |
+| arch35 四 dtype kernel + ATen 桥 | 代码在分支；官方精度 200 ALL_PASS（冻结 tip 上 fp32 100 已复验） |
+| P-01 fp32 | **~2.37× 已过线**（≥2.0× 门禁） |
+| P-02 | fp32 ~0.20× / bf16 ~0.55× / fp16 ~0.42×；**SIMT 族 + SHFL-BC 已穷尽，性能线冻结** |
+| P-03 | 未起跑（流量地板高于门禁，见 §4） |
+| 官方 200 精度 | fp32+c64 **200 ALL_PASS**（午前）；冻结 tip c64 复验列入交付补采 |
+| 官方 50 性能 | fp32 **12/25** @1.0×；c64 几何最高 **2/25** @0.8×（已 revert，定格 Narrow） |
+
+## 2. 已过线锚点（P-01）
+
+n≥512 的 RR fp32 走 UB 向量路径（TPipe 双缓冲 `bQueue_`，B 行整段 `DataCopyPad`
++ `Muls`/`Add`），每 nnz 只加载一次 A 值并连续消费 B：
+
+```
+P-01 kernel_total_us 36.6–38.3（多次采样） ；ratio vs 87.040μs = 2.27–2.38×
+```
+
+该路径实测有效带宽约 2.0 TB/s（76.1MB/36.7μs），是后续窄 N 路径的对标基线。
+
+## 3. P-02 窄 N（n=128）调优：成本模型与已否决路径
+
+### 3.1 带宽与成本模型（实测校准）
+
+- 顺序流微基准（2GiB stream）：950PR 实测峰值 **≈1.60 TB/s**（官网规格 100%）。
+- P-02 无 B 重用流量 ≈780MB（fp32）→ 理论地板 ≈488μs，**门禁 204.576μs 在
+  「无重用」假设下不可达**，与 A100 依赖 L2 滑窗重用的口径推断一致。
+- 由 fp32（1030μs）/bf16（755μs）两点拟合：`T ≈ 470μs 延迟截距 + bytes/1390GBps`。
+  截距与 dtype 无关 → 瓶颈为 GM 标量 load→use 延迟，非带宽或发射率。
+
+### 3.2 当前最优：32×4 warp 协作（GE-SpMM 式）
+
+32 lane 共享一行、每 lane 4 列（512B 合并宽度，fp32 累加），fp32 ≈1030μs
+（0.20×）。cols-per-lane 扫描（4→1030，8→1102，16→1532，128→3300）证明
+**32×4 已是该维度的 LSU 甜点**。
+
+### 3.3 已否决路径（全部真机实测后 revert，历史保留在分支）
+
+| 实验 | 结果 | 结论 |
+|---|---|---|
+| 行重排赌 L2（低 CV→连续分块） | 1045μs，无变化 | 合成条带重用距离 ≈K/7 行，重排无效 |
+| warp 几何 16×8 / R4(4×8×16) | 1102 / 1532μs | lane 几何单调变差，全族否决 |
+| CSR (c,v) 预取 tile=8 | 三 dtype 均回退 | 寄存器溢出，SIMT 无法软件流水 |
+| panel-vec 单/双缓冲（B 行 512B 逐 nnz `DataCopyPad`） | 3318 / 4159μs | DMA 粒度阈值 ≈2KB，窄 N 整行 B 逐 nnz 搬运不成立（P-01 的 5732B 行则成立） |
+| col-bucket 列并行 | ~100× 慢 + 精度失败 | 无原子加下同行竞争写 |
+| 换真实 ogbn-arxiv 输入 | 更慢 ~2.2×（幂律长尾放大链长） | 非捷径；合规口径另行确认中 |
+
+### 3.4 PIPE1 / SHFL-BC（flat → SIMT 族结案）
+
+1-deep 软件流水线（PIPE1）：合成 fp32 **1043μs**（锚点 ~1030）→ 持平，已 revert。  
+SHFL-BC（少 lane 读 CSR + `asc_shfl` 广播）：合成 fp32 **~1054μs** → 仍 flat，已 revert。  
+结论：dav-3510 SIMT 在飞 load≈1；几何/软流水/panel/prefetch/R4/SHFL **全族关闭**。
+
+### 3.5 官方 50 与 c64 几何刀（性能线冻结 tip `50571b9`）
+
+- 官方 fp32 25：pass@1.0 = **12/25**；分界主轴为 B 重读倍数 `red=m*degree/k`，非 vec 路径质量。
+- 官方 c64：Narrow 基线 0/25；WARP-C64 32×4 → **2/25**（几何 ×3–4 有效，KEEP≥5 未达 → revert）；
+  PANELOUTER（panel-major）A 类相对行主持平 → **L2 跨 AIV 不可用（实测）**；
+  VEC-C64 在 case 000 ratio 0.187 &lt;0.5 → 立即 STOP/revert。
+- **本任务周期性能线冻结**：不再开 SIMT / L2 / VEC-C64 / UB-staging / AIC 实验；未达项以「B 重用墙」论证交付。
+
+## 4. P-03 c64 流量审计（结论先行）
+
+现有 `KernelSpmmSimtNarrowC64` 以 32 列 tile 分解，n=256 时每行 CSR+B **重扫 8 遍**；
+无重用流量 ≈132.5GB → @1.6TB/s 地板 ≈82.8ms，**门禁 48.5ms（0.8×38.8ms）不可达**。
+WARP-C64 已证几何有效但未达 KEEP；P-03 本周期不作为交付依赖。
+
+## 5. 输入口径确认（合规杠杆）
+
+任务书要求性能输入与 A100 基线同口径，但附件未提供 P-01/02/03 的 canonical
+CSR fixture。P-02 规模（169343/1166243）与 ogbn-arxiv 精确匹配，我方已实现
+真实图与合成对照双路径（`p02_bench.py`）。确认请求见私仓
+`docs/FIXTURE_QUERY_TO_TASK.md`，将向 `cann/ops-sparse` 以【社区任务】Issue 发出。
+
+## 6. 交付下一步（非性能再刀）
+
+1. 自测报告：精度 200、P-01、官方 50 分桶、否证表、失败项说明；
+2. 补采：干净进程对照、workspace/异常/泄漏、冻结 tip c64 精度复验；
+3. 任务方确认 fixture 后，愿按新口径复测；
+4. 验收通过后再向 `ops-sparse` master 提合入（与 A2 Host 冲突按后合入方处理）。
+
+
+---
+
+## 修订记录
+
+| 日期 | 版本 | 说明 |
+|---|---|---|
+| 2026-08-17 | v1.0 | 按任务书和官方模板建立设计文档（MR #1073） |
+| 2026-08-21 | v1.1 | 补充 950PR 实测、成本模型、否证表；定格官方 50 与性能线冻结 |
