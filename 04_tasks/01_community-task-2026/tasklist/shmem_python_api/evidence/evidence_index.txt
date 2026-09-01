@@ -1,0 +1,63 @@
+SHMEM Python API Evidence Index
+
+1. Python Extension
+   logs/examples_python_extension_run_v2.log
+
+2. Public Lazy API
+   logs/public_lazy_api.log
+   logs/public_lazy_api.rc
+
+3. RMA Bit-exact
+   logs/step2_putmem_on_stream_bitexact.log
+
+4. Multi-instance Create / Switch
+   logs/step2_multi_instance_create_switch_v4.log
+
+5. Multi-instance Heap Isolation
+   logs/step2_multi_instance_heap_isolation.log
+
+6. Barrier 2/4/8 PE
+   logs/barrier_multicard_summary.txt
+   logs/barrier_2npu.log
+   logs/barrier_2npu.rc
+   logs/barrier_4npu.log
+   logs/barrier_4npu.rc
+   logs/barrier_8npu.log
+   logs/barrier_8npu.rc
+
+7. SDMA
+   logs/sdma_put_stream_formal.log
+   logs/sdma_put_stream_formal.rc
+
+8. Core Wrapper
+   logs/step3_core_wrappers_hccl_fixed.log
+
+9. Performance
+   performance_acceptance_summary.txt
+
+10. Formal Self-Test
+    formal_self_test_summary.txt
+    logs/formal_self_test_result.txt
+
+11. Handle Wait / RDMA Blocker
+    step3_handle_wait_environment_blocker.txt
+    step3_handle_wait_failure_extract.txt
+    step3_roce_init_failure_extract.txt
+    step3_official_blockers_summary.txt
+
+Status Summary:
+PASS_COUNT=5
+FAIL_COUNT=0
+SUPPORTED_SELF_TESTS_ALL_PASS
+SELF_TEST_OVERALL_RC=0
+
+Full RDMA-dependent handle_wait: BLOCKED
+UDMA Runtime: NOT VERIFIED
+
+
+12. Acceptance Screenshots
+    screenshots/01_formal_self_test.png
+    screenshots/02_correctness.png
+    screenshots/03_performance.png
+    screenshots/04_api_barrier_sdma.png
+    screenshots/05_handle_wait_blocker.png

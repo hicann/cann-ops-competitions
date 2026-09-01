@@ -1,0 +1,25 @@
+========== SHMEM PYTHON PERFORMANCE ACCEPTANCE ==========
+
+----- 2 NPU -----
+pe[0] python putmem_on_stream avg=10.847 us (size=65536, iters=100)
+pe[1] python putmem_on_stream avg=10.963 us (size=65536, iters=100)
+overhead=-4.87% (limit 5.0%)
+OFFICIAL_OVERHEAD_2NPU_RC=0
+
+----- 4 NPU -----
+pe[0] python putmem_on_stream avg=10.958 us (size=65536, iters=100)pe[1] python putmem_on_stream avg=11.105 us (size=65536, iters=100)pe[2] python putmem_on_stream avg=11.126 us (size=65536, iters=100)
+pe[3] python putmem_on_stream avg=11.181 us (size=65536, iters=100)
+overhead=1.36% (limit 5.0%)
+OFFICIAL_OVERHEAD_4NPU_RC=0
+
+----- 8 NPU -----
+pe[3] python putmem_on_stream avg=11.233 us (size=65536, iters=100)pe[6] python putmem_on_stream avg=11.211 us (size=65536, iters=100)pe[1] python putmem_on_stream avg=10.886 us (size=65536, iters=100)pe[0] python putmem_on_stream avg=10.892 us (size=65536, iters=100)pe[7] python putmem_on_stream avg=11.242 us (size=65536, iters=100)
+pe[2] python putmem_on_stream avg=11.167 us (size=65536, iters=100)pe[4] python putmem_on_stream avg=11.180 us (size=65536, iters=100)
+pe[5] python putmem_on_stream avg=11.148 us (size=65536, iters=100)
+overhead=0.31% (limit 5.0%)
+OFFICIAL_OVERHEAD_8NPU_RC=0
+
+----- C++ BASELINE -----
+/workspace/shmem_official_test_logs/cpp_baseline/cpp_put_2npu.log:CPP_BASELINE pe[0] avg=11.402 us size=65536 iters=100
+/workspace/shmem_official_test_logs/cpp_baseline/cpp_put_4npu.log:CPP_BASELINE pe[0] avg=10.811 us size=65536 iters=100
+/workspace/shmem_official_test_logs/cpp_baseline/cpp_put_8npu.log:CPP_BASELINE pe[0] avg=10.858 us size=65536 iters=100

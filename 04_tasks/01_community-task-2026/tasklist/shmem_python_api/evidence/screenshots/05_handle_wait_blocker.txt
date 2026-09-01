@@ -1,0 +1,37 @@
+============================================================
+SCREENSHOT 5 - HANDLE_WAIT ENVIRONMENT LIMITATION
+============================================================
+
+[RDMA DEVICE]
+========== INFINIBAND DEVICES ==========
+ls: cannot access '/dev/infiniband': No such file or directory
+========== RDMA SYSFS ==========
+DEVICE=hns_0
+DEVICE=hns_1
+
+[ROCE INIT]
+/workspace/shmem_official_test_logs/test_roce_init_only.log:7:initialize shmem failed, ret: -3
+/workspace/shmem_official_test_logs/test_roce_init_only.log:14:[rank1]:     raise RuntimeError(f"aclshmem_init failed, ret={ret}")
+/workspace/shmem_official_test_logs/test_roce_init_only.log:15:[rank1]: RuntimeError: aclshmem_init failed, ret=-3
+/workspace/shmem_official_test_logs/test_roce_init_only.log:16:initialize shmem failed, ret: -3
+/workspace/shmem_official_test_logs/test_roce_init_only.log:23:[rank0]:     raise RuntimeError(f"aclshmem_init failed, ret={ret}")
+/workspace/shmem_official_test_logs/test_roce_init_only.log:24:[rank0]: RuntimeError: aclshmem_init failed, ret=-3
+
+[HANDLE WAIT]
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:14:[rank1]: RuntimeError: synchronize:../torch_npu/csrc/core/npu/NPUStream.cpp:414 NPU function error: c10_npu::acl::AclrtSynchronizeStreamWithTimeout(stream()), error code is 507015
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:16:[rank1]: [Error]: The aicore execution is abnormal. 
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:21:[rank1]:        The extend info: errcode:(0, 0x200000000000000, 0) errorStr: The address for the scalar to access the internal buffer of AICore is out of bounds. fixp_error0 info: 0x2687f7e, fixp_error1 info: 0xc8, fsmId:1, tslot:0, thread:0, ctxid:0, blk:0, sublk:0, subErrType:4.[FUNC:PrintCoreInfo][FILE:device_error_core_proc.cc][LINE:751]
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:24:[rank1]:        synchronize stream with timeout failed, runtime result = 507015[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:35:[rank0]: RuntimeError: synchronize:../torch_npu/csrc/core/npu/NPUStream.cpp:414 NPU function error: c10_npu::acl::AclrtSynchronizeStreamWithTimeout(stream()), error code is 507015
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:37:[rank0]: [Error]: The aicore execution is abnormal. 
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:42:[rank0]:        The extend info: errcode:(0, 0x200000000000000, 0) errorStr: The address for the scalar to access the internal buffer of AICore is out of bounds. fixp_error0 info: 0x187f0bf, fixp_error1 info: 0x8c, fsmId:0, tslot:2, thread:0, ctxid:0, blk:0, sublk:0, subErrType:4.[FUNC:PrintCoreInfo][FILE:device_error_core_proc.cc][LINE:751]
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:45:[rank0]:        synchronize stream with timeout failed, runtime result = 507015[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:47:[rank0]:[W809 16:50:04.042826610 NPUStream.cpp:683] Warning: NPU warning, error code is 507015[Error]: 
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:48:[Error]: The aicore execution is abnormal. 
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:53:       synchronize stream failed, runtime result = 507015[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
+/workspace/shmem_official_test_logs/test_handle_wait_public_fix_v3.log:55:       wait for compute device to finish failed, runtime result = 507015.[FUNC:ReportCallError][FILE:log_inner.cpp][LINE:148]
+
+Handle Wait Binding                  : PASS
+Full RDMA-dependent Remote Completion: BLOCKED
+RDMA Runtime                         : BLOCKED
+UDMA Runtime                         : NOT VERIFIED

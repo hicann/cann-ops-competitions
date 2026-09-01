@@ -1,0 +1,8 @@
+SHMEM Python Barrier / Barrier-on-stream Multi-card Validation
+
+2 PE: RC=0
+4 PE: RC=0
+8 PE: RC=0
+
+BARRIER_MULTICARD_OVERALL_PASS
+No non-zero RC was observed in the archived 2/4/8 PE barrier validation.

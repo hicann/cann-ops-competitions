@@ -1,0 +1,8 @@
+/workspace/shmem_official_test_logs/test_roce_init_only.log:7:initialize shmem failed, ret: -3
+/workspace/shmem_official_test_logs/test_roce_init_only.log:14:[rank1]:     raise RuntimeError(f"aclshmem_init failed, ret={ret}")
+/workspace/shmem_official_test_logs/test_roce_init_only.log:15:[rank1]: RuntimeError: aclshmem_init failed, ret=-3
+/workspace/shmem_official_test_logs/test_roce_init_only.log:16:initialize shmem failed, ret: -3
+/workspace/shmem_official_test_logs/test_roce_init_only.log:23:[rank0]:     raise RuntimeError(f"aclshmem_init failed, ret={ret}")
+/workspace/shmem_official_test_logs/test_roce_init_only.log:24:[rank0]: RuntimeError: aclshmem_init failed, ret=-3
+/workspace/shmem_official_test_logs/test_roce_init_only.log:47:/tmp/test_roce_init_only.py FAILED
+/workspace/shmem_official_test_logs/final/final_validation_summary.txt:26:- Separate ROCE initialization probe fails before handle_wait execution with ACLSHMEM_SMEM_ERROR (-3).

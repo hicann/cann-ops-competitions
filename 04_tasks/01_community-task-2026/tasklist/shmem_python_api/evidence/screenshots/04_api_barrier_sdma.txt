@@ -1,0 +1,31 @@
+============================================================
+SCREENSHOT 4 - API / BARRIER / SDMA
+============================================================
+
+[PUBLIC LAZY API]
+_NATIVE_LOADED before access = False
+_NATIVE_LOADED after access  = True
+missing_from___all__ = []
+missing_or_error = []
+ALL_REQUIRED_LAZY_PUBLIC_APIS_OK
+
+PUBLIC_LAZY_API_RC=0
+
+[BARRIER 2/4/8 PE]
+SHMEM Python Barrier / Barrier-on-stream Multi-card Validation
+
+2 PE: RC=0
+4 PE: RC=0
+8 PE: RC=0
+
+BARRIER_MULTICARD_OVERALL_PASS
+No non-zero RC was observed in the archived 2/4/8 PE barrier validation.
+
+[SDMA]
+pe[0] SDMA_FINALIZE_OK
+pe[0] SDMA_PUT_STREAM_OK
+pe[1] SDMA_FINALIZE_OK
+pe[1] SDMA_INIT_OKpe[0] SDMA_INIT_OK
+pe[1] SDMA_PUT_STREAM_OK
+
+SDMA_RC=0

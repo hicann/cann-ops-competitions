@@ -1,0 +1,17 @@
+SHMEM Python API Formal Self-Test Result
+
+putmem_on_stream_bitexact: PASS
+multi_instance_create_switch: PASS
+multi_instance_heap_isolation: PASS
+sdma_put_stream: PASS
+core_wrappers_hccl_fixed: PASS
+
+PASS_COUNT=5
+FAIL_COUNT=0
+
+SUPPORTED_SELF_TESTS_ALL_PASS
+SELF_TEST_OVERALL_RC=0
+
+IMPORTANT:
+Full RDMA-dependent handle_wait is not counted as PASS.
+Current status for full handle_wait remote completion: BLOCKED.

@@ -1,0 +1,41 @@
+SHMEM Python API - Official Self-test Blocker Summary
+
+1. test_core_wrappers.py
+
+Original archived test issue:
+The test initializes torch.distributed with HCCL but broadcasts the
+SHMEM unique-id through a CPU tensor. HCCL does not provide a CPU
+backend for torch.distributed broadcast, so the archived test fails
+before the SHMEM wrapper functionality is exercised.
+
+A corrected validation copy moves the UID broadcast tensor to NPU.
+The corrected test exercises the SHMEM Python core wrappers and passes.
+
+This is treated as an archived self-test compatibility issue rather
+than a SHMEM Python API functional failure.
+
+
+2. test_handle_wait.py
+
+The archived test initializes the SHMEM runtime through the default
+MTE path and subsequently invokes aclshmemx_handle_wait.
+
+The current device implementation of aclshmemx_handle_wait enters the
+RDMA/ROCE completion path through aclshmemi_roce_quiet.
+
+On this validation host:
+- MTE putmem_on_stream independently passes.
+- Python putmem_on_stream bit-exact validation independently passes.
+- The handle_wait path under MTE-only initialization triggers an
+  Ascend AICore 507015 exception.
+- A separate ROCE initialization probe fails before the handle
+  operation can execute with ACLSHMEM_SMEM_ERROR (-3).
+- HNS RDMA devices are visible through sysfs, but the container does
+  not expose /dev/infiniband device nodes required to create the SHMEM
+  ROCE entity.
+
+Therefore full RDMA-dependent handle_wait remote-completion semantics
+cannot be exercised on this container.
+
+This environment limitation does not affect the verified MTE and SDMA
+Python RMA paths.

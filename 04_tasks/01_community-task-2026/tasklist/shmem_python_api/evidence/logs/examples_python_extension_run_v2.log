@@ -1,0 +1,146 @@
+========== PRECHECK ACL ==========
+ACL_IMPORT_OK
+acl_file = /usr/local/Ascend/cann-9.1.0-beta.3/python/site-packages/acl.so
+ACL_PRECHECK_PASS
+begin install shmem whl package
+Found wheel: ./dist/cann_shmem-1.0.0-cp311-cp311-linux_aarch64.whl
+Looking in indexes: https://repo.huaweicloud.com/repository/pypi/simple
+Processing ./dist/cann_shmem-1.0.0-cp311-cp311-linux_aarch64.whl
+Requirement already satisfied: torch-npu in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from cann-shmem==1.0.0) (2.7.1.post8)
+Requirement already satisfied: torch==2.7.1 in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from torch-npu->cann-shmem==1.0.0) (2.7.1)
+Requirement already satisfied: filelock in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from torch==2.7.1->torch-npu->cann-shmem==1.0.0) (3.32.2)
+Requirement already satisfied: typing-extensions>=4.10.0 in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from torch==2.7.1->torch-npu->cann-shmem==1.0.0) (4.16.0)
+Requirement already satisfied: sympy>=1.13.3 in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from torch==2.7.1->torch-npu->cann-shmem==1.0.0) (1.14.0)
+Requirement already satisfied: networkx in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from torch==2.7.1->torch-npu->cann-shmem==1.0.0) (3.6.1)
+Requirement already satisfied: jinja2 in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from torch==2.7.1->torch-npu->cann-shmem==1.0.0) (3.1.6)
+Requirement already satisfied: fsspec in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from torch==2.7.1->torch-npu->cann-shmem==1.0.0) (2026.7.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from sympy>=1.13.3->torch==2.7.1->torch-npu->cann-shmem==1.0.0) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /workspace/.venvs/shmem-python-api/lib64/python3.11/site-packages (from jinja2->torch==2.7.1->torch-npu->cann-shmem==1.0.0) (3.0.3)
+cann-shmem is already installed with the same version as the provided wheel. Use --force-reinstall to force an installation of the wheel.
+W0809 18:42:58.083000 64845 torch/distributed/run.py:766] 
+W0809 18:42:58.083000 64845 torch/distributed/run.py:766] *****************************************
+W0809 18:42:58.083000 64845 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:42:58.083000 64845 torch/distributed/run.py:766] *****************************************
+pe[0]: aclshmem_ptr:20622290846208 with type<class 'int'>
+pe[1]: aclshmem_ptr:20624438329856 with type<class 'int'>
+pe[0]: my_pe:0 and pe_count:2
+x: pe[0]: t_my_pe:0 and t_pe_count:2
+pe[1]: my_pe:1 and pe_count:2
+x: pe[1]: t_my_pe:1 and t_pe_count:2
+init_test.py running success!
+init_test.py running success!
+W0809 18:43:18.543000 64978 torch/distributed/run.py:766] 
+W0809 18:43:18.543000 64978 torch/distributed/run.py:766] *****************************************
+W0809 18:43:18.543000 64978 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:43:18.543000 64978 torch/distributed/run.py:766] *****************************************
+pe[1]: register hander ret=0
+pe[0]: register hander ret=0
+tls_test.py running success!
+tls_test.py running success!
+W0809 18:43:39.016000 65104 torch/distributed/run.py:766] 
+W0809 18:43:39.016000 65104 torch/distributed/run.py:766] *****************************************
+W0809 18:43:39.016000 65104 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:43:39.016000 65104 torch/distributed/run.py:766] *****************************************
+pe[1]: aclshmem_ptr: 20624438329856 with type <class 'int'>
+pe[1]: my_pe:1 and pe_count:2
+pe[0]: aclshmem_ptr: 20622290846208 with type <class 'int'>
+pe[0]: my_pe:0 and pe_count:2
+test.py running success!
+test.py running success!
+W0809 18:44:00.330000 65226 torch/distributed/run.py:766] 
+W0809 18:44:00.330000 65226 torch/distributed/run.py:766] *****************************************
+W0809 18:44:00.330000 65226 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:44:00.330000 65226 torch/distributed/run.py:766] *****************************************
+pe[0] barrier/sync test passed
+pe[1] barrier/sync test passed
+pe[0] stream barrier test passed
+pe[1] stream barrier test passed
+barrier_sync_test.py running success!
+barrier_sync_test.py running success!
+W0809 18:44:21.287000 65378 torch/distributed/run.py:766] 
+W0809 18:44:21.287000 65378 torch/distributed/run.py:766] *****************************************
+W0809 18:44:21.287000 65378 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:44:21.287000 65378 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+test_init_final running success!
+test_init_final running success!
+W0809 18:44:41.503000 65506 torch/distributed/run.py:766] 
+W0809 18:44:41.503000 65506 torch/distributed/run.py:766] *****************************************
+W0809 18:44:41.503000 65506 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:44:41.503000 65506 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+pe[0]: aclshmem_ptr: 20622290846208 with length <class 'int'>
+pe[1]: aclshmem_ptr: 20624438329856 with length <class 'int'>
+test_memory running success!
+test_memory running success!
+W0809 18:45:02.167000 65643 torch/distributed/run.py:766] 
+W0809 18:45:02.167000 65643 torch/distributed/run.py:766] *****************************************
+W0809 18:45:02.167000 65643 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:45:02.167000 65643 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+test_rma running success!
+test_rma running success!
+W0809 18:45:22.464000 65783 torch/distributed/run.py:766] 
+W0809 18:45:22.464000 65783 torch/distributed/run.py:766] *****************************************
+W0809 18:45:22.464000 65783 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:45:22.464000 65783 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+test_direct running success!
+test_direct running success!
+W0809 18:45:42.371000 65905 torch/distributed/run.py:766] 
+W0809 18:45:42.371000 65905 torch/distributed/run.py:766] *****************************************
+W0809 18:45:42.371000 65905 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:45:42.371000 65905 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+pe[0] core host collective wrappers passedpe[1] core host collective wrappers passed
+
+pe[0] core stream collective wrappers passedpe[1] core stream collective wrappers passed
+
+test_collective running success!
+test_collective running success!
+W0809 18:46:02.660000 66041 torch/distributed/run.py:766] 
+W0809 18:46:02.660000 66041 torch/distributed/run.py:766] *****************************************
+W0809 18:46:02.660000 66041 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:46:02.660000 66041 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+pe[1] core multi-instance and memory APIs passed
+pe[0] core multi-instance and memory APIs passed
+test_multi_instance running success!
+test_multi_instance running success!
+W0809 18:46:23.973000 66181 torch/distributed/run.py:766] 
+W0809 18:46:23.973000 66181 torch/distributed/run.py:766] *****************************************
+W0809 18:46:23.973000 66181 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:46:23.973000 66181 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+pe[1] engine configuration APIs passed
+pe[0] engine configuration APIs passed
+test_engine_config running success!
+test_engine_config running success!
+W0809 18:46:44.520000 66302 torch/distributed/run.py:766] 
+W0809 18:46:44.520000 66302 torch/distributed/run.py:766] *****************************************
+W0809 18:46:44.520000 66302 torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W0809 18:46:44.520000 66302 torch/distributed/run.py:766] *****************************************
+Set log level to 'ERROR'.
+Set log level to 'ERROR'.
+pe[1] profiling APIs passed (records=0)
+============================================================
+BlockID   FrameID   Cycles         Count          AvgTime(us)    
+------------------------------------------------------------
+============================================================
+============================================================
+BlockID   FrameID   Cycles         Count          AvgTime(us)    
+------------------------------------------------------------
+============================================================
+pe[0] profiling APIs passed (records=0)
+test_prof running success!
+test_prof running success!
+test_handle_wait_binding running success!
+All Python tests passed!
+EXAMPLES_PYTHON_EXTENSION_FINAL_RC=0

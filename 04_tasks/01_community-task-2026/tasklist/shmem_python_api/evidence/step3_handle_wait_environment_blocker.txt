@@ -1,0 +1,125 @@
+============================================================
+HANDLE_WAIT ENVIRONMENT BLOCKER EVIDENCE
+============================================================
+
+========== DATE ==========
+Sun Aug  9 19:07:55 UTC 2026
+
+========== BRANCH / COMMIT ==========
+feat/shmem-python-api
+b41a0b0d9c02151c9da9a60d7a39f2c7d6bfed7c
+
+========== NPU ==========
++------------------------------------------------------------------------------------------------+
+| npu-smi 25.5.2                   Version: 25.5.2                                               |
++---------------------------+---------------+----------------------------------------------------+
+| NPU   Name                | Health        | Power(W)    Temp(C)           Hugepages-Usage(page)|
+| Chip                      | Bus-Id        | AICore(%)   Memory-Usage(MB)  HBM-Usage(MB)        |
++===========================+===============+====================================================+
+| 0     910B4               | OK            | 92.4        42                0    / 0             |
+| 0                         | 0000:C1:00.0  | 0           0    / 0          2867 / 32768         |
++===========================+===============+====================================================+
+| 1     910B4               | OK            | 83.9        43                0    / 0             |
+| 0                         | 0000:C2:00.0  | 0           0    / 0          2866 / 32768         |
++===========================+===============+====================================================+
+| 2     910B4               | OK            | 84.0        41                0    / 0             |
+| 0                         | 0000:81:00.0  | 0           0    / 0          2862 / 32768         |
++===========================+===============+====================================================+
+| 3     910B4               | OK            | 88.4        39                0    / 0             |
+| 0                         | 0000:82:00.0  | 0           0    / 0          2862 / 32768         |
++===========================+===============+====================================================+
+| 4     910B4               | OK            | 86.8        45                0    / 0             |
+| 0                         | 0000:01:00.0  | 0           0    / 0          2861 / 32768         |
++===========================+===============+====================================================+
+| 5     910B4               | OK            | 96.6        49                0    / 0             |
+| 0                         | 0000:02:00.0  | 0           0    / 0          2861 / 32768         |
++===========================+===============+====================================================+
+| 6     910B4               | OK            | 87.9        45                0    / 0             |
+| 0                         | 0000:41:00.0  | 0           0    / 0          2861 / 32768         |
++===========================+===============+====================================================+
+| 7     910B4               | OK            | 91.1        43                0    / 0             |
+| 0                         | 0000:42:00.0  | 0           0    / 0          2861 / 32768         |
++===========================+===============+====================================================+
++---------------------------+---------------+----------------------------------------------------+
+| NPU     Chip              | Process id    | Process name             | Process memory(MB)      |
++===========================+===============+====================================================+
+| No running processes found in NPU 0                                                            |
++===========================+===============+====================================================+
+| No running processes found in NPU 1                                                            |
++===========================+===============+====================================================+
+| No running processes found in NPU 2                                                            |
++===========================+===============+====================================================+
+| No running processes found in NPU 3                                                            |
++===========================+===============+====================================================+
+| No running processes found in NPU 4                                                            |
++===========================+===============+====================================================+
+| No running processes found in NPU 5                                                            |
++===========================+===============+====================================================+
+| No running processes found in NPU 6                                                            |
++===========================+===============+====================================================+
+| No running processes found in NPU 7                                                            |
++===========================+===============+====================================================+
+
+========== INFINIBAND DEVICES ==========
+ls: cannot access '/dev/infiniband': No such file or directory
+
+========== RDMA SYSFS ==========
+total 0
+drwxr-xr-x  2 root root 0 Aug  9 17:26 .
+drwxr-xr-x 72 root root 0 Aug  9 17:26 ..
+lrwxrwxrwx  1 root root 0 Aug  9 17:26 hns_0 -> ../../devices/pci0000:bc/0000:bc:00.0/0000:bd:00.0/infiniband/hns_0
+lrwxrwxrwx  1 root root 0 Aug  9 17:26 hns_1 -> ../../devices/pci0000:bc/0000:bc:00.0/0000:bd:00.2/infiniband/hns_1
+
+========== RDMA DEVICE NAMES ==========
+DEVICE=hns_0
+b24f:a6ff:fe69:e3e8
+DEVICE=hns_1
+b24f:a6ff:fe69:e3ea
+
+========== NETWORK ==========
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+17: eth0@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNOWN mode DEFAULT group default 
+    link/ether b0:4f:a6:69:e3:e8 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+
+========== HANDLE_WAIT IMPLEMENTATION ==========
+src/device/gm2gm/engine/shmem_device_rdma.hpp:58:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/device/gm2gm/engine/shmem_device_rdma.hpp:73:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/device/gm2gm/engine/shmem_device_rdma.hpp:143:        aclshmemi_roce_quiet(peer, ub_tensor_64, ub_tensor_32, sync_id);
+src/device/gm2gm/engine/shmem_device_rdma.hpp:504:    aclshmemi_roce_quiet(pe, ub_tensor_64, ub_tensor_32, sync_id);
+src/device/gm2gm/engine/shmemi_device_rdma.h:182:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/device/gm2gm/engine/shmemi_device_rdma.h:195:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/device/gm2gm/shmem_device_so.hpp:307:    aclshmemi_roce_quiet(pe, 0, ub_tensor_64, ub_tensor_32, sync_id);
+src/device/gm2gm/shmem_device_so.hpp:325:    aclshmemi_roce_quiet(pe, 0, ub_tensor_64, ub_tensor_32, sync_id);
+src/device/gm2gm/shmemi_device_cc.h:453:        aclshmemi_roce_quiet(peer, ub_tensor_64, ub_tensor_32, 0);
+src/python/shmem/src/device/gm2gm/engine/shmem_device_rdma.hpp:58:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/python/shmem/src/device/gm2gm/engine/shmem_device_rdma.hpp:73:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/python/shmem/src/device/gm2gm/engine/shmem_device_rdma.hpp:143:        aclshmemi_roce_quiet(peer, ub_tensor_64, ub_tensor_32, sync_id);
+src/python/shmem/src/device/gm2gm/engine/shmem_device_rdma.hpp:504:    aclshmemi_roce_quiet(pe, ub_tensor_64, ub_tensor_32, sync_id);
+src/python/shmem/src/device/gm2gm/engine/shmemi_device_rdma.h:182:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/python/shmem/src/device/gm2gm/engine/shmemi_device_rdma.h:195:ACLSHMEM_DEVICE void aclshmemi_roce_quiet(
+src/python/shmem/src/device/gm2gm/shmem_device_so.hpp:307:    aclshmemi_roce_quiet(pe, 0, ub_tensor_64, ub_tensor_32, sync_id);
+src/python/shmem/src/device/gm2gm/shmem_device_so.hpp:325:    aclshmemi_roce_quiet(pe, 0, ub_tensor_64, ub_tensor_32, sync_id);
+src/python/shmem/src/device/gm2gm/shmemi_device_cc.h:453:        aclshmemi_roce_quiet(peer, ub_tensor_64, ub_tensor_32, 0);
+
+========== HANDLE_WAIT API REFERENCES ==========
+src/host/python_wrapper/pyshmem.cpp:497:        "aclshmemx_handle_wait",
+src/host/python_wrapper/pyshmem.cpp:503:            aclshmemx_handle_wait(handle, acl_stream);
+src/host/python_wrapper/pyshmem.cpp:517:        "aclshmemx_handle_wait",
+src/host/python_wrapper/pyshmem.cpp:526:            aclshmemx_handle_wait(handle, acl_stream);
+src/host/sync/shmemi_sync.cpp:43:void aclshmemx_handle_wait(aclshmem_handle_t handle, aclrtStream stream)
+src/python/shmem/core/collective.py:109:    _pyshmem.aclshmemx_handle_wait(handle, stream)
+src/python/shmem/include/host/data_plane/shmem_host_p2p_sync.h:44: * @fn ACLSHMEM_HOST_API void aclshmemx_handle_wait(aclshmem_handle_t handle, aclrtStream stream)
+src/python/shmem/include/host/data_plane/shmem_host_p2p_sync.h:50:ACLSHMEM_HOST_API void aclshmemx_handle_wait(aclshmem_handle_t handle, aclrtStream stream);
+src/python/shmem/include/host/data_plane/shmem_host_p2p_sync.h:51:#define shmem_handle_wait aclshmemx_handle_wait
+src/python/shmem/__init__.py:304:        aclshmemx_handle_wait,
+src/python/shmem/__init__.py:397:    'aclshmemx_handle_wait',
+include/host/data_plane/shmem_host_p2p_sync.h:44: * @fn ACLSHMEM_HOST_API void aclshmemx_handle_wait(aclshmem_handle_t handle, aclrtStream stream)
+include/host/data_plane/shmem_host_p2p_sync.h:50:ACLSHMEM_HOST_API void aclshmemx_handle_wait(aclshmem_handle_t handle, aclrtStream stream);
+include/host/data_plane/shmem_host_p2p_sync.h:51:#define shmem_handle_wait aclshmemx_handle_wait
+
+========== PREVIOUS OFFICIAL HANDLE_WAIT RC ==========
+NO_RC_FILE
+
+========== PREVIOUS ROCE INIT PROBE RC ==========
+1
