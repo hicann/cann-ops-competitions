@@ -176,7 +176,7 @@
 | 22 | 8月社区任务-aclblasCtrsm算子开发（950） |
 | 23 | 8月社区任务-aclblasCsyr2k算子开发（950） |
 | 24 | 8月社区任务-aclblasCsymm算子开发（950） |
-| 25 | 8月社区任务-aclblasCsyrk算子开发（950） |
+| 25 | [8月社区任务-aclblasCsyrk算子开发（950）](./202608/aclblasCsyrk_Atlas950PR_task_doc.md) |
 | 26 | 8月社区任务-aclblasCgemmBatched算子开发（950） |
 | 27 | 8月社区任务-aclblasCher2k算子开发（A2/A3） |
 | 28 | 8月社区任务-aclblasChemm算子开发（A2/A3） |
