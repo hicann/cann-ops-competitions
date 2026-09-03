@@ -204,5 +204,29 @@
 | 50 | 8月社区任务-aclblasCdotc算子开发（950） |
 
 
+
+### 9月份发放的任务
+
+| 任务编号 | 任务名称 |
+| ---- | ---- |
+| 1 | 9月社区任务-aclsparseSpSM 算子开发(A2/A3) |
+| 2 | 9月社区任务-aclsparseSpSM 算子开发(950) |
+| 3 | 9月社区任务-aclsparseSgtsv2 算子开发(A2/A3) |
+| 4 | 9月社区任务-aclsparseSpMV 算子开发(A2/A3) |
+| 5 | 9月社区任务-aclsparseGather 算子开发(A2/A3) |
+| 6 | 9月社区任务-aclsparseSDDMM 算子开发(A2/A3) |
+| 7 | 9月社区任务-aclsparseSpMV 算子开发(950) |
+| 8 | 9月社区任务-aclsparseXcscsort 算子开发(A2/A3) |
+| 9 | 9月社区任务-aclsparseSpSV 算子开发(A2/A3) |
+| 10 | 9月社区任务-aclsparseSpSV 算子开发(950) |
+| 11 | 9月社区任务-aclsparseSDDMM 算子开发(950) |
+| 12 | 9月社区任务-aclsparseScatter 算子开发(A2/A3) |
+| 13 | 9月社区任务-aclsparseGather 算子开发(950) |
+| 14 | 9月社区任务-aclsparseScatter 算子开发(950) |
+| 15 | 9月社区任务-aclsparseSparseToDense 算子开发(A2/A3) |
+| 16 | 9月社区任务-aclsparseSparseToDense 算子开发(950) |
+| 17 | 9月社区任务-aclsparseDenseToSparse 算子开发(A2/A3) |
+| 18 | 9月社区任务-aclsparseDenseToSparse 算子开发(950) |
+
 ## 参考链接
 社区任务发放页面：https://gitcode.com/org/cann/discussions/22
