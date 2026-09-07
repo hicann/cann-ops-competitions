@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1320" viewBox="0 0 1200 1320" role="img" aria-label="01  Host 参数校验与 kernel 下发">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9Z" fill="#60758A"/></marker></defs>
+<rect width="1200" height="1320" rx="16" fill="#F7FAFE"/>
+<text x="40" y="49" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="27" font-weight="650" text-anchor="start" fill="#172D46">01  Host 参数校验与 kernel 下发</text>
+<text x="40" y="80" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">aclblasCgeam · 950PR · 合法零维请求不访问矩阵</text>
+<rect x="170" y="112" width="650" height="65" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="495.0" y="151.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">aclblasCgeam(handle, transa, transb, …)</text>
+<polyline points="495,177 495,216" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="170" y="216" width="650" height="111" rx="12" fill="#FFFFFF" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="495.0" y="263.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">① handle  ② N/T/C 枚举  ③ m/n 与 lda/ldb/ldc</text>
+<text x="495.0" y="293.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">④ alpha/beta 指针与精确原地约束</text>
+<polyline points="820,271 892,271" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="840" y="251" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">失败</text>
+<rect x="895" y="233" width="265" height="78" rx="12" fill="#FFF0ED" stroke="#E5B0A6" stroke-width="1.5"/>
+<text x="1027.5" y="262.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">返回对应错误码</text>
+<text x="1027.5" y="292.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">不下发 kernel</text>
+<polyline points="495,327 495,365" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="512" y="352" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">通过</text>
+<path d="M495.0 365 L770 417.5 L495.0 470 L220 417.5Z" fill="#EAF2FE" stroke="#74A3D6" stroke-width="1.5"/>
+<text x="495.0" y="424.5" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">m == 0 或 n == 0？</text>
+<polyline points="770,417 890,417" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="816" y="399" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">是</text>
+<rect x="895" y="383" width="265" height="74" rx="12" fill="#E7F5EE" stroke="#9BCBB1" stroke-width="1.5"/>
+<text x="1027.5" y="410.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">SUCCESS</text>
+<text x="1027.5" y="440.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">不读取标量值 / 矩阵</text>
+<polyline points="495,470 495,509" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="511" y="495" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">否</text>
+<rect x="170" y="509" width="650" height="94" rx="12" fill="#FFFFFF" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="495.0" y="547.6" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">读取 Host alpha/beta，确定活跃输入</text>
+<text x="495.0" y="577.6" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">检查非空矩阵指针与 64 位访问跨度</text>
+<polyline points="820,556 891,556" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="839" y="537" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">失败</text>
+<rect x="895" y="520" width="265" height="74" rx="12" fill="#FFF0ED" stroke="#E5B0A6" stroke-width="1.5"/>
+<text x="1027.5" y="547.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">INVALID_VALUE</text>
+<text x="1027.5" y="577.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">不下发 kernel</text>
+<polyline points="495,603 495,643" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="170" y="643" width="650" height="83" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="495.0" y="676.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">scalarMode：ZERO / A_ONLY / B_ONLY / AB</text>
+<text x="495.0" y="706.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">不活跃输入禁止 CopyIn</text>
+<polyline points="495,726 495,765" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M495.0 765 L810 820.5 L495.0 876 L180 820.5Z" fill="#EAF2FE" stroke="#74A3D6" stroke-width="1.5"/>
+<text x="495.0" y="827.5" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">C 与全部活跃输入满足紧凑 N 布局？</text>
+<polyline points="305,842 305,922" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="317" y="900" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">是</text>
+<polyline points="685,842 685,922" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="699" y="900" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">否</text>
+<rect x="145" y="924" width="320" height="87" rx="12" fill="#E7F5EE" stroke="#9BCBB1" stroke-width="1.5"/>
+<text x="305.0" y="959.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">LINEAR</text>
+<text x="305.0" y="989.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">L = m × n 连续切块</text>
+<rect x="525" y="924" width="320" height="87" rx="12" fill="#E7F5EE" stroke="#9BCBB1" stroke-width="1.5"/>
+<text x="685.0" y="959.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">TILE_2D</text>
+<text x="685.0" y="989.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">按 C 的 R × S 矩形切块</text>
+<polyline points="305,1011 305,1051 495,1051 495,1088" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="685,1011 685,1051 495,1051" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="170" y="1090" width="650" height="85" rx="12" fill="#FFFFFF" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="495.0" y="1124.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">查询 AIV / UB，校验预算并生成 Tiling</text>
+<text x="495.0" y="1154.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">cgeam_kernel_do(…, handle-&gt;stream)</text>
+<rect x="895" y="1084" width="265" height="97" rx="12" fill="#FFF0ED" stroke="#E5B0A6" stroke-width="1.5"/>
+<text x="1027.5" y="1123.11" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="middle" fill="#172D46">资源失败 / 可见下发失败</text>
+<text x="1027.5" y="1153.11" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="middle" fill="#172D46">返回对应错误码</text>
+<polyline points="820,1132 892,1132" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="495,1175 495,1211" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="170" y="1213" width="650" height="62" rx="12" fill="#E7F5EE" stroke="#9BCBB1" stroke-width="1.5"/>
+<text x="495.0" y="1249.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">成功下发后返回 SUCCESS；结果读回前同步 stream</text>
+</svg>

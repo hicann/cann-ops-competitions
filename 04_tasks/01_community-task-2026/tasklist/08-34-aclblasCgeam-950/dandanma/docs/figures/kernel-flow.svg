@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1040" viewBox="0 0 1280 1040" role="img" aria-label="02  Kernel 数据通路与缓冲生命周期">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9Z" fill="#60758A"/></marker></defs>
+<rect width="1280" height="1040" rx="16" fill="#F7FAFE"/>
+<text x="40" y="49" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="27" font-weight="650" text-anchor="start" fill="#172D46">02  Kernel 数据通路与缓冲生命周期</text>
+<text x="40" y="80" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">AIV-only · 一个输出 tile 的活跃输入读完后才允许写回</text>
+<rect x="350" y="111" width="580" height="65" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="640.0" y="150.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">根据 blockIdx 获得独占输出 tile 范围</text>
+<polyline points="640,176 640,212" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="350" y="214" width="580" height="65" rx="12" fill="#FFFFFF" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="640.0" y="253.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">Init：按标量模式仅分配所需缓冲</text>
+<polyline points="640,279 640,317" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="350" y="319" width="580" height="66" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="640.0" y="358.6" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">标量模式分发</text>
+<polyline points="930,351 1080,351 1080,449" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="966" y="333" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">ZERO</text>
+<rect x="959" y="451" width="242" height="78" rx="12" fill="#FFF5DF" stroke="#DFC88D" stroke-width="1.5"/>
+<text x="1080.0" y="480.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">Duplicate 有效输出</text>
+<text x="1080.0" y="510.94" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="middle" fill="#172D46">生成 (0,0)</text>
+<polyline points="640,385 640,414 175,414 175,451" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="359" y="407" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">A_ONLY / B_ONLY / AB</text>
+<rect x="50" y="451" width="250" height="116" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="175.0" y="485.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">CopyIn：仅活跃 A/B</text>
+<text x="175.0" y="515.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">GM 连续段 → AoS UB</text>
+<text x="175.0" y="545.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">输入 EnQue / DeQue</text>
+<polyline points="300,509 347,509" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="350" y="451" width="250" height="116" rx="12" fill="#E7F5EE" stroke="#9BCBB1" stroke-width="1.5"/>
+<text x="475.0" y="485.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">Normalize</text>
+<text x="475.0" y="515.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">Gather 拆分 / 转置</text>
+<text x="475.0" y="545.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">OP_C：虚部取负</text>
+<polyline points="600,509 647,509" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="650" y="451" width="250" height="116" rx="12" fill="#E7F5EE" stroke="#9BCBB1" stroke-width="1.5"/>
+<text x="775.0" y="485.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">Compute</text>
+<text x="775.0" y="515.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">FP32 复数乘积与相加</text>
+<text x="775.0" y="545.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">A/B 复用工作区</text>
+<polyline points="775,567 775,622" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="350" y="624" width="550" height="86" rx="12" fill="#FFFFFF" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="625.0" y="658.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">非零路径 Scatter；ZERO 已直接生成 AoS 零</text>
+<text x="625.0" y="688.27" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">输出 EnQue / DeQue（V → MTE3）</text>
+<polyline points="1080,529 1080,667 903,667" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="625,710 625,747" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="350" y="750" width="550" height="81" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="625.0" y="782.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">CopyOut：仅写有效 C，保留 ld padding</text>
+<text x="625.0" y="812.1" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="400" text-anchor="middle" fill="#172D46">DMA 消费完成后释放输出槽位</text>
+<polyline points="350,790 25,790 25,351 347,351" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="70" y="771" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">下一 tile</text>
+<text x="50" y="894" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="600" text-anchor="start" fill="#172D46">双缓冲稳态示意（完成依赖后才推进）</text>
+<rect x="50" y="921" width="360" height="65" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="230.0" y="959.77" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">MTE2  ·  CopyIn tile t+1</text>
+<rect x="460" y="921" width="360" height="65" rx="12" fill="#E7F5EE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="640.0" y="959.77" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">Vector  ·  Compute tile t</text>
+<rect x="870" y="921" width="360" height="65" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="1050.0" y="959.77" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="400" text-anchor="middle" fill="#172D46">MTE3  ·  CopyOut tile t−1</text>
+<text x="50" y="1017" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">预热首 tile → 稳态交叠 → 排空输出；双槽配置本身不等于已实现流水重叠。</text>
+</svg>

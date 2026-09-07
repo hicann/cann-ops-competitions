@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="830" viewBox="0 0 1260 830" role="img" aria-label="03  转置 tile：整段读取，UB 内完成转置与拆分">
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9Z" fill="#60758A"/></marker></defs>
+<rect width="1260" height="830" rx="16" fill="#F7FAFE"/>
+<text x="40" y="49" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="27" font-weight="650" text-anchor="start" fill="#172D46">03  转置 tile：整段读取，UB 内完成转置与拆分</text>
+<text x="40" y="80" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">示例 h = 3、w = 2；每个格子是一个 complex64，省略 UB padding</text>
+<text x="70" y="147" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="600" text-anchor="start" fill="#172D46">输出逻辑 tile：3 行 × 2 列</text>
+<text x="690" y="147" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="600" text-anchor="start" fill="#172D46">T/C 输入物理 tile：2 行 × 3 列</text>
+<rect x="80" y="178" width="125" height="62" rx="12" fill="#E4EEFC" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="142.5" y="216.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x00</text>
+<rect x="215" y="178" width="125" height="62" rx="12" fill="#E4EEFC" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="277.5" y="216.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x01</text>
+<rect x="80" y="250" width="125" height="62" rx="12" fill="#E4F3E9" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="142.5" y="288.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x10</text>
+<rect x="215" y="250" width="125" height="62" rx="12" fill="#E4F3E9" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="277.5" y="288.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x11</text>
+<rect x="80" y="322" width="125" height="62" rx="12" fill="#FFF1D8" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="142.5" y="360.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x20</text>
+<rect x="215" y="322" width="125" height="62" rx="12" fill="#FFF1D8" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="277.5" y="360.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x21</text>
+<rect x="700" y="178" width="125" height="62" rx="12" fill="#E4EEFC" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="762.5" y="216.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x00</text>
+<rect x="835" y="178" width="125" height="62" rx="12" fill="#E4F3E9" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="897.5" y="216.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x10</text>
+<rect x="970" y="178" width="125" height="62" rx="12" fill="#FFF1D8" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="1032.5" y="216.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x20</text>
+<rect x="700" y="250" width="125" height="62" rx="12" fill="#E4EEFC" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="762.5" y="288.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x01</text>
+<rect x="835" y="250" width="125" height="62" rx="12" fill="#E4F3E9" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="897.5" y="288.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x11</text>
+<rect x="970" y="250" width="125" height="62" rx="12" fill="#FFF1D8" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="1032.5" y="288.92" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="24" font-weight="400" text-anchor="middle" fill="#172D46">x21</text>
+<polyline points="430,264 635,264" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="474" y="245" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">转置关系</text>
+<text x="700" y="357" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="400" text-anchor="start" fill="#60758A">固定输出 r：从源矩阵连续读取 w 个复数</text>
+<text x="70" y="445" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="600" text-anchor="start" fill="#172D46">1  CopyIn 原始 AoS</text>
+<rect x="70" y="465" width="1120" height="64" rx="12" fill="#FFFFFF" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="630.0" y="504.26" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="22" font-weight="400" text-anchor="middle" fill="#172D46">x00  x01  |  x10  x11  |  x20  x21     （每段长度 w；实际 UB 段距 S）</text>
+<polyline points="630,529 630,568" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="70" y="578" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="600" text-anchor="start" fill="#172D46">2  Gather 同时转置与拆分</text>
+<rect x="70" y="599" width="1120" height="77" rx="12" fill="#E7F5EE" stroke="#9BCBB1" stroke-width="1.5"/>
+<text x="630.0" y="629.43" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#172D46">q = c × R + r；s = r × S + c</text>
+<text x="630.0" y="659.43" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#172D46">Xr[q] ← rawFloat[2s]       Xi[q] ← rawFloat[2s+1]；C 模式令 Xi 取负</text>
+<polyline points="630,676 630,713" fill="none" stroke="#60758A" stroke-width="2" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="70" y="716" width="1120" height="65" rx="12" fill="#EAF2FE" stroke="#CCDAE8" stroke-width="1.5"/>
+<text x="630.0" y="755.43" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="400" text-anchor="middle" fill="#172D46">输出列序：x00  x10  x20  |  x01  x11  x21 → 复数计算 → Scatter → 按列写 C</text>
+<text x="70" y="811" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="400" text-anchor="start" fill="#60758A">有效范围 r &lt; h、c &lt; w；Gather 偏移以字节计，为 8s 和 8s+4。</text>
+</svg>
