@@ -227,6 +227,29 @@
 | 16 | 9月社区任务-aclsparseSparseToDense 算子开发(950) |
 | 17 | 9月社区任务-aclsparseDenseToSparse 算子开发(A2/A3) |
 | 18 | 9月社区任务-aclsparseDenseToSparse 算子开发(950) |
+| 19 | CANN训练营西安邮电大学-aclblasCaxpy算子开发(950) |
+| 20 | 算子实操工坊-上海站-aclblasCgemmEx算子开发(950) |
+| 21 | 算子实操工坊-上海站-aclblasChemm算子开发(950) |
+| 22 | 算子实操工坊-上海站-aclblasCher2k算子开发(950) |
+| 23 | CANN训练营西安邮电大学-aclblasCrot算子开发(950) |
+| 24 | 算子实操工坊-上海站-aclblasCrotg算子开发(950) |
+| 25 | CANN训练营东南大学-aclblasCscal算子开发(950) |
+| 26 | CANN训练营西安邮电大学-aclblasCsrot算子开发(950) |
+| 27 | CANN训练营东南大学-aclblasCsscal算子开发(950) |
+| 28 | CANN训练营东南大学-aclblasCswap算子开发(950) |
+| 29 | CANN训练营东南大学-aclblasCsyr算子开发(950) |
+| 30 | CANN训练营东南大学-aclblasCsyr2算子开发(950) |
+| 31 | CANN训练营西安邮电大学-aclblasCtbmv算子开发(950) |
+| 32 | 算子实操工坊-上海站-aclblasCtpmv算子开发(950) |
+| 33 | CANN训练营西安邮电大学-aclblasCtrsv算子开发(950) |
+| 34 | CANN训练营北京邮电大学-fps算子开发(950) |
+| 35 | CANN训练营北京邮电大学-grid_cluster算子开发(950) |
+| 36 | CANN训练营北京邮电大学-knn算子开发(950) |
+| 37 | CANN训练营北京邮电大学-nearest算子开发(950) |
+| 38 | CANN训练营北京邮电大学-segment_coo算子开发(950) |
+| 39 | CANN训练营北京邮电大学-segment_csr算子开发(950) |
+| 40 | CANN训练营北京邮电大学-torch_sparse SpMM 算子开发(950) |
+| 41 | CANN训练营北京邮电大学-torch_sparse工具类接口开发(950) |
 
 ## 参考链接
 社区任务发放页面：https://gitcode.com/org/cann/discussions/22
