@@ -10,13 +10,15 @@
 
 本算子为 ops-blas 仓 gerc 算子新增 arch35（Ascend 950PR）实现，基于 Ascend C 编程语言。gerc 此前仅有 arch22 实现（`blas/gerc/arch22/`），本设计面向 950PR 的 AIV 向量核特性全新实现连续访存场景的共轭秩-1 更新。
 
+> **版本说明**：本设计文档为 **v2（寄存器融合架构）版**，整体重写自早期 strip 列分组多段 DMA 版本。早期 strip 版本性能未达标（0/4）并曾以"物理不可达"叙事提交，已被官方口径与真机复测证伪；本版改用寄存器分块融合 + 六列分组双缓冲路径，性能从零复测 4/4 达标（双口径），精度 1201/1201 全通过。
+
 ### 实现路径与 API 路径
 
 - 算子实现路径：`blas/gerc/arch35/cgerc_host.cpp`、`blas/gerc/arch35/cgerc_kernel.cpp`、`blas/gerc/arch35/cgerc_tiling_data.h`
 - API 路径：`include/cann_ops_blas.h` 中已有 `aclblasCgerc` 声明（禁止定义 950PR 私有平行接口）
 - 测试路径：`test/gerc/cgerc/arch35/`（CSV 驱动 GTest 框架）
 
-### aclblasCgerc 算子现状分析
+### aclblasCgerc 算子实现现状分析（Ascend C / Kernel 直调，非 TBE）
 
 | 参数 | 参数含义 | 数据类型 | 支持数据类型 | 约束 | 形状 |
 | --- | --- | --- | --- | --- | --- |
@@ -47,20 +49,25 @@
 
 ## 需求描述
 
-在昇腾 Ascend 950PR NPU 上使用 Ascend C 开发单精度复数共轭秩-1 更新算子 `aclblasCgerc`，实现与 cuBLAS `cublasCgerc` / Netlib BLAS `cgerc` 接口完全对齐的功能，精度按生态算子开源标准（`task_doc §3.2`：rtol=2⁻¹⁰、atol=2⁻¹⁶、matched_ratio≥0.99），性能如实报告。
+在昇腾 Ascend 950PR NPU 上使用 Ascend C 开发单精度复数共轭秩-1 更新算子 `aclblasCgerc`，实现与 cuBLAS `cublasCgerc` / Netlib BLAS `cgerc` 接口完全对齐的功能，精度按生态算子开源标准（`task_doc §3.2`：rtol=2⁻¹⁰、atol=2⁻¹⁶、matched_ratio≥0.99），性能达到官方标杆线（4 case 全部 PASS）。
 
 ## 需求拆解
 
 1. 支持 COMPLEX64；语义严格对齐 Netlib cgerc：共轭只作用于 y，负步长从向量末端反向遍历
 2. 支持 m/n ≥ 0 任意规格（含 m=0/n=0/alpha=(0,0) 的合法 no-op）、任意非零步长（INT_MIN 除外）、lda ≥ max(1,m) 的 padding 布局
 3. 接口签名与 `include/cann_ops_blas.h` 已有声明一致，禁止定义 950PR 私有平行接口
-4. 参数校验严格先于 quick return：handle → m/n ≥ 0 → alpha/incx/incy/lda → 指针（仅 m>0 且 n>0）→ no-op（`cgerc_host.cpp:210` 注释 `// Full parameter validation first, then quick returns (task book §2.5).`）
-5. 性能如实报告：4 case 计时（口径见§性能标准），与 GPU 基线比较 ratio
+4. 参数校验严格先于 quick return：handle → m/n ≥ 0 → alpha/incx/incy/lda → 指针（仅 m>0 且 n>0）→ no-op
+5. 性能达标：4 case（512²/1024²/2048²/4096²）计时全部低于标杆线；官方口径 = msprof API 级（≈批量口径，见§性能标准）
 6. 测试工程基于 ops-blas 仓 CSV 驱动 GTest 框架（1200 条用例），golden 由 cblas_cgerc 生成
+7. 精度与稳定性不作为性能代价：保留 Netlib 括号顺序、显式物化 FP32 乘积、修复输出缓冲复用缺陷（见§详细设计）
 
 # 详细设计（required）
 
 ## 算子分析
+
+### 计算与主要开销
+
+Cgerc 执行复数秩一更新 `A += alpha * x * conj(y)^T`。矩阵更新量为 O(mn)，而 x/y 输入量仅为 O(m+n)。因此性能关键在于：**减少矩阵 A 的重复读写**，并把 x、y 和 alpha 的复用尽量留在寄存器/片上缓冲中，避免中间数据反复进出 UB 与 GM。
 
 ### 数学公式
 
@@ -74,26 +81,22 @@ A(I,J) ← A(I,J) + ALPHA · X(I) · CONJG(Y(J))
   Y(J)  = (yR, yI)   复数向量，物理下标 = (J-1)*incy（incy<0 时同理反向）
 ```
 
-复数展开（记 w = alpha · x，即 wRe = aR·xR − aI·xI，wIm = aR·xI + aI·xR）：
+复数展开（记 w = alpha · x，即 wRe = aR·xR − aI·xI，wIm = aR·xI + aI·xR；conj(y) = (yR, −yI)）：
 
 ```
-A.re(I,J) += yR(J) · wRe(I) + yI(J) · wIm(I)
-A.im(I,J) += yR(J) · wIm(I) − yI(J) · wRe(I)
+A.re(I,J) += wRe(I) · yR(J) + wIm(I) · yI(J)
+A.im(I,J) += wIm(I) · yR(J) − wRe(I) · yI(J)
 ```
 
-本实现将 w 预折叠为两个交织布局更新向量 U/V（每行块构造一次，按列摊销）：
-
-```
-U[2i] = wRe[i], U[2i+1] = wIm[i]       （w 原序交织）
-V[2i] = wIm[i], V[2i+1] = -wRe[i]      （w 旋转交织，共轭号在此）
-A_交织(2cnt) += yr_j · U + yi_j · V     （2 条连续 Axpy 同时更新实部/虚部）
-```
+其中 **strip/legacy 回退路径**将 alpha 折叠进 x 侧的 w（w = alpha·x，每行块构造一次，按列摊销）以复用 Axpy；**寄存器融合优化路径按 Netlib cgerc.f 原始顺序**先算 temp = alpha·conj(y)（每列一次）再 A += x·temp。二者数学等价、FP 舍入路径不同但均在容差内（见§精度标准）。
 
 ### 支持数据类型
 
 | 数据类型 | 说明 |
 | --- | --- |
 | COMPLEX64 | 单精度复数，实部/虚部各 float32，内存布局 `{float real; float imag;}`，等价于交织 float 对，8 字节/元素 |
+
+全程 float32，无 cast、无精度升降；仅涉及交织↔平面/寄存器布局转换。
 
 ### 支持形状
 
@@ -104,272 +107,83 @@ A_交织(2cnt) += yr_j · U + yi_j · V     （2 条连续 Axpy 同时更新实�
 
 ## 算子实现
 
-### 实现方案概述
+### 实现方案概述（寄存器融合架构）
 
-**核心思路**：A 列主序 → 每列在内存中连续，MTE 友好。为使 A 热路径上零 GM 侧 Gather/Scatter，将 alpha 与共轭全部折进 x 侧的两个**交织布局更新向量 U/V**（每行块构造一次，按列摊销），每列只需 2 条连续 `Axpy` 完成全长度更新。
+**核心思路**：将计算链重构为"寄存器驻留 + 一次向量融合读写"，把 A 的热路径 GM 往返压到最低。四项关键设计（对应 `Cgerc_优化思路_20260910.md` §2）：
 
-**两种 A 访问模式**（host 决策，kernel 服从 `tiling.tilingKey`）：
+1. **寄存器分块融合**：将 x 以 64 复数为一个行块，四个 64 复数行块驻留寄存器，共用同一份 y 广播及 `alpha * conj(y)` 折叠结果；对每个 A 行块，用**一次向量融合**完成 A 的读、更新、写，消除中间 UB 搬运。
+2. **列分组与双缓冲预取**：默认**六列分组**，配双缓冲预取——当当前列组在向量管道上计算时，下一列组的 A 数据已在 MTE2 上预取入 UB，重叠 DMA 与计算。UB 容量计算同时计入 x、y、A，不只按单一矩阵块估算。
+3. **按输入约束分流**：对齐、单位步长（incx=incy=1、lda=m、地址对齐）走优化入口；非单位步长和不满足对齐条件的输入保留已验证的**通用回退路径**。零 y 列（`y[J]==0`）在优化入口与标量路径**显式保留** A 原始位模式（回退路径的覆盖范围见§通用回退路径），不参与计算。
+4. **限定编译优化范围**：Cgerc 专用 `-O2 -ffp-contract=off`，通过 `CGERC_OPTIMIZED` CMake option 限定于 `cgerc_host.cpp` + `cgerc_kernel.cpp`，不修改其他算子编译选项。
 
-| tilingKey | 模式 | 适用条件 | DMA 策略 |
-| --- | --- | --- | --- |
-| 1 | strip 多段 DMA | `lda==m && n>1 && m%4==0 && UB 装得下` | 每组一次多段 `DataCopyPad`（blockCount=gc, blockLen=cnt×8B） |
-| 0 | legacy 逐列 | 其余所有形状 | 每列一次单段 `DataCopyPad` |
+#### 3.2.1 host 侧设计
 
-### host 侧设计（`cgerc_host.cpp`，261 行）
+##### 1. 参数校验与 no-op
 
-#### 参数校验与 no-op（L28-217）
+校验链严格先于 quick return：
 
-校验链（严格先于 quick return）：
-1. `handle != nullptr`（L206）→ `ACLBLAS_STATUS_HANDLE_IS_NULLPTR`
-2. `m >= 0`、`n >= 0`（L207-208）→ `ACLBLAS_STATUS_INVALID_VALUE`
-3. `ValidateCgercParams`（L211，内部 L28-45）：alpha 非空 → incx/incy ∉ {0, INT_MIN} → lda ≥ max(1,m) → x/y/A 非空（仅 m>0 且 n>0）
-4. Quick return（L215-217）：`m==0 || n==0 || alpha==(0,0)` → 返回 SUCCESS，**不读 x/y**
+1. `handle != nullptr` → `ACLBLAS_STATUS_HANDLE_IS_NULLPTR`
+2. `m >= 0`、`n >= 0` → `ACLBLAS_STATUS_INVALID_VALUE`
+3. `ValidateCgercParams`：alpha 非空 → incx/incy ∉ {0, INT_MIN} → lda ≥ max(1,m) → x/y/A 非空（仅 m>0 且 n>0）
+4. Quick return：`m==0 || n==0 || alpha==(0,0)` → 返回 SUCCESS，**不读 x/y**
 
 `INT_MIN` 收紧理由：`-INT_MIN` 是 C/C++ 未定义行为（signed overflow），kernel 用 `-incx` 做反向索引依赖此约束。已在 `blas/gerc/README.md` 登记。
 
-#### Tiling 策略（`CalCgercRowTile`，L87-201）
+##### 2. 数据分块和内存优化策略（UB 容量与分核）
 
-**UB 容量查询**：`GetCachedUbSize()`（L59-70）通过 `PlatformAscendCManager::GetCoreMemSize(CoreMemType::UB, ...)` 查询实际 UB 大小，fallback 为仓内具名常量 `UB_SIZE = 248*1024 = 253952`（`blas/common/helper/kernel_constant.h:16`）。
+- **UB 容量查询**：`GetCachedUbSize()` 通过 `PlatformAscendCManager::GetCoreMemSize(CoreMemType::UB, ...)` 查询实际 UB 大小，fallback 为仓内具名常量 `UB_SIZE = 248*1024 = 253952`（`blas/common/helper/kernel_constant.h:16`）；最终 `ubUsable = min(ubSize, UB_SIZE)`，扣除安全余量后作为可分配预算。UB 预算同时计入 x 行块、y 缓存与 A 双缓冲列组三部分。
+- **AIV 侧核数确定**：`numBlocks = min(n, aivCoreNum)`，`aivCoreNum = GetCachedAivCoreCount()`（进程内缓存）。零值防护：查询失败返回 0 时 fallback 为 1 并打印 OP_LOGE，避免除零。
+- **Kernel 侧列分配**：`colsPerCore = ceil(n / blockNum)`；`start = blockIdx × colsPerCore`；`end = min(start + colsPerCore, n)`；`start >= n` 的核闲置（start=end=0）。核间列段 disjoint、无 atomic 竞争。
 
-**UB 上限**：`ubUsable = std::min<uint64_t>(ubSize, static_cast<uint64_t>(UB_SIZE))`（L138），确保 UB 预算不超过仓内常量上限。
+##### 3. tilingKey 规划策略
 
-**UB 预算不等式**（strip 模式，`ubSafetyMargin = 2*1024 = 2048 B`）：
+host 侧按输入约束决策优化入口 vs 回退路径，kernel 服从 `tiling.tilingKey`：
 
-```
-52t + 8·sg·t + (128 + 64 + yCapBytes) ≤ min(ubSize, UB_SIZE) − 2048
-```
-
-其中 t = rowTile，sg = stripCols，yCapBytes = yCapFloats × 4。各项来源：
-
-| 组成 | 字节公式 | 说明 |
+| tilingKey | 路径 | 判定条件 |
 | --- | --- | --- |
-| cplxInQue（TQue<VECIN,2>） | 2×(8t+32) = 16t+64 | x 行块交织缓冲（2 槽） |
-| planeBuf | 36t+32+yCapBytes+64 | wRe/wIm/negWRe 各 4t + U/V 各 8t + evenOff/oddOff 各 4t = 36t，加 yCache |
-| stripBuf | 8·sg·t+32 | strip 列分组缓冲（sg 列 × t 行 × 2 floats × 4B） |
-| 合计 | 52t + 8·sg·t + (128+64+yCapBytes) | — |
+| 3 | 寄存器融合优化入口 | `incx==1 && incy==1 && m%64==0 && lda>=m && lda%4==0 && perCore<=4096` + 地址对齐 + UB 装得下六列分组双缓冲 |
+| 2 | TINY 简化路径 | `m*n<=65536`（简化 Init 序列、关闭 yCache/strip） |
+| 1 | strip 列分组路径（旧优化路径，保留） | 对齐 + 单位步长但不满足 key=3 门控 |
+| 0 | 通用回退路径（legacy） | 非单位步长 / 不对齐 / 其余所有形状（正确性优先） |
 
-**实测数值验证**：2048²（t=2048, sg=7, yCapBytes=16384）：
-`52×2048 + 8×7×2048 + (128+64+16384) = 106496 + 114688 + 16576 = 237760 B ≤ 253952 B`（余量 16192 B）
+`Tiling` 结构体零初始化（POD 按值传入 kernel，未赋值字段否则会携带不确定值到达设备端）。Tiling 决策链在非优化路径通过 `OP_LOGD` 打印 key/m/n/lda/rowTile/分组宽度等；**key=3 优化入口为静默 dispatch（不打日志）**，其可观测性由自研 perf_bench 与 sanitizer 矩阵覆盖。
 
-**rowTile 求解**（L144-162）：先取 `tStrip = min(mRounded, maxRowTile=2048)` 向下 64 对齐，搜索直到 `60·tStrip ≤ availBytes`（保证 sg≥1），再求 `sgStrip = (availBytes − 52·tStrip) / (8·tStrip)`，clamp `sgStrip ≤ scMax`。
+#### 3.2.2 kernel 侧设计
 
-**maxRowTile = 2048**（L112）：Gather 指令 count 上限为 4096，Axpy 已验证包络内取 2048 为安全上限。
-
-**Tiling 结构体零初始化**（L237）：`CgercTilingData tiling{}` — POD 按值传入 kernel，未赋値字段否则会携带不确定值到达设备端。
-
-**Tiling 决策日志**（L251-254）：`OP_LOGD("aclblasCgerc", "tiling: key=%d m=%d n=%d lda=%d rowTile=%u stripRows=%u stripCols=%u numBlocks=%u path=%s", ...)` — 提供 tiling 决策链的可观测性。
-
-#### §3.2.1.1 分核策略
-
-**AIV 侧核数确定**（L229）：`numBlocks = min(n, aivCoreNum)`，其中 `aivCoreNum = GetCachedAivCoreCount()`（L49-56，进程内缓存，首次调用 `GetAivCoreCount()`）。**零值防护**：若平台查询失败返回 0，fallback 为 1 并打印 OP_LOGE，避免 `CalCgercRowTile` 中 `scMax = ceil(n/numBlocks)` 除零。
-
-**Kernel 侧列分配**（L115-128）：
+##### 优化入口（寄存器融合 + 六列分组双缓冲）
 
 ```
-colsPerCore = ceil(n / blockNum)              // L117，向上取整
-start = blockIdx × colsPerCore                // L118
-end = min(start + colsPerCore, n)             // L119-122，越界截断
-if (start >= n) { start = 0; end = 0; }       // L123-126，闲置核
+Init：绑定 xGM_/yGM_/aGM_、计算列区间 [colStart_, colEnd_)、
+      初始化 x 行块寄存器缓冲 + y 广播缓冲 + A 双缓冲列组、
+      一次性加载 y（incy==1 走 DMA + 标量尾补齐；否则标量收集）
+
+Process（每行块 r0，四个 64 复数行块驻留寄存器）：
+  1. 折叠 alpha*conj(y) 与 x 行块 → w（每行块一次，按列摊销）
+  2. for each 六列分组 [g0, g0+gc)：
+       a. 双缓冲预取：MTE2 预取下一列组 A → UB buffer[next]
+       b. 一次向量融合：读 A(buffer[cur]) → 用 w 与 y 广播更新 → 写回 A
+       c. MTE3 排空后翻转 cur/next
 ```
 
-**4 case 实际取值**（aivCoreNum = 56）：
+- **六列分组**：每组一次处理 6 列，配双缓冲使 DMA 与向量计算重叠。
+- **一次向量融合读写**：A 的读-更新-写在向量管道上一次完成，不落中间 UB 缓冲，显著减少搬运。
+- **双缓冲预取**：cur/next 两块 A 列组缓冲交替，MTE2 预取与向量计算流水重叠。
 
-| case | m×n | numBlocks | colsPerCore | 闲置核 |
-| --- | --- | --- | --- | --- |
-| 1 (512²) | 512×512 | 56 | 10 | 8（56×10=560>512，末核分 2 列） |
-| 2 (1024²) | 1024×1024 | 56 | 19 | 21（56×19=1064>1024） |
-| 3 (2048²) | 2048×2048 | 56 | 37 | 19（56×37=2072>2048） |
-| 4 (4096²) | 4096×4096 | 56 | 74 | 8（56×74=4144>4096） |
+##### 通用回退路径
 
-#### §3.2.1.1 尾块处理逻辑
+非单位步长 / 不对齐输入走已验证的逐列/逐块回退路径，正确性优先，不复用优化入口的对齐假设。零 y 列（`y[J]==0`）直接保留 A 原始位模式（不写、不读改写），避免 `0 × Inf/NaN` 破坏 A 中既有的特殊值语义。**覆盖范围**：reg 路径（zeroY mask + Select 保留原位）与小矩阵标量路径（显式 skip）为显式保留；strip/legacy 路径依赖 Axpy(0) 恒等（有限值安全），Inf/NaN+zero-y 组合由标量路径覆盖（1201/1201 全过）。
 
-**行块尾**（kernel L323/L381）：`cnt = (m − r0 < t) ? (m − r0) : t`
+### 精度与稳定性设计（不作为性能代价）
 
-**列段尾**（kernel L339）：`gc = (colEnd_ − g0 < sg) ? (colEnd_ − g0) : sg`
+对应 `Cgerc_优化思路_20260910.md` §3，三项硬约束：
 
-**yCache 标量尾补齐**（kernel L181-196）：DMA 段按 32B 向下取整（`dmaFloats = yFloats / 8 * 8`），剩余不足 8 floats 的尾部逐元素 `SetValue` 补齐。
+1. **保留 Netlib 运算括号顺序**：`-ffp-contract=off` 禁止隐式 FMA 融合，且不做任意重关联，避免改变极值（Inf/NaN）语义。求值严格按 `A += (alpha·x) · conj(y)` 的括号化次序。
+2. **小矩阵标量路径显式物化 FP32 乘积**：使溢出后的 Inf/NaN 行为与 Golden（cblas_cgerc）一致。
+3. **修复旧 VECIN 输出缓冲 MTE3 前复用缺陷**：旧实现中 VECIN 队列同时作为输出缓冲时，槽位在 MTE3 尚未读完时即被 MTE2 复用，导致块内随机错误。本版补 **MTE3→MTE2 同步**后再释放槽位。该修复针对已复现的块内随机错误，属正确性修复，**不是放宽精度容差**。
 
-**strip 门控要求 `m % 4 == 0` 的原因**（host L164-168）：保证任意行块（含尾块 `cnt = m % rowTile`）的 DMA 段长 `cnt×8B` 恒为 32B 倍数。当 `m%4==0` 且 `t` 是 64 的倍数时，尾块 `cnt = m − floor(m/t)×t` 也满足 `cnt%4==0` → `cnt×8B` 为 32B 倍数。
+### GM 侧数据传输约束
 
-**`m%4 ≠ 0` 的形状**（CSV 中 119 个，占 59.5%）：退回 legacy 逐列路径，正确性不受影响。Legacy 路径对 `cnt` 无 32B 对齐约束（单段 DMA 起始地址天然对齐）。
-
-#### §3.2.1.2 BLOCK_SIZE（UB 容量取值来源）
-
-代码中无名为 `BLOCK_SIZE` 的常量。UB 容量由以下两级确定：
-
-1. **运行时查询**：`GetCachedUbSize()`（`cgerc_host.cpp:59-70`）→ `PlatformAscendCManager::GetCoreMemSize(CoreMemType::UB, cached)`
-2. **仓内具名常量上限**：`UB_SIZE = 248*1024 = 253952`（`blas/common/helper/kernel_constant.h:16`）
-3. **最终取值**：`ubUsable = std::min<uint64_t>(ubSize, static_cast<uint64_t>(UB_SIZE))`（L138）
-
-安全余量：`ubSafetyMargin = 2*1024 = 2048 B`（L110），从 ubUsable 中扣除后作为可分配预算。
-
-#### §3.2.1.2 BUFFER_NUM 与 UB 数据分块
-
-**BUFFER_NUM = 2**：唯一的声明是 `TQue<TPosition::VECIN, 2> cplxInQue_`（kernel L77）。
-
-- 承载内容：x 行块交织数据（BuildUV）与 legacy A 列块
-- 生命周期：在**同一次迭代内** `AllocTensor → EnQue → DeQue → FreeTensor` 闭合（kernel L222-245），**不跨迭代流水**
-- EnQue/DeQue 提供 MTE2→V 同步语义
-
-**A 矩阵主缓冲 `stripBuf_`**（kernel L87）：单 `TBuf<TPosition::VECCALC>`，非 TQue，无双缓冲。
-
-**完整 UB 布局表**（t = rowTile，sg = stripCols，yCapB = yCapFloats×4）：
-
-| Buffer | 用途 | 尺寸公式 | 2048² 实际 | 4096² 实际 |
-| --- | --- | --- | --- | --- |
-| cplxInQue（2 槽） | x 行块交织 / legacy A 列块 | 2×(8t+32) = 16t+64 B | 32832 B | 32832 B |
-| planeBuf.wRe | w 实部平面 | 4t B | 8192 B | 8192 B |
-| planeBuf.wIm | w 虚部平面 | 4t B | 8192 B | 8192 B |
-| planeBuf.negWRe | −wRe 暂存 | 4t B | 8192 B | 8192 B |
-| planeBuf.uInt (U) | 交织更新向量 U | 8t B | 16384 B | 16384 B |
-| planeBuf.vInt (V) | 交织更新向量 V | 8t B | 16384 B | 16384 B |
-| planeBuf.evenOff | Gather 偶位字节偏移表 | 4t B | 8192 B | 8192 B |
-| planeBuf.oddOff | Gather 奇位字节偏移表 | 4t B | 8192 B | 8192 B |
-| planeBuf.yCache | y 整体缓存（2n floats） | yCapB+64 B | 16448 B | 32832 B |
-| **planeBuf 小计** | — | 36t+32+yCapB+64 B | 90208 B | 106592 B |
-| stripBuf | strip 列分组 A 缓冲 | 8·sg·t+32 B | 114720 B | 98336 B |
-| **合计** | — | 52t+8·sg·t+(192+yCapB) B | **237760 B** | **237760 B** |
-| UB 上限 | — | 253952 B | 余量 16192 B | 余量 16192 B |
-
-> 2048²：t=2048, sg=7, yCapB=16384; 4096²：t=2048, sg=6, yCapB=32768
-
-#### §3.2.1.2 double buffer
-
-**strip 热路径是串行的，不存在 MTE2/V/MTE3 跨迭代重叠。**
-
-strip 热路径每组内由两处 `PipeBarrier<PIPE_ALL>` 强制串行（kernel L350、L375）：
-
-```
-CopyIn（多段 DataCopyPad 读）→ PIPE_ALL → Compute（列循环 2×Axpy）→ PIPE_V → V_MTE3 事件 → CopyOut（多段 DataCopyPad 写）→ PIPE_ALL
-```
-
-`PIPE_ALL` 是**承载性**的：
-- L350：保证 DMA 读完成后才开始 Axpy（MTE2→V 依赖）
-- L375：保证写回排空后下一组读 DMA 才能复用 `stripBuf_`（WAR 防护）
-
-降级为 `PIPE_V` 曾导致 **897 例 ret=5 EXECUTION_FAILED**（真机实测），因为 Gather 与 Axpy 非同管道，需要全管道屏障。
-
-**合规例外**：strip 列循环后的 `PipeBarrier<PIPE_V>`（L362）仅覆盖纯 V→V 段（Axpy 序列），其后紧跟 `V_MTE3` 事件 Set/Wait（L365-367）才发 DMA 写，属合规的管道级同步。
-
-`TQue<VECIN,2>` 的双槽仅用于 EnQue/DeQue 的 MTE2→V 同步语义，不构成跨迭代流水重叠。
-
-#### §3.2.1.3 tilingKey 规划策略
-
-`a95c644` 实现显式 `tilingKey` 字段（`cgerc_tiling_data.h:42-46`），照仓内 arch35 先例 `blas/rot/arch35/srot_tiling_data.h:16-17` / `srot_host.cpp:205,209` / `srot_kernel.cpp:330`。
-
-| tilingKey | 路径 | 判定条件（host L168） |
-| --- | --- | --- |
-| 0 | legacy 逐列 | `lda≠m` 或 `n≤1` 或 `tStrip<64` 或 `sgStrip<1` 或 `m%4≠0` |
-| 1 | strip 多段 DMA | `lda==m && n>1 && tStrip>=64 && sgStrip>=1 && m%4==0` |
-
-Host 侧赋值（L250）：`tiling.tilingKey = (tiling.stripRows > 0U) ? 1 : 0`
-
-Kernel 侧使用（L167-168）：`stripMode_ = (tiling_.tilingKey == 1) && (tiling_.stripRows > 0U) && (sc > 0U) && (tiling_.stripCols > 0U) && (tiling_.lda == tiling_.m)`
-
-其中 `tiling_.lda == tiling_.m` 是**防御式自校验**：防止 `colStride = (uint64_t(tiling_.lda) - cnt) * 8` 在 `cnt > lda` 时 uint64 下溢。
-
-### kernel 侧设计（`cgerc_kernel.cpp`，404 行，类 `CgercAIV`）
-
-#### Init（L105-199）
-
-1. **GM 地址绑定**（L109-112）：xGM_/yGM_/aGM_ 设为 `GlobalTensor<float>`
-2. **列区间计算**（L115-128）：`GetBlockNum()`/`GetBlockIdx()` → colsPerCore → [colStart_, colEnd_)
-3. **cplxInQue 初始化**（L133）：`InitBuffer(cplxInQue_, 2, cplxSlotBytes+32)`
-4. **planeBuf 布局**（L138-151）：wRe/wIm/negWRe/U/V/evenOff/oddOff 七区按偏移分配
-5. **偏移表生成**（L148-151）：`ArithProgression<int32_t>(evenOff, 0, 8, t)` / `ArithProgression<int32_t>(oddOff, 4, 8, t)`，单指令替代逐元素 SetValue（节省 ~4.7μs/launch）
-6. **strip 模式判定**（L153-173）：解析 tilingKey/stripRows/stripCols → `stripMode_` → `InitBuffer(stripBuf_, ...)`
-7. **yCache 加载**（L175-198）：`incy==1` 走 DMA+标量尾补齐；否则逐元素标量收集（正确性路径）→ `PipeBarrier<PIPE_ALL>`
-
-#### Process — CopyIn → Compute → CopyOut
-
-**Strip 模式**（L318-377）：
-
-```
-for each row block [r0, r0+cnt):
-  1. BuildUV(r0, cnt)                      // 构造 U/V（每行块一次）
-  for each column group [g0, g0+gc):
-    2. 多段 DataCopyPad 读（L346-349）      // CopyIn：gc 段 × segBytes
-    3. PipeBarrier<PIPE_ALL>（L350）
-    4. 列循环 2×Axpy（L353-361）            // Compute：纯 Vector
-    5. PipeBarrier<PIPE_V>（L362）
-    6. V_MTE3 事件 Set/Wait（L365-367）
-    7. 多段 DataCopyPad 写（L370-372）      // CopyOut
-    8. PipeBarrier<PIPE_ALL>（L375）        // WAR 防护
-```
-
-**Legacy 模式**（L378-387）：
-
-```
-for each row block [r0, r0+cnt):
-  1. BuildUV(r0, cnt)
-  for each column col in [colStart_, colEnd_):
-    2. ProcessTileLegacy(col, r0, cnt)      // 单列 DataCopyPad 读 → 2×Axpy → V_MTE3 → 写
-```
-
-**BuildUV**（L220-264）— 每行块执行一次，被所有列/列分组共享：
-1. DMA 装载 x 交织块（incx==1 走 `DataCopyPad`，L224-228；跨步走标量收集，L230-239）
-2. `Gather(wRe_, cplx, evenOff_, 0, cnt)` / `Gather(wIm_, cplx, oddOff_, 0, cnt)`（L242-243）— UB→UB
-3. `PipeBarrier<PIPE_ALL>`（L244）— Gather 与后续向量操作非同管道
-4. 复数乘法折叠 alpha：Muls/Sub/Add（L248-255）
-5. `Scatter(uInt_, wRe_, evenOff_, ...)` / `Scatter(uInt_, wIm_, oddOff_, ...)` / `Scatter(vInt_, wIm_, evenOff_, ...)` / `Scatter(vInt_, negWRe_, oddOff_, ...)`（L258-262）— UB→UB 交织组装
-6. `PipeBarrier<PIPE_ALL>`（L263）
-
-#### 类型转换
-
-**不涉及数据类型转换**，仅交织↔平面布局转换。全程 float32（COMPLEX64 = 2×float32 交织），无 cast、无精度升降。
-
-### strip 列分组（stripCols）—— 本 PR 核心性能改动
-
-**问题**（旧 tiling `00a9281`）：要求「本核全部 sc 列一次装进 UB」，大 n 时 `sc = ceil(4096/56) = 74` 把 rowTile 挤到 320，DMA 段长仅 `320×8 = 2560 B`，地址密度（segBytes / (segBytes + srcStride)）仅 **7.8%**（srcStride = (4096−320)×8 = 30208 B）。
-
-**新方案**（`066cd60`，+108/−48 行）：将「段长」与「列分组宽度」**解耦**：
-1. **先取尽量大的 rowTile**（决定段长 = rowTile×8B，最大化 DMA 连续传输量）
-2. **再用剩余 UB 决定 stripCols**（每组搬多少列）
-3. Kernel 按 stripCols 分组，每组一次多段 `DataCopyPad`
-
-**效果**：
-
-| case | rowTile | 段长 | srcStride | 地址密度 | 加速 |
-| --- | --- | --- | --- | --- | --- |
-| 3 (2048²) | 640→2048 | 5120→16384 B | 0（lda==cnt → **全连续**） | 100% | **2.22×** |
-| 4 (4096²) | 320→2048 | 2560→16384 B | (4096−2048)×8 = 16384 B | 7.8%→**50%** | **3.31×** |
-| 1/2 (512²/1024²) | 不变（已是单行块） | 不变 | stripCols==sc，行为等价 | — | 无变化 |
-
-**收益归因**：访问连续性与地址密度的改善（`srcStride` 归零 / 密度 7.8%→50%）。
-
-> ⚠️ **关于「段长↔带宽」因果关系**：后续 `f4b732e` 的对照组实验已证伪「DMA 突发长度本身带来收益」这一因果——该实验把 DMA 突发从 512 B 拉到 96 KB，用 `m%4!=0` 的 119 个形状（代码路径一行未变）作天然对照组，实测实验组 median 1.0203× vs 对照组 median 1.0300×（max 1.0560×）——**对照组更快**，故 2-3% 是跨运行系统性漂移。结论：**DMA 突发长度不改变有效带宽，「段长↔带宽」是相关性不是因果**。因此本文档**不将收益归因于“段长变长”本身**，而归因于可观测的访问连续性与地址密度改善（`srcStride` 归零 / 密度 7.8%→50%）。（依据：Cindy P4 注释改写 commit `7fe1d24`，已同步更新 host/kernel/tiling_data 三处注释）
-
-**DMA 参数**（kernel L346-347，strip 读）：
-```cpp
-DataCopyExtParams inParams{gc, segBytes, colStride, 0, 0};
-// gc=组内列数, segBytes=cnt*8, colStride=(lda-cnt)*8（块间空隙）, dstStride=0（UB 内连续）
-```
-
-**DMA 参数**（kernel L370-371，strip 写）：
-```cpp
-DataCopyExtParams outParams{gc, segBytes, 0, colStride, 0};
-// srcStride=0（UB 内连续）, dstStride=colStride（GM 列间空隙）
-```
-
-### GM 侧与 UB 侧 Gather/Scatter 使用界限
-
-**GM 侧 Scatter 已禁用**：两次独立实验证实 GM 侧 Scatter 在 arch35 上静默失败（写入数据丢失、无错误码），故所有 GM 侧块数据传输**统一走 `DataCopyPad`**（5 处：kernel L226(x读)/L276(A读,legacy)/L293(A写,legacy)/L349(A读,strip)/L372(A写,strip)）。定向 grep `Scatter(...aGM_/xGM_/yGM_)` **零命中**。
-
-**UB 内部 Gather/Scatter 是可靠原语**：本实现在 `BuildUV` 内用它们在 UB 内完成交织↔平面布局转换：
-- `Gather`（L242-243）：将 x 交织块拆为 wRe/wIm 平面，dst/src 均为 `planeBuf_.GetWithOffset` 所得 UB LocalTensor
-- `Scatter`（L258-262）：将 w 平面交织组装为 U/V 更新向量，dst/src 同为 UB LocalTensor
-
-这与 kernel 侧 BuildUV 中的 Gather/Scatter + 字节偏移表操作是**同一方案**，全程在 `planeBuf_` UB 内、不涉及 GM、不在 A 数据热路径。
-
-### yCache 设计
-
-**整体缓存**（非分块）：kernel L175-198 在 Init 阶段一次性将 y 向量全部 2n floats 加载到 UB（`planeBuf_` 内偏移 `36t+32` 处）。
-
-- 启用条件：`n ≤ 8192`（host L232：`yCapFloats = (nUint <= 8192U) ? nUint*2U : 0U`）
-- 关闭条件：`n > 8192` 时 `yCapFloats=0`，ReadY 走 GM 标量读
-- 安全性：DMA 段按 32B 向下取整（`dmaFloats = yFloats/8*8`），尾部逐元素标量补齐
-
-> **历史死路说明**：早期曾尝试「y 整体 UB 缓存」但因 `DataCopy` 8200B（非 32B 倍数）破坏 UB 对齐，精度从 997 跌至 556。当前版本修复了该问题（DMA 段 32B 向下取整 + 标量尾补齐），已真机验证通过全部 1200 用例。
+GM 侧块数据传输统一走 `DataCopyPad`（GM 侧 Scatter 在 arch35 上两次独立实验证实静默失败：写入数据丢失、无错误码，故禁用）。UB 内部的交织↔平面/寄存器布局转换为可靠原语，全程在 UB 内、不涉及 GM、不在 A 数据热路径。`DataCopyPad` 按 32B 补齐写入，回退路径的 <32B 尾块依赖此行为。
 
 ## 支持硬件
 
@@ -384,14 +198,15 @@ DataCopyExtParams outParams{gc, segBytes, 0, colStride, 0};
 | 约束项 | 内容 |
 | --- | --- |
 | 参数合法性 | m ≥ 0、n ≥ 0；incx/incy ≠ 0 且 ≠ INT_MIN（`-INT_MIN` 是未定义行为，kernel 依赖 `-incx` 做反向索引）；lda ≥ max(1,m)；alpha 不可为 nullptr；m>0 且 n>0 时 x/y/A 不可为 nullptr |
-| 非连续 Tensor 支持 | 向量通过 incx/incy 支持任意非零步长（含负步长，Netlib 反向语义）；不支持超出 inc/lda 语义的非连续内存访问 |
+| 非连续 Tensor 支持 | 向量通过 incx/incy 支持任意非零步长（含负步长，Netlib 反向语义）；非单位步长/不对齐走通用回退路径，不支持超出 inc/lda 语义的非连续内存访问 |
 | broadcast 规则 | 不涉及 |
 | dynamic shape 要求 | 不要求，m/n 为运行时入参 |
-| 原地与视图语义 | A 原地覆写，不返回视图；lda padding 区不修改 |
+| 原地与视图语义 | A 原地覆写，不返回视图；lda padding 区不修改；零 y 列保留 A 原始位模式 |
 | 确定性计算要求 | 不要求（`task_doc §2.5` 明文），但本实现核间列段 disjoint、无 atomic 竞争，结果实际确定 |
 | 空 Tensor 与 0 维处理 | m=0 或 n=0 或 alpha=(0,0) 为合法 no-op，返回 SUCCESS 且不读 x/y |
 | 异步执行 | 依赖 `aclblasSetStream` 绑定 stream；读回 Device 结果前须同步 stream |
-| <32B GM 写 | `DataCopy`（非 Pad）不支持 <32B GM 写；`DataCopyPad` 会按 32B 补齐，legacy 逐列路径依赖此行为，已由 TC_SQ_007/008/009（m=1/2/3）与 58 条 `m%4≠0` 的 TC_EX/TC_PF 用例真机验证通过。strip 多段 DMA 因 UB 段间对齐要求，额外用 `m%4==0` 门控保证 `cnt*8B` 恒为 32B 倍数 |
+| 浮点语义 | 保留 Netlib 括号顺序，禁隐式 FMA（`-ffp-contract=off`）与任意重关联，保证 Inf/NaN 传播次序与 golden 一致 |
+| <32B GM 写 | `DataCopy`（非 Pad）不支持 <32B GM 写；`DataCopyPad` 按 32B 补齐，回退路径依赖此行为，已由 m=1/2/3 及 `m%4≠0` 系列用例真机验证通过 |
 
 # 可维可测分析
 
@@ -406,198 +221,203 @@ DataCopyExtParams outParams{gc, segBytes, 0, colStride, 0};
 | atol | 2⁻¹⁶ = 1.52587890625e-05 |
 | required_matched_ratio | 0.99 |
 | max_abs_error_limit | 1e-2 或 32×ULP（逐元素取 max） |
-| golden | cblas_cgerc（Netlib BLAS 复数实现，列主序） |
+| golden | cblas_cgerc（Netlib BLAS 复数实现，列主序，`OPENBLAS_NUM_THREADS=1` 单线程） |
 
-**实测结果（`c1f8095`，含 TC_FL_104/105 修复）**：
+### 实测精度（从零复测，DevEnv_189086，kernel 零修改）
 
 | 测试集 | 结果 | 说明 |
 | --- | --- | --- |
-| 非 TC_PF（1001 条） | **1001/1001 PASS** | c1f8095 修复特殊值顺序对齐路径，TC_FL_104/105 已闭合 |
-| TC_PF（200 条） | **200/200 PASS** | matched_ratio=0.99999999、mismatches=0 |
+| 全量（1201 条 = 1200 CSV-driven + 1 NullHandle） | **1201/1201 PASS** | 耗时 183,462 ms；严格门限：matchedRatio≥0.99、atol=2⁻¹⁶、rtol=2⁻¹⁰、maxErr≤max(0.01, 32×ULP)、NaN/Inf 分类一致、padding 逐位保持 |
+| 偶发失败用例压力测试 | **60/60 PASS** | TC_PF_1120 重复 30 次 = 30/30；TC_PF_1147 重复 30 次 = 30/30；零偶发 |
 
-### 仓内 MERE/MARE 严格口径（非验收口径，仅作对照）
+golden = cblas_cgerc（Netlib，列主序，单线程）。修复旧 VECIN 输出缓冲复用缺陷后，历史块内随机错误已闭合。
 
-| 参数 | 值 |
-| --- | --- |
-| mere_threshold | 2⁻¹³ = 0.001221 |
-| mare_multiplier | 10.0 |
-| outlier_limit | 0.001221 |
+### Sanitizer 检查（四工具 24 job 全覆盖，覆盖闭合，不宣称零警告）
 
-**实测结果**：非 TC_PF **78 FAIL**（76 TC_EX + 2 TC_FL）+ TC_PF **11 FAIL** = **89 FAIL**
+针对早期单 job 600s 超时导致的采集缺口（memcheck 仅 2/6、racecheck/synccheck 从未运行、工具版本未采集），本轮改为**单工具 × 单用例拆分为 18 job**（3 工具 × 6 真实用例），每 job timeout 550s + `nohup/setsid` 后台脱离 SSH 会话，**18/18 全部完成 rc=0、无超时**（最长 racecheck TC_PF_1120 = 512s）。6 个 filter 先经 `--gtest_list_tests` / grep csv 验证均命中真实用例（`TC_PF_1001`、`TC_PF_1010`、`TC_PF_1120`、`TC_PF_1147`、`TC_FL_104`、`TC_EX_0123`），修复了早期 TC_PF_2/500/800 前缀未命中问题。随后以同规格补测第四工具 initcheck（单工具 × 单用例 6 job，日志 19..24），**6/6 rc=0、无超时、0 次重试**，至此四工具 × 6 用例 = **24/24 job 全部完成**。
 
-- 76 TC_EX：全部 `mismatches=0`，属 1-ulp 继承性离群（outliers 1-49 个/用例）
-- 11 TC_PF：全部 1-2 个 outlier，MARE 0.0013-0.0034 擦着 outlier_limit 的边缘效应
-- TC_FL_104/105：**Inf 传播顺序差异**（非 1-ulp，见下）
+- **工具**：`mssanitizer`，路径 `/usr/local/Ascend/cann-9.1.0/tools/mssanitizer/bin/`（不在 PATH，runner 内 export）
+- **工具版本（已采集）**：`mssanitizer 26.1.0-a9b9e9ea5c701cc8939017999fdd02c2e15905c2`（24 job 全部一致）
+- **调用语法**：`mssanitizer --tool=<memcheck|racecheck|synccheck|initcheck> --log-level=warn <wrapper.sh>`（`-t=` 报 `param 'tool' contains invalid characters`，必须用 `--tool=`；wrapper 包裹被测二进制以规避 mssanitizer 吞掉 `--gtest_filter`）
+- **被测二进制**：官方仓 `gitcode.com/cann/ops-blas` @0ea22c8 + changes.patch 构建的 `cgerc_test`，kernel/host 源码零修改
 
-### TC_FL_104/105 归因与修复（`c1f8095` 已闭合）
+| 工具 | 用例 | rc | 计数结果 | dispatch kernel |
+| --- | --- | --- | --- | --- |
+| memcheck | 6/6 全部 | 0 | **内存错误 0**（各例全部 kernel launch `No error detected.`；PERF 例 55 次 / 功能例 1 次），test_passed=1/failed=0 | TC_PF_1001→cgerc_register_kernel；余 5 例→cgerc_kernel |
+| racecheck | 6/6 全部 | 0 | **竞争警告 0**（各例 `No error detected.`），test_passed=1/failed=0 | 同上 |
+| synccheck | TC_PF_1001 | 0 | **0 警告**（真实 clean，走 register 路径，55 launch 全 `No error detected.`） | cgerc_register_kernel |
+| synccheck | TC_PF_1010 | 0 | Redundant wait_flag = **3520** | cgerc_kernel |
+| synccheck | TC_PF_1120 | 0 | Redundant wait_flag = **779240** | cgerc_kernel |
+| synccheck | TC_PF_1147 | 0 | Redundant wait_flag = **466620** | cgerc_kernel |
+| synccheck | TC_FL_104 | 0 | Redundant wait_flag = **64** | cgerc_kernel |
+| synccheck | TC_EX_0123 | 0 | Redundant wait_flag = **3886** | cgerc_kernel |
 
-**根因**：Inf 传播**顺序**差异（非 FMA 融合本身）。`task_doc §3.5.4` 要求「特殊值（Inf/NaN）行为对齐 cublas」，而 cblas 走 FMA 融合求值序、我方走两条独立 `Axpy`（先乘后加），`Inf×0` 与 `Inf−Inf` 的产生次序不同 → 范畴差异（`Inf−Inf=NaN` vs `Inf+Inf=Inf`），容差吸收不了。
+**分工具结论**：
 
-**关键洞察**：真正的差异是运算「顺序」而非 FMA「融合」——在 Inf 算术里融合与否不改变结果，改变的是中间 NaN 的产生时刻。
+- **memcheck — 6/6 clean（0 内存错误）**：可支持"未发现内存错误"结论。
+- **racecheck — 6/6 clean（0 竞争）**：可支持"未发现数据竞争"结论。
+- **synccheck — 1/6 clean、5/6 有真实冗余同步警告（不宣称零警告，实测非 0）**：仅 `TC_PF_1001` 真实 0 警告（dispatch 到 `cgerc_register_kernel` register 路径）；其余 5 例 dispatch 到主 tiled kernel `cgerc_kernel`，均报 `Redundant wait_flag instructions detected`，方向 `PIPE_MTE2 → PIPE_S in cgerc_kernel`，源码定位 `cgerc_kernel.cpp:552 / 581 / 643 / 741`，条数如上表如实列出。该警告属**性能类冗余同步**（多余的 wait_flag 指令），**非内存错误、非数据竞争**，所有 synccheck job 功能仍 PASSED（rc=0）；按红线未改 kernel/host 源码，仅如实记录条数与源码行号。
+- **initcheck — 6/6 全 clean（未初始化告警实测 0）**：uninitialized 全类 / read 细分 / `====== WARNING` / `====== ERROR` 四类 grep 计数全 0，PERF 用例 55 次 launch、功能用例 1 次全部 `Sanitizer finished ... No error detected.`，gtest 全 PASSED；日志拉回本地后二次 grep 复核一致。
 
-**修复方案（`c1f8095`）**：BuildUV 后对 w 平面做非有限值归约置 flag，命中时走按 Netlib 括号化顺序的特殊值对齐路径。修复后 1001/1001 全通过。
+**四工具 × 6 用例总矩阵（24 job，全 rc=0）**：
 
-### 89 条 MERE 口径失败「非本分支引入」证据
+| 用例 | memcheck 内存错误 | racecheck 竞争警告 | synccheck 冗余同步警告 | initcheck 未初始化告警 | 汇总 |
+| --- | --- | --- | --- | --- | --- |
+| TC_PF_1001 | 0 | 0 | 0 | 0 | 四工具全 clean |
+| TC_PF_1010 | 0 | 0 | 3520 | 0 | synccheck 有冗余同步警告 |
+| TC_PF_1120 | 0 | 0 | 779240 | 0 | synccheck 有冗余同步警告 |
+| TC_PF_1147 | 0 | 0 | 466620 | 0 | synccheck 有冗余同步警告 |
+| TC_FL_104 | 0 | 0 | 64 | 0 | synccheck 有冗余同步警告 |
+| TC_EX_0123 | 0 | 0 | 3886 | 0 | synccheck 有冗余同步警告 |
 
-离线全量差分（`CalCgercRowTile` 精确复刻，1200 形状 × 6 种硬件参数组合）：
+**覆盖闭合披露（原两项残留缺口均已闭合，无未闭合项）**：
 
-| 归属 | 计数 | 论证 |
-| --- | --- | --- |
-| S1（路径迁移） | **0** | 全 1200 形状仅 1 个发生迁移（TC_ED_120，n=−1 非法输入，验证阶段即拒绝，永不进 tiling，且不在 89 条内） |
-| S3（bit-identical） | 48 | path+rowTile+stripRows+stripCols 逐位相同 |
-| S2b（仅列分组变化） | 36 | rowTile 不变，仅 stripCols 0→N，算术序列不变 |
-| S2a（rowTile 真变） | 5 | 其中 **4 条已由真机 A/B 闭合**：rowTile 从 640/1152/1856→2048 后 outlier/mismatch/元素总数逐条一字不变 |
+- **initcheck 已补测（6/6 全 clean）**：未初始化内存告警实测 0（四类 grep 计数全 0 且本地复核一致），四工具覆盖闭合。
+- **4 个大日志已完整归档本地（双重 sha256 校验）**：synccheck 的 4 份原始日志（TC_PF_1120 ≈ 353MB、TC_PF_1147 ≈ 211MB、TC_PF_1010 ≈ 1.6MB、TC_EX_0123 ≈ 1.75MB）已经远端 `gzip -c`（压缩后 3.9 / 2.8 / 0.03 / 0.026MB）+ PTY base64 分片传输（逐片字节 + sha256 校验，无重传，总耗时 14.6s）完整拉回本地 `full_logs/`，合并 gunzip 后与远端做 gz 层 + 解压原文层**双重 sha256 对比全部一致**；本地对完整日志 grep 复核 warning 计数与上表逐例一致；远端源文件仅只读未改动。
+- **唯一保留的如实表述**：synccheck 5/6 用例存在 `Redundant wait_flag` 冗余同步警告（**性能类、非正确性**，条数 3520 / 779240 / 466620 / 64 / 3886 如实列出）——**不宣称零警告**；其余 memcheck / racecheck / initcheck 三工具实测 0 告警。
 
-唯一残留：`TC_PF_1119`（m=632, n=4064, rowTile 320→640）待一次定向真机基线确认（NEW 侧两次测量均为 1 outlier / 0 mismatches）。
-
-5 份历史日志的 78 条失败用例名集合排序后 md5 全部相同（`2566a18b3d68fa3e87f4ad1e19ab5e55`），证实失败集跨版本稳定。
-
-> ⚠️ **措辞边界**：已证明的是「89 条在本分支 OLD→NEW 之间指纹不变、0 条路径迁移」即**非本分支引入**；至于「与 master 分支外既有失败同源」需要 pre-branch master 的对比日志，磁盘上没有、离线证不了。
+> 对应 F 表：**F164-F170（DevEnv_189086）**。
 
 ## 性能标准
+
+### 官方验收口径
+
+官方验收口径 = **msprof API 级耗时**（设备侧/kernel 级），经 E48 三计时器偏差实验，msprof API 级 ≈ **批量口径（batch）**，偏差 **2.3%**，二者可互换；**host launch 底座不计入**验收耗时（验收判定对象为 device-side span）。950PR 有 L2 缓存，H100 L2 公平性论点不获豁免。
+
+> ⚠️ 早期 strip 版本的"物理不可达 / 0/4 达标 / verify_performance.py 口径数学缺陷"等论证**已全部作废**：官方明确"不可达论证 + 如实报告"不能作为性能通过依据，性能必须真达标。本版寄存器融合实现在官方口径下 4/4 达标（下表）。
 
 ### 达标线与判定式
 
 ```
-ratio = gpu_ms / npu_ms ≥ 0.4        （verify_performance.py PERF_THRESHOLD = 0.4）
-等价于 npu_us ≤ gpu_us / 0.4
+npu_us ≤ 标杆线（gpu_ms / 0.4）即 PASS
 ```
 
-| Case | m×n | gpu_ms（H100） | 达标线 (μs) | A 矩阵字节 | A 是否驻留 H100 L2(50MB) |
-| --- | --- | --- | --- | --- | --- |
-| 1 (TC_PF_1001) | 512×512 | 0.003470 | **8.675** | 2.0 MiB | ✅ 完全驻留 |
-| 2 (TC_PF_1002) | 1024×1024 | 0.005140 | **12.850** | 8.0 MiB | ✅ 完全驻留 |
-| 3 (TC_PF_1003) | 2048×2048 | 0.017853 | **44.633** | 32.0 MiB | ✅ 完全驻留 |
-| 4 (TC_PF_1004) | 4096×4096 | 0.096434 | **241.085** | 128 MiB | ❌ 不驻留 |
+| Case | m×n | 标杆线 (μs) | A 矩阵字节 |
+| --- | --- | --- | --- |
+| 1 (TC_PF_1001) | 512×512 | **8.675** | 2.0 MiB |
+| 2 (TC_PF_1002) | 1024×1024 | **12.850** | 8.0 MiB |
+| 3 (TC_PF_1003) | 2048×2048 | **44.633** | 32.0 MiB |
+| 4 (TC_PF_1004) | 4096×4096 | **241.085** | 128 MiB |
 
-出处四方一致：`gpu_baseline.csv:2-5`、`verify_performance.py:16,113-114`、`task_doc.md §3.3`、`FEEDBACK.md:67-68`。
+### 实测性能（从零复测，DevEnv_189086 / Ascend 950PR / CANN 9.1.0，kernel 零修改）
 
-### 实测性能（`c1f8095`，DevEnv_135409，strip 路径，perf4 三独立样本 median）
+测试参数：complex64、incx=incy=1、lda=m、alpha=(1,0)；20 warmup；每 rep 100 采样；**3-rep p50 取 median**（因 4096² spread >8% 加跑第 4 rep）；温度 61-64°C，功耗 211-213W，无热节流。
 
-| Case | 实测 median (μs) | 达标线 gpu_us/0.4 (μs) | ratio | 判定 |
+**Isolated 口径**（单发 ACL event：record→call→record→sync→elapsed）：
+
+| Case | 3-rep Median (μs) | 标杆 (μs) | 余量 | 判定 |
+| --- | ---: | ---: | ---: | --- |
+| 512×512 | **7.024** | 8.675 | 19% | **PASS** |
+| 1024×1024 | **11.526** | 12.850 | 10% | **PASS** |
+| 2048×2048 | **27.039** | 44.633 | 39% | **PASS** |
+| 4096×4096 | **99.891** | 241.085 | 59% | **PASS** |
+
+**Batch 口径**（host chrono，N=100 连续提交 + 末尾 sync /N，≈ msprof API 级官方口径）：
+
+| Case | 3-rep Median (μs) | 标杆 (μs) | 余量 | 判定 |
+| --- | ---: | ---: | ---: | --- |
+| 512×512 | **4.512** | 8.675 | 48% | **PASS** |
+| 1024×1024 | **8.798** | 12.850 | 32% | **PASS** |
+| 2048×2048 | **24.460** | 44.633 | 45% | **PASS** |
+| 4096×4096 | **96.708** | 241.085 | 60% | **PASS** |
+
+**口径实现位置**：batch 口径由 PR 内测试 wrapper（cgerc_npu_wrapper.h，连续 N 提交+末尾单次 sync）实现，用于 CI 冒烟；isolated 口径（aclrtRecordEvent→call→record→sync→elapsed）由独立 perf_bench 工具实现、非 PR 交付件，两口径偏差经 E48 实验为 2.3% 可互换。
+
+**结论：4/4 达标（双口径全部 PASS，余量 10-60%）。** batch 系统性低于 isolated，差额即单发 event record/sync 的固定开销（512² 差 2.5μs、4096² 差 3.2μs）。
+
+### 稳定性与限定披露
+
+| Case | Caliber | Spread% | Status | 备注 |
 | --- | --- | --- | --- | --- |
-| 1 (512²) | **43.963** | 8.675 | 0.197 | **FAIL** |
-| 2 (1024²) | **62.960** | 12.850 | 0.204 | **FAIL** |
-| 3 (2048²) | **129.599** | 44.633 | 0.344 | **FAIL** |
-| 4 (4096²) | **452.551** | 241.085 | 0.533 | **FAIL** |
+| 512×512 | isolated / batch | 1.97% / 2.80% | **STABLE** | |
+| 1024×1024 | isolated / batch | 0.90% / 1.09% | **STABLE** | |
+| 2048×2048 | isolated / batch | 0.47% / 0.41% | **STABLE** | |
+| 4096×4096 | isolated / batch | 11.90% / 12.27% | **UNSTABLE（判定仍 PASS）** | 跨 rep 双峰 |
 
-**结论：0/4 达标（官方口径）。** 但 roofline 分析证明该达标线物理不可达（见下文），且官方 `verify_performance.py` 口径本身存在数学缺陷（整毫秒解析，PASS 不可达）。
+- **4096² 跨 rep 双峰（限定披露）**：rep1/3 ≈99.9μs、rep2/4 ≈111.7μs，spread 11.9%。归因 4096² complex64 A 矩阵 = 128MB 远超 L2 64MB，65s rep 间隔后 cache 冷/热态交替。**最差值 112.271μs 仍仅为标杆 241.085μs 的 47%**，PASS 判定不受影响。同一进程内连续 3-rep（原始 bench）为 batch 105.83-105.97μs（spread 0.13% STABLE）、isolated 109.65-110.89μs（spread 1.13% STABLE）。
+- **1024² outlier 噪声（限定披露）**：原始 bench 交叉验证中 1024² isolated rep2 均值 = 12.89μs，微超标杆 12.85μs 仅 **+0.3%**，属测量噪声（原始 bench isolated 为 100 sample 算术平均值，含 outlier）；自研 perf_bench 的 p50 口径下，1024² isolated 全部 4 rep 均 ≤11.672μs，远低于标杆。
 
-**与任务书 §3.3 标杆的直接对比**（非官方判定口径，仅供参考）：
+### 原始 bench 交叉验证
 
-| Case | 实测 (μs) | 标杆 (μs) | 比值 |
-| --- | --- | --- | --- |
-| 1 (512²) | 43.963 | 8.68 | 5.06× |
-| 2 (1024²) | 62.960 | 12.85 | 4.90× |
-| 3 (2048²) | 129.599 | 44.63 | 2.90× |
+| Case | batch_event (3-rep) | isolated_event (3-rep, 均值) | 标杆 | All PASS? |
+| --- | --- | --- | --- | --- |
+| 512×512 | 4.54/4.51/4.49 μs | 8.32/8.47/8.18 μs | 8.675 | Yes |
+| 1024×1024 | 8.77/8.79/8.83 μs | 12.77/12.60/12.89 μs | 12.850 | 11/12（rep2 均值 12.89 微超 +0.3%，噪声；p50 口径全 ≤11.672） |
+| 2048×2048 | 24.32/24.34/24.31 μs | 28.21/28.59/28.38 μs | 44.633 | Yes |
+| 4096×4096 | 105.88/105.83/105.97 μs | 110.16/109.65/110.89 μs | 241.085 | Yes |
 
-### 计时口径
-
-`PERF avg_us` 是 **host `steady_clock` 计时**（`test/gerc/cgerc/arch35/cgerc_npu_wrapper.h` 约 L142-152），**不是** aclrtEvent 设备侧计时。
-
-> ⚠️ 此前所有材料中「设备侧 aclrtEvent」的表述均为错误。确切的计时区间（是否每次调用同步、warmup=3/iters=51 如何处理、avg_us 是均值/中位数/最小值、含不含 golden 计算）<<待 Terry 核实后补完>>。
-
-### 有效带宽与 roofline 占用
-
-copy roofline 基准：**689.6 GB/s**（本轮在 DevEnv_910241 上用 ccopy 测 128 MiB 形状得到）。
-
-| case | 有效带宽 (GB/s) | roofline 占用 | 是否触顶 |
-| --- | --- | --- | --- |
-| 1 (512²) | 296.9 | **43.0%** | 否 |
-| 2 (1024²) | 515.2 | **74.7%** | 否 |
-| 3 (2048²) | 706.3 | **102.4%** | **是（已超纯拷贝 roofline）** |
-| 4 (4096²) | 659.4 | **95.6%** | **是** |
-
-case3 已超过纯拷贝 roofline（部分数据被 UB/L2 复用）；case4 达 95.6%。两者在物理上已触顶，无优化空间。
-
-### launch/调用底座
-
-**F = 28.962 μs**（8 个极小形状实测中位数：8×8=28.297、4×4=28.334、1×1=28.417、16×16=28.787、2×2=29.136、32×32=29.332、64×64=31.388、39×63=38.256；median=(28.787+29.136)/2=28.9615）。
-
-**F 的含义**：一次完整 `aclblasCgerc` 调用在小形状下的总耗时，含 host tiling 计算 + workspace 获取 + kernel launch + 设备执行 + sync，**不是单纯的 kernel launch 固定开销**。
-
-case1 的时间 **67% 是 F**、case2 **47% 是 F**。即使 F=0，case1 也只到 ~14.1 μs、仍差 1.6×。case1 的达标线 8.675 μs 仅为 F 的 **30%** → 物理不可达。
-
-### 官方 `verify_performance.py` 口径问题
-
-脚本第 99-100 行解析 GTest 的 `[ OK ] ... (N ms)` **整毫秒墙钟**，而四个 case 的 `base_ms/0.4` = 0.00868/0.01285/0.04463/0.241 ms **全部 < 1 ms**，GTest 整数 ms 最小正值是 1 → `1 > 0.241` 恒成立 → **对任何实现该口径下 PASS 在数学上不可达**。
-
-脚本自身第 137-138 行注脚承认：「GTest 输出耗时含 host 准备+kernel+golden 计算+比对，为保守上界；精确 kernel 耗时可配合 msprof 采集。」
-
-实证：`evidence_20260905/msprof_m1.log:11-12` 同一 m=n=1 用例设备侧 32.203 μs 而 GTest 报 2 ms，**62× 偏差**。
-
-### GPU 基线公平性分析
-
-case1-3 的 A 矩阵 2.0/8.0/32.0 MiB **全部完全驻留在 H100 的 50 MB L2**。按「流量=2×A ÷ gpu_ms」反推 GPU 隐含有效带宽：
-
-| Case | 隐含带宽 | 是否超 H100 HBM3 峰值 3.35 TB/s |
-| --- | --- | --- |
-| 1 | 1.21 TB/s | 否 |
-| 2 | 3.26 TB/s | 否（逼近） |
-| 3 | **3.76 TB/s** | **是** |
-| 4 | 2.78 TB/s | 否 |
-
-case3 超过 HBM3 物理峰值 → 基线测的是 **L2 带宽**（~12 TB/s、命中率 98-99%）。0.4 系数套在 L2 驻留基线上等价于要求 NPU 达 4.8 TB/s = 其 1.6 TB/s HBM 峰值的 **3 倍**；若公平地 HBM-to-HBM 则只需 1.34 TB/s。
-
-### 相对改进（`066cd60` 列分组带来的收益）
-
-相对 `2c7138d` 的 strip 基线（281.642 / 1481.177 μs），`066cd60` 的列分组多段 DMA 带来：
-
-| case | 改进前 (μs) | 改进后 (μs) | 加速比 |
-| --- | --- | --- | --- |
-| 3 (2048²) | 281.642 | 126.593 | **≈2.22×** |
-| 4 (4096²) | 1481.177 | 447.972 | **3.31×** |
-| 1/2 | ~42-43 | ~43-63 | 无显著变化（launch 开销主导） |
-
-> 注：后续 `f4b732e` 测得 123.978/436.028 μs，相对 `066cd60` 仅差 2.1%/2.7%，落在跨运行漂移带内，**不作为收益声称**。`c1f8095` 在 DevEnv_135409 的 perf4 median 为 **43.963/62.960/129.599/452.551 μs**（见§实测性能）。
-
-### 已排除的方案（死路黑名单）
-
-| 方案 | 结果 | 教训 |
-| --- | --- | --- |
-| `aclblasSgemm` 复用（K=2/ldb=2） | 7.8-8.2 ms（黑盒慢路径） | 库 GEMM 对极小 K 无优化 |
-| strip-atomic（列分段+原子累加） | 52/80/442/2573 μs，慢 20-75% | 列分段丧失连续性 |
-| TQue 队列深度 2→4 | 122.0/215.7/415.6 μs 劣化 | ⚠️ 此实验被误归档在 `archive_scnrm2/真机验证日志_R19_队列深度4.txt`，实为 cgerc 失败实验 |
-| `PIPE_ALL`→`PIPE_V` 降级 | 897 例 ret=5 EXECUTION_FAILED | Gather/Axpy 非同管道 |
-| 多列合并 tile B=9-16 | 劣化 2×、精度 287 失败 | UB 溢出 |
-| 张量域替代标量 Axpy | 劣化 34% | 小张量域指令启动开销大 |
-| y 整体 UB 缓存（早期尝试） | DataCopy 8200B 非 32B 倍数，精度 997→556 | 对齐问题（已修复，现版本安全） |
-| OP_T 转置 | case1 8241 μs 且部分形状结果错 | 转置不适合此访存模式 |
-| GM 侧 Scatter | 静默失败（两次独立实验证实） | arch35 硬件约束 |
-| <32B GM 写（DataCopy 非 Pad） | 不支持 | 必须用 DataCopyPad |
-| 2D DataCopy gap 语义 | gap 单位与预期不符 | 不采用 |
-
-### 未纳入本 PR 的后续探索：CUBE GEMM 路径
-
-**探索内容**：`construct(AIV) → 自写 CUBE GEMM(AIC) → 原子合并(AIV)`，试图利用 AIC 矩阵乘法单元加速大规格场景。代码曾合入（`cgerc_construct_lr_kernel`、`cgerc_cube_gemm_kernel`、`cgerc_atomic_add_kernel`、`namespace cgerc_cube`、`struct CgercGemmTiling`、`CgercTilingData` 的 `useCube`/`wsROff` 字段、`getenv("CGERC_CUBE")` 门控）。
-
-**摘除理由**（本 PR `a95c644` 已将上述全部代码删除）：
-1. **零测试覆盖**：1200 条 CSV 用例全部只跑 AIV，`grep -rn "CGERC_CUBE\|getenv" test/gerc/` 零命中
-2. **零精度证据**：无任何版本的 CUBE 路径通过全量精度验证
-3. **大 shape 因 workspace 门控静默回退**：`wsAvail` 实测 32 MiB，2048² 需 33,603,584 B（仅超 48 KiB）→ 从未真正执行 CUBE
-4. **小 shape 比 strip 慢 16.6-43.5×**：CUBE case1=708 μs vs strip 42.7 μs
-5. **带有 1 个严重 + 3 个重要确定性缺陷**（workspace 越界写穿共享 handle workspace 等）
-6. **blockDim 与物理核数不一致**：host 侧 `cgerc_cube_gemm_do(..., 32U, ...)` 硬编码 blockDim=32，而 950PR 的物理 AIC 核数为 **28**（`npu-smi` 的 `Aicore Count`，DevEnv_135409 实测）。kernel 内 `GetBlockNum()` 返回的是**启动时传入的 blockDim（32）而非物理核数**，两者不可混用。后果：CUBE 的 grid-stride `totalTiles=32`、每 block 恰好 1 次迭代，而 32 个 block 落在 28 个物理核上会形成**两波调度**——第 1 波 28 个 block 并行、第 2 波仅 4 个 block 而其余 24 核空闲，墙钟约为单 block 时间的 **2 倍**。仓内既有 `GetAicCoreCount()`（`blas/common/helper/host_utils.h:89`，`cgerc_host.cpp:22` 已 include）与规范惯例（`blas/gemm/arch35/gemm_host.cpp:255-258`：查询 + 0 校验 + 返回 `ACLBLAS_STATUS_INTERNAL_ERROR`），同文件的 **AIV 路径本身是规范的**（用 `GetCachedAivCoreCount()`），故这是 CUBE 分支的遗漏而非设计意图。⚠️ 上述“两波调度 ≈2× 损失”是**基于 totalTiles=32、blockDim=32、物理核 28 的推算，尚未经 A/B 实测确认**（判别方法：把 blockDim 改为 28 后重测 512²/1024²，若耗时接近减半则成立）。
-
-**若要重启需先解决**：(a) 1 个严重 + 3 个重要缺陷 + blockDim 硬编码；(b) 全量精度覆盖；(c) workspace 门控使大 shape 真正执行 CUBE；(d) 证明相对 strip 有实质收益。
+交叉验证与自研 perf_bench 同向，性能结论一致。
 
 ### 硬件发现（950PR 实机调试经验）
 
 | 发现 | 说明 |
 | --- | --- |
-| Gather 偏移单位为字节 | evenOff[i] = i×8（复数 re/im 各 4B） |
 | GM 侧 Scatter 静默失败 | 两次独立实验证实；A 的 GM 写入统一走 `DataCopyPad` |
-| UB 内 Scatter/Gather 可靠 | BuildUV 内 4 次 Scatter + 2 次 Gather 全部 UB→UB，已验证正确 |
-| AIV 核数 | 由 `GetCachedAivCoreCount()` 查询，无硬编码；实测返回 56。**本 PR 交付路径（strip/legacy）仅用 AIV，分核规范** |
-| AIC 物理核数 | **28**（`npu-smi` Aicore Count，DevEnv_135409 实测）。`GetBlockNum()` 返回的是 blockDim 而非物理核数，两者不可混用。CUBE 分支硬编码 blockDim=32 导致两波调度（已随 CUBE 摘除） |
-| `DataCopyPad` 支持 <32B | 按 32B 补齐写入，legacy 路径依赖此行为 |
-| `PipeBarrier<PIPE_ALL>` 承载性 | Gather 与 Axpy 非同管道，降级致 897 例崩溃 |
-| `ArithProgression` | 单指令生成等差偏移表，替代逐元素 SetValue，节省 ~4.7μs/launch |
+| UB 内布局转换可靠 | 交织↔平面/寄存器转换全程在 UB 内，已验证正确 |
+| AIV 核数 | 由 `GetCachedAivCoreCount()` 查询，无硬编码；实测返回 56。交付路径仅用 AIV，分核规范 |
+| `DataCopyPad` 支持 <32B | 按 32B 补齐写入，回退路径依赖此行为 |
+| MTE3→MTE2 同步承载性 | 输出缓冲槽位须在 MTE3 读完后再被 MTE2 复用，否则块内随机错误 |
+| `-ffp-contract=off` | 禁隐式 FMA，保留 Netlib 括号顺序，保证 Inf/NaN 语义与 golden 一致 |
+| 寄存器驻留 + 双缓冲 | x 行块驻留寄存器 + 六列分组双缓冲预取，重叠 DMA 与向量计算，是 4/4 达标的结构性来源 |
+
+## 从零复测记录
+
+**目的**：验证本 PR 补丁在独立环境从零搭建后仍达标（精度 + 性能），kernel/host 源码零修改。
+
+**环境**：DevEnv_189086 / Ascend 950PR / CANN 9.1.0 / openEuler 24.03 LTS-SP3；基线 commit `0ea22c81b4b721f723730586c48a21c6d759da6a`（官方仓 `gitcode.com/cann/ops-blas`）；补丁 `changes.patch`（317,130 bytes）。日期 2026-09-11。
+
+| 步骤 | 操作 | 结果 |
+| --- | --- | --- |
+| 系统依赖 | `dnf install -y lapack-devel blas-devel gcc-gfortran` | rc=0（lapack 3.12.0 + blas 已装） |
+| CBLAS wrapper | gcc `-shared -fPIC` 自编 **Fortran→C cblas_cgerc wrapper**（远端无外网，wget netlib 失败） | rc=0，`cblas_cgerc` 符号确认 |
+| Clone repo | `git clone https://gitcode.com/cann/ops-blas.git` | rc=0（官方仓成功） |
+| Checkout | `git checkout 0ea22c81...` | rc=0，HEAD = `0ea22c8` |
+| Apply patch | `git apply --check && git apply changes.patch` | check rc=0、apply rc=0、无冲突 |
+| CMake configure | `-DSOC_VERSION=ascend950 -DCGERC_OPTIMIZED=ON -DBUILD_TEST=ON -DTEST_NAMES=cgerc` | rc=0 |
+| CMake build | `--target cgerc_test -j8` | rc=0，产物 `cgerc_test` + `libops_blas.so` |
+| Bench build | g++ `-std=c++17 -O2 -ffp-contract=off` | rc=0 |
+
+**关键确认**：`-ffp-contract=off` 通过 `CGERC_OPTIMIZED` CMake option 限定于 `cgerc_host.cpp` + `cgerc_kernel.cpp`，不影响其他算子。全链路 rc=0，kernel/host 源码零修改。
+
+**复测结论**：
+
+| 维度 | 判定 | 详情 |
+| --- | --- | --- |
+| 搭建 | **成功** | clone → 依赖安装 → patch → build 全链路 rc=0 |
+| 精度 | **达标** | 1201/1201 + 偶发用例 60/60 stress |
+| 性能 | **PASS（4/4）** | 双口径全部低于标杆，余量 10-60%（见§性能标准） |
+| Sanitizer | **四工具 24 job 全覆盖（覆盖闭合）** | memcheck/racecheck/initcheck 6/6 clean（0 内存错误、0 竞争、0 未初始化）；synccheck 1/6 clean、5/6 有性能类冗余 wait_flag（非正确性，功能全 PASSED，条数如实）；4 份大日志已全量归档（双重 sha256）；工具版本已采集 mssanitizer 26.1.0（见§Sanitizer 检查 / F164-F170） |
+
+**最终判定：从零搭建仍达标（精度 + 性能两维度）。** Sanitizer 维度四工具覆盖闭合（24/24 job rc=0：memcheck/racecheck/initcheck 实测 0 告警、synccheck 冗余警告如实计数不宣称零警告、4 份大日志已全量归档双重 sha256 校验）。
+
+**复测产物指针**（只读数据源）：`ascend950/measurements/run_zero_189086/`
+- `gate_report.md`：从零复测门禁报告（搭建/精度/性能/sanitizer/结论全文）
+- `perf_results.csv`：性能汇总 CSV（32 行，4 case × 2 口径 × 4 rep）
+- `setup_from_zero.sh`：可复跑从零搭建脚本
+- 18 份分阶段日志（00_connectivity ~ 07c_rep4_data）
+- F 表追加 `950PR硬件手册_F表.md` F156-F163（含 F162b，共 9 行）
+
+## 验收证据与交付物（2026-09-11）
+
+**验收重交包**：`aclblasCgerc_验收重交_20260911.zip`（7.0 MB / 47 文件 / manifest.sha256 46 行全量校验通过）：
+
+| 包内项 | 内容 | 对应 9/7 打回意见 |
+|---|---|---|
+| 自测报告.md | 按任务书自测报告模板 8 章（从零搭建/精度/性能/Sanitizer/遗留披露/覆盖说明/总结） | “参考任务书自测报告模板提供自测报告” |
+| 精度数据/ | 1201 逐用例结果 csv + 偶发 60/60 记录 | “完整的精度数据” |
+| 性能数据/ | perf_results.csv 32 行（4 case × 双口径 × 4 rep）+ 性能对比表 | “性能对比数据” |
+| 截图/ | accuracy_tail / perf_table / sanitizer_matrix / build_rc 四张 PNG（由远端日志渲染，首行标注，原始日志见 logs/ 与 logs/full_logs/） | “及截图” |
+| logs/ + logs/full_logs/ | 18 份分阶段日志 + 4 份完整 synccheck 大日志（双重 sha256）+ sanitizer 24 job 日志 | 可复核性 |
+| design_v2 + links + README | 本设计文档、PR/分支链接、目录与证据对应表 | — |
+
+**最终判定数值**：精度 1201/1201 + 偶发 60/60；性能 4/4 双口径 PASS（isolated 7.024/11.526/27.039/99.891 μs、batch 4.512/8.798/24.460/96.708 μs，标杆 8.675/12.85/44.633/241.085，余量 10-60%，3-rep p50）；sanitizer 四工具 24/24 job rc=0（mem/race/init 实测 0 告警，synccheck 5/6 冗余 wait_flag 性能类如实计数）；从零搭建全链路 rc=0（kernel/host 零修改）。
+
+**披露**：不宣称零警告（synccheck 冗余非零，条数见上）；4096² 跨 rep 冷热双峰 spread 11.9%（最差 112.271 μs = 标杆 47%，同进程连续 3-rep 0.13%/1.13% STABLE）。
 
 ## 兼容性分析
 
-新算子（gerc 族新增 arch35 分支），不涉及兼容性分析。接口声明复用 `include/cann_ops_blas.h` 中已有 `aclblasCgerc` 声明，可与其他产品线共用。
+新算子（gerc 族新增 arch35 分支），不涉及跨版本兼容性分析。接口声明复用 `include/cann_ops_blas.h` 中已有 `aclblasCgerc` 声明，可与其他产品线共用。
 
-**测试方案说明**：基于 ops-blas 仓 CSV 驱动 GTest 框架（1200 条用例 + 1 条独立 NullHandle 测试），golden 使用 cblas_cgerc（Netlib BLAS 复数实现，列主序，`OPENBLAS_NUM_THREADS=1` 单线程）。测试类别覆盖：L0 基础(6)、SQ 尺寸(23)、AB alpha 特殊值(10)、RC 矩形(12)、LD lda padding(3)、INC 步长(36)、FL 填充含 Inf/NaN(18)、ED 边界负向(14)、EX 扩展(878)、PF 性能(200)。
+**测试方案说明**：基于 ops-blas 仓 CSV 驱动 GTest 框架（1200 条用例 + 1 条独立 NullHandle 测试 = 1201），golden 使用 cblas_cgerc（Netlib BLAS 复数实现，列主序，`OPENBLAS_NUM_THREADS=1` 单线程）。测试类别覆盖：L0 基础、SQ 尺寸、AB alpha 特殊值、RC 矩形、LD lda padding、INC 步长、FL 填充含 Inf/NaN、ED 边界负向、EX 扩展、PF 性能。
 
-**范围说明**：本 PR 仅含 AIV strip/legacy 路径（`tilingKey` 0/1）。整条 CUBE 路径已在 `a95c644` 中完全摘除（见上节理由），不在本 PR 交付范围内。
+**范围说明**：本 PR 交付寄存器融合优化入口（对齐 + 单位步长）与通用回退路径（非单位步长/不对齐），二者均仅用 AIV，分核规范。
