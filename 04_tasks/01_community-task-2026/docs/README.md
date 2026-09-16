@@ -250,6 +250,31 @@
 | 39 | CANN训练营北京邮电大学-segment_csr算子开发(950) |
 | 40 | CANN训练营北京邮电大学-torch_sparse SpMM 算子开发(950) |
 | 41 | CANN训练营北京邮电大学-torch_sparse工具类接口开发(950) |
+| 42 | 9月社区任务-AscendC Basic_API优化实现(CUBE侧矩阵类接口扩展) |
+| 43 | 9月社区任务-AscendC Basic_API优化实现(VECTOR矢量接口扩展) |
+| 44 | 9月社区任务-AscendC Basic_API优化实现(搬运类接口扩展) |
+| 45 | 9月社区任务-MatmulLayerNormMatmul算子开发 |
+| 46 | 9月社区任务-MaxPool2dWithMask算子开发 |
+| 47 | 9月社区任务-MaxPool2dWithMask Backward算子开发 |
+| 48 | 算子实操工坊-杭州站-aclblasCgbmv算子开发(950) |
+| 49 | 算子实操工坊-广州-aclblasCgemmBatched算子开发(A2/A3) |
+| 50 | 算子实操工坊-广州-aclblasCgeru算子开发(A2/A3) |
+| 51 | 算子实操工坊-广州-aclblasCrotg算子开发(A2/A3) |
+| 52 | 算子实操工坊-广州-aclblasCsymv算子开发(A2/A3) |
+| 53 | 算子实操工坊-广州-aclblasCsyr算子开发(A2/A3) |
+| 54 | 算子实操工坊-杭州站-aclblasCtbsv算子开发(950) |
+| 55 | 算子实操工坊-杭州站-aclblasCtpsv算子开发(950) |
+| 56 | 算子实操工坊-杭州站-aclblasCtrmm算子开发(950) |
+| 57 | 算子实操工坊-杭州站-aclblasCtrsmBatched算子开发(950) |
+| 58 | 9月社区任务-aclblasIcamin算子开发（950） |
+| 59 | 算子实操工坊-北京-aclblasSgbmv算子开发(A2/A3) |
+| 60 | 算子实操工坊-北京-aclblasSsbmv算子开发(A2/A3) |
+| 61 | 算子实操工坊-北京-aclblasSspr算子开发(A2/A3) |
+| 62 | 算子实操工坊-北京-aclblasSspr2算子开发(A2/A3) |
+| 63 | 算子实操工坊-北京-aclblasStpsv算子开发(A2/A3) |
+| 64 | 9月社区任务-hyperloglog容器开发(950) |
+| 65 | 9月社区任务-mulimap容器开发(950) |
+| 66 | 9月社区任务-multiset容器开发(950) |
 
 ## 参考链接
 社区任务发放页面：https://gitcode.com/org/cann/discussions/22
