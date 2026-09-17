@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "purpose": "Design review evidence snapshot; not final acceptance or implementation submission.",
+  "candidate_manifest_sha256": "26a7d6ec1072bfa02ace31207e87558a38a09c96a9c91ae33f48d97834051511",
+  "candidate_archive_sha256": "4c17191b49c3f9b8311b0454cfa846874c741d171ac3dc556d5f8c99cc0bade5",
+  "run_id": "address-space-fix",
+  "evidence_snapshot_local_utc": "2026-09-16T17:45:08.270678+00:00",
+  "regression_observation_raw_remote_utc": "2026-09-17T01:36:42.831390+00:00",
+  "clock_note": "Remote clock differs from local; no cross-host elapsed-time calculation.",
+  "upstream_ops_collections_commit": "432c15a38192a5e93c7c15400d62cf43cd9521d7",
+  "reference_cucollections_commit": "532795b81e72e3fe4ce2b26eb0c5abc8abb1e2b4",
+  "official_archive_sha256": "994cda9427e7e9a3d52e4c0c432d2a585f37fbde796b72ae12d561ee146819fc",
+  "environment": {
+    "device": "Ascend 950PR",
+    "aiv_cores": 56,
+    "cann": "9.1.0",
+    "target_arch": "dav-3510",
+    "compiler": "Bisheng ASC",
+    "os": "Ubuntu 22.04 x86_64",
+    "cmake": "3.22.1",
+    "host_gcc": "11.4"
+  },
+  "results": {
+    "hll_binaries_compiled": 14,
+    "smoke_passed": 4,
+    "official_correctness": {
+      "status": "PASS",
+      "expanded_scenarios": 1280,
+      "by_interface": {
+        "Create": 38,
+        "Destroy": 24,
+        "Clear": 180,
+        "Add": 726,
+        "Merge": 192,
+        "Estimate": 120
+      }
+    },
+    "numeric_accuracy": {
+      "status": "PASS",
+      "checkpoints": 180,
+      "maximum_relative_error": 0.02149930573569129,
+      "maximum_error_fraction_of_own_limit": 0.641025641025641,
+      "large_input_points": 12,
+      "maximum_large_input_relative_error": 0.0033888
+    },
+    "performance": {
+      "rows": 72,
+      "numeric_pass": 60,
+      "numeric_fail": 12,
+      "failed_operation": "Add",
+      "acceptance_status": "UNKNOWN_PROTOCOL",
+      "raw_iteration_samples_available": false,
+      "timing_scope": "Synchronous host wall time; CPU and Device columns reuse same integer-microsecond measurement."
+    },
+    "upstream_regression": {
+      "status": "RUNNING",
+      "passed": 32,
+      "total": 60,
+      "not_completed": 28
+    },
+    "memory": {
+      "scope": "APP-domain plog snapshots; not full-device or driver audit",
+      "completed_processes": 18,
+      "logs": 19,
+      "snapshots": 3190,
+      "allocation_release_balance": "PASS"
+    },
+    "pending": [
+      "Default nullptr stream and dedicated cross-stream device contract tests",
+      "Dedicated artificial rank and epoch boundary tests",
+      "Full upstream regression completion",
+      "Adopted optimization revalidation",
+      "Performance protocol confirmation",
+      "Final acceptance"
+    ]
+  },
+  "public_attachments": [
+    {
+      "path": "accuracy.csv",
+      "sha256": "2d33eb66fc8e3c16da51b7ffc888a5c43f9e9247d34daa11165f369950c69288",
+      "bytes": 22241
+    },
+    {
+      "path": "performance.csv",
+      "sha256": "9545852d79f1ed7575a1e2081db04009e09956a7f09e4d557ec7b746668b67c9",
+      "bytes": 25050
+    }
+  ],
+  "implementation_files": [
+    {
+      "path": "ops-collections/include/detail/hyperloglog/bit_ops.h",
+      "sha256": "0a177f4eb7675e91d0441331c1560709d3a6863901c2d505e2b0dc0ff6610f4b"
+    },
+    {
+      "path": "ops-collections/include/detail/hyperloglog/config.h",
+      "sha256": "39c39ac2262af713ad37c8db86256ec7b029327aa920858f709064477cc07294"
+    },
+    {
+      "path": "ops-collections/include/detail/hyperloglog/finalizer.h",
+      "sha256": "0ceb6c5f8ae5e66d53cdf99ae5da78a5d044d58b1d461b45676812b5b2b008b4"
+    },
+    {
+      "path": "ops-collections/include/detail/hyperloglog/hyperloglog.inl",
+      "sha256": "5ed0706c7d79c3c44f4a3273d270782841dabc5169a5f531d7da163160a5e367"
+    },
+    {
+      "path": "ops-collections/include/detail/hyperloglog/kernels.h",
+      "sha256": "9a05df18ca93b7842e46b8a86f82e5dbca83ac84de679e879b53c5b85896f2d2"
+    },
+    {
+      "path": "ops-collections/include/detail/hyperloglog/tuning.h",
+      "sha256": "01ae4a8d3d37edd0f40a2cb8b6156a8215cab2469c24fd01f0cef807417104cb"
+    },
+    {
+      "path": "ops-collections/include/hyperloglog.h",
+      "sha256": "10fce45f8cd64831962ab38f92fc51f8da594258f82f3c13a8305b6e7ea5c358"
+    },
+    {
+      "path": "ops-collections/include/hyperloglog_ref.h",
+      "sha256": "643a2c4dc3e7c01d1b9711cfccf1bb6fe1c99547efe0c277a149873488476043"
+    }
+  ],
+  "source_evidence_hashes": [
+    {
+      "artifact": "evidence/remote/address-space-fix/build/stage.json",
+      "sha256": "d53babf381980800c9bbaec9439c560046051b30fdf04e0e0fcda1586603a97e"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/build/binary_hashes.json",
+      "sha256": "4b9051dd053219217939efb57ba88d262a5a32a8d8876b8a1cfb6dad10f3df98"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/smoke/stage.json",
+      "sha256": "95c951d37b23d798998479ad7fea4abb76c005c51cdae352d4d607b78d5ae9ec"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/correctness/coverage.json",
+      "sha256": "f11914028c4cd3b6f8314eba4519e1e8b719d6d23022e1b8ec0f12ace7b4ac4c"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/correctness/independent_validation_summary.json",
+      "sha256": "c31237661a9a5228f34fe36e0a9b2a425ff2df953852cd9fe7cfa006a2d50a18"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/correctness/numeric_accuracy.xml",
+      "sha256": "173c8e9162b6fc947784947954950f2433ccd7a3f37862b3cfa76cd425f55872"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/correctness/supplemental.xml",
+      "sha256": "0537b423f2c8be87ca92b3e4844b1a8bdc7d5a41e26b1cc4ff839460b816f2f9"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/performance-detail/summary.json",
+      "sha256": "88d93f33d126bca853b56571d9f81b9905eff8401fc6f34e2779603f3b6bbc08"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/resource-capture/verified-all-hll-programs.json",
+      "sha256": "0f88c53d95b52252d31ebeb633e540b08db1f0c3227a208dadfeed029172c08f"
+    },
+    {
+      "artifact": "evidence/remote/address-space-fix/regression/monitor-20260917T0121.log",
+      "sha256": "1ac1b33d82e1190ac47b059d83b968d3e1b48ad60a578fb50213361410ccac0c"
+    },
+    {
+      "artifact": "evidence/performance_protocol_observed_source.json",
+      "sha256": "476c23eb99f6761d295c8c5f0a31581ae627159d5423d3f36b35ad84bee28090"
+    },
+    {
+      "artifact": "evidence/performance_protocol_add_state.json",
+      "sha256": "0391e6bab031ee3d51e26cd6ad60ce23ee06a40790f668f64e86b55f8b15a03e"
+    },
+    {
+      "artifact": "evidence/baseline_protocol_lookup_20260916.json",
+      "sha256": "60198ca9fc8e128cdd77b91681cea2e7b9f8568854cd068beb2ab4a81b004f4a"
+    }
+  ],
+  "raw_evidence_availability": "Raw logs and full implementation archive retained by author; not published in this design-only PR. Hashes identify artifacts but do not make unpublished raw evidence publicly reproducible."
+}
