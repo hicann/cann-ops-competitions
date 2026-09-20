@@ -1,68 +1,40 @@
 # aclblasCsscal 算子设计文档
 
-> **算子名称**：aclblasCsscal
-> **功能**：单精度复数向量 × 实数标量原地缩放（x = alpha * x）
-> **目标硬件**：Ascend 950PR（arch35）
-> **CANN 版本**：9.1.0
-> **对标基线**：cuBLAS `cublasCsscal` / Netlib `csscal`
-> **对应实现版本**：ops-blas 提交 8503a7c1368022b387067ae154dd7e2803c0faf9（csscal phase2 默认配置）。本文描述该版本实现；性能达标不等于社区验收已完成。
-
----
+本次修订关联已合并的[设计PR #1457](https://gitcode.com/cann/cann-ops-competitions/pull/1457)，按当前保留实现更新设计。代码仓为[2401_87688128/ops-blas](https://gitcode.com/2401_87688128/ops-blas)，代码PR为[#477](https://gitcode.com/cann/ops-blas/pull/477)，当前提交为3a314e97710e28ab33c386bb3d3931bdb6cb1640，实测提交为b7cb689a16c60421b33e1af85b3f4f6c6f90f07e；当前提交仅对Host启动配置、Kernel输入载入和测试辅助函数做等价拆分，Kernel、tiling、计时路径、官方CSV输入和精度判定逻辑保持一致。本次修订的评审状态以本PR为准，不沿用旧PR的通过结论。
 
 # 需求背景（required）
 
 ## 需求来源
 
-CANN 训练营东南大学社区算子开发任务（任务目录：`09-27-aclblasCsscal-950`）：在昇腾 NPU（Ascend 950PR）上使用 Ascend C/CATLASS 开发 BLAS Level-1 算子 `aclblasCsscal`，完成算子设计、开发、测试全流程，验收通过后合入昇腾算子开源仓 `cann/ops-blas`。
+CANN训练营东南大学社区任务“aclblasCsscal算子开发(950)”。依据任务书§2功能、§3验收、§4交付及§5合入要求，在ops-blas公共接口框架中为Ascend 950PR提供Ascend C直调实现。
 
-设计依据：
-
-- 任务书：`aclblasCsscal Atlas950PR task doc`（功能定义 §2、验收标准 §3、交付件 §4、PR 合入 §5）；
-- 官方设计文档模板：`cann-ops-competitions/04_tasks/01_community-task-2026/resources/design_template.md`；
-- 生态算子开源精度标准（opbase experimental standard）；
-- ops-blas 仓现有 `sscal` arch35 实现及仓内测试工程。
+模板：https://gitcode.com/cann/cann-ops-competitions/blob/master/04_tasks/01_community-task-2026/resources/design_template.md 。模板中的Addcdiv/TBE为示例，本设计替换为CSScal实际接口和cuBLAS/Netlib参照，不引入TBE对比项。
 
 ## 背景介绍
 
-### aclblasCsscal 算子说明
+### aclblasCsscal算子实现
 
-`aclblasCsscal` 是 BLAS Level-1 中的复数向量缩放算子，执行原地缩放：`x[j] = alpha * x[j]`（i = 1..n，j = 1+(i-1)*incx，1-based 索引兼容 Fortran），其中 **alpha 为 float 实数标量**，x 为单精度复数向量（complex64）。
+CSScal是BLAS Level-1复数向量乘实数标量操作。complex64由连续的实部float32和虚部float32构成，两分量分别乘alpha，不进行复数交叉乘法。更新直接写回x。
 
-实数标量对复数元素的语义为**实部、虚部分别乘以 alpha**，不涉及复数乘法。
+### 现有工程与接口分析
 
-与同族算子对比：
-
-| 算子 | alpha 类型 | x 类型 | 公式 |
-|---|---|---|---|
-| `aclblasSscal` | float | float | x[i] = alpha * x[i] |
-| **`aclblasCsscal`** | **float（实数）** | **complex64** | **x[i] = alpha * x[i]（实部/虚部分别乘 alpha）** |
-| `aclblasCscal` | complex64 | complex64 | x[i] = alpha * x[i]（复数乘） |
-
-`Csscal` 无复数交叉乘法，分量乘法次数为 `Cscal` 的一半；且 incx=1 时 complex64 在内存中连续排布为 `[re0, im0, re1, im1, ...]`，可等价视为长度为 `2*n` 的连续 float 流统一乘 alpha，为 AIV 向量化提供基础。
-
-### 现有实现现状
-
-- `include/cann_ops_blas.h` 已存在 `aclblasCsscal` 接口声明，arch35 目录下此前无对应实现；
-- `aclblasComplex` 定义于 `include/cann_ops_blas_common.h`，实部/虚部各为 float32；
-- 同族实数算子 `sscal` 已有 arch35 完整实现（AIV 连续路径 + SIMT 步长路径），可作为工程与 golden 封装（cblas 调用）的直接参照；
-- 仓内 `test/scal/sscal/` 已有 CSV 驱动的 arch35 测试工程，`csscal` 测试工程参照其搭建。
+公开声明已在include/cann_ops_blas.h中存在，复用仓内aclblasComplex及句柄结构。实现文件为blas/scal/arch35/csscal_host.cpp、csscal_kernel.cpp、csscal_tiling_data.h；测试位于test/scal/csscal/，基于仓内CSV、填充器、GTest及cblas封装。连续访存使用AIV向量乘，正步长使用SIMT。
 
 ### 算子功能分析
 
-- **输入**：handle、n、alpha（float 实数标量指针，Host 内存）、x（complex64 向量，Device 内存）、incx（int，复数元素步长）；
-- **输出**：x 原地更新；
-- **支持数据类型**：complex64（实部/虚部各 FLOAT32）；
-- **支持形状**：逻辑一维 `[n]`；incx>0 时物理长度为 `1+(n-1)*incx`；
-- **不支持广播**：标量对一维向量逐元素操作，无广播语义；
-- **原地更新**：不返回视图，仅原地改写 x。
+| 参数 | 含义 | 类型/位置 | 形状与约束 |
+|---|---|---|---|
+| handle | 携带绑定stream的句柄 | aclblasHandle_t，Host | 非空，否则返回HANDLE_IS_NULLPTR |
+| n | 复数元素个数 | int，Host | n≤0合法no-op |
+| alpha | 实数乘数 | const float*，Host | 实际计算时指针可读且非空 |
+| x | 原地更新向量 | aclblasComplex*，Device | 逻辑[n]；n>0、incx>0时物理长度1+(n−1)incx |
+| incx | 复数元素步长 | int，Host | incx≤0合法no-op；正步长执行 |
 
----
+无额外leading dimension、广播、输出视图或动态shape框架需求；n仍为运行时参数。
 
 # 需求分析（required）
 
 ## 需求描述
-
-在 Ascend 950PR（arch35，CANN 9.1.0）上实现 `aclblasCsscal`，复用仓内公开接口：
 
 ```cpp
 aclblasStatus_t aclblasCsscal(
@@ -70,38 +42,15 @@ aclblasStatus_t aclblasCsscal(
     aclblasComplex* x, int incx);
 ```
 
-功能、参数语义与 cuBLAS `cublasCsscal` 对齐，满足任务书精度标准（实部/虚部分别按 FLOAT32 判定）与性能标准（n=4M、incx=1 时 ≤ 43.02 us），代码合入 `cann/ops-blas`。
+支持complex64输入输出与float32实数标量，遵循任务书规定的参数校验、no-op和alpha=0置零语义。沿handle绑定stream异步提交，不定义950PR私有平行接口。
 
 ## 需求拆解
 
-1. **功能正确性**
-   - 实现 `x[j] = alpha * x[j]`，实部/虚部分别乘以 alpha；
-   - 校验顺序固定，返回码优先级与 BLAS 语义一致（详见 3.2.1）；
-   - 正确处理 no-op：n≤0 或 incx≤0 时合法返回 SUCCESS 且不修改 x；
-   - 正确处理 alpha=0.0：**不是 no-op**，被索引元素实部/虚部须写成 bit-exact +0，步长间隙不变；
-   - alpha=1.0 等价 no-op，可提前返回 SUCCESS。
-
-2. **精度要求**
-   - 实部、虚部分别与 cblas（Netlib BLAS）`csscal` golden 比对，逐元素条件 `|actual - golden| ≤ atol + rtol × |golden|`；
-   - rtol=2^-10、atol=2^-16、matched_ratio≥0.99，且 max_abs_error ≤ max(1e-2, 32*ULP)；
-   - alpha=0.0 用例额外做 +0 位级检查；
-   - 正步长用例校验步长间隙（未被索引的 x 区间）保持不变。
-
-3. **性能要求**
-   - incx=1 连续访存为主路径：n=1M/2M/4M 分别 ≤ 13.57/21.05/43.02 us；
-   - 配套 GPU baseline 的 200 条 `ratio = GPU_ms * 1000 / avg_us ≥ 0.4` 判定单独保留，不得用派生舍入值覆盖任务书门槛；
-   - 有效采样超过 50 次取平均（实现中 warmup 后采样 100 次）。
-
-4. **工程交付**
-   - 实现位于 `blas/scal/arch35/`：`csscal_host.cpp`、`csscal_kernel.cpp`、`csscal_tiling_data.h`；
-   - 接口声明复用 `include/cann_ops_blas.h` 已有声明，不重复导出；
-   - 测试工程位于 `test/scal/csscal/arch35/`，配套 README 说明可复现的测试步骤；
-   - 按任务书 §4/§5 提交设计文档 PR、代码 PR 与任务系统验收。
-
-5. **验证完整性**
-   - 如实区分"已验证结果、性能波动与待验收项"；任务书 §3.5 输入分布覆盖、950DT 支持声明等未闭环项不隐瞒（见"已知交付边界与待办"）。
-
----
+1. 功能：按incx更新逻辑元素，两分量独立计算；间隙元素不修改。
+2. 精度：cblas golden；实部、虚部分别按FLOAT32标准验证。alpha=±0另验bit-exact正零。
+3. 性能：10次预热后100次有效调用；三个标杆和全部200条ratio要求均检查。按官方回复以msprof采集设备Kernel耗时，保守上界、Host端到端读数分别保留。
+4. 工程：使用官方固定上游7eae232的build.sh、顶层CMake与共享测试框架；不添加私有优化开关，不替换官方CSV输入。
+5. 可复现性：记录实测SHA、实际编译命令、加载库、产物哈希和完整日志；用独立附加测试补分布及指针偏移覆盖。
 
 # 详细设计（required）
 
@@ -109,234 +58,107 @@ aclblasStatus_t aclblasCsscal(
 
 ### 数学公式
 
-```
-x[j] = alpha * x[j]    (i = 1..n, j = 1+(i-1)*incx)
-```
+对i=0,…,n−1，j=i×incx：
 
-展开为分量形式：
-
-```
+```text
 x[j].real = alpha * x[j].real
 x[j].imag = alpha * x[j].imag
 ```
 
-其中 alpha 为 float 实数标量，x 为 complex64 向量。无复数交叉乘法；incx=1 时该公式等价于对长度为 `2*n` 的连续 float 流统一乘 alpha。
+特殊路径：n≤0或incx≤0不更新；alpha=1不更新；alpha=0（包括−0）直接写+0，不使用0×Inf/NaN计算。后者按任务书明确语义处理。
 
 ### 支持数据类型
 
-| 参数 | 数据类型 | dtype | 说明 |
-|---|---|---|---|
-| alpha | float | FLOAT32 | 实数标量，按指针传入，指向 Host 可读内存 |
-| x | aclblasComplex | COMPLEX64 | 复数向量，实部/虚部各 float32，指向 Device 内存 |
-| n | int | INT32 | 向量元素个数（复数元素） |
-| incx | int | INT32 | 复数元素步长，仅支持正步长 |
+alpha为FLOAT32，x为COMPLEX64（两分量FLOAT32），n/incx为接口规定的int。既有接口签名和类型定义不变。
 
 ### 支持形状
 
-逻辑一维 `[n]`；incx>0 时物理长度为 `1+(n-1)*incx`。incx 为复数元素间步长，不是 float 步长；非连续访问由 incx 表达，不涉及额外 leading dimension。
+逻辑一维[n]。连续路径把n个复数解释为F=2n个float。正步长路径按复数元素计算物理偏移，调用者须提供实际可访问的Device存储；不承诺所有数学尺寸均可实际分配。
 
 ## 算子实现
 
 ### 实现方案
 
-参照 `sscal` 采用 **AIV + SIMT 双路径**：
-
-| 路径 | 触发条件 | 技术 | 定位 |
-|---|---|---|---|
-| AIV 路径 | `incx == 1` | complex64 视为 float 流，SIMD 向量乘 + UB 队列 | 连续访存主路径 |
-| SIMT 路径 | `incx > 1` | 多线程逐元素处理 | 灵活支持任意正步长 |
-
-**关键设计 1：complex64 展开为 float 流（仅 incx==1）**
-
-complex64 内存排布 `[re0, im0, re1, im1, ...]` 在 incx==1 时等价于长度为 `2*n` 的连续 float 数组。对所有 float 统一乘 alpha 即等价于实部/虚部分别乘 alpha，因此 AIV 路径可直接复用向量乘逻辑，仅将 totalN 取为 `2*n`。
-
-Host 侧先以 `uint64_t` 计算 `2*n`，缩窄到 `uint32_t` 前检查范围，避免乘法溢出。
-
-**关键设计 2：8-float 对齐保证不劈开复数**
-
-分核与 tile 均以 8 个 float（32B）为对齐单位。`perCoreN`、核内起始偏移、tile 大小均为 8 的倍数，因此核边界与 tile 边界落在完整复数（实部+虚部）之间，不会拆分单个复数元素。
-
-**关键设计 3：alpha=0.0 不读输入，直接生成 +0**
-
-IEEE 754 下 `0.0 * Inf = NaN`、`0.0 * NaN = NaN`，直接乘法无法得到 bit-exact 全零。alpha=0.0 时 AIV 路径不初始化输入队列、不搬入输入 GM，直接在 UB 内 `Duplicate(outLocal, 0.0f, count)` 生成正零并写回；SIMT 路径逐元素写 `0.0f`。
+| 条件 | 路径 | 计算方式 |
+|---|---|---|
+| n≤0、incx≤0或alpha=1 | Host快速返回 | 不启动Kernel |
+| incx=1 | csscal_aiv_kernel | GM→UB、Muls/Duplicate、UB→GM |
+| incx>1 | csscal_simt_kernel | 每线程按步长读写复数两分量 |
 
 #### 3.2.1 host侧设计：
 
-入参校验与快速返回顺序固定如下（保证返回码优先级与 BLAS 语义一致）：
-
-```text
-1. handle == nullptr            -> ACLBLAS_STATUS_HANDLE_IS_NULLPTR
-2. n <= 0 || incx <= 0          -> ACLBLAS_STATUS_SUCCESS（合法 no-op，不修改 x）
-3. alpha == nullptr             -> ACLBLAS_STATUS_INVALID_VALUE
-4. x == nullptr                 -> ACLBLAS_STATUS_INVALID_VALUE
-5. *alpha == 1.0f               -> ACLBLAS_STATUS_SUCCESS（等价 no-op，提前返回）
-6. GetAivCoreCount() == 0       -> ACLBLAS_STATUS_EXECUTION_FAILED
-```
-
-注意：alpha=0.0（含 -0.0）**不是** no-op，进入计算路径置零；以上 no-op 均不启动 kernel。
-
-tiling 策略：
+校验顺序为：handle判空 → n/incx合法no-op → alpha判空 → x判空 → alpha=1快速返回 → 查询AIV核数。空handle返回ACLBLAS_STATUS_HANDLE_IS_NULLPTR；计算路径空alpha/x返回ACLBLAS_STATUS_INVALID_VALUE；核数查询为0返回ACLBLAS_STATUS_EXECUTION_FAILED。
 
 ##### 1. 分核策略：
 
-- 获取 AIV 核数 C = `GetAivCoreCount()`，C==0 时返回 `EXECUTION_FAILED`；
-- **AIV 路径（incx==1）**：F = 2*n，块数为 8 个 float 的块数 `workBlocks = ceil(F/8)`，实际核数 `B = min(workBlocks, C)`；
-- **SIMT 路径（incx>1）**：按 complex 元素分配，核数 `U = min(ceil(n / SIMT_MIN_THREAD_NUM), C)`。
-
-AIV 整数分核公式（核号 i = 0..B-1）：
+令C=GetAivCoreCount()。连续路径先以uint64_t计算F=2n，确认可放入uint32_t后缩窄：
 
 ```text
-perCoreN        = floor(floor(F/B)/8)*8
-leftover        = F - perCoreN*B
-extraBlockCores = floor(leftover/8)
-tailElements    = leftover % 8
-offset(i)       = i*perCoreN + min(i, extraBlockCores)*8
-count(i)        = perCoreN
-                  + (i < extraBlockCores ? 8 : 0)
-                  + (i == B-1 ? tailElements : 0)
+B = min(ceil(F/8), C)
+若 n <= 131072：B = min(B, max(1, floor(n/2048)))
+p = floor(floor(F/B)/8)*8
+L = F - p*B
+e = floor(L/8)
+t = L % 8
+offset(i) = i*p + min(i,e)*8
+count(i) = p + (i<e ? 8 : 0) + (i==B-1 ? t : 0)
 ```
 
-这些区间拼接覆盖 `[0, F)`，所有核起始偏移均为 8 的倍数；`tailElements`（若存在）落在最后一核。空核在申请 UB 前直接返回。
+单位为float；每核起点32B相对对齐，区间无重叠地覆盖[0,F)。F为偶数，因此不拆分复数分量对。核数按设备查询，不硬编码56；56是本次设备观测值。
 
-SIMT 分核（无 per-core 数组，kernel 侧按公式计算）：
-
-```text
-baseCount = floor(n/U)
-remainder = n % U
-calNum(i)       = baseCount + (i < remainder ? 1 : 0)
-startOffset(i)  = i*baseCount + min(i, remainder)
-```
+正步长路径U=min(ceil(n/128),C)，按复数元素分配：q=floor(n/U)，r=n%U；第i核处理q+(i<r)个元素，起点i*q+min(i,r)。线程数min(ceilAlign(ceil(n/U),128),2048)，每线程循环步长blockDim.x。
 
 ##### 2. 数据分块和内存优化策略：
 
-AIV 路径按 float 元素分块，UB 预算固定由编译期配置决定：
+UB_SIZE使用仓内常量248×1024=253952字节，不是运行时设备容量探测。连续路径tileSize=floor(UB_SIZE/(4×sizeof(float))/8)×8=15872个float。输入和输出TQue类型深度均为2。
 
-- 默认构建配置（`build.sh` 不带实验开关）：`queue_slots=1`、`tile_buffer_count=2`、`optimize=ON`；
-- `UB_SIZE = 248 * 1024 bytes`，`tileSize = floor(UB_SIZE / (tile_buffer_count * sizeof(float)) / 8) * 8 = 31744 floats`；
-- 每 slot 实际容量按 `min(count, tileSize)` 向上对齐到 8 floats 申请；
-- 非零 alpha 满 tile 时输入+输出共需 `253952 bytes` UB——这是源码预算，不是实测进程内存；
-- 队列为 `TQue<QuePosition::VECIN/VECOUT, 1>`，默认每个方向一个物理 slot（无显式跨 tile prime/steady/drain 调度；本实现不以 DMA 自动重叠作为性能达标的必要条件）；
-- alpha==0 时不初始化输入队列（`InitBuffer` 跳过 VECIN），减少 UB 占用且避免无谓读流量。
+单核实际处理量count≤tileSize时，输入、输出各初始化一个物理缓冲；超过tileSize时各初始化两个。每缓冲容量为ceil(min(count,tileSize)/8)×8×4字节。非零alpha多tile最多4×15872×4=253952字节；单tile最多126976字节。alpha=0不初始化输入队列，减少读取及分配。以上为源码UB预算，不等同进程设备内存。
 
-每 tile 处理时，对齐部分用 `DataCopy`，不足 32B 的尾部用 `DataCopyPad`（GM 尾部只写有效元素，padding 不写回）。
+同一输入/输出GM地址原地更新，无额外GM workspace，启动包装传workspace=nullptr。正常非零操作的算法读写量约16n字节，不据此推断物理HBM流量或缓存命中率。
 
-SIMT 路径不涉及 UB 分块，直接 GM 访问；线程数：
+##### 3. tilingkey规划策略：
 
-```text
-nthreads = min(CeilAlign(ceil(n/U), SIMT_MIN_THREAD_NUM), SIMT_MAX_THREAD_NUM)
-```
-
-线程步长为 `blockDim.x`，kernel 启动时 `blockDim.x` 与 nthreads 必须一致。
-
-##### 3. tilingkey 规划策略：
-
-本算子为固定语义的逐元素缩放：kernel 侧仅需依据 `incx`（区分 AIV/SIMT）与 `alpha`（区分置零/向量乘）分支，两者均写入 tiling 数据；host 侧无需额外编码 tilingkey。
-
-##### 4. tiling 数据结构：
+没有独立TilingKey注册。Host启动包装根据incx选择AIV/SIMT入口；AIV内部根据count和alpha选择单tile、多tile、置零或乘法分支。Tiling结构为：
 
 ```cpp
 struct CsscalTilingData {
-    uint32_t totalN;          // AIV: float 总数(2*n)；SIMT: complex 元素数 n
-    uint32_t perCoreN;        // AIV: 每核基础 float 数，按 32B 对齐
-    uint32_t extraBlockCores; // AIV: 前若干核各多处理一个 32B block
-    uint32_t tailElements;    // AIV: 非对齐 float 尾数，交给最后一核
-    uint32_t tileSize;        // AIV: 单次搬运的 float 数
-    float alpha;              // 实数标量
-    int64_t incx;             // 步长（complex 元素单位）
-    uint32_t useCoreNum;      // SIMT: 实际使用核数
-    uint32_t nthreads;        // SIMT: 每核线程数
+    uint32_t totalN;          // AIV: float数；SIMT: 复数数
+    uint32_t perCoreN;
+    uint32_t extraBlockCores;
+    uint32_t tailElements;
+    uint32_t tileSize;
+    float alpha;
+    int64_t incx;
+    uint32_t useCoreNum;
+    uint32_t nthreads;
 };
 ```
 
-kernel 启动：Host 侧经 `csscal_kernel_do(x, workSpace, tiling, numBlocks, stream)` 启动 AIV/SIMT kernel；`workSpace` 沿用仓内统一签名约定，本算子不使用额外 GM 工作空间，恒传 `nullptr`。kernel 为 AIV_ONLY，沿 handle 绑定的 stream 异步提交，公开算子内不新增同步。
-
 #### 3.2.2 kernel侧设计：
 
-##### AIV 路径（incx==1）
+**初始化与单tile。** TPipe位于Kernel入口，CsscalAIV解析tiling并计算本核offset/count。空核返回；count≤tileSize直接调用SingleIteration，不进入预取循环。非零alpha搬入、输入EnQue/DeQue、Muls、FreeTensor；alpha=0使用Duplicate(out,0.0f,count)。输出EnQue/DeQue后写回并释放，依赖队列管理流水同步，不引入手工事件或单UB原地计算。
 
-类 `CsscalAIV`，totalN = 2*n：
+**多tile。** 非零alpha先LoadNext首块。每次循环取得当前输入，提交Muls，释放当前输入，再搬入下一块；之后输出EnQue/DeQue并写回当前块。最后一块只计算有效长度；仅存在下一块时计算remaining，避免无符号回绕。该结构提供搬运重叠机会，不声称所有阶段完全重叠。最终保留的是“当前计算后提交下一块搬入”的顺序。
 
-```text
-Init():
-  - 解析 tiling；blockIdx_ = GetBlockIdx()
-  - 计算 myOffset_/myCount_（见 host 分核公式）
-  - myCount_ == 0 时直接返回（空核不申请 UB）
-  - xGM_.SetGlobalBuffer(x, totalN)
-  - bufferFloats = ceil(min(myCount_, tileSize)/8)*8
-  - alpha != 0: InitBuffer(inQueue_, 1, bufferFloats*sizeof(float))
-  - InitBuffer(outQueue_, 1, bufferFloats*sizeof(float))
+**对齐与尾块。** x基址32B对齐且块长度为8个float的倍数时使用DataCopy；否则使用一次DataCopyPad搬运该块全部有效字节，并在UB末尾补零至32B。写回仅写count×4字节，不写padding。基址允许有效complex元素偏移，例如实测8/16/24字节偏移；不把32B基址对齐作为额外API限制。
 
-Process():
-  - myCount_ == 0 时直接返回
-  - tileLoop = myCount_ / tileSize；tileTail = myCount_ % tileSize
-  - 前 tileLoop 个整 tile 依次 SingleIteration(offset, tileSize)
-  - 若 tileTail > 0：SingleIteration(offset, tileTail)
+**SIMT。** 复数索引为(uint64_t(startOffset)+i)×uint64_t(incx)，float索引为其两倍。非零alpha分别读乘写实虚部；alpha=±0分别写0.0f。只访问逻辑元素，步长间隙保持不变。
 
-SingleIteration(curOffset, dataCount):
-  - alignedCount = floor(dataCount/8)*8；tailCount = dataCount % 8
-  - out = outQueue_.AllocTensor()
-  - alpha == 0:
-      Duplicate(out, 0.0f, dataCount)          // 不读输入 GM
-  - alpha != 0:
-      in = inQueue_.AllocTensor()
-      alignedCount>0: DataCopy(in, xGM_[curOffset], alignedCount)
-      tailCount>0:    DataCopyPad(in[alignedCount], xGM_[curOffset+alignedCount],
-                                  tailCount*4B, pad 0.0f)
-      inQueue_.EnQue/DeQue；Muls(out, in, alpha, dataCount)
-  - outQueue_.EnQue/DeQue
-  - alignedCount>0: DataCopy(xGM_[curOffset], writeData, alignedCount)
-  - tailCount>0:    DataCopyPad(xGM_[curOffset+alignedCount], writeData[alignedCount],
-                                tailCount*4B)  // 只写有效元素
-```
-
-`GlobalTensor<float>` 的索引单位是 float 元素，不混用 bytes 或 complex 元素。tensor 复用依赖队列生命周期（EnQue/DeQue/FreeTensor 配对）。
-
-##### SIMT 路径（incx>1）
-
-kernel 按 `baseCount/remainder` 公式计算每核 `calNum/startOffset`，每个 AIV 核内启动 nthreads 个线程：
-
-```cpp
-for (uint32_t i = threadIdx.x; i < calNum; i += blockDim.x) {
-    uint64_t complexIdx = (uint64_t(startOffset) + i) * uint64_t(incx);
-    uint64_t floatIdx   = complexIdx * 2;      // re, im 连续
-    if (alpha == 0.0f) {
-        xGm[floatIdx]     = 0.0f;              // 实部 +0
-        xGm[floatIdx + 1] = 0.0f;              // 虚部 +0
-    } else {
-        xGm[floatIdx]     = alpha * xGm[floatIdx];
-        xGm[floatIdx + 1] = alpha * xGm[floatIdx + 1];
-    }
-}
-```
-
-索引计算全程使用 `uint64_t`，任意正 incx 下不会溢出 32 位。
+两入口均使用KERNEL_TYPE_AIV_ONLY，通过handle->stream异步提交。算子内部不增加Host同步；测试在读回前同步，性能fixture逐次同步绑定的stream。
 
 ## 支持硬件
 
 | 支持的芯片版本 | 涉及勾选 |
 |---|---|
-| Ascend 950PR（arch35） | √ |
+| Ascend 950PR（arch35），CANN 9.1.0 | √ |
 
-> 本次真机自测仅确认 950PR。仓内 README 中同时存在的 950DT 支持声明尚未补证，待验证后保留或收窄，不据此推断 950DT 已通过。
+本次不据950PR结果推断950DT或其他平台已验证。
 
 ## 算子约束限制
 
-| 约束项 | 内容 |
-|---|---|
-| no-op 语义 | n≤0 或 incx≤0 → 合法 no-op，返回 SUCCESS，不修改 x、不启动 kernel |
-| alpha=1.0 | 等价 no-op，Host 侧提前返回 SUCCESS |
-| alpha=0.0 | **非 no-op**；被索引元素实部/虚部 bit-exact 写 +0，步长间隙不变 |
-| alpha 特殊值 | alpha 可为 FLOAT32 全集（含 ±Inf/NaN）：非零 alpha 直接做浮点乘，行为与 cblas csscal 一致；仅 alpha==0.0 走置零路径 |
-| 步长 | 仅支持正步长（incx≤0 按 no-op）；incx>0 时索引用 uint64_t 计算不溢出 |
-| 调用方缓冲区 | x 须为实际可访问的 Device 缓冲；文档不宣称所有数学尺寸均可分配 |
-| AIV 对齐依赖 | incx==1 路径按 32B 整块访问，要求 x 基址 32B 对齐（aclrtMalloc 分配天然满足）；SIMT 逐元素访问无该要求。此为实现依赖，不构成 API 级约束 |
-| alpha 指针内存空间 | Host 内存指针（任务书 §2.4），调用方须保证可读 |
-| 广播/dynamic shape | 不涉及；n 为运行时入参 |
-| 原地更新 | x 原地更新，不返回视图 |
-| 异步执行 | 依赖 handle 绑定 stream；读回前须同步；no-op 不触碰 stream |
-| 编译期开关 | queue_slots/tile_buffer_count/optimize 为实验期编译开关，默认配置与 `--csscal-baseline` 对照配置均以实际构建参数为准，详见附录 |
+无广播、无额外leading dimension、无额外输出张量；x为Device指针，alpha为Host指针。正步长支持由incx表达的非连续访问；非正步长是任务书规定的no-op。调用者负责缓冲区有效性和生命周期。
 
----
+build.sh和顶层CMake保持固定官方上游7eae232原文，使用默认Release；本次实际bisheng命令含-O3 -DNDEBUG。没有csscal私有-O2、baseline/phase2开关或fast-math选项。新增测试CMake仅调用仓库已有测试构建函数。
 
 # 可维可测分析
 
@@ -344,48 +166,29 @@ for (uint32_t i = threadIdx.x; i < calNum; i += blockDim.x) {
 
 | 验收标准 | 描述 | 标准来源 |
 |---|---|---|
-| 精度标准 | 实部/虚部分别按 FLOAT32 判定：rtol=2^-10、atol=2^-16、matched_ratio≥0.99、max_abs_error≤max(1e-2, 32*ULP) | 任务书 §3.2 + 生态算子开源精度标准 |
-| 性能标准 | incx=1：n=1M ≤ 13.57 us、n=2M ≤ 21.05 us、n=4M ≤ 43.02 us | 任务书 §3.3 |
-| 性能对照 | 配套 200 条按 `GPU_ms*1000/avg_us >= 0.4` 判定，使用原 GPU baseline | 任务书 §3.5 配套 |
+| 精度 | 实部/虚部分别按FLOAT32验证：rtol=2^-10、atol=2^-16、matched_ratio≥0.99；绝对误差限制按官方验证器的max(1e-2,32×ULP)检查。零标量另验正零位模式 | 任务书§3.2及官方测试框架 |
+| 三标杆 | n=1048576/2097152/4194304，incx=1，平均单次耗时≤13.57/21.05/43.02μs | 任务书§3.3 |
+| 全量性能 | 200个官方性能case，GPU_ms×1000/平均Kernel_us≥0.4，预热后有效采样>50 | 配套基线及官方回复 |
+| 内存 | §3.4无性能阈值；§4自测报告仍记录内存占用 | 任务书§3.4、§4 |
 
-**精度测试说明**：8503a7c 对应测试共 1014 项精度用例 = 1000 条非性能 CSV 用例 + 14 项 TEST_F，含负零检查、步长间隙 sentinel、1M+7 非对齐尾块（1048583 元素）以及独立 2M/4M 全量 cblas golden（2097152/4194304，alpha=2.5）。当前两个大尺寸用例实部/虚部失败数均为 0、最大绝对误差为 0。普通 golden 容差测试等同于逐元素比较，不等于对所有位模式做 memcmp。
+**覆盖。** 官方CSV1200条原样保留：1000精度、200性能。主精度集合1000+14独立功能测试=1014项；另有SupplementalDistributionCoverage和SupplementalDevicePointerOffsets共2项。前者32组组合中alpha/x各16组均匀、16组正态，实虚部独立生成；后者覆盖8/16/24B指针偏移、incx=1/3及保护区。官方CSV本身不宣称50%正态覆盖。
 
-**性能测试说明**：200 条唯一 `[PERF][ascend950]` 记录，每条 samples=100；计时口径为一次 H2D 后 warmup 10 次并同步，再计时 100 次公开 API 调用 + 一次 Device 同步，取总时间/100——不含输入准备与 H2D/D2H，含 Host 提交与同步，不能直接拆出纯 kernel 时间。GTest PASS 仅表示执行成功，性能判定另行按门槛与 GPU ratio 计算。
+**输入和测量。** 性能每次调用前恢复官方CSV指定输入，避免连续缩放溢出；不使用旧版小幅值替代输入。每case预热10次、有效100次，最终输出全量分量golden校验。Host端到端avg_us含一次API及stream同步；官方6KB脚本读取GTest整用例毫秒上界；按官方回复另用msprof设备Task Duration(us)计算Kernel平均耗时。这三个口径分别存档，不改写失败或NO_REF。
 
-**内存与流量**：scal 为原地读写，每 complex64 元素读 8B、写 8B，算法流量为 `16*n bytes`（4M 时 67108864 bytes）。任务书 §3.4 要求的内存占用数据以归档的实测记录/工具输出为准；UB 预算 253952 bytes 是源码预算，不是进程实测内存。
+**本次实测。** 2026-09-18对b7cb689归档产物完成1014+2项精度，通过。全量profile为22000条同stream目标Kernel记录，结合实际GTest顺序、固定源码每次一个Kernel、每case110次、核数及无重叠核验映射；剔除每case前10次后对100次取算术平均，保留全部慢样本。200/200按Kernel口径通过，最低ratio=0.6371388646。
+
+| case | 平均Kernel（μs） | ratio | 任务书上限（μs） |
+|---|---:|---:|---:|
+| TC_PF_1001 | 7.59993 | 0.7144803 | 13.57 |
+| TC_PF_1002 | 12.70686 | 0.6625555 | 21.05 |
+| TC_PF_1003 | 23.05570 | 0.7463664 | 43.02 |
+
+独立内存补测复用同一产物：设备全局HBM采样最大5559MB、进程设备占用363MB、Host RSS最大232952KiB（约227.5MiB）。它们分别属于整卡共享、进程设备及Host内存，不相加，不表示每case独占或连续真实峰值。采样循环休眠1秒，运行期实际相邻记录约3.22～4.57秒。结果原始记录见同交付包自测报告及内存目录。
+
+**复现与维护。** 使用仓库test/scal/csscal/README.md和交付件“自测用例及测试代码/README.md”。官方原件不变；官方GTest整项结果与msprof设备Kernel结果分开记录。构建日志、加载路径、二进制哈希及原始PROF一同溯源；解析异常不能产生达标结论。
 
 ## 兼容性分析
 
-- 本实现为 arch35 新增实现，接口声明已存在于 `include/cann_ops_blas.h`，不引入破坏性变更；
-- 参数序列与 cuBLAS `cublasCsscal` 一致（handle, n, alpha, x, incx），golden 语义与 Netlib `csscal` 一致；
-- 与同族 `sscal` 共享 AIV/SIMT 双路径与 tiling 模式，维护成本低；
-- kernel 为 AIV_ONLY，不改变既有 stream 语义，no-op 不触碰 stream。
+公共接口签名、aclblasComplex定义和stream使用方式保持不变。架构专属实现位于arch35，不改其他架构的算子代码及共享测试框架。内部Tiling只用于Host/Kernel成对构建，不暴露为公共ABI。此次交付无私有平行接口；README仅声明Ascend 950PR支持。
 
-## 已知交付边界与待办
-
-以下内容为如实披露，不影响本版设计结论，但属验收前须闭环或留档事项：
-
-1. **输入分布覆盖未闭环**：任务书 §3.5 要求测试输入 alpha/x 按均匀分布 50%、正态分布 50%（含特殊值）生成。当前 CSV 生成器中 `RANDOM_NORM` 的 NORM 为结构模式名，`RandomGenerator` 实际使用 `uniform_real_distribution`，不是高斯分布；算子本身不含随机数生成，差异在测试输入侧。需要补测试输入生成代码、输入清单及必要补测，不修改任务书。
-2. **性能输入幅度**：当前性能用例使用约 ±[1e-9, 1e-6] 的小幅值输入，以避免 110 次连续乘法放大溢出；alpha 为固定用例值。因此不能证明 §3.5 所述 alpha/x 均匀与正态各 50% 的分布已在性能用例中完整覆盖。
-3. **吞吐口径**：热态算法有效吞吐不等于 HBM 实测带宽；超过标称值不能仅归因于流水，更不能由 GPU 与 NPU 均超过标称值推断两侧测量口径相同。相关分析需附证据。
-4. **950DT 声明**：支持声明只确认 950PR 本次真机结果；README 中 950DT 行待补证或收窄。
-5. **证据归档**：任务书要求精度/性能截图与内存占用数据，统一从归档日志/测试输出展示真实结果，不制造终端截图。
-6. **编译期审计**：当前构建全局仍为 Debug；csscal_host.cpp / csscal_kernel.cpp 经源文件级 `-O2` 追加后由 ASC/bisheng 编译，工具链 `compile_commands.json` 不含 ASC 源，优化审计以归档的 verbose 编译命令为准。`--csscal-baseline` 为同源码对照配置（queue_slots=0、tile_buffer_count=4、optimize=OFF），不是旧提交回滚；实验期 CMake FORCE 缓存残留问题在合入审查中处理，不修改本文档对应的已测代码。
-
----
-
-# 附录：版本与交付引用
-
-- **代码**：`2401_87688128/ops-blas`，分支 `codex/csscal-phase2-experiments` @ `8503a7c1368022b387067ae154dd7e2803c0faf9`；
-- **材料**：`materials/phase2-default-8503a7c` @ `8665345f179d76716c73be0c6d79e7cb532f6fc0`；
-- **测试说明**：`ops-blas/test/scal/csscal/README.md`；
-- **报告与审查**：交付材料/最终自测报告、合入审查清单；
-- **社区提交**：设计文档 PR、代码 MR、任务系统交付均须按任务书 §4/§5 流程执行；本文档不宣称上述环节已通过。
-
-# 附录：参考资料
-
-1. ops-blas 开源仓：https://gitcode.com/cann/ops-blas
-2. 社区任务仓与设计文档模板：https://gitcode.com/cann/cann-ops-competitions
-3. Netlib csscal：https://www.netlib.org/blas/csscal.f
-4. cuBLAS cublasCsscal：https://docs.nvidia.com/cuda/cublas/index.html#cublas-t-scal
-5. 生态算子精度标准：https://gitcode.com/cann/opbase/blob/master/docs/zh/ops_precision_standard/experimental_standard.md
+文档描述的是保留实现，不包括已回退的SIMT小尺寸切换、单UB手工同步、独立单tile入口、64-float分区或提前预取候选。历史设计以PR #1457原文为准；本次更新申请重新评审当前实现设计。
