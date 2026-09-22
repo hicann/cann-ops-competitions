@@ -382,12 +382,50 @@ result C (column-major):
 
 ## 已知问题与本批次范围
 
-**本批次交付范围为最小可用**（迭代一穿刺范围，见 [docs/PLAN.md](./docs/PLAN.md) `iteration_count: 2`）：
+**本批次交付范围为 Wave 2 扩展**（见 [docs/PLAN.md](./docs/PLAN.md) `iteration_count: 2`，`iteration-2` 已完成）：
 
-- 仅 `typeA = typeB = typeC = ACLBLAS_C_32`（主路径 COMPLEX64）与 `transa = transb = ACLBLAS_OP_N`（NN 组合）已实测通过。
-- `ACLBLAS_OP_T` / `ACLBLAS_OP_C` 转置与共轭转置组合将在**迭代二**补齐。
-- `ACLBLAS_R_32` / `ACLBLAS_H_R_32` / `ACLBLAS_H_C_32` 三条扩展路径将在**迭代二**补齐；`H_C_32`（`ACL_COMPLEX32`）在上游仓无先例（无 `aclblasHalf` 类型、无 `ACL_COMPLEX32` 类型定义），需新增 device 侧表示类型与读写方式。
-- 未达标项与性能基准的完整实测数据将在迭代二完成后回填至自测报告（`operators/cgemm_ex/tests/reports/`）。
+- `typeA = typeB = typeC = ACLBLAS_C_32`（主路径 COMPLEX64）已实测通过，**转置放开至全组合**（N/N、T/T、C/C 与 6 种非对称组合）；`kNonNNMaxDim = 512` 限制非 NN 转置的最大维度。
+- **实测精度（348 条）**：110 PASS / 238 FAIL。方阵 T/T 与方阵 C/C 主路径可用（31 / 34 条，12 / 11 条 A 类判据形式边缘 FAIL）；非对称转置 6 种组合 194 条**全部 FAIL**（数值真错）；`TC_L0_003/004`（4³/8³ T/N 方阵）起点 bug 未修。详见 `reports/accuracy_report.md`。
+- **实测性能（40 条采样）**：0 PASS / 40。最好比值 `0.0114` = 阈值 0.4 的 2.85%。任务书 §3.3 覆盖率回退至 1/4（TC_PF_1002 2048³ 未采样）。详见 `reports/performance_summary.md`。
+- `ACLBLAS_R_32` / `ACBLAS_H_R_32` / `ACBLAS_H_C_32` 三条扩展路径**本轮 0 条执行**，官方 CSV 547 行 `R_32` **未测**（表述只能为「未测」，无数据支撑「未实现」）；`H_C_32`（`ACL_COMPLEX32`）在上游仓无先例（无 `aclblasHalf` 类型、无 `ACL_COMPLEX32` 类型定义），需新增 device 侧表示类型与读写方式。
+- 实测数据与截图归档至 `reports/`（精度 / 性能 / 内存 / REPORT_INDEX / 8 张截图）。
+
+### 迭代二（Wave 1 + Wave 2）变更
+
+**代码变更（`ops-blas/blas/gemm/arch35/cgemm_ex_host.cpp`）**：
+
+1. **解交错 x2 融合为 1 次 launch**（方案 A 已合入）：`cgemm_ex_deinterleave_do` → `cgemm_ex_deinterleave_batch_do`，kernel `cgemm_ex_deinterleave_batch_kernel`（L605）。
+2. **执行图变为 5 次 launch**（迭代一为 6 次）：解交错 x2 (AIV, 1 launch) → 3-GEMM x3 (Cube, 3 launch) → alpha/beta 合成 x1 (AIV, 1 launch)。GEMM 次数不变（3 是 Karatsuba 下界）。
+3. **方案 C（3 GEMM 融合成 1 launch）已退回**：因 flag 协议泄漏导致 203 个新 FAIL 精度回归（见 `cgemm_ex_host.cpp` L32–35、L491、L527、L531–533、L543）。Wave 3+ 待重做。
+
+**性能影响**（相同 11 shape 对比迭代一 6-launch 与迭代二 5-launch）：
+- 32³–128³ 区间：−14.9% ~ −37.3%（launch 开销回收，量级符合 1/6 ≈ 17% 预期）
+- 1³–8³ 区间：+0.2% ~ +1.2%（小 shape 平坦，未受益）
+- ≥512³ 区间：±0.33%（Cube-throughput 主导，launch 次数不再影响总耗时）
+
+**Cube 瓶颈（HBM 流量放大假设，未验证）**：等 FLOPs 对比 2.15e9，`TC_PF_1127` (512x512x4096) 8,184,031 us 比 `TC_PF_1001` (1024³) 6,140,387 us **慢 33%**，与「3 次独立 launch 各自重读 A/B 的 HBM 流量放大」假设同量级（2× HBM 流量 vs 1.33× 时间）。该瓶颈需**方案 C** 消除，已退回待 Wave 3+。
+
+**测试用例变更（Wave 2）**：
+- 新增 `TC_TX` 手写扩展族（20 条），覆盖「非方阵 × 全转置组合」。
+- `ApplyScopeFilter` 放开 `transA` / `transB` 限制（原仅 N/N），中小 shape 上的 T/T、C/C、T/N、N/T、C/T、T/C、N/C、C/N 全部纳入精度覆盖；`kNonNNMaxDim = 512` 限制。
+- `kNegativeAllowlist` 由 5 项扩至 14 项。
+- 官方 CSV 数据行由 1,200 增至 **1,220**（MD5 `eda1aa93984250d965135ba9865edc3b`）。
+
+**精度侧扩展实测结果**（Wave 2 放开后）：
+- 方阵 T/T 31 条、方阵 C/C 34 条主路径**可用**（各含 12 / 11 条 A 类判据形式边缘 FAIL）；
+- 方阵 N/N 119 条：60 PASS + 12 A_EDGE + 47 FAIL（含 D 类 2 条）；
+- **6 种非对称转置组合 194 条全部 FAIL**（数值真错，`mere` 从 `1.3e+00` 到 `4.7e+01`）；
+- `TC_L0_003`（4³）、`TC_L0_004`（8³）T/N 方阵起点 bug **未修好**，白盒未定位。
+
+**功能缺口（Wave 3+ 待做）**：
+1. **非对称转置数值错误**：6 种非对称转置组合全数 FAIL，`mere ≥ 1.3e+00`。
+2. **起点 bug**：`TC_L0_003`（4³）、`TC_L0_004`（8³）T/N 方阵最坏元素符号反转（`real@0 out=39.7887 gold=-0.709427 relErr=5.7e+01`），回退至 developer-code 定位。
+3. **3-GEMM 融合方案 C 重做**：消除 HBM 流量放大瓶颈（当前 3 次独立 launch 各读一遍 A/B）。
+4. **R_32 / H_R_32 / H_C_32 三条扩展路径**：本轮 0 条执行，未实现。
+5. **性能侧全转置采样**：本轮性能采样仅 NN，非 NN 转置 87 条 0% 采样。
+6. **性能侧 R_32 采样**：63 条 0% 采样。
+
+**任务书对齐度**：精度侧按任务书 §3.2 双轨判据（`maxAbsErr ≤ 1e-2` 且 `mismatch == 0`）重算，348 条中 **145 条 PASS（41.7%）**；性能侧 0 PASS / 40，覆盖率回退至 1/4。详见 `reports/REPORT_INDEX.md` §4.4。
 
 **明确不支持**：
 
@@ -400,7 +438,7 @@ result C (column-major):
 - **原地与视图**：C 原地覆写，不返回视图。
 - **跨类型组合**：`typeA == typeB == typeC` 强制同型，跨类型（如 `C_32 × R_32`）返回 `ACLBLAS_STATUS_INVALID_VALUE`（对齐上游 `aclblasGemmEx` 的 `Atype = Btype = Ctype` 口径）。
 
-**内存要求**：不涉及（任务书 §3.4）。但自测报告需包含**内存占用数据**（workspace 占用 + HBM 用量），供社区验收使用。
+**内存要求**：不涉及（任务书 §3.4）。但自测报告需包含**内存占用数据**（workspace 占用 + HBM 用量），供社区验收使用。**迭代二未重采内存**（`memory_samples.csv` 时间戳 2026-09-15 01:45，来自迭代一采样），TC_SQ_030 的 `exit_code = 1` 未复采定位。详见 `reports/memory_report.md` §0。
 
 ## 代码仓库与接口位置
 
@@ -433,3 +471,4 @@ result C (column-major):
 | 版本 | 日期 | 修改人 | 修改内容 |
 |------|------|--------|----------|
 | v1.0 | 2026-09-15 | 文档编写（developer-doc） | 首版：按 ops-blas 仓 `blas/gemm/README.md` 结构组织，覆盖算子概述 / 数学公式 / 接口签名 / 参数摘要 / 约束说明 / 数据类型支持 / 精度标准 / 性能标准 / 调用示例 / 已知问题（本批次范围 = C_32 + NN）/ 相关文档 / 代码仓库位置；产品支持表标注 Ascend 950PR：支持，其他产品线一律标「不支持（未适配）」 |
+| v1.1 | 2026-09-17 | 文档编写（developer-doc） | 迭代二（Wave 1 + Wave 2）更新：改写「已知问题与本批次范围」章节，新增「迭代二（Wave 1 + Wave 2）变更」子章节（涵盖 `cgemm_ex_deinterleave_batch_do` 融合 6→5 launch、方案 C 203 FAIL 已退回、TC_TX 手写扩展族、`ApplyScopeFilter` 全转置放开、`kNegativeAllowlist` 5→14 项、精度 348 条 110 PASS / 238 FAIL 与性能 40 条 0 PASS 实测结果）；修正原「仅 C_32 + NN 已实测通过」/「T/C 将在迭代二补齐」/「R_32 将在迭代二补齐」三条 iter1 遗留断言（Wave 2 已放开至全转置但非对称转置 194 条全 FAIL，R_32 保持 Wave 3+ 未实现）；内存要求章节补充「迭代二未重采内存」披露（TC_SQ_030 `exit_code=1` 未定位）；实测数据与截图归档路径由 `tests/reports/` 更正为 `reports/` |

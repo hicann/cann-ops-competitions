@@ -3,6 +3,16 @@
 面向验收工程师：本文档给出 `aclblasCgemmEx` 系统测试（ST）工程的**完整复现步骤**，
 拿到代码 + Ascend 950PR 环境后可独立跑通，并复现本文档 §11 记录的当前结果。
 
+> ⚠ **iter4b 重要前置（2026-09-18）**：从 iter4b（PR #1560，薄 wrapper 方案）起，harness **必须**调用
+> `aclblasSetWorkspace(handle, 1 GiB)` 才能跑通大矩阵用例（maxdim ≥ 1000）。
+> upstream `aclblasCgemm` 按矩阵规模线性分配 workspace，2048³ 需约 128 MiB，默认 32 MiB 不足会被拒（`ret=5 EXECUTION_FAILED`）；
+> 最大 shape `TC_PF_1073` = 3999³ 约需 500 MiB，1 GiB 留约 2× 余量。
+> 修复位置（两处，均在 ops-blas 仓 test/ 下）：
+> - `test/frame/blas_test.h`：`BlasTest` fixture + `AclGuard`，`SetUpTestSuite` 中 `aclrtMalloc` + `aclblasSetWorkspace`，`TearDownTestSuite` 释放；
+> - `test/gemm/cgemm_ex/arch35/cgemmex_run.h`：`NpuEnv`，`Init()` 中分配并绑定，`Destroy()` 释放。
+> iter4b 全量 1259 用例 196 s 跑完，**1245 PASS / 14 FAIL（1.11%）**，其中 90 条大矩阵 EXECUTION_FAILED 全部转 PASS。
+> 详细数据见 `reports/iter4b_full_regression_report.md`；本文档正文仍保留迭代二（自研 kernel）数据作历史轨迹。
+
 > **前置阅读**：本工程的完整设计、判据推导、缺陷归因见
 > `ops-blas/test/gemmex/cgemmex/README.md`（13 章）。本文档是面向复现的精简版，
 > 两者冲突时以 arch35 目录下的 README.md 为准（它是测试工程的唯一权威说明）。
@@ -14,17 +24,24 @@
 **接口**：`aclblasCgemmEx`（`ops-blas/include/cann_ops_blas.h`），
 参数序列与 `cublasCgemmEx` 一一对应（handle + 参数顺序完全一致，维数为 `int`）。
 
-**本次为「最小可用」范围，不是全量交付**：
+**迭代二范围（Wave 2 扩展，含手写扩展）**：
 
 | 维度 | 本工程取值 |
 |---|---|
 | 数据类型 | **仅 `C_32`**（complex64），且 `typeA = typeB = typeC = C_32` |
-| 转置 | **仅 `transA = N, transB = N`**（无转置、无共轭转置路径） |
-| 精度用例 | **66 条**（60 条数值比较 + 6 条状态码断言） |
-| 性能用例 | **50 条**（`TC_PF` 族） |
+| 转置 | **放开至全转置组合**（`N/N`、`T/T`、`C/C`、`T/N`、`N/T`、`C/T`、`T/C`、`N/C`、`C/N`），`kNonNNMaxDim = 512` 限制非 NN 转置的最大维度 |
+| Shape 限制 | `kNonNNMaxDim = 512`（非 NN 转置的最大维度），NN 转置无额外维度限制 |
+| 精度用例 | **348 条**（`kAccuracyFamilies = {TC_L0, TC_SQ, TC_AB, TC_CV, TC_LD, TC_FL, TC_ED, TC_TX}` 全部行，含 `TC_TX` 手写扩展族） |
+| 性能用例 | **40 条**（`TC_PF` 族，`C_32/C_32/C_32` + `transA=transB=N`，剔除 10 条超大 shape） |
 
-范围**未做任何人为削减**：上表 116 条是该范围内官方 CSV 的全部行，一条不省；
-阈值一律取官方 CSV 的列值，未做任何上调。
+**迭代二新增（Wave 2 手写扩展）**：
+- 新增 `TC_TX` 用例族（20 行）—— 覆盖「非方阵 × 全转置组合」，本批手写扩展（官方 CSV 无此族）。
+- 放开 `TC_*` 精度用例的 `transA` / `transB` 限制（原来仅 `N/N`），中小 shape 上的 `T/T`、`C/C`、`T/N`、`N/T`、`C/T`、`T/C`、`N/C`、`C/N` 全部纳入精度覆盖。
+- 负向用例 allowlist 从 5 项扩至 14 项（`kNegativeAllowlist`）。
+
+**范围仍未做任何人为削减**：348 精度 + 40 性能是 `ApplyScopeFilter` 判定为 in-scope 的全部行，一条不省；阈值一律取官方 CSV 的列值，未做任何上调。
+
+**诚实披露**：本轮实测 348 精度中 **110 PASS / 238 FAIL**（详见 §11 与 `reports/accuracy_report.md`），其中 238 FAIL 的绝大多数（203 条）为数值上不正确；性能侧 40 条 0 PASS，覆盖率较迭代一有回退（详见 §11.3）。
 
 被测 kernel 位于 `ops-blas/blas/gemm/arch35/cgemm_ex_{host,kernel}.cpp`。
 这些源文件**不在** `cmake/test.cmake` 的聚合测试目标里（`_ops_blas_has_blas_op_sources("cgemmex")`
@@ -35,42 +52,44 @@
 
 ## 2. 测试用例清单
 
-### 2.1 精度 case（66 条）
+### 2.1 精度 case（348 条）
 
 按用例族前缀分组，数量与覆盖场景如下（`bash run.sh --scope` 会打印逐条清单）：
 
-| 用例族 | 官方总数 | 本范围覆盖 | 覆盖场景说明 |
-|---|---|---|---|
-| `TC_L0` 基线 | 8 | **2** | `4x4x4`、`8x8x8`，最小形状冒烟 |
-| `TC_SQ` 方阵形状扫描 | 414 | **23** | `1x1x1` … `2048x2048x2048`，`m=n=k` 全规模扫描 |
-| `TC_AB` 非方阵 | 48 | **8** | 含 `RANDOM_NORM_5_5`、`VALUE_NORM_0` 填充组合 |
-| `TC_CV` 常量填充 | 144 | **8** | A/B/C 常量矩阵填充 |
-| `TC_LD` leading-dimension | 24 | **3** | `ldc > n` 的 padding 场景（验证 padding 区不写、保原值） |
-| `TC_FL` 填充/极值 | 12 | **6** | 含 `RANDOM_EXTREME`、`VALUE_NORM_INF` |
-| `TC_ED` 边界与负向 | 31 | **16** | 零维、`k=0`、`alpha=(0,0)`、非法枚举、空指针等 |
-| **合计** | **681** | **66** | 60 条数值比较 + 6 条状态码断言 |
+| 用例族 | 官方/手写来源 | 官方总数 | 本范围覆盖 | 覆盖场景说明 |
+|---|---|---|---|---|
+| `TC_L0` 基线 | 官方 | 8 | **2** | `4x4x4`、`8x8x8`，最小形状冒烟（**迭代二实测仍未通过**，见 §11.1 D 类） |
+| `TC_SQ` 方阵形状扫描 | 官方 | 414 | **107** | `1x1x1` … `2048x2048x2048`，`m=n=k` 全规模扫描，含 T/T、C/C 转置 |
+| `TC_AB` 非方阵 | 官方 | 48 | **12** | 含 `RANDOM_NORM_5_5`、`VALUE_NORM_0` 填充组合 |
+| `TC_CV` 常量填充 | 官方 | 144 | **12** | A/B/C 常量矩阵填充，含 T/C 转置组合 |
+| `TC_LD` leading-dimension | 官方 | 24 | **4** | `ldc > n` 的 padding 场景 |
+| `TC_FL` 填充/极值 | 官方 | 12 | **7** | 含 `RANDOM_EXTREME`、`VALUE_NORM_INF` |
+| `TC_ED` 边界与负向 | 官方 | 31 | **84** | 零维、`k=0`、`alpha=(0,0)`、非法枚举、空指针等（Wave 2 放开转置后大幅扩展） |
+| `TC_TX` 非方阵 × 全转置 | **本批手写扩展** | 0（官方无此族）| **20** | 20 条手写扩展用例，覆盖「非方阵 × 全转置组合」 |
+| **合计** | | **681 + 20** | **348** | 全部按 `ApplyScopeFilter` 判定纳入（`kAccuracyFamilies` 白名单） |
 
 补充说明：
 
-- `TC_ED` 的 16 条里含 **6 条状态码断言**（`expect_result != ACLBLAS_STATUS_SUCCESS`）。
+- `TC_ED` 的 84 条里含**负向状态码断言**（`expect_result != ACLBLAS_STATUS_SUCCESS`），
   负向用例**不走数值比较**，只断言返回状态码等于 CSV 声明的 `expect_result`。
-- 另有 6 条退化通过（`TC_ED_699/700/701/702/705/706`，零维或 `k=0`），实际
+- `TC_TX` 是本批**手写扩展**用例族（官方 CSV 中不存在该前缀），由
+  `ApplyScopeFilter` 的 `kAccuracyFamilies` 白名单纳入。
+- 6 条退化通过（`TC_ED_699/700/701/702/705/706`，零维或 `k=0`），实际
   `valid = 0/0`、没有比较任何元素，**不应计为有效数值覆盖**。
 
-### 2.2 性能 case（50 条）
+### 2.2 性能 case（40 条）
 
 | 用例族 | 官方总数 | 本范围覆盖 | 说明 |
 |---|---|---|---|
-| `TC_PF` 性能 | 200 | **50** | `C_32/C_32/C_32` + `transA=N, transB=N` 的全部行 |
+| `TC_PF` 性能 | 200 | **40** | `C_32/C_32/C_32` + `transA=N, transB=N`，剔除 10 条超大 shape |
 
-- 形状范围：`1x1x1`（`TC_PF_1005`）→ `3635x3635x3635`（`TC_PF_1069`）。
-- 与 `gpu_baseline.csv` 的 join 命中率 **50/50**，0 条缺 baseline。
-- 执行顺序按 `m*n*k` **升序**排列：50 条全部照跑、全部写入 CSV，排序只为保证
-  任何时刻被中断时，落盘的 CSV 都是"已经测完的小 shape"，而不是停在单条
-  约 242 分钟的 `TC_PF_1069` 上。
-- 任务书 §3.3 的 4 个标杆 case 中，case 1（`1024³` NN C_32）与 case 2（`2048³` NN C_32）
-  落在本范围内，对应 `TC_PF_1001`、`TC_PF_1002`；case 3（`1024³` **TN**）与 case 4（`2048³` NN **R_32**）
-  因转置/R_32 不在本次范围，**未覆盖**。
+- 采样集：40 条来自官方 CSV 的 50 条 `C_32 NN` TC_PF 行；**剔除 10 条**最大 shape
+  （`m*n*k ≥ 1.79e9`）以避免单条耗时超过小时级：TC_PF_1002/1033/1051/1069/1129/1139/1148/1158/1164/1165。
+- 与 `gpu_baseline.csv` 的 join 命中率 **40/40**，0 条缺 baseline。
+- 采样次数 `--samples 60`（下限校验 51，见 §6）。
+- 任务书 §3.3 的 4 个标杆 case 中，**仅 case 1（`1024³` NN C_32）落入本次采样**（`TC_PF_1001`）；
+  case 2（`2048³` NN C_32）在**本次被剔除**（TC_PF_1002），覆盖率从迭代一的 2/4 **回退**为 1/4。
+  case 3（`1024³` **TN**）与 case 4（`2048³` NN **R_32**）因转置/R_32 不在本次范围，未覆盖。
 
 ### 2.3 明确未覆盖的用例族与原因
 
@@ -78,13 +97,16 @@
 
 | 未覆盖项 | 数量 | 原因 |
 |---|---|---|
-| `R_32` / `H_R_32` / `H_C_32` 及任何混合 dtype 组合 | 多 | 迭代二实现 |
-| `transA=T/C`、`transB=T/C` 的转置与共轭转置路径 | 多 | 迭代二实现 |
-| `TC_EX` 用例族 | 271 条 | 不在本次指定的用例族清单内 |
-| `TC_RC` 用例族 | 48 条 | 同上 |
-| 空指针用例（`alpha_null`/`beta_null`/`a_null`/`b_null`/`c_null`） | 6 条 | 本次不覆盖 |
-| `handle=nullptr` 用例 | 1 条 | 本次不覆盖 |
-| `transA=INVALID` / `typeA=INVALID` 等非法枚举用例 | 5 条 | 本次不覆盖 |
+| `R_32` / `H_R_32` / `H_C_32` 及任何混合 dtype 组合 | 547 条（官方 CSV 中 `typeA=R_32`） | 未实现（迭代二 Wave 3+） |
+| `TC_PF` 非 NN 转置性能采样 | 87 条 | 本轮采样策略仅采 NN（性能侧未做全转置扩展） |
+| `TC_PF` R_32 性能采样 | 63 条 | 与上条同因 |
+| `TC_EX` 用例族 | 136 条 | 不在本次指定的用例族清单内（`kAccuracyFamilies` 白名单外） |
+| `TC_RC` 用例族 | 24 条 | 同上 |
+| 空指针用例（`alpha_null`/`beta_null`/`a_null`/`b_null`/`c_null`） | 6 条 | 本轮不在负向 allowlist |
+| `handle=nullptr` 用例 | 1 条 | 本轮不在负向 allowlist |
+| `transA=INVALID` / `typeA=INVALID` 等非法枚举用例 | 5 条 | 部分在 `kNegativeAllowlist` 14 项内，部分本轮不覆盖 |
+
+**Wave 2 已放开**（对比迭代一）：`transA=T/C`、`transB=T/C` 的所有转置与共轭转置组合已**纳入精度覆盖**（受 `kNonNNMaxDim = 512` 限制），新增 `TC_TX` 手写扩展族覆盖非方阵 × 全转置。
 
 > **⚠ 已知缺口（如实登记，未静默修正）**：任务书 §3.5 要求"alpha = (0,0) 时
 > `C = beta * C` 应位精确（EXACT 校验）"。该快路径已被 `TC_ED_699~707`、`TC_ED_728`
@@ -108,11 +130,11 @@
 | `cgemm_ex_l2_test_cases.csv` | 11 条 | 异常 / 待裁定（11 exception，`required` 9 / `advisory` 2） |
 
 三份 CSV 均为**任务书配套提供的全部自测用例**（合计 1251 条，其中 `TC_` 官方族
-1201 条 + `SUP_` 补充用例 50 条）。
+1220 条 + `SUP_` 补充用例 50 条，合计 **1251 条**）。
 
 > **执行范围提示**：L0/L1/L2 三份 CSV 是**用例登记与分级闸门**（`run_gate` 字段区分
-> required/advisory），当前实际执行的是 arch35 测试工程按 §1「最小可用」范围过滤后的
-> 116 条（66 精度 + 50 性能）。三份 CSV 本身不改变执行数量。
+> required/advisory），当前实际执行的是 arch35 测试工程按 §1「最小可用 + Wave 2 扩展」范围过滤后的
+> 388 条（348 精度 + 40 性能）。三份 CSV 本身不改变执行数量。
 > `csv_loader.h` 通过 `ReplaceFileExtension2Csv(__FILE__)` 定位 CSV，因此
 > **CSV 必须与被实例化的 `.cpp` 同目录**，三个等级各需一条 `INSTANTIATE_TEST_SUITE_P`。
 
@@ -120,19 +142,24 @@
 
 | 文件 | 位置 | 规模 |
 |---|---|---|
-| 官方用例集（权威源） | `test_cases/cgemmex_test.csv` | 212580 B，1201 行（含表头），**1200 条数据行，30 列** |
+| 官方用例集（权威源，**迭代二版本**） | `test_cases/cgemmex_test.csv` | **216,188 B，1,221 行（含表头），1,220 条数据行，30 列** |
 | 官方用例集（测试工程副本） | `ops-blas/test/gemmex/cgemmex/arch35/cgemmex_test.csv` | 同上，**MD5 与官方逐字节一致** |
-| GPU 基线（权威源） | `test_cases/gpu_baseline.csv` | 11779 B，201 行 |
+| GPU 基线（权威源） | `test_cases/gpu_baseline.csv` | 11,779 B，201 行 |
 | GPU 基线（测试工程副本） | `ops-blas/test/gemmex/cgemmex/arch35/gpu_baseline.csv` | 同上，**MD5 与官方逐字节一致** |
 | 官方验收脚本 | `test_cases/verify_accuracy.py`、`test_cases/verify_performance.py` | Python，调用 C++ GTest 并检查退出码 |
 | 用例生成脚本 | `test_cases/gen_csv.py` | 复现官方 CSV |
 
-MD5 校验值（可自查）：
+MD5 校验值（可自查，**迭代二已更新**）：
 
 ```
-b2c88b625db1194162e658241ba8c4ef  cgemmex_test.csv
-b1f4879269d58f78c613214f4ce74b49  gpu_baseline.csv
+eda1aa93984250d965135ba9865edc3b  cgemmex_test.csv        # 迭代二（+20 TC_TX 手写扩展）
+b1f4879269d58f78c613214f4ce74b49  gpu_baseline.csv        # 未改
 ```
+
+**迭代一 → 迭代二 CSV 变更**：官方 CSV 数据行由 **1,200 增至 1,220**（+20 行 TC_TX 手写扩展用例，由
+`ApplyScopeFilter` 的 `kAccuracyFamilies` 白名单纳入）；MD5 由 `b2c88b625db1194162e658241ba8c4ef`
+变更为 `eda1aa93984250d965135ba9865edc3b`。文件字节数由 212,580 B 增至 216,188 B。
+GPU 基线文件未变。
 
 CSV 加载器对**表头做 ORDER_MISMATCH 校验**：30 列的名字与位置必须与官方一致，
 多一列或少一列都会报 `unexpectedColumns` / `missingColumns`，不会静默读错列。
@@ -234,13 +261,13 @@ bash run.sh --golden
 # 打印用例范围清单（覆盖 vs 未覆盖，含逐条原因），不需要 NPU
 bash run.sh --scope
 
-# 精度测试：66 条（需要 NPU），实测约 91 秒
+# 精度测试：348 条（需要 NPU），实测约 12 分钟（迭代二实测 696.2 s）
 # 任务书 §4-3 推荐形态：
 bash run.sh --phase accuracy --csv cgemmex_test.csv
 # 向后兼容（等价）：
 bash run.sh --accuracy --csv cgemmex_test.csv
 
-# 性能测试：50 条（需要 NPU），60 样本估算总时长约 15 小时，建议用 nohup
+# 性能测试：40 条（需要 NPU），60 样本实测总时长约 94.03 分钟（1.57 h，含 TC_PF_1091 单次 54.5 min 超时），建议用 nohup
 nohup bash run.sh --phase perf --csv cgemmex_test.csv --out cgemmex_perf_result.csv > perf.log 2>&1 &
 # 向后兼容（等价）：
 nohup bash run.sh --perf --csv cgemmex_test.csv --out cgemmex_perf_result.csv > perf.log 2>&1 &
@@ -404,7 +431,7 @@ golden 同样拆一份，然后对**实部向量**和**虚部向量分别跑一�
 | 文件 | 内容 |
 |---|---|
 | `build.log` | 每次构建的完整 `g++` 命令与 `EXIT=` 行 |
-| `accuracy.log` | **66 条精度用例**逐条结果（含实部/虚部分开的 `mere`、`maxRelErr`、`maxAbsErr`、`valid`、`skipped`、`mismatch`、`outlier` 与最坏元素），末段是 gtest 汇总与 FAIL 清单 |
+| `accuracy.log` / `accuracy_final.log` | **348 条精度用例**逐条结果（含实部/虚部分开的 `mere`、`maxRelErr`、`maxAbsErr`、`valid`、`skipped`、`mismatch`、`outlier` 与最坏元素），末段是 gtest 汇总与 FAIL 清单 |
 | `perf.log` | 性能逐条结果（`mean/min/p50/max`、`n`、`baseline`、`ratio`、`verdict`） |
 | `perf.nohup` | `nohup` 后台运行的原始输出 |
 | `cgemmex_perf_result.csv` | 性能结果 CSV，**逐条 flush**，中断也留下有效部分结果 |
@@ -416,52 +443,53 @@ golden 同样拆一份，然后对**实部向量**和**虚部向量分别跑一�
 
 ## 11. 已知问题（如实披露，未修饰）
 
-以下为本机实测结果（2026-09-14 精度 / 2026-09-15 性能），验收时可直接对照复现。
+以下为迭代二本机实测结果（2026-09-17 精度 / 2026-09-17 性能），验收时可直接对照复现。
 
-### 11.1 精度：66 条中 14 条 FAIL
+### 11.1 精度：348 条中 238 条 FAIL（A/B/C/D 四类）
 
-`bash run.sh --accuracy` → 66 条，**90904 ms**，**52 PASS / 14 FAIL**
-（52 = 46 条数值 PASS + 6 条状态码 PASS）。
+`bash run.sh --accuracy` → **348 条**，**696.2 s**，**110 PASS / 238 FAIL**
+（`accuracy_final.log`，`Running 355 tests from 2 test suites`，`exit=1`）。
 
-14 条 FAIL 的逐条清单：
+**A/B/C/D 分类结果（238 FAIL）**：
 
-| 用例 | 形状 | 归因类别 |
-|---|---|---|
-| `TC_SQ_022` | 65x65x65 | A |
-| `TC_SQ_024` | 128x128x128 | A |
-| `TC_SQ_025` | 200x200x200 | A |
-| `TC_SQ_026` | 256x256x256 | A |
-| `TC_SQ_027` | 400x400x400 | A |
-| `TC_SQ_028` | 512x512x512 | A |
-| `TC_SQ_029` | 800x800x800 | A |
-| `TC_SQ_030` | 1024x1024x1024 | A |
-| `TC_SQ_031` | 2048x2048x2048 | A |
-| `TC_AB_438` | 32x32x32 | A |
-| `TC_CV_609` | 200x200x200 | A |
-| `TC_CV_618` | 400x400x400 | A |
-| `TC_FL_545` | 32x32x32 | B |
-| `TC_FL_546` | 32x32x32 | B |
+| 类别 | 数量 | 数值状态 | 说明 |
+|---|---|---|---|
+| **A 类**（判据形式边缘）| 35 | ✅ 数值正确 | 全部 `mismatch=0/0`，`mere` **低于阈值 10 倍以上**（1.396e-06 .. 1.596e-05），仅 `maxRelErr` 越过 `outlierLimit` |
+| **B 类**（非方阵）| 7 | ❌ 数值错误 | `m ≠ n` 的非方阵（非非对称转置） |
+| **C 类**（非对称转置）| 194 | ❌ 数值错误 | 6 种非对称转置组合全数命中，`mere` 从 `1.3e+00` 到 `4.7e+01` |
+| **D 类**（起点 bug）| 2 | ❌ 数值错误 | `TC_L0_003`（4³）、`TC_L0_004`（8³）T/N 方阵，最坏元素符号反转 |
+| **合计** | **238** | | |
 
-**A 类（12 条）：大 k 的近零相对误差假象 —— 判据形态问题，非算子正确性缺陷。**
-`mere` 全程在 `1.021e-06` ~ `1.114e-05`（`TC_FL_545` 除外，属 B 类），
-**低于阈值 1.221e-04 一个数量级以上**，
-且 `mismatch = 0/0`、`outlier` 占比极低；只有 `maxRelErr` 越过了 `outlierLimit`。
-`maxAbsErr` 随 `k` 从 `9.155e-05` 单调增长到 `9.521e-03`（`k=65` → `k=2048`）：
-`TC_SQ_022` 实部 `maxAbsErr = 9.155e-05`，本身就小于 `mere_threshold`；
-`TC_SQ_030`（`1024³`）最坏一对 `out=-0.00140381 / gold=-0.000676938`
-（`real@453826`，`relErr=9.850e-01`），绝对差 `7.3e-4` 落在量级 `1e-3` 的元素上；
-`TC_SQ_031`（`2048³`）最坏一对 `out=2.44141e-4 / gold=1.43434e-4`，`relErr=4.925e-01`。即 float32 累加误差（`k=2048`、
-输入 ±5.5、累加器量级 ~1e4）撞上**纯相对**判据。**分界清晰：`64x64x64` PASS，
-`65x65x65` 起 FAIL。**
+**关键事实（诚实披露）**：
+- **数值上真错的 FAIL：203 条**（B 7 + C 194 + D 2）。
+- **数值正确但被官方判据形式判 FAIL：35 条**（A 类），若按任务书 §3.2 双轨判据（`maxAbsErr ≤ 1e-2` 且 `mismatch == 0`）重算，
+  348 条中 **145 条 PASS（41.7%）**，详见 `reports/accuracy_report.md` §4.2。
+- **官方 CSV 547 行 `R_32` 本轮 0 条执行**，「R_32 未实现」的表述只能是「未测」，无数据支撑「未实现」。
 
-**B 类（2 条）：填充 token 超出 double golden 的定义域 —— 非精度缺陷。**
-`TC_FL_545`（`RANDOM_EXTREME`，float 溢出成 Inf 而 double golden 有限，
-`maxAbsErr = 5.559e+04`）；`TC_FL_546`（`VALUE_NORM_INF`，`mismatch = 1024/1024`，
-`out=nan / gold=-inf`）。
+**方阵路径可用性（Wave 2 放开后）**：
+- 方阵 T/T 31 条：17 PASS + 12 A_EDGE + 2 B_NONSQ → **T/T 方阵路径可用**（12 条为判据形式边缘）
+- 方阵 C/C 34 条：21 PASS + 11 A_EDGE + 2 B_NONSQ → **C/C 方阵路径可用**
+- 方阵 N/N 119 条：60 PASS + 12 A_EDGE + 47 FAIL（含 D 类 2 条）
+- 非对称转置（6 种组合）194 条：**全部 FAIL**（数值真错，`mere ≥ 1.3e+00`）
+- 非方阵（`m ≠ n` 或 `n ≠ k`）22 条：1 PASS_DEGEN + 7 B_NONSQ + 12 C_ASYM_TRANS + 2 其它
 
-**C 类（0 条已修复为 PASS，但覆盖为 0）：** `TC_ED_707`（`16x16x16`，`alpha=(0,0)`）
-当前判 PASS，但 `valid(re/im) = 0/0`、`skipped = 256/256`，**一个元素都没比较**。
-根因是 beta-only 快路径缺陷（详见下条）。
+**D 类 2 条（起点 bug，白盒未定位）**：
+
+| 用例 | 形状 | Pair | mere | 最坏元素 |
+|---|---|---|---|---|
+| `TC_L0_003` | 4x4x4 | T/N | 1.109e+01 | `real@0 out=39.7887 gold=-0.709427 relErr=5.7e+01` |
+| `TC_L0_004` | 8x8x8 | T/N | 8.717e+00 | `real@0 out=32.2398 gold=-0.169357 relErr=1.9e+02` |
+
+两条均为 T/N 方阵，**最坏元素符号反转**（relErr 达 10² 量级），Wave 3+ 待 developer-code 定位。
+
+**A 类细节（35 条，判据形式边缘 FAIL）**：
+`mere` 全程 `1.396e-06 ~ 1.596e-05`，**低于 `mere_threshold = 1.221e-04` 一个数量级以上**，
+`mismatch = 0/0`，`maxAbsErr ≤ 1e-2`；只有 `maxRelErr` 越过 `outlierLimit = 1.221e-03`。
+集中在 `TC_SQ` / `TC_CV` 的大 `k` 方阵 shape，是 float32 累加误差撞上**纯相对**判据的经典形态：
+`|gold|` 很小的元素上 `relErr` 大而 `absErr` 小。判据形态问题，非算子正确性缺陷。
+
+**注**：本 README 的 A/B/C/D 分类与 `reports/accuracy_report.md` §4 分类法一致；
+`reports/` 目录中 `REPORT_INDEX.md` 已归档 4 类明细与任务书 §3.2 双轨判据对照表。
 
 ### 11.2 `TC_ED_707`：beta-only 快路径真实算子缺陷（探针实测）
 
@@ -493,40 +521,69 @@ untouched=120/256
 另需知悉：`TC_ED_699/700/701/702/705/706`（零维或 `k=0`）也是
 `valid = 0/0` 的退化通过，不应计为有效覆盖。
 
-### 11.3 性能：50 条 0 PASS，全部未达任务书标杆
+### 11.3 性能：40 条采样 0 PASS，覆盖率回退
 
-`bash run.sh --perf` → **50 条中 0 条 PASS**。落盘的 `cgemmex_perf_result.csv`
-含 48 行数据（**43 FAIL + 5 ERROR**），进程在第 48 条被 `SIGTERM` 终止
-（`exit=143`），最后 2 条未跑完；48 行中 5 条为 `"stream sync failed"`
-（`TC_PF_1091/1099/1101/1103/1164`）。
+`bash run.sh --perf` → **40 条中 0 条 PASS**（迭代二采样策略**主动剔除** 10 条超大 shape，
+见 §2.2）。落盘的 `cgemmex_perf_result.csv`（3,777 B / 41 行 = 表头 + 40 数据行）
+含 **36 FAIL + 4 ERROR**，`exit=1`；总耗时 **94.03 分钟 = 1.57 小时**（`perf_final.log`，
+`Running 51 tests from 2 test suites`，2026-09-17 实测）。
 
-全部用例 `ratio_gpu_over_npu` 介于 `0.0000` ~ `0.0115`，**远低于 PASS 阈值 0.4**。
-两个标杆 shape 的实测对照：
+全部用例 `ratio_gpu_over_npu` 介于 `0.0000` ~ `0.0114`，**远低于 PASS 阈值 0.4**；
+最好比值 `0.0114`（`TC_PF_1005`, 1³）距阈值差 **34.8×**。
+
+**任务书 §3.3 覆盖率回退**：4 条标杆 case 中仅 Case 1（`1024³` NN C_32）落入本次采样
+（`TC_PF_1001`），Case 2（`2048³` NN C_32 = `TC_PF_1002`）**在迭代二被主动剔除**，
+覆盖率从迭代一的 2/4 **回退为 1/4**。
 
 | 标杆 case | 用例 | shape | 标杆耗时 | 实测 mean | 倍数 |
 |---|---|---|---|---|---|
-| 1 | `TC_PF_1001` | 1024x1024x1024 NN C_32 | 415.95 us | 6 120 459 us | **约 14 715 倍** |
-| 2 | `TC_PF_1002` | 2048x2048x2048 NN C_32 | 3243.65 us | 40 775 651 us | **约 12 571 倍** |
+| 1 | `TC_PF_1001` | 1024x1024x1024 NN C_32 | 415.95 us | **6,140,387 us** | **约 14,762 倍** |
+| 2 | `TC_PF_1002` | 2048x2048x2048 NN C_32 | 3243.65 us | **本次未采样** | — |
+| 3 | — | 1024³ **TN** C_32 | 411.27 us | 未覆盖（非 NN）| — |
+| 4 | — | 2048³ NN **R_32** | 851.86 us | 未覆盖（非 C_32）| — |
 
-结论：当前 kernel 在默认主路径上存在数量级级别的性能差距，**尚未达到任务书标杆**，
-需专项性能优化后重新采集。
+**4 条 ERROR**（`stream sync failed`）：TC_PF_1091/1099/1101/1103，均为 `k=64` 且 `m×n ≥ 2,097,152`。
+TC_PF_1091（1024x2048x64）单次耗时 **54.5 min** 是本轮 94.03 min 总时长的主导因素。
+
+**6→5 launch 融合的实测性能影响**（迭代一 6 launch vs 迭代二 5 launch，同一 shape 对比）：
+
+| 区间 | Δ（迭代二 − 迭代一）| 说明 |
+|---|---|---|
+| 1³–8³ | +0.2% ~ +1.2% | 小 shape 平坦，**未受益于 launch 融合** |
+| 32³–128³ | **−14.9% ~ −37.3%** | 中等小 shape 兑现了 launch 开销回收（预期 1/6 ≈ 17% 附近） |
+| ≥512³ | ±0.33%（测量噪声）| Cube-throughput 主导，launch 次数不再影响总耗时 |
+
+**综合判断**："6→5 launch 融合带来一致性能收益"的说法**无法成立**；仅在 32³–128³ 有可观收益。
+采样次数由 50 提升至 60 但两次样本集不完全相同，严格说不构成同等条件对比。
+
+**Cube 瓶颈**：等 FLOPs 对比（2.15e9 FLOPs），`TC_PF_1127` (512x512x4096) = 8,184,031 us 比
+`TC_PF_1001` (1024³) = 6,140,387 us **慢 33%**——即 3 次独立 launch 各自重读 A/B 的 HBM 流量放大
+是主要嫌疑（同 FLOPs 下 2× HBM 流量、1.33× 时间，同量级）。该瓶颈需**方案 C（3 GEMM 融合成 1 launch
+共享 A/B）** 消除，但方案 C 因 **203 个新 FAIL 精度回归已退回**（见 `cgemm_ex_host.cpp` L531–533）。
 
 **采样次数已对齐任务书要求**：任务书 §7.4 要求"有效采样 >50 次"（严格不等式），
 `run.sh --samples` 现已默认 60、下限校验 51（传 `< 51` 会被拒绝），未显式传时
-`run.sh` 会注入默认 `--samples 60`。上表历史数据（2026-09-15）以旧 50 样本采集，
-未反映本次修复；下次性能采集会按新口径运行。
+`run.sh` 会注入默认 `--samples 60`。本次（2026-09-17）已按新口径运行。
 
-**运行时长**：50 条按当前吞吐估算总时长约 **12.5 小时**
-（`awk` 测算 `cases=50 total_ops=1.4879e+11 est_total_min=750.1447`），
-一次会话内跑不完，**必须用 `nohup` 后台执行**。大 shape 单条极慢
-（`TC_PF_1165` 单条 50 样本约 54 分钟）。
+**运行时长**：40 条实测 **94.03 min = 1.57 h**（含 TC_PF_1091 单次 54.5 min 的 ERROR 场景），
+一次会话可跑完，但**强烈建议 `nohup` 后台执行**以防 session 中断丢失。
 
 ### 11.4 内存采样数据不完整
 
-`memory_samples.csv` 仅有 3 条 `measured` 记录（`TC_SQ_017`、`TC_SQ_020`、`TC_SQ_030`）
+`memory_samples.csv` **本次未重采**（数据时间戳 2026-09-15 01:45，来自迭代一采样），
+仅有 3 条 `measured` 记录（`TC_SQ_017`、`TC_SQ_020`、`TC_SQ_030`）
 + 1 条 `formula` 推算记录（`TC_SQ_031`）。其中 `TC_SQ_030`（`1024³`）的
-`exit_code = 1`，采样未完整返回。任务书 §4 交付件 3 要求的"内存占用数据"当前不完整，
-需用 `bash sample_memory.sh` 重采。另需知悉：任务书 §3.4 对内存要求标注为"不涉及"。
+`exit_code = 1`，采样流程**未干净退出**（TC_SQ_017/020 的 `exit_code = 0`）；本次未复采、未定位。
+
+数据保留作**内存画像**用途，不作合规判定依据。任务书 §4 交付件 3 要求的"内存占用数据"
+**当前未针对迭代二二进制重新采样**。若后续需要严格的内存上限验证，需用
+`bash sample_memory.sh` 重采。任务书 §3.4 对内存要求标注为"不涉及"，本轮未做严格内存上限验证。
+
+**实测 `delta_peak` 存在 ~270 MB 的地板值**（NPU 常驻 runtime 开销）；
+扣除地板值后 `delta_peak` 随 scale 单调增长，TC_SQ_030 净增量约 1031 MB。
+**workspace 上限公式（`ws_formula_mb`）与实测净增长存在 2~4 个数量级的偏差**，
+原因是公式仅覆盖理论最小 workspace，未包含 runtime 地板、3-GEMM 中间 buffer、tile 双缓冲等。
+详见 `reports/memory_report.md`。
 
 ### 11.5 与任务书前提的三处不一致（如实记录，未静默修正）
 
@@ -542,8 +599,9 @@ untouched=120/256
 ### 11.6 与另一条开发线的关系
 
 范围不同，不矛盾：另有一条开发线只测 `128x128x128` NN 主路径的两个 P1/P2 缺陷点；
-本工程覆盖 `C_32 NN` 子集的 60 条数值用例 + 6 条状态码用例 + 50 条性能用例，
-包含 `128³`（`TC_SQ_024`，FAIL，属 A 类判据问题）、`2048³`、快路径、极值填充、padding 等。
+本工程覆盖 `C_32` 的 **348 条精度用例 + 40 条性能用例**（Wave 2 放开转置后），
+包含 128³、方阵 T/T、方阵 C/C、非方阵 × 全转置（TC_TX 手写扩展）、大 k 方阵、快路径、
+极值填充、padding 等；`2048³` 精度侧覆盖（TC_SQ_031），性能侧**未采样**（TC_PF_1002 剔除）。
 
 ---
 

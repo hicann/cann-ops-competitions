@@ -1,0 +1,5 @@
+case,shape,m,n,k,hbm_before_mb,hbm_peak_mb,hbm_after_mb,delta_peak_mb,samples,elapsed_s,ws_formula_mb,c_buf_mb,a_buf_mb,b_buf_mb,exit_code,src
+TC_SQ_017,16x16x16,16,16,16,5238,5275,5240,37.0,7,7,0.009,0.002,0.002,0.002,124,measured
+TC_SQ_020,48x48x48,48,48,48,5238,5275,5241,37.0,7,7,0.079,0.018,0.018,0.018,124,measured
+TC_SQ_030,1024x1024x1024,1024,1024,1024,5240,6817,5239,1577.0,18,16,36.000,8.000,8.000,8.000,0,measured
+TC_SQ_031,2048x2048x2048,2048,2048,2048,5238,6816,5239,1578.0,16,14,144.000,32.000,32.000,32.000,0,measured
