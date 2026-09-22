@@ -10,8 +10,8 @@
 | 公共接口声明 | `include/cann_ops_sparse.h` |
 | 设计文档提交位置 | `04_tasks/01_community-task-2026/tasklist/09-4-aclsparseSpMV-A2A3/qq_40734045/docs/design.md` |
 | 设计基线 | 官方任务包 SHA-256 `6eb39eb5f3f131333c5cbb8296e8da7a026677374c2f81b6100190cb5d7bddb` |
-| 代码基线 | `ops-sparse` 分支 `ops-sparse`；平台条件实现提交 `cc65ca22657f352c89bee488ae0f7ccdca17f42a`；A2/A3 平台分支实测提交 `bdd54af71fb183dca9b8c2dd8eabe148f8d742da`；最新证据归档提交 `0f522f540c34dcfc821ba7057991e1c69d77b5c1` |
-| 文档状态 | 设计文档 PR !1478 已提交，等待评审反馈 |
+| 代码基线 | `ops-sparse` 分支 `ops-sparse`；平台条件实现提交 `cc65ca22657f352c89bee488ae0f7ccdca17f42a`；平台分支实测提交 `bdd54af71fb183dca9b8c2dd8eabe148f8d742da`；Issue #1 修复提交 `266463d7b8fcff2b624d4c51638bfe2a01487251`；最终复验提交 `d1a1af9ff282e5dd01e0bf1ce2176f1fbfdb3dd6` |
+| 文档状态 | 设计文档 PR !1478 已合入；本文补充 Issue #1 修复后的最终验收复验状态 |
 
 # 需求背景（required）
 
@@ -326,6 +326,19 @@ Profiler trace 显示每次调用包含 4 次 `spmv_kernel_float_float_float` �
 - A2 910B3 平台分支复验：`docs/community_tasks/aclsparseSpMV_A2A3/reports/20260910_a2_platform_branch_recheck/`
 - A2/A3 平台条件分支构建与实测：`docs/community_tasks/aclsparseSpMV_A2A3/reports/20260910_platform_branch_recheck/`
 - 验收逐项审计：`docs/community_tasks/aclsparseSpMV_A2A3/aclsparseSpMV_A2A3_20260908/design_doc/acceptance_audit_20260909.md`
+
+## 20260917 最终复验结论
+
+Issue #1 反馈的精度与性能问题已完成闭环：
+
+- 精度 case 262：FP32 短行路径引入 Dekker 乘法误差与补偿求和，严格容差复验通过。
+- 精度 case 979：BF16 输出由 `CAST_ROUND` 改为 `CAST_RINT`，与 CPU golden 的就近偶数舍入一致。
+- 性能 8 条 complex64 失败：根因为验收构建误用 Debug；`CMakeLists.txt` 与 `build.sh` 默认构建统一改为 Release。
+- A2 910B3 实机全量复验：C++ 220/220、官方精度 200/200、Issue 严格失败例 2/2、1000 条泛化 1000/1000、官方性能 296/296 有基线 case 达标、确定性/只读 9/9、资源生命周期无泄漏。
+- A3 910_93 三轮复验：每轮官方精度 200/200、1000 条统一容差泛化 1000/1000、官方性能 296/296 有基线 case 达标；三轮最低 ratio 分别为 0.748080、0.752027、0.754116。
+- A3 专属 plan cache 逻辑保持 `SPMV_TORCH_PLAN_CACHE_REBIND_Y=OFF`，未发现精度或性能回退。
+
+最终代码与证据版本：`ops-sparse` 分支提交 `d1a1af9ff282e5dd01e0bf1ce2176f1fbfdb3dd6`。
 
 ## 未闭合项
 
