@@ -7,7 +7,9 @@
 | 设计文档提交仓 | `cann/cann-ops-competitions` |
 | 目标硬件 | Atlas A2/A3系列产品，arch22 |
 | CANN版本 | 9.1.0 |
-| 文档状态 | 待提交设计文档PR |
+| 文档状态 | 设计文档PR !1411已合入；本文补充最终验收复验状态 |
+| 设计提交账号 | qq_40734045 |
+| 设计提交名称 | qq_1404401429 |
 
 # 一、需求背景
 
@@ -417,6 +419,15 @@ abs(actual - golden) <= atol + rtol * abs(golden)
 
 性能测试要求Release构建，先warmup再有效采样超过50次。本设计采用每case 60次warmup和60次有效采样，并建议绑定NPU本地NUMA CPU以降低Host调度抖动。
 
+除上表3个强制case外，任务测试包还提供200条性能/内存配置作为参考明细。参考阈值按官方`gpu_baseline.csv`计算：
+
+```text
+threshold_us = gpu_baseline_us / 0.8
+performance_ratio = gpu_baseline_us / npu_average_us
+```
+
+任务书仅强制上表3个case达标；其余参考case用于完整对比和后续优化评估，低于参考阈值时记录为`REF_BELOW`，不混同为强制验收失败。
+
 ### 5.1.3 测试覆盖
 
 | 类别 | 覆盖 |
@@ -440,16 +451,18 @@ abs(actual - golden) <= atol + rtol * abs(golden)
 
 ## 5.3 自验证结果
 
-本地已在CANN 9.1.0、Atlas 800I A3（arch22）环境完成自验：
+最终验收前已使用昇腾官方Ascend Cloud CANN 9.1.0 aarch64 Toolkit与910B ops包，在Atlas 800I A3（910B3 / arch22）真实NPU环境完成复验：
 
 | 项目 | 结果 |
 | --- | --- |
-| 官方三case | 3/3通过，real/imag均0失败 |
+| 官方强制三case | 3/3通过：22.245667 us、51.932000 us、103.455333 us，均低于28.95 us、61.46 us、134.41 us |
 | 全量回归 | 2303/2303通过 |
-| 精度统计 | 4588次real/imag校验，最低matchedRatio=0.99611，最大maxAbsErr=6.5918e-3 |
-| 20轮性能 | n=512平均23.1582 us，n=1024平均52.2520 us，n=2048平均101.7065 us，均20/20达标 |
+| 官方精度明细 | 1000/1000通过；991条产生real/imag数值比对，最低matchedRatio为real 0.99805、imag 0.99611 |
+| 精度误差 | real最大maxAbsErr 4.2725e-3，imag最大maxAbsErr 3.0518e-3 |
+| 强制性能稳定性 | 20个独立进程复测60/60通过；三case平均分别为22.811270 us、52.697440 us、103.572150 us |
+| 200条参考性能 | 明细完整提供；5条达到参考阈值，195条记录为REF_BELOW，不构成强制验收失败 |
 
-该结果用于证明设计可行性；设计文档PR本身不包含算子代码和验收材料。
+该结果用于证明设计可行性和最终验收状态；完整明细、截图、原始日志和复现材料在IT验收提交包中提供，不随设计文档PR提交。
 
 # 六、本PR范围与后续计划
 
