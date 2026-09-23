@@ -1,0 +1,28 @@
+{
+    "stage": "final",
+    "submission_id": 351142,
+    "submission_url": "https://cannjudge.cn/public/northeast_final/hccl_scatter_ccu/submission/6aad2cb6b0477ec41e5c5974",
+    "official_zip_sha256": "cb68cb177b66afcf598dcddca41d110e7e1693bec2f533f139f04d6ec878ee11",
+    "file_count": 19,
+    "files_sha256": {
+        "code/README.md": "05e21c24a754982671a21998bdcc3e33f6acbfce906e41582511b9e36a24895e",
+        "code/LICENSE": "c5accbbd8546e94c34aed24afe689a617627d18eed5a6c48277e48db57c23851",
+        "code/.clang-format": "8ac26e997fe64aa725e9c85ea7313057f01747f7ab6cdbfc5bba386a370469f9",
+        "code/build.sh": "642f070e887127212946b5b87f978277fb60e13ad619d28c0ea55452704f454e",
+        "code/.gitignore": "b90c7179dd89dac61a0bbf040cd3c2baaae1fc101e01a308ddb4b1b71b996ae8",
+        "code/.gitattributes": "f6b95230e226483126446c24523856e354c162d449d0e7a0a7c2e3a53c19c325",
+        "code/CMakeLists.txt": "1584dfa3970b4160502e202c40d3a00667f5cb741963de2f4527cf35fd444006",
+        "code/include/common.h": "81e9808cce7897f197c25ee327ff5ba7de92c8ae1a7230dd12d57f2f67b47d23",
+        "code/include/log.h": "59dfc121916d11b2d446b14286d1efbf0335a661ea84c42fc0ed0a22ab0828f4",
+        "code/include/binary_stream.h": "9bfd50bcbbd577c1ac28304548c4b69513fcf4b38507320abff4e88e21f0a440",
+        "code/include/hccl.h": "47d08dc9961a3e6bdbe81afd7cbd519423bcb4f2b6b78e87d64fc4f02f676903",
+        "code/include/custom.h": "58d2ff351d12c26113626b155eb6b047736500ca3eb9488fe376c13982e10c10",
+        "code/op_host/scatter.cc": "e5656f84194a47f014d6762ee801e2ead5361d01b34595e65d24910530fc4965",
+        "code/op_host/exec_op.cc": "eb7ff1a6710796ba5482dbe2126ee2ef6f0e0366a4d9878d4b0a6e339abfe649",
+        "code/op_host/exec_op.h": "da1698f5ca99cad87371ffd36dc03553e7117987dd9c28d1246b84808e6c8315",
+        "code/op_host/CMakeLists.txt": "821defcca7a81dd34a09f7d70970a004611eb719d41dbd92dbc3ec8baff6f586",
+        "code/op_kernel_ccu/ccu_kernel.cc": "987211403dcc2d840ff9dc4a99faab56a411e1c876fb9708fe4f400a6220f985",
+        "code/op_kernel_ccu/ccu_kernel.h": "39cc906687cb951cf988951e3014ab3a9c040d76a97a7896d2468650664a559d",
+        "code/op_kernel_ccu/CMakeLists.txt": "af1a3bb225862e0318de1708eaa8193a3697e6fefea2b735db7417910aecc07e"
+    }
+}

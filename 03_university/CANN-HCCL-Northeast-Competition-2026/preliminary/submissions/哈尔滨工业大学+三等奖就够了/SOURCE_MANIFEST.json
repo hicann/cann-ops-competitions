@@ -1,0 +1,29 @@
+{
+    "stage": "preliminary",
+    "submission_id": 241678,
+    "submission_url": "https://cannjudge.cn/public/northeast_preliminary/hccl_scatter_aicpu/submission/6a9fe548c76b321ca6fa341c",
+    "official_zip_sha256": "47de519353b55584b735a6b313a4ae7864c5ab3751ae7a3fd3e845907f8c62ff",
+    "file_count": 20,
+    "files_sha256": {
+        "code/README.md": "8e8b145134b23d4f0872b3c536fd351b0923f91105d5a8cfedd1ef0e0893eddf",
+        "code/LICENSE": "c5accbbd8546e94c34aed24afe689a617627d18eed5a6c48277e48db57c23851",
+        "code/.clang-format": "8ac26e997fe64aa725e9c85ea7313057f01747f7ab6cdbfc5bba386a370469f9",
+        "code/build.sh": "a15aeb2e4ebac63e3c538268edcb5bdfdb4302c4457ca02f646553a178ac4d38",
+        "code/.gitignore": "b90c7179dd89dac61a0bbf040cd3c2baaae1fc101e01a308ddb4b1b71b996ae8",
+        "code/.gitattributes": "f6b95230e226483126446c24523856e354c162d449d0e7a0a7c2e3a53c19c325",
+        "code/CMakeLists.txt": "9909381aa5c27babcb3a3e4112ca3b7996c71f3374ab639aaca3eb272f795cb3",
+        "code/include/common.h": "d8f1b97e037912e67a7faf117d20b52e166518f7b791ddbe7091b2023c6deac5",
+        "code/include/log.h": "706ae7b19e4f3b0951c20e55005ea273fb49fa8e92389ada1c5cb3ccc158e9af",
+        "code/include/binary_stream.h": "9bfd50bcbbd577c1ac28304548c4b69513fcf4b38507320abff4e88e21f0a440",
+        "code/include/hccl.h": "47d08dc9961a3e6bdbe81afd7cbd519423bcb4f2b6b78e87d64fc4f02f676903",
+        "code/include/custom.h": "1a9f65cebb556873c8aea5a3a97fde34ad7f2d2825ee9f8c20cb87ea384649de",
+        "code/op_host/scatter.cc": "e0b9f3472193f18e5441b708ba227efc9c5391df7d6ef2a3a2d7797643b3d308",
+        "code/op_host/launch_aicpu_kernel.cc": "c32fdff05c03ae060cbdafd63af4d4c4517e6ce4966060bd8a39532dce234a8d",
+        "code/op_host/launch_aicpu_kernel.h": "70723fe9531be30d0871343a045492fc7f3530219ae8af05d46b88b59f4ef3f5",
+        "code/op_host/CMakeLists.txt": "f74c740346efc8b3ce5e40f408e73886d7570258ccbd7172395be390585b2577",
+        "code/op_kernel_aicpu/aicpu_kernel.cc": "d7b80b90d64d13e0c86e1c2842427385ec390ffd99b7f39e9346aa60b23f4dbb",
+        "code/op_kernel_aicpu/exec_op.cc": "a2d23e8e2af8f639e0016834051bbe21019bbaa40a9859874eca2a4229b7daa1",
+        "code/op_kernel_aicpu/exec_op.h": "ee1177e145668a2b107c00a28ec7a144448037c1135c9263ff369235b60d6ada",
+        "code/op_kernel_aicpu/CMakeLists.txt": "2b132e891d299214ecdaf0f7aedec81b1ec268864293e16e100b9f2bc42a4de3"
+    }
+}
