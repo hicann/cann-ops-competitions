@@ -96,20 +96,30 @@ CPU 标杆没有 `50000` 预热下限：选定首点后直接令
 
 ### Host 与 Python 侧设计
 
-- `ratio=None` 转换为 0.5；float ratio 转成与 `src` 同 device、但固定为
-  float32 的标量（不按输入 dtype 量化）；
+- `ratio=None` 转换为 0.5；float ratio 转成与 `src` 同 device、**dtype 与 `src`
+  一致的标量**——上游 `torch_cluster/fps.py` 即
+  `torch.tensor(ratio, dtype=src.dtype, device=src.device)`，任务书要求该 Python
+  层逻辑须复现，故该 dtype 属接口语义而非实现细节；用户传入的 `ratio` Tensor
+  保持其自身 dtype 与值，不被再量化；
 - `ptr` 给定时直接调用底层算子，List 先转成 NPU int64 Tensor；
 - `batch` 给定时通过 `scatter_add_` 得到各 batch 点数，再 `cumsum` 构造 ptr；
 - 两者均未给定时构造 `ptr=[0, N]`；
 - Host 侧按 `ceil(float32(degree) * float32(ratio))` 得到每个 batch 的输出数和
-  `out_ptr`；采样数在 float32 中计算，避免 fp16 下 `degree > 2048` 被截断
-  （`2049 × 0.5` 应为 1025，而不是 1024）。`random_start` 的随机首点同样按
+  `out_ptr`：乘法在 float32 中进行（`degree` 先转 float32），而 `ratio` 的**值**
+  取自上述 Python 层构造的张量。fp16 输入下这既避免把 `degree` 舍入到 fp16
+  （`2049 × 0.5` 应为 1025，而不是 1024），也保留 `ratio` 已被舍入到 fp16 的值
+  （`10000 × 0.3` 应为 3001，而不是 3000）。`random_start` 的随机首点同样按
   float32 计算；
 - 非连续但可 view 为 `[N, F]` 的 `src` 由 Host 先 `contiguous()` 物化；
 - `random_start=True` 时在 NPU 上生成每 batch 的随机首点；否则取局部下标 0；
 - 只将最终输出长度这一个标量同步到 Host 以分配输出，点特征和 FPS 主计算不
   离开 NPU；
-- 使用当前 NPU stream 发射 Kernel，不创建额外 stream。
+- 使用当前 NPU stream 发射 Kernel，不创建额外 stream；
+- 入口即校验接口契约，且 Python 层与底层入口各自独立校验：`ptr` 须首项为 0、
+  末项等于 `src.size(0)` 且单调非降，`ratio` 须有限并落在 `(0, 1]`，`pointCount`
+  须小于 `2^31`，`len(batch)` 须等于 `src.size(0)`。底层校验折进 Host 已有的那次
+  标量回读（校验标志与输出长度一次拷回，不额外增加同步），因此绕过 Python 封装
+  直接调用 `torch.ops.torch_cluster.fps` 时，非法参数同样进不了 kernel。
 
 ### Kernel 并行划分
 
@@ -169,7 +179,10 @@ kernel 必须复现该顺序，而不是“更高精度”的累加。
 - float16 的减法与平方保持 half（与 CPU 逐元素算子一致），累加在 float32 中
   进行并在最后舍入回 half，`vecNumel = 2 * Vectorized<float>::size()`；
 - 维度不足一个向量时退化为 CPU 的 `scalar_inner_sum` 路径；
-- F=4 使用专用的 float4 装载路径，其累加顺序与 CPU 的标量路径一致；
+- F=4 使用专用的 float4 装载路径，其累加顺序与 CPU 的标量路径一致；四项各自经
+  乘积隔离 helper（`FloatSquareTerm`）累加，避免 `d0*d0 + d1*d1 + d2*d2 + d3*d3`
+  被后端整体当成可融合的乘加链（F=4 float32 的真库网格 120 例中曾有 118 例因
+  1 ulp 差值选点分叉，隔离后 120/120 逐位一致）；
 - F=16/32/64 在 `sumLanes == 8` 时使用按维展开的等价实现（性能矩阵形状）；
 - 累加 lane 宽度由 Host 按 PyTorch 的 CPU capability 选择：CPU `sum` 只为
   DEFAULT 与 AVX2 注册，AVX512 机器仍走 AVX2 kernel，故宽度为 8（仅无 AVX
@@ -206,9 +219,13 @@ kernel 必须复现该顺序，而不是“更高精度”的累加。
 
 按 CPU 标杆处理：`torch.minimum` 在两个操作数任一为 NaN 时保留 NaN；
 `torch.argmax` 在存在 NaN 时返回**首个** NaN 的下标。Host 每次调用检测一次
-`src` 是否含 NaN（与既有的一次标量回读合并，不新增同步），kernel 用
-`template <bool kNaN>` 编译期二选一：不含 NaN 的输入走原来的朴素比较，含 NaN
-时走上述语义。任务书性能矩阵的输入不含 NaN，因此不付这份开销。
+`src` 是否含**非有限值**（`torch.logical_not(torch.isfinite(src)).any()`，NaN 与
+±Inf 一并覆盖；与既有的一次标量回读合并，不新增同步），kernel 用
+`template <bool kNaN>` 编译期二选一：不含非有限值的输入走原来的朴素比较，含非有限值
+时走该语义。仅检测 NaN 是不够的：`src` 自身含 `±Inf` 时，`inf - inf` 仍会产生
+NaN 进入距离，归约胜负必须按"首个 NaN"判定；只测 NaN 会让这类输入走朴素比较
+分支，实测 12 例 Inf 用例中有 10 例与 CPU 标杆分叉。任务书性能矩阵的输入不含
+非有限值，因此常规路径不付这份开销。
 
 ### 内存与同步
 
@@ -242,15 +259,18 @@ Kernel 使用 arch35 C 风格 SIMT 接口：`threadIdx.x`、`blockIdx.x`、
 
 1. `src` 首维表示点数；非连续但可 view 为 `[N, F]` 的输入（转置、切片等）
    是允许的，Host 会先物化，再交给按 `point * featureDim` 线性寻址的 kernel；
-2. `ratio` 应在 `(0, 1]`，标量或每 batch 一个值；标量 ratio 以 float32 构造
-   （不按输入 dtype 量化），采样数为 `ceil(float32(degree) * float32(ratio))`，
-   与任务书自带 golden 及仓库 `test/fps/golden.py` 一致；
+2. `ratio` 应在 `(0, 1]`，标量或每 batch 一个值；**标量 `ratio` 按 `src.dtype`
+   构造**（与上游 `torch_cluster/fps.py` 一致：fp16 输入下其值即 fp16 舍入后的
+   值），传入的 `ratio` Tensor 保持自身 dtype 与值；采样数为
+   `ceil(float32(degree) * float32(ratio))`——乘法在 float32 中进行，`ratio` 的
+   值取自上述张量——与 CPU 标杆（CPU 版 `torch_cluster` 的完整管线）及仓库
+   `test/fps/golden.py` 一致；
 3. `ptr` 为单调非降 CSR 边界，首项为 0、末项为 N；
-4. NaN/Inf 按 CPU 标杆语义处理，并以编译期分支实现（见上）；
+4. `src` 含 NaN/±Inf 时按 CPU 标杆语义处理，并以编译期分支实现（见上）；
 5. 单个 batch 的采样轮次具有算法级串行依赖；
 6. `pointCount < 2^31`：kernel 内候选下标在 UB 中以 `int32_t` 存放（把每轮
    归约的 UB 搬运量减半），写回 `out` 时才拓宽为 `int64_t`；任务书矩阵最大
-   16384，远低于该界。
+   16384，远低于该界。Host 已显式校验该上界，越界直接报错而不是静默截断。
 
 # 可维可测分析
 
@@ -266,18 +286,27 @@ Kernel 使用 arch35 C 风格 SIMT 接口：`threadIdx.x`、`blockIdx.x`、
 算子）、随机首点、大规模形状、非连续输入、NaN/Inf 语义（单核路径与多 AIV 拆
 分路径各一组，按 CPU 标杆语义比对）和距离平局。平局用例单独覆盖两件事：等距时返回最小全局
 下标（CPU `argmax()` 语义，与 CUDA 的 256-lane 规则相反），以及 batch 起点非
-256 对齐时结果不随偏移改变。距离归约另有专门用例覆盖 F≥16 时与逐特征累加的
-分歧。采样数另有针对性用例覆盖 `2049 × 0.5 = 1025`、`10000 × 0.3 = 3000`
-这类 fp16 无法精确表示 degree 的场景。性能脚本覆盖任务书 21 个 shape/ratio
-组合，并分别测试 float16 和 float32。
+256 对齐时结果不随偏移改变。距离归约另有专门用例覆盖 F=4、F≥16 的累加顺序与 CPU
+逐特征累加的分歧。另有负向用例覆盖底层入口拒绝非法参数：`ptr` 非单调、首项非 0、
+末项不等于 N，以及 `ratio` 为 0、大于 1、NaN、±Inf 均须报错，合法参数须正常
+返回；`len(batch) != src.size(0)` 须报 `ValueError`。采样数另有针对性用例覆盖
+`2049 × 0.5 = 1025`（fp16 装不下 degree）与 `10000 × 0.3 = 3001`（fp16 输入）/
+`3000`（fp32 输入）（fp16 装不下 ratio 的值）两类场景。性能脚本覆盖任务书 21 个
+shape/ratio 组合，并分别测试 float16 和 float32。
 
 在 Ascend 950 + CANN 9.1.0 环境回归：任务书官方矩阵按 CPU 标杆语义重评
-62/62（61 项 + 1 项平局守卫）、验收方重建矩阵 66/66、仓内扩展用例 46/46 通过；
-差分门禁 920 例（含 20 例 NaN/Inf 注入）与 CPU golden 逐位一致；42 个
-dtype/shape/ratio 性能项按官方协议（`warmup=20`、`iter=100`）取 5 遍中位数全部
-满足 0.45 门槛，全矩阵最低性能比（标杆耗时/实测耗时）为 0.506（`1024×16 fp16`）。
-验收机为共享机器，单次均值口径下 `1024×4 r=0.25 fp32` 曾被 100~400 ms 调度停顿
-抬高而不达标（该项 400 次逐调用中位数 ≈0.9 ms），故建议以多轮中位数为判据。
+62/62（61 项 + 1 项平局守卫）、验收方重建矩阵 66/66、仓内扩展用例 68/68 通过；
+差分门禁 920 例（900 例常规配置 + 20 例 NaN 注入配置）与 CPU golden 逐位一致；42 个
+dtype/shape/ratio 性能项按官方协议（`warmup=20`、`iter=100`）在**最终二进制**上重测：
+**全量 42 项 × 5 遍中位数 42/42 过门限，全矩阵最低 0.494**（`1024×16 f16`），
+`1024×4` 家族 5 遍中位数落在 0.496~0.531；单遍官方协议同样 42/42。余量最小的是
+`1024×4` 家族（该族按 gate 不拆核、只用一个 AIV，收益只来自距离与归约本身），故对它另做
+10 遍独立测量：最紧的 `1024×4 r=1.0 fp16` 为 0.450，**8 档 × 10 遍共 80 次测量全部过门限**。
+（"42 项 × 5 遍中位数、全矩阵最低 0.506（`1024×16 fp16`）"是 F=4 累加修复**之前**的二进制上
+测得的基线，保留在交付包 `logs/perf_median_5pass.log`，不再作为最终结论。）
+验收机为共享机器：100~400 ms 的调度停顿可把 `1024×4` 这类 1 ms 量级的用例抬高 10%~40%
+——本轮出现过一次 5 遍窗口读到 0.434，同一天在同一二进制上空闲重测时该项 5 遍中位数为
+0.520——故建议以多轮中位数或最小值作判据。
 
 ## 兼容性分析
 
