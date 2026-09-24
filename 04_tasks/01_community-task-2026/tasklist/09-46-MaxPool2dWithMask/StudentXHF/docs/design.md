@@ -1,6 +1,8 @@
 # MaxPool2dWithMask 算子设计
 
-贡献者：StudentXHF；任务编号09-46；版本2026-09-19。本文为前向算子设计，不涉及梯度计算。A2/910B3、CANN9.0.0候选已构建并完成165/165独立公共API精度用例，性能对照仍在进行，310P未验证；本文不表示已通过官方验收。
+贡献者：StudentXHF；任务编号09-46；更新日期2026-09-23。本文为前向算子设计，不涉及梯度计算。当前034在A2/910B3、CANN9.1.0完成354项独立精度复测、固定上游AscendOpTest原始153例、40项同源插桩及5项Profiler验证；插桩有同步冗余警告。详情与证据边界见“当前验证状态”。310P、官方TBE性能及正式验收仍未完成。
+
+原设计PR [#1732](https://gitcode.com/cann/cann-ops-competitions/pull/1732)已合并，CI及评审通过；本轮增补需另行上游评审，不能继承为本轮验收通过。
 
 当前实现方向：在`experimental/pooling/max_pool2d_with_mask`复用既有手写ACLNN的参数校验，保留正式公开函数原型。设备端按256个连续输出点划分所有权，按行搬运、Gather、FP32严格比较并更新int32索引，特殊跨度保留通用设备路径。索引按附件golden连续编码，尾部在设备清零，核心计算不在Host回退。1×1容量不足当前返回错误并明确标为合同缺口，不宣称该行为已经获准。性能测量先固定为5次预热、20次ACL事件采样，计量公开第二段中的设备工作；该诊断口径不等于官方TBE验收口径。
 
@@ -140,7 +142,41 @@ CANN版本为9.0.0或9.1.0。其他任务的A3/9362不能代替两类平台验�
 
 TBE基线使用未加载自定义库的独立干净进程；候选使用相同入口和输入，统一warmup、采样次数、同步范围与统计量。性能临界项串行跑三轮，以最差轮判定，同一NPU不并发竞争。原始PROF目录保留，证明不存在CPU fallback、错误旧库或额外同步。
 
-## 当前验证状态
+## 当前验证状态（2026-09-22）
+
+当前候选为034，源码LF SHA-256为`e526192121e00cacb80b33818cf13622f2c8220499ce9f01965ec94e8157c5ed`。在maxpoolA2 / Ascend 910B3确认CANN9.1.0后，从独立源码副本重新编译、安装普通包和同源插桩包，并重新编译公开ACLNN测试驱动，未改动候选实现。
+
+主集165/165、优化补充21/21、geometry168/168全部通过，比较完整out和int8 indices容器。memcheck/racecheck/initcheck/synccheck共40/40通过、候选kernel无ERROR，但保留1,062条同步冗余警告，已观察到set_flag/wait_flag冗余；不扩大为整图无警告结论。5个Profiler代表场景均rc=0、输出匹配，CSV确认候选派发。
+
+本轮SDK参考覆盖162个非空场景，36/162的SDK/候选耗时比低于0.95，中位比值2.1707292883150098。SDK未认证为官方TBE，不能据此宣称正式性能验收通过，也不直接与CANN9.0.0数据推导性能提升。
+
+2026-09-23补做官方基线工具调查：同一9.1.0环境中，`msopst create`的安静模式因缺少所需model配置返回239，交互模式因内置动态Python文件不是可直接导入的op-info定义而失败；两次失败日志和返回码均保留。随后在不加载候选自定义OPP/`LD_PRELOAD`的独立进程中，对`F001_s01_k3s2p1_fp32`运行完整`msprof`，实际kernel身份为`aclnnMaxPool2dWithMask_MaxPool3DWithArgmaxV2NcdhwAiCore_MaxPool3DWithArgmaxV2`，安装实现位于`ops_nn/ascendc/max_pool3d_with_argmax_v2/`。因此现有SDK对照实际是内置AscendC路径的工程参考，不能冒充原TBE基线。
+
+该调查的完整原始目录已归档为Git外附件`00_MaxPool034_CANN910_final_supplement_v2_20260923.zip`：116381字节、101个载荷文件/102个ZIP条目、载荷629101字节，SHA-256 `a2ef1fb96fcb75281c8b47be6d6975ede424013eb867de2bb4279c74cd98e886`。独立校验器按内嵌manifest逐文件验证101/101，包含工具发现、两次失败尝试、代表场景完整`msprof`原目录、kernel身份及安装文件清单；此取证不关闭官方TBE性能门禁。
+
+本轮9.1.0元数据包已取回并逐文件校验：1,442,176字节、2,135个manifest文件，SHA-256为`d3f498db197268885aa78231b9ca16c4962ad41e8c6d62f16f238cde5853968b`。完整原始包也已本地取回并校验：447,609,328字节、4,735/4,735文件，SHA-256 `8d45d88360438e474d43979721a05abab9d221daf11527444308b9e4c0fd0da9`；历史CANN9.0 Candidate034完整包675,218,840字节、7,782/7,782文件，SHA-256 `8a6242ce96e0a76624e608997e9dee66d6117e90ef381478fed90506caf01273`。[复测报告与机器可读汇总](https://gitcode.com/StudentXHF/ops-nn/blob/feat%2Fmaxpool2dwithmask-studentxhf/experimental/pooling/max_pool2d_with_mask/validation/20260922/REPORT.md)。
+
+310P、官方TBE性能及退化门槛判定、1×1容量合同和正式平台验收仍未完成。2026-09-23通过已登录页面现场核验：平台仍为“阶段2 任务开发”，正式表单可访问但未提交；HiDevLab权限管理显示310P系列“无权限/审核中”，开发环境为0卡时、0实例、暂无环境，不能记为310P测试通过。AscendOpTest全量精度与F140工程仿真已在下节独立核验。
+
+9.1.0下重编译既有negative_api.cpp后27项拒绝、unexpected_accept=0、rc0，其中26项参数拒绝和1项已知1×1容量冲突安全拒绝。原始目录`supplement_20260922`已纳入下节85文件补充包取回校验，后者不代表1×1功能支持。[034自测表格](https://gitcode.com/StudentXHF/ops-nn/blob/feat%2Fmaxpool2dwithmask-studentxhf/experimental/pooling/max_pool2d_with_mask/validation/20260922/A2_selftest_034_CANN910.xlsx)已整理354个精度用例、45条插桩/Profiler记录和6900条采样，TBE数据及待补截图为空，不用SDK填充官方基线。
+
+### 晚间工具对接增补
+
+AscendOpTest固定上游版本`5df6b3208a55e04f18851031793bae3a12ffd8d9`完成F001单例对接后，在`ascendoptest_full05_20260922`实际完成原始JSON153条工具全量：153/153，out与完整indices共306个输出均pass且与原golden逐字节相同，errors=[]、rc0。仅适配测试环境/头文件路径和测试原型的`attr_desc`→等值`attr`别名，未修改原始任务文件、golden或034实现。首次预加载环境错误、缺头文件和漏属性参数的失败日志全部保留。不套用既有165/165独立harness结果，工具精度通过也不等于官方TBE性能通过。
+
+全量工具元数据已取回校验333/333文件，345675字节，SHA-256 `3a2bd018cfe528bb139e71d3aa20127763dcb8b32fc35f25e91987e09e56000b`。完整原始目录另已取回为833014268字节`tar.zst`，含1595个条目和原始输入、golden、输出`.bin`、生成代码及成功/失败日志，SHA-256 `59ece04bf42918086d102be76ca56cc0d5444c52e6f32521ca81f6fd5975e80a`。已完成远端压缩流、34个分块逐块哈希、整包哈希和本地解压目录复核；大包作为验收附件单独保存，不提交进设计仓库。
+
+27项拒绝补测及工具对接原始文件已取回为85文件补充包，149683字节，SHA-256 `8de6c568295fc2acf03d89d678d6cc242065a2174b3a90a2b293b3dd1ac3f6c1`，逐文件校验85/85；其中1×1仍只是已知容量冲突安全拒绝。该包排除venv/build，并与已验证的完整候选包分工不同。官方TBE性能、310P与正式验收仍未通过。
+
+本次增补使用OpenAI Codex（GPT-5）；未获取更细模型版本，不将历史AI版本标注沿用为本次模型声明，不代替贡献者的人工审查确认。
+
+### F140仿真工程诊断
+
+对SDK参考退化场景F140（FP16、8×128×56×56、k2/s2/p0）进行了910B3仿真，不改变034实现。首轮因未加载simulator动态库实际失败，虽上游rc0也未计为通过。第二轮在独立目录加入`simulator/Ascend910B3/lib`后完成采集/解析，out与indices两个输出均与golden逐字节相同，40核（0..39）指令CSV齐全。
+
+源码级映射仍缺debug_line，保留3条映射警告。core0高耗时条目包含多条BAR（104次调用），提示同步成本值得检查，但流水线 attributed cycles不能相加当总耗时，也不能证明唯一瓶颈。此项是SDK参考驱动的工程分析，不关闭官方TBE退化判定/解释门禁。仿真元数据包712666字节、130/130文件已本地逐项校验；两次尝试的完整目录另已取回为68641743字节`tar.zst`，含311个条目、首轮失败和第二轮成功的压缩原始Profiler，SHA-256 `fe8f2feedcaca7cd14cf16a9bb9deb67f2cac268680b1a93837992cbecf61800`。该全量包已完成远端压缩流、3个分块逐块哈希、整包哈希及本地解压目录复核；大包作为验收附件单独保存。
+
+### 历史015验证记录
 
 已完成本地准备：4275组C++ shape/参数检查、55组分段检查、153条原始参数+72条补充CPU计算与原golden对照；18组序列化/比较器自测；20组Linux CPU ASan/UBSan检查，均通过。1×1容量异常已实际复现。
 
