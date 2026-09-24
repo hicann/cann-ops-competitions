@@ -1,0 +1,23 @@
+idx,interface,dst_type,src_type,params,m_shape,k_shape,n_shape,dtype,data_range,result
+1,LoadData_2D_L1ToL0A,__ca__ half*,__cbuf__ half*,{0,0,0,0,0,0,true,0},32,32,-,half,[-100,100],PASS
+2,LoadData_2D_L1ToL0B,__cb__ half*,__cbuf__ half*,{0,0,0,0,0,0,true,0},32,32,-,half,[-100,100],PASS
+3,LoadData_2DV2_L1ToL0A,__ca__ half*,__cbuf__ half*,{0,0,0,0,0,0,true,0},32,32,-,half,[-100,100],PASS
+4,LoadData_2DV2_L1ToL0B,__cb__ half*,__cbuf__ half*,{0,0,0,0,0,0,true,0},32,32,-,half,[-100,100],PASS
+5,LoadData_3DV1_L1ToL0A,__ca__ half*,__cbuf__ half*,{padList=[0,0,0,0],l1H=32,l1W=32,ch=32,kExt=32,mExt=32,kStart=0,mStart=0,strideW=32,strideH=1,fW=1,fH=1,dilW=1,dilH=1,trans=false,smallK=false,padVal=0},32,32,-,half,[-100,100],PASS
+6,LoadData_3DV1_L1ToL0B,__cb__ half*,__cbuf__ half*,同上,32,32,-,half,[-100,100],PASS
+7,LoadData_3DV2_L1ToL0A,__ca__ half*,__cbuf__ half*,同上,32,32,-,half,[-100,100],PASS
+8,LoadData_3DV2_L1ToL0B,__cb__ half*,__cbuf__ half*,同上,32,32,-,half,[-100,100],PASS
+9,LoadData_3DV2Pro_L1ToL0A,__ca__ half*,__cbuf__ half*,同上,32,32,-,half,[-100,100],PASS
+10,LoadData_3DV2Pro_L1ToL0B,__cb__ half*,__cbuf__ half*,同上,32,32,-,half,[-100,100],PASS
+11,Mmad_noBias,__cc__ float*,__ca__ half*/,__cb__ half*,"m=32,n=32,k=32,unitFlag=false,cmatrixInitVal=true,cmatrixSource=false",32,32,32,float,[-100,100],PASS
+12,Mmad_WithBias,__cc__ float*,__ca__ half*/,__cb__ half*/__cbuf__ float*,"m=32,n=32,k=32,unitFlag=false,cmatrixInitVal=false,cmatrixSource=true",32,32,32,float,[-100,100],PASS
+13,Fill_L1,__cbuf__ half*,,{repeatTimes=1,blockNum=1,dstGap=0,initValue=0},1024,-,-,half,[0,0],PASS
+14,Fill_L0A,__ca__ half*,,{repeatTimes=1,blockNum=1,dstGap=0,initValue=0},512,-,-,half,[0,0],PASS
+15,Fill_L0B,__cb__ half*,,{repeatTimes=1,blockNum=1,dstGap=0,initValue=0},512,-,-,half,[0,0],PASS
+16,Fixpipe_L0C2L1,__cbuf__ float*,__cc__ float*,"cburstNum=1,burstLen=1,srcStride=32,dstStride=32",1024,1024,-,float,[0,0],PASS
+17,Fixpipe_L0C2UB,__ubuf__ float*,__cc__ float*,"cburstNum=1,burstLen=1,srcStride=32,dstStride=32",1024,1024,-,float,[0,0],PASS
+18,Fixpipe_L0C2GM,__gm__ float*,__cc__ float*,"cburstNum=1,burstLen=1,srcStride=32,dstStride=32",1024,1024,-,float,[0,0],PASS
+19,Fixpipe_L0C2L1_Dequant,__cbuf__ float*,__cc__ float*/__cbuf__ uint64_t*,"cburstNum=1,burstLen=1,srcStride=32,dstStride=32",1024,1024,-,float,[0,0],PASS
+20,Fixpipe_L0C2GM_Dequant,__gm__ float*,__cc__ float*/__cbuf__ uint64_t*,"cburstNum=1,burstLen=1,srcStride=32,dstStride=32",1024,1024,-,float,[0,0],PASS
+21,Mixed_LoadData_2DV2,Tensor+Ptr混合,{0,0,0,0,0,0,true,0},32,32,-,half,[-100,100],PASS
+22,Mixed_Mmad,Tensor+Ptr混合,"m=32,n=32,k=32",32,32,32,float,[-100,100],PASS
