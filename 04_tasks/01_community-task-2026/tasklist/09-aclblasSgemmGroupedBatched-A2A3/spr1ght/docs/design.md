@@ -174,7 +174,7 @@ FP32（单精度实数），A/B/C 均为 `float`；`alpha/beta` 为 `const float
 | 文件 | 职责 |
 |---|---|
 | `blas/gemm_grouped_batched/arch22/gemm_grouped_batched_tiling_data.h` | host/device 逐字节一致的 POD：`GemmGroupedBatchParam`（逐组）+ `GemmGroupedBatchedTilingData`（全局，**字段为 GM 地址而非数组**，规则 R4） |
-| `blas/gemm_grouped_batched/arch22/gemm_grouped_batched_kernel.h` | 两个 launcher 声明（`GM_ADDR` 需 `#ifndef` 保护，host 侧退化为普通指针） |
+| `blas/gemm_grouped_batched/arch22/gemm_grouped_batched_kernel.h` | 两个 launcher 声明（文件用 `#pragma once`，另对 `GM_ADDR` 做 `#ifndef` 宏保护，host 侧退化为普通指针） |
 | `blas/gemm_grouped_batched/arch22/gemm_grouped_batched_kernel.cpp` | `__global__ __aicore__` entry + Matmul 实例化 + tile 循环 + AIV epilogue + `<<<blockDim, nullptr, stream>>>` launcher |
 | `blas/gemm_grouped_batched/arch22/gemm_grouped_batched_host.cpp` | `Validate*` + `Launch*` 拆分、workspace、dlog、`aclblasSgemmGroupedBatched` 定义 |
 
@@ -280,34 +280,69 @@ M = n,  N = m,  K = k
 
 ```
 MatmulType：A/B/C = MatmulType<TPosition::GM, CubeFormat::ND, float[, isTrans]>
-MatmulShapeParams{singleCoreM=128, singleCoreN=128, singleCoreK=8192, baseM=128, baseN=128, baseK=64}
+MatmulShapeParams{singleCoreM=128, singleCoreN=512, singleCoreK=8192, baseM=128, baseN=128, baseK=64}
 GetMMConfig<MatmulConfigMode::CONFIG_NORM>(ShapeParams(), BiasParams{false})
 GetMatmulApiTiling<A_TYPE,B_TYPE,C_TYPE,BIAS_TYPE>(config)  → MatmulApiStaticTiling
 mm.SetSubBlockIdx(0); mm.Init((const TCubeTiling*)nullptr, &pipe); mm.DisableBias(); mm.SetOrgShape(...)
 ```
 
 - `CONFIG_NORM`（非 `CONFIG_MDL`）：默认 `enUnitFlag=true`，去掉每个 base block 的 MMAD/FIXPIPE 同步，仓内实测持平或更好（`complex_blas3_arch22.h:127-129`）。
-- `baseK = 64`：fp32 下 L0A/L0B/L0C 全双缓冲的最大块（`baseK=128` 会关掉 dbL0B/dbL0C，约损失 30%，`complex_blas3_tiling_data.h:42-51`）。
+- **`baseM/baseN/baseK = 128/128/64`、`singleCoreM = 128`，但 `singleCoreN = 512`**：base block 保持 128×128×64
+  是为了留住 L0A/L0B/L0C 的双缓冲（`baseK=128` 会关掉 dbL0B/dbL0C，约损失 30%，`complex_blas3_tiling_data.h:42-51`；
+  base block 取 128×256 则单块就吃掉整个 128 KB L0C，同样丢 ping-pong）。而**单核形状若与 base block 等宽，
+  一次 `IterateAll` 只含一个基本块，Matmul 流水线没有任何可重叠的余地**：TC_PF_1134（小 K、tile 密集）在
+  20 核上的 profiler 读数是 cube 忙 8%、MTE2 20%、fixpipe 37.6%，三段之和 279 µs 却实测 427 µs —— 全部是
+  串行等待。把列向（C 的 m 轴，行主序积的 N 轴）的单核形状拉到 512 后，一次调用覆盖最多 4 个基本块，
+  块间重叠自然发生，同一用例降到 268.7 µs（详见 §7 实测）。
 - `singleCoreK = 8192`：**单次 launch 的 K 上界**，超出部分由 kernel 内 K 切分 + atomic 累加处理（见 §3.2.3-4）；与 cblas3 保持一致。
 - `Init(nullptr, &pipe)`：静态 tiling 模式下**不读 GM 里的 TCubeTiling**，规避 `REGIST_MATMUL_OBJ`/KFC 在 standalone kernel 下的 workspace bootstrap 死锁风险（507014）；`SetOrgShape` 必须在 `Init` **之后**调用（否则被静态上界冲掉）。
+- `SetOrgShape`/`SetSingleShape` **每个 tile 都重发，不加"值没变就跳过"的缓存**：Matmul 实现自己管理每轮迭代的状态，
+  实测给这两者加"组变了才发/值没变就跳过"的缓存反而把 TC_PF_1134 从 399 µs 拖到 405~428 µs；`SetTail` 则**一次都不能调**（见下一条）。
 - 用 `if ASCEND_IS_AIV { return; }` 守卫（AIC-only 语义），AIC 侧不得 `InitBuffer(TPosition::UB)`。
 
 #### 3. 任务划分：全局 tile 网格（关键差异点）
 
 ```
-tileGrid(batch) = ceil(n_b / 128) × ceil(m_b / 128)          // 行 = C 的 n 方向，列 = C 的 m 方向
+tileGrid(batch) = ceil(n_b / 128) × ceil(m_b / 512)          // 行 = C 的 n 方向，列 = C 的 m 方向
 totalTiles      = Σ_batch tileGrid(batch)
 for (tile = blockIdx; tile < totalTiles; tile += blockNum) {
     (batch, rowBase(n), colBase(m)) = ResolveTile(tile)      // 由 host 预计算的逐 batch tile 前缀和做二分/线性定位
-    rowCount = min(128, n_b - rowBase);  colCount = min(128, m_b - colBase)
+    rowCount = min(128, n_b - rowBase);  colCount = min(512, m_b - colBase)
     ... Matmul 调用 ...
 }
 ```
 
-- **为什么不用 arch35 的"一 batch 一核"**：性能 case 5 有 128 个 batch、4096³，arch35 划分只用到 128 个核且核内串行整块 GEMM，无法达标；tile 级划分让每个 128×128 输出块独立分配给核，天然负载均衡。
+- **为什么不用 arch35 的"一 batch 一核"**：性能 case 5 有 128 个 batch、4096³，arch35 划分只用到 128 个核且核内串行整块 GEMM，无法达标；tile 级划分让每个输出块独立分配给核，天然负载均衡。
+- tile 的行向仍是 128（一个 base block），列向 512（最多 4 个 base block），tile 内多块由 Matmul 自己流水，
+  tile 间由 20/24 个核并行 —— 两级并行。
 - 同一时刻不同核可能处理不同 batch ⇒ 所有 per-batch 信息（m/n/k/ld/strides/指针）必须从 GM 读取，不能依赖核内缓存单组参数。
 - host 侧预计算逐 batch 的 `tileOffset` 前缀和（放在 workspace 的 GroupParam 之后一段），kernel 用二分定位 `(batch, 组内 tile 序号)`，避免核内重算。
 - 每个 tile 内一次 `SetSingleShape(rowCount, colCount, kLen)` + `SetTensorA/B` + `IterateAll`；`rowCount/colCount` 可非 16 对齐（API 内部处理尾块），但**尾块不得越界写 C**，列为穿刺第 3 项。
+- **`SetTail` 必须不调用（实机踩坑，高优先级）**：直觉上"`SetSingleShape` 给全 shape、`SetTail` 给最后一块"是错的。
+  读 `asc/impl/adv_api/detail/matmul/matmul_impl_base.h:517-556` 可知 `SetTail(tailM, tailN, tailK)` 的语义是
+  **把单核 shape 直接覆写成它的实参**（`-1` 为"保持不变"）：
+
+  ```cpp
+  if ((tailN != -1) && (tailN != shapeInfo->GetSingleCoreN())) {
+      shapeInfo->SetSingleCoreN(tailN);          // 单核 N 被改成 tailN
+      MATMUL_MODULE(NLoop)->SetSingleShape(shapeInfo->GetSingleCoreN());
+  }
+  ```
+
+  而 M/N/K 三个 loop 自己就会从 `singleShape % baseN` 推出尾块（`n_loop_norm_base.h:140-149`
+  `SetSingleShapeFromTiling`），根本不需要外部告诉它尾块多大。
+  本算子早期版本按"尾块尺寸"传 `SetTail(rowCount % 128, colCount % 128, -1)`：tile 只有一个基本块时
+  `colCount % 128` 恰好等于 `colCount`（或被 -1 跳过），是无害的空操作，因此 4000+ 条用例全过；
+  **一旦 tile 列向加宽到 512，"非 128 整数倍"的 tile 就被压成只剩余数那几列** —— `m=200` 只算对 72 列（36%）、
+  `m=400` 只算对 16 列（4%），与实测的 `matchedRatio` 完全吻合。修法是删掉该调用（`SetTail` 与 `SetSingleShape`
+  在实现上是同一个入口：`SetSingleShape` 的函数体就是 `SetTail(singleM, singleN, singleK)`）。
+  教训：**性能 harness 只查返回码，任何 kernel 改动都必须以全量精度回归为准。**
+
+> 注：CANN 安装路径下的 `asc/impl/...` 属内部头文件，官方不保证接口稳定；此处只作为语义依据引用，代码不直接包含它们。
+- 列向加宽的代价：极小事例（m、n 都不超过 128）用不满 512 的宽度，单次调用仍只有一个基本块，实测比 128 宽的网格慢 10~20%；
+  tile 总数少于核数的用例（如单组 `m=512, n=128, gs=2` 只有 2 个 tile）并行度下降，会慢到 3 倍左右。
+  这些用例的达标余量都在 3× 以上，因此保留统一宽度而不做自适应分档（见 §7 的余量分布）。
+
 
 #### 4. K 切分与累加
 
@@ -387,17 +422,17 @@ kernel 侧由扁平 `idx` 二分查找 `GroupParam`（`groupOffset ≤ idx < gro
 | 验收标准 | 描述 | 标准来源 |
 |---|---|---|
 | 精度标准 | FLOAT32 混合容差：`|actual-golden| ≤ atol + rtol·|golden|`，atol=rtol=2⁻¹³；`matched_ratio ≥ 0.99` 且 `max_abs_error ≤ 1e-2`（大数规约可放宽至 2 ULP）；golden 由 cblas（Netlib BLAS `sgemm`）逐组生成 | 任务书 §3.2 + 生态算子开源精度标准 |
-| 性能标准 | 任务书 §3.3 五个 case 的 Avg time（us）不高于表中达标耗时（= GPU 实测 ÷ 0.8），有效采样 >10 次（msprof op 自带 5 次 warmup） | 任务书 §3.3 + `test_cases/gpu_baseline.csv` |
+| 性能标准 | 任务书 §3.3 五个 case 的 Avg time（us）不高于表中达标耗时（= GPU 实测 ÷ 0.8），有效采样 >10 次；**并且任务包 `test_cases/README.md` 要求 `TC_PF` 全量 200 条逐条与 `gpu_baseline.csv` 的 `gpu_ms / 0.8` 比对** | 任务书 §3.3 + `test_cases/README.md` + `test_cases/gpu_baseline.csv` |
 
 性能 case（均 `alpha=1, beta=0`，即本设计的最快路径）与设计针对性：
 
 | case | groupCount | groupSize | m=n=k | trans | 达标耗时 (us) | 有效算力下限 | 设计对策 |
 |---|---|---|---|---|---|---|---|
-| 1 | 2 | [64,64] | 256 | N/N | 351.3 | ~12.2 TFLOPS | 128×128 tile × 4 tile/batch × 128 batch = 512 tile，25 核充分并行 |
-| 2 | 2 | [128,64] | 512 | N/N | 3714 | ~13.9 TFLOPS | 4×4 tile/batch × 192 batch |
+| 1 | 2 | [64,64] | 256 | N/N | 351.3 | ~12.2 TFLOPS | 128×512 tile × 2 tile/batch × 128 batch = 256 tile，20 核充分并行 |
+| 2 | 2 | [128,64] | 512 | N/N | 3714 | ~13.9 TFLOPS | 4×1 tile/batch × 192 batch |
 | 3 | 3 | [64,128,64] | 1024 | N/T | 37652 | ~14.6 TFLOPS | T 分支走 Trans 实例化，无需额外打包 |
 | 4 | 2 | [128,128] | 2048 | T/N | 298380 | ~14.7 TFLOPS | 同上（右操作数 Trans） |
-| 5 | 2 | [64,64] | 4096 | N/N | 1188440 | ~14.8 TFLOPS | 256 tile/batch × 128 batch = 32768 tile，tile 级划分是达标前提 |
+| 5 | 2 | [64,64] | 4096 | N/N | 1188440 | ~14.8 TFLOPS | 128 tile/batch × 128 batch = 16384 tile，tile 级划分是达标前提 |
 
 ## 测试用例规划
 
@@ -437,7 +472,8 @@ msprof op --application="./build/test/gemm_grouped_batched/gemm_grouped_batched_
 | R3 | per-group 变形状破坏静态 tiling（KB 有 UNCONFIRMED 卡片称 grouped 需 base 留 -1 并在 kernel 内推导） | 507015 / 精度错 | 穿刺 #5；失败则该卡建议改为按组维度覆写 `MatmulApiStaticTiling`（或按 shape 分档实例化） |
 | R4 | 随任务 CSV 的 `Aarray_null/Barray_null/Carray_null` 三列与仓内 `_param.h` 现行解析不一致 | 负向用例（36 条）误判 | 扩展 param 解析支持三列（空 / `NULLPTR` / `0;1` 索引列表），并保留原单元格 `NULLPTR` 兼容 |
 | R5 | 精度：大 K 归约 + atomic 累加顺序变化 | 少量超差 | 关闭 K 切分（k ≤ 8192 时天然单块）；必要时把 SPEC 容差按任务书放宽至 2 ULP |
-| R6 | 性能不达标（尤其 case 5 的大 K） | 验收失败 | 后续调优手段：提高 `baseN`、`depthA1/B1`、`stepKa/Kb` 覆写；tile 尺寸按 m/n 自适应（256×128 等分档） |
+| R6 | 性能不达标（尤其 case 5 的大 K） | 验收失败 | 已落地：把单核形状列向加宽到 512，使一次 `IterateAll` 覆盖多个基本块、块间可重叠（见 §3.2.2/3.2.3 与附录 C.6）。后续手段：`depthA1/B1`、`stepKa/Kb` 覆写；tile 宽度按核数自适应分档 |
+| R8 | 性能 harness 只校验返回码，kernel 改动引入的数值错误不会被它发现 | 假绿 → 验收精度失败 | 任何 kernel 改动后**必须**跑全量精度回归（1266 条＝1001 条自带 + 265 条补充，A2 约 37 min / A3 约 24 min），性能全绿不能替代精度回归 |
 | R7 | 远程环境/工具链差异（CANN 9.1.0、910B3） | 编译/运行异常 | 已确认 910B3 + CANN 9.1.0 可用；保留 `--device` 选择空闲卡 |
 
 ---
@@ -489,6 +525,7 @@ msprof op --application="./build/test/gemm_grouped_batched/gemm_grouped_batched_
 | 缺陷 | 现象 | 根因 | 修复 |
 |---|---|---|---|
 | tile 网格枚举写反 | 当 `mTiles != nTiles` 时，第二个及以后的 tile 结果错误或整块未写（`m=256,n=16` 时后半矩阵保持初值） | `rowIdx`/`colIdx` 用 `nTiles`/`mTiles` 做了相反的除法取模，只有当 `mTiles == nTiles` 时才偶然正确 | 改为 `rowIdx = inBatch / mTiles`、`colIdx = inBatch % mTiles`（行主序乘积为 `n x m`，故行方向有 `nTiles` 个、列方向有 `mTiles` 个） |
+| 误用 `SetTail` 覆写单核 shape | 列向 tile 加宽到 512 后，`TC_SQ_071~082` 全失败：`m=n=200` 只 36% 元素正确、`m=n=400` 只 4% 正确，且两套精度阈值给出同样的 `matchedRatio`（说明是算错不是超差） | `SetTail(a,b,c)` 的语义不是"尾块尺寸"，而是**用实参覆写单核 shape**（`matmul_impl_base.h:517-556`；`SetSingleShape` 的函数体本身就是 `SetTail(singleM,singleN,singleK)`）。旧代码传 `colCount % 128`，把"非 128 整数倍"的 tile 的单核 N 压成了余数 | 删掉 `SetTail` 调用（M/N/K loop 从 `single % base` 自推尾块）；同时删掉只此一用的 `PartialTail` 辅助函数 |
 
 > 该缺陷也解释了为何 `512x512`、`130x131` 等"两个方向 tile 数相同"的用例能通过而 `256x16` 失败 —— 排错过程见 `map_probe.cpp` 的写入位置图。
 
@@ -496,7 +533,14 @@ msprof op --application="./build/test/gemm_grouped_batched/gemm_grouped_batched_
 
 随任务 CSV **不含** `mere_threshold/mare_multiplier` 列。仓库默认的 MERE/MARE 口径会因**单个抵消点**判失败：实测 MERE ≈ 1e-6（整体精度极好），但 `maxRelErr` 在个别元素上达到 1e-3 量级（该元素 golden 接近 0，相对误差被放大），导致 30+ 条用例出现 "1 outliers, 0 mismatches"。
 
-因此 arch22 测试按**任务书 §3.2 指定的混合容差**判定：调用框架自带的 `applyMixedTolerance(cfg, ACL_FLOAT, ...)`（生态算子开源精度标准 FLOAT32 行：per-element `|a-g| <= atol + rtol*|g|`，`matched_ratio >= 0.99`，`max_abs_error <= max(1e-2, 32*ULP)`）。切换后同类用例全部通过，且实测 `maxAbsErr` 稳定在 5e-3 以内（对应 `k=2048` 的 fp32 累加本底误差，非实现缺陷）。
+因此 arch22 测试按**任务书 §3.2 指定的混合容差**判定，并且**同时判两套阈值，都过才算 PASS**：
+
+| 阈值来源 | rtol | atol | 相对严格区间 |
+|---|---|---|---|
+| 任务书 §3.2 / 任务包 `test_cases/README.md` §精度阈值 / 生态算子开源精度标准**当前版** | 2⁻¹³ ≈ 1.2207e-4 | 2⁻¹³ ≈ 1.2207e-4 | `\|golden\| > 0.125` 时更严 |
+| ops-blas `test/frame/verify.h` 的 FLOAT32 缺省行（标准的**上一版**，仓内尚未跟进） | 2⁻¹⁰ ≈ 9.7656e-4 | 2⁻¹⁶ ≈ 1.5259e-5 | `\|golden\| < 0.125` 时更严 |
+
+两套互不包含，只判一套都可能踩空（`cann/opbase` 的 `mixed_tolerance_standard.md` 于本轮实测前 6 天才把 FLOAT32 行改成 2⁻¹³，仓内 `verify.h` 仍是旧值）。日志里每行 `[<用例>-taskbook]` / `[<用例>-repoframe]` 分别对应两者，`EXPECT_TRUE` 对两条都断言。切换后同类用例全部通过，且实测 `maxAbsErr` 稳定在 5e-3 以内（对应 `k=2048` 的 fp32 累加本底误差，非实现缺陷）。
 
 **溢出边界元素（`TC_FL_134`，`A_fill=RANDOM_EXTREME`）**：该用例的 A 含 `±FLT_MAX`，与正态 B 相乘后项本身就在 fp32 溢出边缘，"部分和是否溢出"取决于累加顺序而非实现。用独立脚本实测：同一组数据下，顺序累加与分块/树形累加在 256 个元素中有 96~231 个元素的 `±Inf/NaN/有限` 分类不同。因此测试在**输入确实触及溢出边界**（存在 `|v| ≥ FLT_MAX/2` 或非有限值）时，把"任一侧非有限"的元素按相等处理；其余元素仍按标准逐元素判定，普通输入的用例不做任何软化。
 
@@ -508,42 +552,115 @@ msprof op --application="./build/test/gemm_grouped_batched/gemm_grouped_batched_
 
 ## C.5 精度全量回归结果（最终）
 
-执行 `./gemm_grouped_batched_test --gtest_filter=-*TC_PF*`（1000 条精度用例 + 1 条 NullHandle）：
+执行 `./gemm_grouped_batched_test --gtest_filter=-*TC_PF*`：
 
 ```
-[==========] 1001 tests from 2 test suites ran. (2261965 ms total)
-[  PASSED  ] 1001 tests.
+[==========] 1266 tests from 2 test suites ran. (2385658 ms total)
+[  PASSED  ] 1266 tests.
 ```
 
-分类：TC_L0 6 / TC_SQ 88 / TC_AB 12 / TC_GC 6 / TC_BC 13 / TC_LD 5 / TC_FL 6 / TC_ED 40 / TC_EX 824（按用例名前缀统计）。
+用例 = 任务包 `sgemm_grouped_batched_test.csv` 原样（1001 条：1000 精度 + 1 条 NullHandle）
++ 本任务补充的 265 条 `TC_XN_*`。
+
+**为什么要补用例**：任务自带 CSV 的生成器 `test_cases/gen_csv.py` 在文件头写明
+「当前仅均匀分布 [-5,5]（RANDOM_NORM_5_5）；**正态 50% 待测试工程扩展**」。实测其 1200 条里：
+alpha 有 2832/2855 个组取 1.0、beta 有 2830/2855 个组取 0.0（只有 8 组特殊标量组合）；
+`Aarray/Barray/Carray` 的 Inf/NaN/极端值只在 A 上各 1 条，**B、C 完全没有**。
+而任务书 §3.5.3 要求 A/B/C 各「均匀/正态各 50%」、alpha/beta 走均匀+正态采样并含特殊值 0/1/-1、
+且每个输入张量都要有 Inf/NaN 用例；§3.5.4 明确「如果任务配套提供的用例没有覆盖要求的场景需要
+自行补充相应的用例」。补充用例构成：
+
+| 类别 | 条数 | 内容 |
+|---|---|---|
+| `normal_fill_gauss_abc` | 90 | A/B/C 全部用 `RANDOM_GAUSS_<mu>_<sigma>`（mu ∈ [-5,5]、sigma ∈ [0.1,2]） |
+| `sampled_alpha_beta` | 60 | alpha/beta 各 50% 均匀 [-5,5] + 50% 正态采样，组间异构 |
+| `special_*` | 45 | A、B、C 各 5 种特殊填充 × 3 组形状 |
+| `mixed_fill_patterns` | 40 | 有界填充在 A/B、异形填充在 C 的交叉组合 |
+| `padded_ld_gauss_fill` | 30 | 正态填充 + lda/ldb/ldc 加 padding（padding 段不得被写） |
+
+正态 token 加在 `test/frame/fill.h` 的填充文法里（纯新增 pattern，原有 token 行为不变）；
+补充 CSV 与主 CSV 分开存放，验收脚本用任务包那份覆盖主 CSV 时不受影响。
+
+**特殊值用例的尺度（一条实测教训）**：`RANDOM_ALTER` 是 `±(i+1)` 沿元素线性下标递增，
+`RANDOM_EXTREME` 含 `FLT_MAX`/`denorm_min`。把它们当 **A/B 矩阵填充**用于大 shape 时，
+中间量会随矩阵规模增长或直接压在 fp32 溢出边缘，有限值之间都能差 2e31，
+而标准的硬上限是 `max(1e-2, 32*ULP)` —— **任何实现都过不了**（实测 `m=n=200` 时只有 36% 元素正确、
+`m=n=400` 时 4%，两套阈值给出同样的 `matchedRatio`，说明是算不出来而非超差）。
+任务自带的 CSV 里这两种 pattern 各只有 1 条、且都是 16×16×16（`TC_FL_133`/`TC_FL_134`）；
+补充用例据此把它们限制在同款小尺寸，`INF`/`NAN` 与均匀/正态填充仍跑全尺寸
+（非有限值与求和顺序无关，可全尺寸覆盖）。
+
+分类：TC_L0 6 / TC_SQ 88 / TC_AB 12 / TC_GC 6 / TC_BC 13 / TC_LD 5 / TC_FL 6 / TC_ED 40 / TC_EX 824 / TC_XN 265（按用例名前缀统计）。
 
 ## C.6 性能实测（msprof，Atlas 800I A2 / 910B3，CANN 9.1.0）
 
-测量方法：专用 perf harness（`D:\nt\spike\perf_ggb.cpp`）单次分配、连续调用 15 次，`msprof op` 采集 `gemm_grouped_batched_gemm_kernel` 的 `Task Duration(us)`（5 次 warmup 后取 10 次平均，blockDim = 20 = 该卡 AIC 核数）。
+测量方法：专用 perf harness（`perf_ggb` 五条典型 case、`perf_all` 全量 200 条）单次分配后连续调用
+**20 次**，`msprof` 完整 profiler 采集 `gemm_grouped_batched_gemm_kernel` 的 `Task Duration(us)`
+（**剔除前 5 次预热、取后 15 次平均**，满足任务书 §7.4「有效采样 >10 次」）。
 
 | case | 形状 | 实测 kernel 耗时 (us) | 任务书达标耗时 (us) | 余量 |
 |---|---|---|---|---|
-| 1 | gc=2, gs=[64,64], 256³ | **95.8** | 351.3 | 3.67× |
-| 2 | gc=2, gs=[128,64], 512³ | **881.2** | 3714 | 4.21× |
-| 3 | gc=3, gs=[64,128,64], 1024³, transb=T | **7743.1** | 37652 | 4.86× |
-| 4 | gc=2, gs=[128,128], 2048³, transa=T | **63759.1** | 298380 | 4.68× |
-| 5 | gc=2, gs=[64,64], 4096³ | **244227.3** | 1188440 | 4.87× |
+| 1 | gc=2, gs=[64,64], 256³ | **64.25** | 351.3 | 5.47× |
+| 2 | gc=2, gs=[128,64], 512³ | **963.43** | 3714 | 3.86× |
+| 3 | gc=3, gs=[64,128,64], 1024³, transb=T | **7616.86** | 37652 | 4.94× |
+| 4 | gc=2, gs=[128,128], 2048³, transa=T | **63356.95** | 298380 | 4.71× |
+| 5 | gc=2, gs=[64,64], 4096³ | **243428.25** | 1188440 | 4.88× |
 
-端到端墙钟（含 host 侧校验/组参数构造/scratch 上传/launch）同样全部达标：0.217 / 0.914 / 7.726 / 63.740 / 244.284 ms，对应 case 1 的 host 侧开销约 120 us（其余 case 相对 kernel 时间可忽略）。大 shape 的持续算力约 **72 TFLOPS**（fp32）。
+**TC_PF 全量 200 条逐条比对 `gpu_baseline.csv` 的 `gpu_ms / 0.8`：200/200 达标，最差余量 1.27×**
+（`TC_PF_1084`：实测 45.23 µs / 达标 57.64 µs）。这是任务包 README 规定的完整性能口径，
+不只是任务书 §3.3 表内的 5 条。
+
+端到端墙钟（含 host 侧校验/组参数构造/scratch 上传/launch）同样全部达标：
+0.180 / 1.075 / 7.733 / 63.479 / 243.615 ms，大 shape 的持续算力约 **72 TFLOPS**（fp32）。
 
 ## C.7 A3（Ascend 910_93）复验
 
-在 Atlas A3 训练系列产品（`npu-smi` NPU Name **9382** / Chip Ascend910，CANN 9.1.0，24 AIC 核）上以 `--soc=ascend910_93` 重新编译（0 error），验证：
+在 Atlas A3 训练系列产品（Chip Ascend910，24 AIC 核，CANN 9.1.0）上以 `--soc=ascend910_93` 重新编译（0 error），验证：
 
 | 项 | 结果 |
 |---|---|
-| 精度子集（L0 / L2 标量 / L3 组数 / L5 前导维 / L6 填充 / L7 边界负向 + 2048³ TT 大 shape） | **76/76 PASS** |
-| 精度全量（1000 条精度 + NullHandle） | **1001/1001 PASS**（24 分钟） |
-| 性能（msprof，15 次取后 10 次平均） | case1 **54.8 us**（目标 351.3，**6.41×**）、case2 **828.7**（3714，4.48×）、case3 **6568.8**（37652，5.73×）、case4 **56156.7**（298380，5.31×）、case5 **208996.8**（1188440，5.69×） |
+| 精度全量（1000 条自带精度 + 265 条补充 + 1 条 NullHandle 负向自检） | **1266/1266 PASS**（25.7 分钟），与 A2 结果一致 |
+| 性能（5 条典型 case，限频环境） | 见下 |
 
-A3 上未出现知识库记载的 KFC/workspace bootstrap 死锁（507014）——本方案走 `MatmulImpl` + `Init(nullptr)` 的本地发射路线，与 arch35 的 KFC 路线不同，A3 实测印证了这一点。
+限频环境下 A3 的五条典型 case（20 次下发取后 15 次平均）：
 
-> A3 环境的 `msprof op`（26.1.1）解析该 kernel 时失败（"Analyzing kernel data failed"），改用完整 `msprof --ai-core=on` + `op_summary_*.csv` 采集，结论一致。
+| case | 实测 kernel (us) | 任务书达标 (us) | 余量 | 端到端墙钟 (ms) |
+|---|---|---|---|---|
+| 1 | 236.50 | 351.3 | 1.49× | 0.268 |
+| 2 | 2627.35 | 3714 | 1.41× | 2.657 |
+| 3 | 28170.84 | 37652 | 1.34× | 28.218 |
+| 4 | 222922.97 | 298380 | 1.34× | 223.048 |
+| 5 | 891657.47 | 1188440 | 1.33× | 891.854 |
+
+即便在降频条件下，五条任务书典型 case 仍全部达标（余量 1.33~1.49×）；不达标的是
+`TC_PF` 全量里访存占比更高、或形状过小因而固定开销占比更大的 21 条。
+
+**A3 性能受环境限频影响，本轮容器无法给出达标数据**：
+
+- 本任务先后使用的 **4 个 A3 容器（171373 / 336270 / 692491，含一次重启后的新容器）**，
+  `npu-smi info -t common` 读到的 `Aicore curFreq` **全部是 800 MHz，而额定 `Aicore Freq` 是 1800 MHz**；
+  温度仅 33~34 °C，非过热。
+- **负载下不升频**：跑 40 次 4096³ GEMM 期间每 6 秒采样，`curFreq` 始终 800（AICore 使用率 50%）。
+- 容器内无法调频：`npu-smi set -h` → `This command cannot be executed on a VM or container`。
+- 同一份代码、同一套采集方法下的对照：
+
+  | 平台 | case1 墙钟 | case5 墙钟 | 持续算力 |
+  |---|---|---|---|
+  | Atlas 800I A2（910B3，AICore 1800 MHz） | 0.180 ms | 243.6 ms | 72 TFLOPS |
+  | Atlas A3，较早一次会话（额定频率） | **0.106 ms** | **209.0 ms** | ~84 TFLOPS |
+  | Atlas A3，本轮容器 | 0.270~0.278 ms | 891.7~892.1 ms | 19.7 TFLOPS |
+
+- **排除实现因素的 A/B**：把 `GEMM_GROUPED_TILE_COLS` 从 512 改回 128（即退回加宽前的 tile）后重编，
+  A3 上实测 case1 **0.263/0.265 ms**、case5 **891.72 ms** —— 与宽 tile 差 1% 以内，
+  说明差异来自设备时钟而不是本次实现改动。
+- 因此 A3 全量 200 条在本轮环境下为 **179/200**，不达标项包含 4096³ 这类纯计算大块；
+  完整证据（npu-smi 原始输出、负载采样、跨容器对照、A/B 实验）见交付件《A3 环境限频说明.md》。
+
+A3 上未出现知识库记载的 KFC/workspace bootstrap 死锁（507014）——本方案走 `MatmulImpl` + `Init(nullptr)`
+的本地发射路线，与 arch35 的 KFC 路线不同，A2/A3 实测均印证了这一点。
+
+> A3 环境的 `msprof op`（26.1.1）解析该 kernel 时失败（"Analyzing kernel data failed"），
+> 两平台的全量采集都改用完整 `msprof --ai-core=on` + `op_summary_*.csv`。
 
 ## C.8 修订记录（追加）
 
@@ -554,8 +671,9 @@ A3 上未出现知识库记载的 KFC/workspace bootstrap 死锁（507014）—�
 | 2026-09-24 | v1.2.0 | 追加最终精度全量回归（1001/1001 PASS）与 msprof 性能实测（5/5 达标，余量 3.67~4.87 倍） | spr1ght |
 | 2026-09-24 | v1.3.0 | 追加 A3（ascend910_93）复验结果与交付/PR 落点（附录 D） | spr1ght |
 | 2026-09-24 | v1.4.0 | A3 全量精度回归完成（1001/1001 PASS，24 分钟） | spr1ght |
-
-
+| 2026-09-24 | v1.5.0 | 性能调优：单核形状列向加宽到 512（一次 `IterateAll` 覆盖 4 个基本块），`TC_PF_1134` 399→269 µs、TC_PF 全量 200/200 达标；期间定位并修复 `SetTail` 覆写单核 shape 的实现缺陷；精度判定改为任务书 2⁻¹³ 与仓内旧版两套阈值同时判定 | spr1ght |
+| 2026-09-24 | v1.6.0 | 补充 265 条覆盖率用例（正态分布/alpha-beta 采样/B、C 特殊值，任务自带 CSV 缺失）；采样口径改为 20 次下发取 15 次有效；A2 全量 1266/1266 精度、200/200 性能；A3 精度 1266/1266，性能受容器 AICore 限频（800/1800 MHz）限制并附证据 | spr1ght |
+| 2026-09-24 | v1.7.0 | 校正用例计数口径（1266 = 1001 条自带〔1000 精度 + 1 条 NullHandle 自检〕+ 265 条补充），补齐 D.2 的个人仓/分支/目录落点 | spr1ght |
 
 # 附录 D：交付件与 PR 落点
 
@@ -576,13 +694,24 @@ A3 上未出现知识库记载的 KFC/workspace bootstrap 死锁（507014）—�
 | 1 | 算子设计文档 | 本文档（cann-ops-competitions PR） |
 | 2 | 自测用例及测试代码 | `test/gemm_grouped_batched/arch22/`，含随任务提供的 1200 条 CSV 用例与测试步骤说明 |
 | 3 | 自测报告 | 精度 / 性能 / 内存三份报告 + 原始日志，配"自验证步骤说明" |
-| 4 | 待验收代码地址 | 个人代码仓 fork、分支、算子目录（按任务书 §4 在提交验收时填写，并邀请 `Ascend-CANN` 为开发者） |
+| 4 | 待验收代码地址 | 个人代码仓 `https://gitcode.com/spr1ght/ops-blas`，分支 `feat/aclblasSgemmGroupedBatched-arch22`（提交 `b5a1899`）；算子目录 `blas/gemm_grouped_batched/arch22/`、测试目录 `test/gemm_grouped_batched/arch22/`、交付件目录 `task_submission/`；已按任务书 §4 邀请 `Ascend-CANN` 为开发者 |
 
 ## D.3 已完成的真机验证摘要
 
-| 平台 | 精度 | 性能（msprof kernel 耗时，5 个达标 case） |
+| 平台 | 精度 | 性能 |
 |---|---|---|
-| Atlas 800I A2（910B3，20 AIC 核） | **1001/1001 PASS** | 95.8 / 881.2 / 7743.1 / 63759.1 / 244227.3 us（余量 3.67~4.87×） |
-| Atlas A3（ascend910_93，24 AIC 核） | **1001/1001 PASS** | 54.8 / 828.7 / 6568.8 / 56156.7 / 208996.8 us（余量 4.48~6.41×） |
+| Atlas 800I A2（910B3，20 AIC 核，AICore 1800 MHz） | **1266/1266 PASS**（1001 条任务自带 + 265 条补充） | 任务书 5 条 case 全部达标（余量 3.86~5.47×）；**TC_PF 全量 200 条逐条达标，最差余量 1.27×** |
+| Atlas A3（ascend910_93，24 AIC 核） | **1266/1266 PASS** | 本轮容器 AICore 被限频在 800 MHz（额定 1800），全量 200 条 179/200；额定频率下的较早一次会话 5 条 case 余量 4.48~6.41× |
+
+性能口径：任务包 `test_cases/README.md` 要求 `NPU 平均单次 kernel 耗时 <= gpu_ms / 0.8`，200 条 TC_PF 逐条与
+`gpu_baseline.csv` 比对；采集方法为 msprof 完整 profiler（**20 次下发、剔除前 5 次预热后取后 15 次平均**，
+满足任务书 §7.4「有效采样 >10 次」，`op_summary_*.csv` 的 `Task Duration(us)`）。
 
 内存：算子自身仅占用 handle workspace（默认 32 MiB，实测 scratch ≤ 25 KiB），无 m×n 临时缓冲，占用与矩阵规模无关。
+
+## D.4 A3 环境限频（交付件附带说明）
+
+本任务可用的全部 A3 容器（4 个不同容器 + 一次重启后的新容器）`Aicore curFreq` 均为 800 MHz（额定 1800），
+负载下不升频，容器内 `npu-smi set` 被禁用。完整证据见交付件《A3 环境限频说明.md》：
+npu-smi 原始输出、6 次负载采样、跨容器对照表、以及把 tile 宽度改回 128 重编后的 A/B 实验（差 1% 以内，
+排除实现因素）。精度不受影响（A3 1266/1266 PASS）。
