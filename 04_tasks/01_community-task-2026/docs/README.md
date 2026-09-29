@@ -275,6 +275,22 @@
 | 64 | 9月社区任务-hyperloglog容器开发(950) |
 | 65 | 9月社区任务-mulimap容器开发(950) |
 | 66 | 9月社区任务-multiset容器开发(950) |
+| 67 | 9月社区任务-MatmulLayerNormMatmul算子开发(950) |
+| 68 | 9月社区任务-aclblasCgemmStridedBatched算子开发(A2/A3) |
+| 69 | 9月社区任务-aclblasStbsv算子开发(A2/A3) |
+| 70 | 9月社区任务-aclblasCgbmv算子开发(A2/A3) |
+| 71 | 9月社区任务-aclblasCtrmm算子开发(A2/A3) |
+| 72 | 9月社区任务-aclblasCtbsv算子开发(A2/A3) |
+| 73 | 9月社区任务-单精度实数Cholesky分解、求解和批量接口(950) |
+| 74 | 9月社区任务-单精度复数Cholesky分解、求解和批量接口(950) |
+| 75 | 9月社区任务-aclblasCtpsv算子开发(A2/A3) |
+| 76 | 9月社区任务-split_qkv_rmsnorm_mrope算子开发 |
+| 77 | 9月社区任务-kv_cache_turbo_quant算子开发 |
+| 78 | 9月社区任务-aclblasStrsmBatched算子开发(A2/A3) |
+| 79 | 9月社区任务-aclblasCtrsmBatched算子开发(A2/A3) |
+| 80 | 9月社区任务-turbo_quant_attention_score算子开发 |
+| 81 | 9月社区任务-aclblasSgemmGroupedBatched算子开发(A2/A3) |
+| 82 | 9月社区任务-aclblasStrmm算子开发(A2/A3) |
 
 ## 参考链接
 社区任务发放页面：https://gitcode.com/org/cann/discussions/22
