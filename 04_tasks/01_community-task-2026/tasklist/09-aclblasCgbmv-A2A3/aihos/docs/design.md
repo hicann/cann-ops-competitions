@@ -81,7 +81,7 @@ aclblasStatus_t aclblasCgbmv(
 | **输入分布与标量** | 以现有 CSV 为准，不补正态分布、纯虚标量、beta=-1 等测试 | `gen_csv.py` 坦承底层工程暂未支持高斯生成器；CI 评测以真实 CSV 用例为准 |
 | **测试集合** | 严格执行现有 `cgbmv_test.csv` 的 1200 行（1000 精度 + 200 性能） | 覆盖 L0~L6、EX、PF 全部分类，不人为扩缩集合 |
 | **基线数据保护** | 使用已生成的 CSV，**坚决不重新运行 `gen_csv.py`** | 保护 `gpu_baseline.csv` 中已有的 200 条 GPU 实测数据不被空串抹除 |
-| **精度判据** | 实部/虚部分别按 FLOAT32 混合容差判定：$rtol=atol=2^{-13}$，$\ge 0.99$，逐点 $\le \max(0.01, 32 \times \text{ULP})$ | 严格对齐生态标准与 [verify.h:L308](file:///Users/zhubi/Documents/Learn/AscendTask/CANNRepos/blas/ops-blas/test/frame/verify.h#L308) 的底层实现 |
+| **精度判据** | 实部/虚部分别按 FLOAT32 混合容差判定：$rtol=atol=2^{-13}$，$\ge 0.99$，逐点 $\le \max(0.01, 32 \times \text{ULP})$ | 严格对齐生态标准与 [verify.h:L308](https://gitcode.com/cann/ops-blas/blob/master/test/frame/verify.h) 的底层实现 |
 | **性能采样** | 5 次预热后，恰好取 10 次有效采样平均（`Task Duration(us)`） | 排除前 5 次 warmup，每次调用前恢复 $y_0$（确保 $\beta=1$ 数据一致性） |
 | **硬件款型** | 面向 Atlas A2 / A3；正式性能对标硬件为 Atlas 800T A2 (910B3) | 自验证覆盖真实款型，不以封装方式推导指令性能完全一致 |
 
