@@ -126,9 +126,10 @@ trsm_mix_common.h
 include/cann_ops_blas.h
 ```
 
-两条计算路径，按 `diag` 分流，不按用例编号分流：
+计算路径按 `diag` 与形状分流，不按用例编号分流：
 
-- `diag = UNIT`：`LaunchCtrsmUnitKernel`。20 个 mix block 只跑 AIV，AIC 直接返回。保持调用方列主序，逐行或逐列代入。复数乘用 Dekker（分裂常数 4097，volatile float，目标指数 177），两个分量都是 NaN 时才调用与 `__mulsc3` 相同的无穷恢复。`alpha` 为 (1,0) 时 `ScaleAlpha` 直接返回原值。
+- `diag = UNIT`（默认）：`LaunchCtrsmUnitKernel`。20 个 mix block 只跑 AIV，AIC 直接返回。保持调用方列主序，逐行或逐列代入。复数乘用 Dekker（分裂常数 4097，volatile float，目标指数 177），两个分量都是 NaN 时才调用与 `__mulsc3` 相同的无穷恢复。`alpha` 为 (1,0) 时 `ScaleAlpha` 直接返回原值。
+- `diag = UNIT` 且命中以下任一条件（cubePerf）时，改走与 NON_UNIT 相同的列主序重映射 + MIX 核：三角阶 ≥4096；或 m、n 均 ≥1024 且 batchCount ≥32；或 RIGHT 且（m 或 ldb 非 8 对齐）且 ceil(batchCount/40)·m·n² ≥ 8×10⁹。前两类形状 MIX 吞吐更高；第三类下 UNIT 核的多核按行切分失效，退化为单 AIV 串行，单核工作量超出设备单任务时限。工作量乘积按 int64 计算，避免 int32 溢出导致改道条件失效。
 - `diag = NON_UNIT`：列主序重映射之后启动 `ctrsm_batched_mix12_kernel`（`KERNEL_TYPE_MIX_AIC_1_2`，1 个 AIC + 2 个 AIV）。对角 panel 在 AIV 上求解，拖尾用一次宽实数 GEMM 原子加回 B 工作区。
 
 panel 宽度：三角阶 `kDim > 1024` 时 `nb = 32`，否则 `nb = 16`。
@@ -147,7 +148,7 @@ panel 宽度：三角阶 `kDim > 1024` 时 `nb = 32`，否则 `nb = 16`。
 quick return 与主路径：
 
 - `alpha=(0,0)`：对每个 B[i] 按 `n * ldb` 个复数做 `aclrtMemset`，不读 A，不启动 kernel。
-- `diag=UNIT`：在列主序重映射之前返回 UNIT 核。
+- `diag=UNIT`：默认在列主序重映射之前返回 UNIT 核；命中上述 cubePerf 条件的与 NON_UNIT 同样重映射后启动 MIX 核。
 - `diag=NON_UNIT`：交换 m/n、LEFT↔RIGHT、翻转 uplo 后填 tiling 并启动 MIX 核。
 - `kDim<128` 且 `batchCount>1`、未分列时，按 batch 逐个启动 MIX 核，避免多个小 batch 在同一 kernel 里写坏 B 的列。
 
@@ -184,7 +185,7 @@ host 传 `CtrsmBatchedTilingData` 字段和一份 Cube tiling，不按用例编�
 | --- | --- |
 | alpha=(0,0) | Host `aclrtMemset`，不启动 kernel |
 | m=0 或 n=0 或 batchCount=0 | SUCCESS，不启动 |
-| diag=UNIT | UNIT 代入核，列主序，不分配 Cube workspace |
+| diag=UNIT | 默认 UNIT 代入核（列主序，不分配 Cube workspace）；cubePerf 形状（大阶/大批量/RIGHT 串行退化）改走 MIX |
 | diag=NON_UNIT | 列主序重映射后走 MIX |
 | kDim>1024 | nb=32，否则 nb=16 |
 | kDim≥128 且列对齐宽度≥128 | 双 AIV |
